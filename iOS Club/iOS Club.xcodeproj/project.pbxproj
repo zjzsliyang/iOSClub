@@ -20,6 +20,7 @@
 		2FCA3602215540B200816691 /* BlogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3601215540B200816691 /* BlogData.swift */; };
 		2FCA36082155568600816691 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA36072155568600816691 /* utilities.swift */; };
 		2FCA360A215556A000816691 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3609215556A000816691 /* config.swift */; };
+		2FCA36102155633900816691 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA360F2155633900816691 /* NewsCell.swift */; };
 		FB5A3A00D1163C45F5C17B87 /* Pods_iOS_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		2FCA3601215540B200816691 /* BlogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogData.swift; sourceTree = "<group>"; };
 		2FCA36072155568600816691 /* utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		2FCA3609215556A000816691 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		2FCA360F2155633900816691 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Club.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		592E44713D18C94351F0FA02 /* Pods-iOS Club.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Club.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +81,7 @@
 			children = (
 				2FCA36072155568600816691 /* utilities.swift */,
 				2FCA3609215556A000816691 /* config.swift */,
+				2FCA360E2155631700816691 /* View */,
 				2FCA35FC2155406200816691 /* Model */,
 				2FCA35F121553FB700816691 /* ViewController */,
 				2F74A523215538EC00341862 /* Main.storyboard */,
@@ -109,6 +112,14 @@
 				2FCA3601215540B200816691 /* BlogData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2FCA360E2155631700816691 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA360F2155633900816691 /* NewsCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B46904ED13DAD0DBA721C4D0 /* Frameworks */ = {
@@ -224,10 +235,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -251,6 +270,7 @@
 				2FCA35F92155402100816691 /* NewsViewController.swift in Sources */,
 				2FCA3600215540A800816691 /* NewsData.swift in Sources */,
 				2FCA3602215540B200816691 /* BlogData.swift in Sources */,
+				2FCA36102155633900816691 /* NewsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
