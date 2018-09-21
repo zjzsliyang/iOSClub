@@ -16,7 +16,23 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         setupHideKeyboardOnTap()
     }
+    
+    func requestNews() {
+        Alamofire.request(backendUrl).responseJSON { (response) in
+            print(response)
+        }
+    }
 
+}
+
+extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
 }
 
 extension NewsViewController: UISearchBarDelegate {
