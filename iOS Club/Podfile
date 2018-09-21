@@ -4,6 +4,7 @@
 target 'iOS Club' do
   use_frameworks!
 
+  #pod 'BMPlayer'
   pod 'Alamofire', '~> 4.7'
 
 end
