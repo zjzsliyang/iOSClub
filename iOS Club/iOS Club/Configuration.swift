@@ -8,6 +8,5 @@
 
 import Foundation
 
-let backendUrl = ""
-let backendPort = ""
+let backendUrl = "10.0.1.13:8888"
 

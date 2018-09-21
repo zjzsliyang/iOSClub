@@ -17,14 +17,40 @@
                     <view key="view" contentMode="scaleToFill" id="5vl-ts-tGr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Search News" translatesAutoresizingMaskIntoConstraints="NO" id="9BE-3l-0Bj">
+                                <rect key="frame" x="0.0" y="44" width="337" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sc4-RS-yn1" id="DDT-Xs-hGa"/>
+                                </connections>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPw-lq-a9v">
+                                <rect key="frame" x="337" y="61" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="44O-9x-MsQ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="News" image="news" id="W6Z-cv-Qqo"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="LPh-Xi-uBE" id="2Yx-U1-Ehm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sys-kb-5Kd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="LPh-Xi-uBE">
+                    <connections>
+                        <outlet property="delegate" destination="sc4-RS-yn1" id="Sxc-Ek-3du"/>
+                        <outlet property="searchContentsController" destination="sc4-RS-yn1" id="WBh-dS-1Rk"/>
+                        <outlet property="searchResultsDataSource" destination="sc4-RS-yn1" id="ePh-vJ-5v4"/>
+                        <outlet property="searchResultsDelegate" destination="sc4-RS-yn1" id="AVC-SV-HCh"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1049" y="371"/>
+            <point key="canvasLocation" x="-1050.4000000000001" y="370.93596059113304"/>
         </scene>
         <!--Activity-->
         <scene sceneID="Qgs-fX-SIE">
