@@ -17,8 +17,9 @@ class NewsData {
     let video: String?
     var images: [UIImage]
     var tags: [String]
+    let privilege: Int
     
-    init(username: String, avatar: String, time: String, title: String, content: String, video: String?, images: [String], tags: [String]) {
+    init(username: String, avatar: String, time: String, title: String, content: String, video: String?, images: [String], tags: [String], privilege: Int) {
         self.username = username
         let avatarData = try! Data(contentsOf: URL(string: avatar)!)
         self.avatar = UIImage(data: avatarData)!
@@ -35,6 +36,7 @@ class NewsData {
         for tag in tags {
             self.tags.append(tag)
         }
+        self.privilege = privilege
     }
 }
 
