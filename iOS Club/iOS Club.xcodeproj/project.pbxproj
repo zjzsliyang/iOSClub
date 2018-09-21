@@ -16,6 +16,9 @@
 		2FCA35F92155402100816691 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F42155402100816691 /* NewsViewController.swift */; };
 		2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F52155402100816691 /* TabBarViewController.swift */; };
 		2FCA35FB2155402100816691 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F62155402100816691 /* MeViewController.swift */; };
+		2FCA3600215540A800816691 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35FF215540A800816691 /* NewsData.swift */; };
+		2FCA3602215540B200816691 /* BlogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3601215540B200816691 /* BlogData.swift */; };
+		2FCA36062155418C00816691 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA36052155418C00816691 /* Configuration.swift */; };
 		FB5A3A00D1163C45F5C17B87 /* Pods_iOS_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +35,9 @@
 		2FCA35F42155402100816691 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		2FCA35F52155402100816691 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2FCA35F62155402100816691 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		2FCA35FF215540A800816691 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
+		2FCA3601215540B200816691 /* BlogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogData.swift; sourceTree = "<group>"; };
+		2FCA36052155418C00816691 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Club.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		592E44713D18C94351F0FA02 /* Pods-iOS Club.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Club.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,10 +75,12 @@
 		2F74A51E215538EC00341862 /* iOS Club */ = {
 			isa = PBXGroup;
 			children = (
-				2F74A51F215538EC00341862 /* AppDelegate.swift */,
+				2FCA36052155418C00816691 /* Configuration.swift */,
+				2FCA35FC2155406200816691 /* Model */,
 				2FCA35F121553FB700816691 /* ViewController */,
 				2F74A523215538EC00341862 /* Main.storyboard */,
 				2F74A526215538EE00341862 /* Assets.xcassets */,
+				2F74A51F215538EC00341862 /* AppDelegate.swift */,
 				2F74A528215538EE00341862 /* LaunchScreen.storyboard */,
 				2F74A52B215538EE00341862 /* Info.plist */,
 			);
@@ -89,6 +97,15 @@
 				2FCA35F52155402100816691 /* TabBarViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		2FCA35FC2155406200816691 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA35FF215540A800816691 /* NewsData.swift */,
+				2FCA3601215540B200816691 /* BlogData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B46904ED13DAD0DBA721C4D0 /* Frameworks */ = {
@@ -204,9 +221,12 @@
 				2FCA35FB2155402100816691 /* MeViewController.swift in Sources */,
 				2F74A520215538EC00341862 /* AppDelegate.swift in Sources */,
 				2FCA35F72155402100816691 /* ActivityViewController.swift in Sources */,
+				2FCA36062155418C00816691 /* Configuration.swift in Sources */,
 				2FCA35F82155402100816691 /* BlogViewController.swift in Sources */,
 				2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */,
 				2FCA35F92155402100816691 /* NewsViewController.swift in Sources */,
+				2FCA3600215540A800816691 /* NewsData.swift in Sources */,
+				2FCA3602215540B200816691 /* BlogData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
