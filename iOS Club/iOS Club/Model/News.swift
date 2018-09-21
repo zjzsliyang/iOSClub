@@ -1,5 +1,5 @@
 //
-//  NewsData.swift
+//  News.swift
 //  iOS Club
 //
 //  Created by Yang Li on 2018/9/21.
@@ -9,8 +9,7 @@
 import UIKit
 
 class News {
-    let postname: String
-    let avatar: UIImage
+    let postuser: User
     let time: String
     let title: String
     let content: String
@@ -19,10 +18,8 @@ class News {
     var tags: [String]
     let privilege: Int
     
-    init(postname: String, avatar: String, time: String, title: String, content: String, video: String?, images: [String], tags: [String], privilege: Int) {
-        self.postname = postname
-        let avatarData = try! Data(contentsOf: URL(string: avatar)!)
-        self.avatar = UIImage(data: avatarData)!
+    init(postuser: User, time: String, title: String, content: String, video: String?, images: [String], tags: [String], privilege: Int) {
+        self.postuser = postuser
         self.time = time
         self.title = title
         self.content = content

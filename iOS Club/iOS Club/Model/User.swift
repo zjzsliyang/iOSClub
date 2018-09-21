@@ -1,5 +1,5 @@
 //
-//  UserData.swift
+//  User.swift
 //  iOS Club
 //
 //  Created by Yang Li on 2018/9/22.
@@ -8,16 +8,17 @@
 
 import UIKit
 
-class UserData {
+class User {
     let username: String
-    let university: String
+    let university: University
     let privilege: Int
     let avatar: UIImage
     let email: String
     let password: String
     let position: String
+    let description: String
     
-    init(username: String, university: String, privilege: Int, avatar: String, email: String, password: String, position: String) {
+    init(username: String, university: University, privilege: Int, avatar: String, email: String, password: String, position: String, description: String) {
         self.username = username
         self.university = university
         self.privilege = privilege
@@ -26,5 +27,18 @@ class UserData {
         self.email = email
         self.password = password
         self.position = position
+        self.description = description
+    }
+}
+
+class University {
+    let id: String
+    let name: String
+    let email: String
+    
+    init(id: String, name: String, email: String) {
+        self.id = id
+        self.name = name
+        self.email = email
     }
 }
