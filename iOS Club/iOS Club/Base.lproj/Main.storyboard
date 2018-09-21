@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 1-->
+        <!--News-->
         <scene sceneID="ImA-eZ-GKl">
             <objects>
                 <viewController id="sc4-RS-yn1" customClass="NewsViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,13 +20,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="44O-9x-MsQ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="W6Z-cv-Qqo"/>
+                    <tabBarItem key="tabBarItem" title="News" image="news" id="W6Z-cv-Qqo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sys-kb-5Kd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1049" y="371"/>
         </scene>
-        <!--Item-->
+        <!--Activity-->
         <scene sceneID="Qgs-fX-SIE">
             <objects>
                 <viewController id="F5v-co-rvG" customClass="ActivityViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,13 +36,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fqo-8U-zm0"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="pCf-zS-alQ"/>
+                    <tabBarItem key="tabBarItem" title="Activity" image="activity" id="pCf-zS-alQ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yGN-sB-IBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="794" y="371"/>
         </scene>
-        <!--Item-->
+        <!--Me-->
         <scene sceneID="OZW-bb-B9H">
             <objects>
                 <viewController id="WsA-N9-ZJ2" customClass="MeViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
@@ -52,13 +52,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="L2z-Fi-oJ6"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="OFU-I2-hHf"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="me" id="OFU-I2-hHf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRY-sn-qVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1777" y="371"/>
         </scene>
-        <!--Item 2-->
+        <!--Blog-->
         <scene sceneID="Lae-1w-qjV">
             <objects>
                 <viewController id="2lN-lv-SSr" customClass="BlogViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
@@ -68,7 +68,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2FJ-AB-alT"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="UTu-Al-c47"/>
+                    <tabBarItem key="tabBarItem" title="Blog" image="blog" id="UTu-Al-c47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KvD-4r-s8U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -95,4 +95,10 @@
             <point key="canvasLocation" x="514" y="-377"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="activity" width="32" height="32"/>
+        <image name="blog" width="32" height="32"/>
+        <image name="me" width="32" height="32"/>
+        <image name="news" width="32" height="32"/>
+    </resources>
 </document>
