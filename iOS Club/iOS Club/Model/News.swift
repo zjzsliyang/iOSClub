@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsData {
+class News {
     let postname: String
     let avatar: UIImage
     let time: String
