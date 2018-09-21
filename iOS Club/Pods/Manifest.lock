@@ -1,16 +1,38 @@
 PODS:
   - Alamofire (4.7.3)
+  - BMPlayer (1.0.1):
+    - BMPlayer/Full (= 1.0.1)
+  - BMPlayer/Core (1.0.1)
+  - BMPlayer/Full (1.0.1):
+    - BMPlayer/Core
+    - NVActivityIndicatorView (~> 4.0.0)
+    - SnapKit (~> 4.0.0)
+  - NVActivityIndicatorView (4.0.1):
+    - NVActivityIndicatorView/Presenter (= 4.0.1)
+  - NVActivityIndicatorView/Presenter (4.0.1)
+  - SkeletonView (1.4)
+  - SnapKit (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - BMPlayer
+  - SkeletonView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - BMPlayer
+    - NVActivityIndicatorView
+    - SkeletonView
+    - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  BMPlayer: 44eebf06eb01450dd14ea74b27d07c5222f0eed1
+  NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
+  SkeletonView: 50f7a9b04e3a62bd0ae964859c19317fabaea367
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 595b9681d4725b3cfa614576a62a7933ba338793
+PODFILE CHECKSUM: 666ccce81951a5b31ee45e798edfac1edca5f52c
 
 COCOAPODS: 1.5.3

@@ -18,7 +18,9 @@
 		2FCA35FB2155402100816691 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F62155402100816691 /* MeViewController.swift */; };
 		2FCA3600215540A800816691 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35FF215540A800816691 /* NewsData.swift */; };
 		2FCA3602215540B200816691 /* BlogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3601215540B200816691 /* BlogData.swift */; };
-		2FCA36062155418C00816691 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA36052155418C00816691 /* Configuration.swift */; };
+		2FCA36082155568600816691 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA36072155568600816691 /* utilities.swift */; };
+		2FCA360A215556A000816691 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3609215556A000816691 /* config.swift */; };
+		2FCA36102155633900816691 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA360F2155633900816691 /* NewsCell.swift */; };
 		FB5A3A00D1163C45F5C17B87 /* Pods_iOS_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +39,9 @@
 		2FCA35F62155402100816691 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		2FCA35FF215540A800816691 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		2FCA3601215540B200816691 /* BlogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogData.swift; sourceTree = "<group>"; };
-		2FCA36052155418C00816691 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		2FCA36072155568600816691 /* utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
+		2FCA3609215556A000816691 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		2FCA360F2155633900816691 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Club.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		592E44713D18C94351F0FA02 /* Pods-iOS Club.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Club.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,7 +79,9 @@
 		2F74A51E215538EC00341862 /* iOS Club */ = {
 			isa = PBXGroup;
 			children = (
-				2FCA36052155418C00816691 /* Configuration.swift */,
+				2FCA36072155568600816691 /* utilities.swift */,
+				2FCA3609215556A000816691 /* config.swift */,
+				2FCA360E2155631700816691 /* View */,
 				2FCA35FC2155406200816691 /* Model */,
 				2FCA35F121553FB700816691 /* ViewController */,
 				2F74A523215538EC00341862 /* Main.storyboard */,
@@ -108,6 +114,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2FCA360E2155631700816691 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2FCA360F2155633900816691 /* NewsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B46904ED13DAD0DBA721C4D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,7 +150,7 @@
 				2F74A518215538EC00341862 /* Sources */,
 				2F74A519215538EC00341862 /* Frameworks */,
 				2F74A51A215538EC00341862 /* Resources */,
-				A6CDD00DE94A5F008CB243FD /* [CP] Embed Pods Frameworks */,
+				DA2C399EA0204978E9EC604F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -159,6 +173,7 @@
 				TargetAttributes = {
 					2F74A51B215538EC00341862 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -212,7 +227,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A6CDD00DE94A5F008CB243FD /* [CP] Embed Pods Frameworks */ = {
+		DA2C399EA0204978E9EC604F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -220,10 +235,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -240,12 +263,14 @@
 				2FCA35FB2155402100816691 /* MeViewController.swift in Sources */,
 				2F74A520215538EC00341862 /* AppDelegate.swift in Sources */,
 				2FCA35F72155402100816691 /* ActivityViewController.swift in Sources */,
-				2FCA36062155418C00816691 /* Configuration.swift in Sources */,
+				2FCA360A215556A000816691 /* config.swift in Sources */,
 				2FCA35F82155402100816691 /* BlogViewController.swift in Sources */,
 				2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */,
+				2FCA36082155568600816691 /* utilities.swift in Sources */,
 				2FCA35F92155402100816691 /* NewsViewController.swift in Sources */,
 				2FCA3600215540A800816691 /* NewsData.swift in Sources */,
 				2FCA3602215540B200816691 /* BlogData.swift in Sources */,
+				2FCA36102155633900816691 /* NewsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +427,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.tongji.iOS-Club";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -422,7 +447,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.tongji.iOS-Club";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

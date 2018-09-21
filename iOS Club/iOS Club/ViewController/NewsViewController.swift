@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SkeletonView
 
 class NewsViewController: UIViewController {
     
@@ -20,9 +22,13 @@ class NewsViewController: UIViewController {
 extension NewsViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+        if searchBar.text!.count > 0 {
+            print("search in news: " + searchBar.text!)
+            Alamofire.request(backendUrl).response { (response) in
+                print(response)
+            }
+        }
     }
-    
     
 }
 
