@@ -21,6 +21,7 @@
 		2FCA36082155568600816691 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA36072155568600816691 /* utilities.swift */; };
 		2FCA360A215556A000816691 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3609215556A000816691 /* config.swift */; };
 		2FCA36102155633900816691 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA360F2155633900816691 /* NewsCell.swift */; };
+		2FCA361221556DCA00816691 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA361121556DCA00816691 /* UserData.swift */; };
 		FB5A3A00D1163C45F5C17B87 /* Pods_iOS_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		2FCA36072155568600816691 /* utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		2FCA3609215556A000816691 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		2FCA360F2155633900816691 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		2FCA361121556DCA00816691 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Club.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		592E44713D18C94351F0FA02 /* Pods-iOS Club.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Club.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				2FCA35FF215540A800816691 /* NewsData.swift */,
+				2FCA361121556DCA00816691 /* UserData.swift */,
 				2FCA3601215540B200816691 /* BlogData.swift */,
 			);
 			path = Model;
@@ -266,6 +269,7 @@
 				2FCA360A215556A000816691 /* config.swift in Sources */,
 				2FCA35F82155402100816691 /* BlogViewController.swift in Sources */,
 				2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */,
+				2FCA361221556DCA00816691 /* UserData.swift in Sources */,
 				2FCA36082155568600816691 /* utilities.swift in Sources */,
 				2FCA35F92155402100816691 /* NewsViewController.swift in Sources */,
 				2FCA3600215540A800816691 /* NewsData.swift in Sources */,

@@ -8,8 +8,10 @@
 
 import UIKit
 import BMPlayer
+import SkeletonView
 
 class NewsCell: UITableViewCell {
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

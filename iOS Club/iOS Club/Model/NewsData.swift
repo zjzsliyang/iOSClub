@@ -9,7 +9,7 @@
 import UIKit
 
 class NewsData {
-    let username: String
+    let postname: String
     let avatar: UIImage
     let time: String
     let title: String
@@ -19,8 +19,8 @@ class NewsData {
     var tags: [String]
     let privilege: Int
     
-    init(username: String, avatar: String, time: String, title: String, content: String, video: String?, images: [String], tags: [String], privilege: Int) {
-        self.username = username
+    init(postname: String, avatar: String, time: String, title: String, content: String, video: String?, images: [String], tags: [String], privilege: Int) {
+        self.postname = postname
         let avatarData = try! Data(contentsOf: URL(string: avatar)!)
         self.avatar = UIImage(data: avatarData)!
         self.time = time
@@ -39,6 +39,3 @@ class NewsData {
         self.privilege = privilege
     }
 }
-
-
-
