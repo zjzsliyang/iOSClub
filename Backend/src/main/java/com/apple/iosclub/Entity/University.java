@@ -1,20 +1,24 @@
 package com.apple.iosclub.Entity;
 
-public class ClubInfo {
 
-    public int id;
+public class University {
+
     public int code;
     public String name;
     public String description;
     public String icon;
+    public String email;
 
-    public int getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+
+
 
     public int getCode() {
         return code;
