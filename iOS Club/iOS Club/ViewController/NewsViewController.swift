@@ -49,7 +49,7 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
+        return 370
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,6 +57,10 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsCell
         cell.setNews(news: news)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        TODO
     }
 }
 
