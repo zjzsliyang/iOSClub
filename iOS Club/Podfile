@@ -5,6 +5,7 @@ target 'iOS Club' do
   use_frameworks!
 
   pod 'SnapKit'
+  pod 'Gallery', :git => 'https://github.com/hyperoslo/Gallery.git', :branch => 'master'
   pod 'BMPlayer'
   pod 'VACalendar'
   pod 'SkeletonView'

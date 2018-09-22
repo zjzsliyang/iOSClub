@@ -7,6 +7,7 @@ PODS:
     - BMPlayer/Core
     - NVActivityIndicatorView (~> 4.0.0)
     - SnapKit (~> 4.0.0)
+  - Gallery (2.0.6)
   - Kingfisher (4.8.1)
   - LLCycleScrollView (1.5.0):
     - Kingfisher
@@ -21,6 +22,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - BMPlayer
+  - Gallery (from `https://github.com/hyperoslo/Gallery.git`, branch `master`)
   - LLCycleScrollView
   - SkeletonView
   - SnapKit
@@ -39,9 +41,20 @@ SPEC REPOS:
     - SwiftyJSON
     - VACalendar
 
+EXTERNAL SOURCES:
+  Gallery:
+    :branch: master
+    :git: https://github.com/hyperoslo/Gallery.git
+
+CHECKOUT OPTIONS:
+  Gallery:
+    :commit: bf4d1afe75adadd4da75d963bb84db925eee12f7
+    :git: https://github.com/hyperoslo/Gallery.git
+
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   BMPlayer: 44eebf06eb01450dd14ea74b27d07c5222f0eed1
+  Gallery: f75c3faefcb5da2cae2150ce3db29fcfbeed8b0f
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
   LLCycleScrollView: e4ec004ac76a0e60e9bbfa3381d9145910d0434f
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
@@ -50,6 +63,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   VACalendar: f189d1b713b8a38d85fe679afef5dc21105c6259
 
-PODFILE CHECKSUM: a27b1623f79952dd3b7530aebe1ee1b3453a759c
+PODFILE CHECKSUM: 6123841034eb38dd3dd850e7356d733c6c2c9112
 
 COCOAPODS: 1.5.3
