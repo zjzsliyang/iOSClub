@@ -8,4 +8,4 @@
 
 import Foundation
 
-let backendUrl = "10.0.1.13:8888"
+let backendUrl = "http://10.0.1.13:8888"

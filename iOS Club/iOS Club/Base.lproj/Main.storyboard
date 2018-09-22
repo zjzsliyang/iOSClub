@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F5v-co-rvG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bMo-NY-kuX">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,7 +36,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" id="b72-0O-Hxx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" id="b72-0O-Hxx" customClass="NewsCell" customModule="iOS_Club" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b72-0O-Hxx" id="S0F-ik-Sgw">
@@ -44,11 +44,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BDy-Mw-dUm">
-                                                    <rect key="frame" x="15" y="11" width="40" height="40"/>
+                                                    <rect key="frame" x="15" y="11" width="40" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxh-HW-82n">
                                                     <rect key="frame" x="80" y="28" width="205" height="21"/>
@@ -59,11 +56,18 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarView" destination="BDy-Mw-dUm" id="cQA-uw-erd"/>
+                                            <outlet property="timeLabel" destination="sxh-HW-82n" id="MHi-lH-Yhq"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <outlet property="dataSource" destination="sc4-RS-yn1" id="rKy-6v-asO"/>
-                                    <outlet property="delegate" destination="sc4-RS-yn1" id="dCm-9D-qiY"/>
+                                    <outlet property="dataSource" destination="sc4-RS-yn1" id="E4m-XP-6Bw"/>
+                                    <outlet property="delegate" destination="sc4-RS-yn1" id="bP0-4w-9Yi"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -72,6 +76,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="News" image="news" id="W6Z-cv-Qqo"/>
                     <connections>
+                        <outlet property="newsTableView" destination="Wwo-aD-Tb7" id="fEb-2y-zFY"/>
                         <outlet property="searchDisplayController" destination="LPh-Xi-uBE" id="2Yx-U1-Ehm"/>
                     </connections>
                 </viewController>
@@ -130,9 +135,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="F5v-co-rvG" id="dhs-54-1qW"/>
                                     <outlet property="delegate" destination="F5v-co-rvG" id="7DX-Kn-ICv"/>
@@ -288,7 +290,7 @@
     </scenes>
     <resources>
         <image name="activity" width="32" height="32"/>
-        <image name="avatar" width="189" height="186"/>
+        <image name="avatar" width="420" height="420"/>
         <image name="blog" width="32" height="32"/>
         <image name="me" width="32" height="32"/>
         <image name="news" width="32" height="32"/>
