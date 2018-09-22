@@ -1,46 +1,55 @@
 package com.apple.iosclub.FormatModel;
 
 import com.apple.iosclub.Entity.MyNew;
-import com.apple.iosclub.Entity.User;
+import com.apple.iosclub.Entity.MyUser;
+import com.apple.iosclub.Utils.Common;
+
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class FormatNew {
 
 
 
-    public FormatUser formatUser;
+    public User user;
     public String time;
     public String title;
     public String content;
     public String video;
-    public String images;
-    public String tags;
+    public List<String> images;
+    public List<String> tags;
     public int news_privilege;
 
-    public FormatNew(MyNew myNew){
+    public FormatNew(MyNew myNew) throws UnknownHostException {
 
         this.time = myNew.time;
         this.title = myNew.title;
         this.content = myNew.content;
-        this.video = myNew.video;
-        this.images = myNew.images;
-        this.tags = myNew.tags;
+        this.video = "http://" + Common.ip + ":" + Common.port + "/news_videos/1.mp4";//myNew.video;
+        String[] temp = {"http://" + Common.ip + ":" + Common.port  +"/news_images/zhu.png","http://" + Common.ip + ":" + Common.port + "/news_images/2.png","http://" + Common.ip + ":" + Common.port + "/news_images/3.png"};
+        this.images = Arrays.asList(temp);
+
+//        this.tags = myNew.tags;
+        this.tags = new ArrayList<>();
         this.news_privilege = myNew.news_privilege;
 
 
-        User user = new User();
-        user.u_code = myNew.u_code;
-        user.username = myNew.username;
-        user.user_privilege = myNew.news_privilege;
-        user.email = myNew.email;
-        user.password = myNew.password;
-        user.position = myNew.position;
-        user.description = myNew.description;
-        user.avatar = myNew.avatar;
-        user.u_name = myNew.u_name;
-        user.u_description = myNew.u_description;
-        user.u_icon = myNew.u_icon;
-        user.u_email = myNew.u_email;
-        this.formatUser = new FormatUser(user);
+        MyUser myUser = new MyUser();
+        myUser.u_code = myNew.u_code;
+        myUser.username = myNew.username;
+        myUser.user_privilege = myNew.news_privilege;
+        myUser.email = myNew.email;
+        myUser.password = myNew.password;
+        myUser.position = myNew.position;
+        myUser.description = myNew.description;
+        myUser.avatar = myNew.avatar;
+        myUser.u_name = myNew.u_name;
+        myUser.u_description = myNew.u_description;
+        myUser.u_icon = "http://" + Common.ip + ":" + Common.port + myNew.u_icon;
+        myUser.u_email = myNew.u_email;
+        this.user = new User(myUser);
 
     }
 

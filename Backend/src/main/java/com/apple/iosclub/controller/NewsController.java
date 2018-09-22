@@ -6,7 +6,11 @@ import com.apple.iosclub.FormatModel.FormatNew;
 import com.apple.iosclub.mapper.NewMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.*;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +22,7 @@ public class NewsController {
     public NewMapper newMapper;
 
     @GetMapping("/getAll")
-    public Object getAll(){
+    public Object getAll() throws UnknownHostException {
 
         ArrayList<FormatNew> list = new ArrayList<>();
 
@@ -29,7 +33,7 @@ public class NewsController {
         return list;
     }
     @GetMapping("/getByPrivilege")
-    public Object getByPrivilege(int u_privilege){
+    public Object getByPrivilege(int u_privilege) throws UnknownHostException {
         ArrayList<FormatNew> list = new ArrayList<>();
 
         for(MyNew myNew : newMapper.getByPrivilege(u_privilege)){
@@ -40,12 +44,12 @@ public class NewsController {
     }
 
     @PostMapping("/publish")
-    public Object getByPrivilege(@RequestBody HashMap<String, Object> req){
+    public Object publish(@RequestBody HashMap<String, Object> req){
 
         DBNew dbNew = new DBNew();
 
         try {
-            dbNew.postemail = (String) ((HashMap<String, Object>)req.get("formatUser")).get("email");
+            dbNew.postemail = (String) ((HashMap<String, Object>)req.get("user")).get("email");
         }catch (Exception e){
             dbNew.postemail = (String)req.get("email");
         }
@@ -63,6 +67,19 @@ public class NewsController {
 
         return dbNew;
 
+    }
+    public static final String uploadingdir = System.getProperty("user.dir") + "/src/main/resources/static/news_images/";
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public Object uploadingPost(@RequestPart("files") MultipartFile[] uploadingFiles, @RequestPart HashMap<String,Object> req) throws IOException {
+
+
+        for(MultipartFile uploadedFile : uploadingFiles) {
+            File file = new File(uploadingdir + uploadedFile.getOriginalFilename());
+            uploadedFile.transferTo(file);
+        }
+
+        return req;
     }
 
 
