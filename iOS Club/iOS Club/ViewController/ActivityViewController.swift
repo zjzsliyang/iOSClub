@@ -11,7 +11,6 @@ import VACalendar
 
 class ActivityViewController: UIViewController {
     
-    @IBOutlet weak var eventView: UIImageView!
     @IBOutlet weak var monthHeaderView: VAMonthHeaderView! {
         didSet {
             let appereance = VAMonthHeaderViewAppearance(
@@ -46,7 +45,7 @@ class ActivityViewController: UIViewController {
         let calendar = VACalendar(calendar: defaultCalendar)
         calendarView = VACalendarView(frame: .zero, calendar: calendar)
         calendarView.showDaysOut = true
-        calendarView.selectionStyle = .multi
+        calendarView.selectionStyle = .single
         calendarView.monthDelegate = monthHeaderView
         calendarView.dayViewAppearanceDelegate = self
         calendarView.monthViewAppearanceDelegate = self
@@ -155,16 +154,7 @@ extension ActivityViewController: VACalendarViewDelegate {
     func selectedDates(_ dates: [Date]) {
         calendarView.startDate = dates.last ?? Date()
         print(dates)
-        if dates.count > 1 {
-            print(dates[1].timeIntervalSince1970)
-        }
-        for date in dates {
-            if date.timeIntervalSince1970 == 1535414400.0 {
-                eventView.image = UIImage(named: "event")
-                return
-            }
-        }
-        eventView.image = nil
+        
     }
     
 }
