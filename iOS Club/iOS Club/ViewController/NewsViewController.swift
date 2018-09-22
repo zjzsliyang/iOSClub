@@ -49,7 +49,12 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 370
+        if (newses[indexPath.row].images != []) || (newses[indexPath.row].video != "") {
+            return 370
+        } else {
+            return 370 - self.view.frame.size.width / 16 * 9
+        }
+        
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

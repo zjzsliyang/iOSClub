@@ -55,7 +55,7 @@ class NewsCell: UITableViewCell {
     }
     
     func setupImages(images: [String]) {
-        let imagesplayer = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect(x: 0, y: 150, width: self.frame.width, height: 200))
+        let imagesplayer = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect(x: 0, y: 150, width: self.frame.width, height: self.frame.width / 16 * 9))
         imagesplayer.autoScroll = true
         imagesplayer.infiniteLoop = true
         self.addSubview(imagesplayer)
