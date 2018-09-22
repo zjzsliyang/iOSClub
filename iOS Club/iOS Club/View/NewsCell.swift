@@ -12,6 +12,9 @@ import SkeletonView
 
 class NewsCell: UITableViewCell {
     
+    func setNews(news: News) {
+        
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

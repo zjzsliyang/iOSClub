@@ -11,6 +11,7 @@ import Alamofire
 import SkeletonView
 
 class NewsViewController: UIViewController {
+    var newses = [News]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,8 @@ class NewsViewController: UIViewController {
     func requestNews() {
         Alamofire.request(backendUrl).responseJSON { (response) in
             print(response)
+            self.newses = []
+            
         }
     }
 
@@ -31,7 +34,10 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return nil
+        let news = newses[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsCell
+        cell.setNews(news: news)
+        return cell
     }
 }
 
