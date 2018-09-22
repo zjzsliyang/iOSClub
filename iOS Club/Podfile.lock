@@ -15,6 +15,7 @@ PODS:
   - NVActivityIndicatorView/Presenter (4.0.1)
   - SkeletonView (1.4)
   - SnapKit (4.0.0)
+  - SwiftyJSON (4.1.0)
   - VACalendar (1.2)
 
 DEPENDENCIES:
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - LLCycleScrollView
   - SkeletonView
   - SnapKit
+  - SwiftyJSON (~> 4.0)
   - VACalendar
 
 SPEC REPOS:
@@ -34,6 +36,7 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - SkeletonView
     - SnapKit
+    - SwiftyJSON
     - VACalendar
 
 SPEC CHECKSUMS:
@@ -44,8 +47,9 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
   SkeletonView: 50f7a9b04e3a62bd0ae964859c19317fabaea367
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   VACalendar: f189d1b713b8a38d85fe679afef5dc21105c6259
 
-PODFILE CHECKSUM: cb80285b68bd54d2e3d0ad4ea8ecf6370f2919ab
+PODFILE CHECKSUM: a27b1623f79952dd3b7530aebe1ee1b3453a759c
 
 COCOAPODS: 1.5.3
