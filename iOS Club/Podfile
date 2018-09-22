@@ -4,6 +4,7 @@
 target 'iOS Club' do
   use_frameworks!
 
+  pod 'SnapKit'
   pod 'BMPlayer'
   pod 'SkeletonView'
   pod 'JTAppleCalendar'

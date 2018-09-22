@@ -8,6 +8,6 @@
 
 import UIKit
 
-class Blog {
+struct Blog: Decodable {
     
 }

@@ -12,32 +12,55 @@ import SkeletonView
 
 class NewsViewController: UIViewController {
     var newses = [News]()
+    @IBOutlet weak var newsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchNews()
         setupHideKeyboardOnTap()
     }
     
-    func requestNews() {
-        Alamofire.request(backendUrl).responseJSON { (response) in
-            print(response)
-            self.newses = []
-            
+    func fetchNews() {
+        if let url = URL(string: backendUrl + "/news/getByPrivilege?u_privilege=" + "5") {
+            let session = URLSession(configuration: .default)
+            session.dataTask(with: url) { (data, _, err) in
+                guard err == nil else { return }
+                guard let data = data else { return }
+                if let newsdata = try? JSONDecoder().decode([News].self, from: data) {
+                    self.newses.append(contentsOf: newsdata)
+                    DispatchQueue.main.async {
+                        self.newsTableView.reloadData()
+                    }
+                } else {
+                    print("JSON parse failed")
+                }
+            }.resume()
         }
     }
-
 }
 
-extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDelegate {
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "NewsCell"
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return newses.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 370
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let news = newses[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsCell
         cell.setNews(news: news)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        TODO
     }
 }
 
@@ -51,7 +74,6 @@ extension NewsViewController: UISearchBarDelegate {
             }
         }
     }
-    
 }
 
 extension UIViewController {

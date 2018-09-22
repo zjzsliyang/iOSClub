@@ -19,6 +19,7 @@ DEPENDENCIES:
   - BMPlayer
   - JTAppleCalendar
   - SkeletonView
+  - SnapKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -37,6 +38,6 @@ SPEC CHECKSUMS:
   SkeletonView: 50f7a9b04e3a62bd0ae964859c19317fabaea367
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 9494145b771878e338085e65c2db3269f4d88d1d
+PODFILE CHECKSUM: 32c77a115a9ef66f79cfb0f6a6ed257271a5334d
 
 COCOAPODS: 1.5.3

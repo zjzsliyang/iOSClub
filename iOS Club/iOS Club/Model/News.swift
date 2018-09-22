@@ -8,31 +8,13 @@
 
 import UIKit
 
-class News {
-    let postuser: User
+struct News: Decodable {
+    let user: User
     let time: String
     let title: String
     let content: String
     let video: String?
-    var images: [UIImage]
+    var images: [String]
     var tags: [String]
-    let privilege: Int
-    
-    init(postuser: User, time: String, title: String, content: String, video: String?, images: [String], tags: [String], privilege: Int) {
-        self.postuser = postuser
-        self.time = time
-        self.title = title
-        self.content = content
-        self.video = video
-        self.images = []
-        for imageUrl in images {
-            let imageData = try! Data(contentsOf: URL(string: imageUrl)!)
-            self.images.append(UIImage(data: imageData)!)
-        }
-        self.tags = []
-        for tag in tags {
-            self.tags.append(tag)
-        }
-        self.privilege = privilege
-    }
+    let news_privilege: Int
 }
