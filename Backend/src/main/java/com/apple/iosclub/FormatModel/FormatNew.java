@@ -27,9 +27,19 @@ public class FormatNew {
         this.time = myNew.time;
         this.title = myNew.title;
         this.content = myNew.content;
-        this.video = "http://" + Common.ip + ":" + Common.port + "/news_videos/1.mp4";//myNew.video;
-        String[] temp = {"http://" + Common.ip + ":" + Common.port  +"/news_images/zhu.png","http://" + Common.ip + ":" + Common.port + "/news_images/2.png","http://" + Common.ip + ":" + Common.port + "/news_images/3.png"};
-        this.images = Arrays.asList(temp);
+        if(myNew.video.equals("1")){
+            this.video = "http://" + Common.ip + ":" + Common.port + "/news_videos/1.mp4";//myNew.video;
+        }else {
+            this.video = "";
+        }
+
+        if(myNew.video.equals("3")){
+            String[] temp = {};
+            this.images = Arrays.asList(temp);
+        }else {
+            String[] temp = {"http://" + Common.ip + ":" + Common.port  +"/news_images/1.png","http://" + Common.ip + ":" + Common.port + "/news_images/2.png","http://" + Common.ip + ":" + Common.port + "/news_images/3.png"};
+            this.images = Arrays.asList(temp);
+        }
 
 //        this.tags = myNew.tags;
         this.tags = new ArrayList<>();
