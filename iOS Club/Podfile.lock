@@ -8,6 +8,9 @@ PODS:
     - NVActivityIndicatorView (~> 4.0.0)
     - SnapKit (~> 4.0.0)
   - JTAppleCalendar (7.1.5)
+  - Kingfisher (4.8.1)
+  - LLCycleScrollView (1.5.0):
+    - Kingfisher
   - NVActivityIndicatorView (4.0.1):
     - NVActivityIndicatorView/Presenter (= 4.0.1)
   - NVActivityIndicatorView/Presenter (4.0.1)
@@ -18,6 +21,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.7)
   - BMPlayer
   - JTAppleCalendar
+  - LLCycleScrollView
   - SkeletonView
   - SnapKit
 
@@ -26,6 +30,8 @@ SPEC REPOS:
     - Alamofire
     - BMPlayer
     - JTAppleCalendar
+    - Kingfisher
+    - LLCycleScrollView
     - NVActivityIndicatorView
     - SkeletonView
     - SnapKit
@@ -34,10 +40,12 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   BMPlayer: 44eebf06eb01450dd14ea74b27d07c5222f0eed1
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
+  Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
+  LLCycleScrollView: e4ec004ac76a0e60e9bbfa3381d9145910d0434f
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
   SkeletonView: 50f7a9b04e3a62bd0ae964859c19317fabaea367
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 32c77a115a9ef66f79cfb0f6a6ed257271a5334d
+PODFILE CHECKSUM: b6de3464c27126312865c747b2c72416e68264ae
 
 COCOAPODS: 1.5.3
