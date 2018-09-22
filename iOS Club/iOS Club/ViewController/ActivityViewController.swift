@@ -69,7 +69,7 @@ class ActivityViewController: UIViewController {
                 x: 0,
                 y: weekDaysView.frame.maxY,
                 width: view.frame.width,
-                height: view.frame.height * 0.6
+                height: view.frame.height * 0.4
             )
             calendarView.setup()
         }
