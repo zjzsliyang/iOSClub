@@ -1,7 +1,5 @@
 # iOS Club App
 
-[Backend](https://github.com/igululu/iOSClubApp.BackEnd)
-
 ### Prototype Info
 
 包含 News, Blog, Activity and Me 四个界面.
@@ -48,7 +46,7 @@
 
 ![Me](res/Me.png)
 
-![all](res/all.png)
+![all](res/All.png)
 
-![](res/tongji.png)
+![](res/Tongji.png)
 
