@@ -8,6 +8,7 @@ target 'iOS Club' do
   pod 'BMPlayer'
   pod 'SkeletonView'
   pod 'JTAppleCalendar'
+  pod 'LLCycleScrollView'
   pod 'Alamofire', '~> 4.7'
 
 end

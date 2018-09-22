@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import BMPlayer
 import SkeletonView
+import LLCycleScrollView
 
 class NewsCell: UITableViewCell {
     
@@ -18,12 +19,12 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
-    let videoplayer = BMPlayer()
     
     func setNews(news: News) {
         userButton.setTitle(news.user.username, for: .normal)
         timeLabel.text = news.time
         titleLabel.text = news.title
+        contentTextView.text = news.content
         do {
             let avatarData = try Data(contentsOf: URL(string: news.user.avatar)!)
             avatarView.image = UIImage(data: avatarData)
@@ -34,11 +35,15 @@ class NewsCell: UITableViewCell {
         if news.video != "" {
             setupVideo(video: news.video!)
         } else if news.images != [] {
-            setupImages()
+            setupImages(images: news.images)
         }
     }
     
     func setupVideo(video: String) {
+        BMPlayerConf.enableBrightnessGestures = false
+        BMPlayerConf.enableVolumeGestures = false
+        BMPlayerConf.topBarShowInCase = .none
+        let videoplayer = BMPlayer()
         self.addSubview(videoplayer)
         videoplayer.snp.makeConstraints { (make) in
             make.top.equalTo(contentView).offset(150)
@@ -49,8 +54,14 @@ class NewsCell: UITableViewCell {
         videoplayer.setVideo(resource: asset)
     }
     
-    func setupImages() {
-        
+    func setupImages(images: [String]) {
+        let imagesplayer = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect(x: 0, y: 150, width: self.frame.width, height: 200))
+        imagesplayer.autoScroll = true
+        imagesplayer.infiniteLoop = true
+        self.addSubview(imagesplayer)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            imagesplayer.imagePaths = images
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
