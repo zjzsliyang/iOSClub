@@ -22,6 +22,7 @@
 		2FCA3614215572E300816691 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3613215572E300816691 /* News.swift */; };
 		2FCA3617215572EC00816691 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3615215572EB00816691 /* Blog.swift */; };
 		2FCA3618215572EC00816691 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3616215572EB00816691 /* User.swift */; };
+		2FCA361A2155811D00816691 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA36192155811D00816691 /* ActivityCell.swift */; };
 		FB5A3A00D1163C45F5C17B87 /* Pods_iOS_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		2FCA3613215572E300816691 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		2FCA3615215572EB00816691 /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		2FCA3616215572EB00816691 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2FCA36192155811D00816691 /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Club.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		592E44713D18C94351F0FA02 /* Pods-iOS Club.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Club.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				2FCA360F2155633900816691 /* NewsCell.swift */,
+				2FCA36192155811D00816691 /* ActivityCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -247,6 +251,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -270,6 +275,7 @@
 				2FCA35F82155402100816691 /* BlogViewController.swift in Sources */,
 				2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */,
 				2FCA3614215572E300816691 /* News.swift in Sources */,
+				2FCA361A2155811D00816691 /* ActivityCell.swift in Sources */,
 				2FCA36082155568600816691 /* utilities.swift in Sources */,
 				2FCA3618215572EC00816691 /* User.swift in Sources */,
 				2FCA35F92155402100816691 /* NewsViewController.swift in Sources */,
