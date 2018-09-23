@@ -13,6 +13,9 @@ import NotificationBannerSwift
 
 class ActivityViewController: UIViewController {
     
+    var events = [EKEvent]()
+    @IBOutlet weak var activityTableView: UITableView!
+    
     @IBOutlet weak var monthHeaderView: VAMonthHeaderView! {
         didSet {
             let appereance = VAMonthHeaderViewAppearance(
@@ -92,14 +95,16 @@ class ActivityViewController: UIViewController {
                 
                 let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
                 
-                let events = eventStore.events(matching: predicate)
+                self.events = eventStore.events(matching: predicate)
                 
-                for event in events {
+                for event in self.events {
                     print(event)
                     DispatchQueue.main.async {
                         self.calendarView.setSupplementaries([
                             (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
                             ])
+                        
+                        self.activityTableView.reloadData()
                     }
                 }
             }
@@ -202,20 +207,20 @@ extension ActivityViewController: VACalendarViewDelegate {
     func selectedDates(_ dates: [Date]) {
         calendarView.startDate = dates.last ?? Date()
         print(dates)
-        
     }
     
 }
 
 extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return events.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "activity")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "activity") as! ActivityCell
+        let event = events[indexPath.row]
+        cell.setActivity(title: event.title, location: event.location, time: event.startDate)
         return cell
     }
-    
-    
+        
 }

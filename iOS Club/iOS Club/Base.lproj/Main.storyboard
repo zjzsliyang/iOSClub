@@ -254,7 +254,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="activity" id="7rj-2d-6jQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="activity" id="7rj-2d-6jQ" customClass="ActivityCell" customModule="iOS_Club" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7rj-2d-6jQ" id="4F1-qZ-MfE">
@@ -284,6 +284,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="locationLabel" destination="fKm-DU-79P" id="MEp-g9-u8C"/>
+                                            <outlet property="timeLabel" destination="Edn-Ei-S45" id="uRO-Se-u1T"/>
+                                            <outlet property="titleLabel" destination="0UV-SY-t11" id="S6a-HF-oXy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -297,6 +302,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Activity" image="activity" id="pCf-zS-alQ"/>
                     <connections>
+                        <outlet property="activityTableView" destination="nhg-0j-KHe" id="ITy-W5-6bj"/>
                         <outlet property="monthHeaderView" destination="mcK-Uv-RjA" id="AfN-mO-IDO"/>
                         <outlet property="weekDaysView" destination="xYV-NQ-v99" id="xiQ-5h-uGw"/>
                     </connections>
