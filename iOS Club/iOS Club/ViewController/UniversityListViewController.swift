@@ -8,11 +8,15 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
+
 
 class UniversityListViewController: UIViewController ,UICollectionViewDataSource,UICollectionViewDelegate{
     
+    var universityArray:JSON = nil
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return self.universityArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -22,25 +26,25 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
         let icon = cell.icon as! UIImageView
         
 //        icon.image = UIImage(named: "avatar")
+        let iconUrl  = universityArray[indexPath.item]["icon"].rawString()
 
-        let url = URL(string:"http://10.0.1.13:8888/university_icon/10247.jpeg")!
-        //创建请求对象
-        let request = URLRequest(url: url)
+        let url = URL(string: iconUrl!)!
         
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request, completionHandler: {
-            (data, response, error) -> Void in
-            if error != nil{
-                print(error.debugDescription)
-            }else{
-                //将图片数据赋予UIImage
-                let img = UIImage(data:data!)
-                icon.image = img
+        
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
             }
-        }) as URLSessionTask
-        
-        //使用resume方法启动任务
-        dataTask.resume()
+            
+            DispatchQueue.main.async {
+                if let image = UIImage(data: data!) {
+//                    imageCache.setObject(image, forKey: urlString as NSString)
+                    icon.image = image
+                }
+            }
+            
+        }).resume()
         
         return cell
         
@@ -54,16 +58,36 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
         
-//        Alamofire.request("http://10.0.1.13:8888/club/info/getAll").responseJSON { response in
-//
-//            if let json = response.result.value {
-//
-//
-//                
-//            }
-//        }
+        let url:NSURL! = NSURL(string: backendUrl + "/club/info/getAll")
+        let urlRequest:NSURLRequest = NSURLRequest(url: url as URL)
+        var response:URLResponse?
+        
+        do{
+            let data:NSData? = try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest,returning: &response) as NSData
+            if let value = data {
+                let json = JSON(value)
+                self.universityArray = json
+            }
+        }catch let error as NSError{
+            //打印错误消息
+            print(error.code)
+            print(error.description)
+        }
+        
+        
+        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            let controller = segue.destination as! UniversityDetailViewController
+            let cell = sender as! UICollectionViewCell
+            let indexPath = self.collectionView!.indexPath(for: cell)
+            controller.university = self.universityArray[(indexPath?.item)!]
+        }
+    }
+    
+
 
     /*
     // MARK: - Navigation

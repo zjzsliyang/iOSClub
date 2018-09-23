@@ -7,6 +7,24 @@ public class StudentManager {
     public String name;
     public String position;
     public String email;
+    public String department;
+    public String avatar;
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public int getId() {
         return id;
