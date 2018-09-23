@@ -1,8 +1,9 @@
 package com.apple.iosclub.controller;
 
-import com.apple.iosclub.Entity.Teacher;
+import com.apple.iosclub.Model.TeacherModel;
 import com.apple.iosclub.Utils.Common;
 import com.apple.iosclub.mapper.TeacherMapper;
+import com.apple.iosclub.service.myimplement.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,25 +16,24 @@ import java.util.List;
 @RequestMapping("/club/teacher")
 public class TeacherController {
 
+//    @Autowired
+//    private TeacherMapper teacherMapper;
+
+    private TeacherService teacherService;
     @Autowired
-    private TeacherMapper teacherMapper;
+    public TeacherController(TeacherService teacherService){
+        this.teacherService = teacherService;
+    }
 
     @GetMapping("/getAll")
     public Object getAll(){
-        return teacherMapper.getAll();
+        return teacherService.getAll();
     }
 
 
     @GetMapping("/getByCode")
     public Object getByCode(int code){
-
-        List<Teacher> list = teacherMapper.getByCode(code);
-
-        for(Teacher teacher : list){
-            teacher.avatar = "http://" + Common.ip + ":" + Common.port + teacher.avatar;
-        }
-
-        return list;
+        return teacherService.getByCode(code);
     }
 
 

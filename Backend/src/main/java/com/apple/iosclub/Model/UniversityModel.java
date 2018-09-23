@@ -1,7 +1,7 @@
-package com.apple.iosclub.Entity;
+package com.apple.iosclub.Model;
 
 
-public class University {
+public class UniversityModel {
 
     public int code;
     public String name;
@@ -16,8 +16,6 @@ public class University {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
 
 
     public int getCode() {

@@ -9,13 +9,13 @@ GET /club/info/getAll
 #### 获取所有老师
 
 ```
-GET /club/teacher/getAll
+GET /club/teacherModel/getAll
 ```
 
 #### 获取某个学校所有老师
 
 ```
-GET /club/teacher/getByCode?code=10247
+GET /club/teacherModel/getByCode?code=10247
 ```
 
 
@@ -48,7 +48,7 @@ GET /club/sm/getByCode?code=10247
 [
     {
         "formatUser": {
-            "university": {
+            "universityModel": {
                 "code": 10247,
                 "name": "同济大学",
                 "description": "同济大学苹果俱乐部建立于2003年9月24日，是同济大学软件学院创新基地支撑的七个俱乐部之一，是亚太地区较早和Apple 相关团队展开协作的学生俱乐部，旨在体现和落实同济大学创新创业人才培养的理念，传播Apple的先进技术以及培养学生的创新创业意识。",
@@ -73,7 +73,7 @@ GET /club/sm/getByCode?code=10247
     },
     {
         "formatUser": {
-            "university": {
+            "universityModel": {
                 "code": 10247,
                 "name": "同济大学",
                 "description": "同济大学苹果俱乐部建立于2003年9月24日，是同济大学软件学院创新基地支撑的七个俱乐部之一，是亚太地区较早和Apple 相关团队展开协作的学生俱乐部，旨在体现和落实同济大学创新创业人才培养的理念，传播Apple的先进技术以及培养学生的创新创业意识。",
