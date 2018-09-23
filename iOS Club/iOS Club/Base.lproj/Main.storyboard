@@ -255,7 +255,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="activity" id="7rj-2d-6jQ" customClass="ActivityCell" customModule="iOS_Club" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7rj-2d-6jQ" id="4F1-qZ-MfE">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666666666666664"/>
@@ -482,7 +482,7 @@
                                 <rect key="frame" x="127" y="127" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="同济大学苹果俱乐部建立于2003年9月24日，是同济大学软件学院创新基地支撑的七个俱乐部之一，是亚太地区较早和Apple 相关团队展开协作的学生俱乐部，旨在体现和落实同济大学创新创业人才培养的理念，传播Apple的先进技术以及培养学生的创新创业意识。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kHz-4w-AEQ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="同济大学苹果俱乐部建立于2003年9月24日，是同济大学软件学院创新基地支撑的七个俱乐部之一，是亚太地区较早和Apple 相关团队展开协作的学生俱乐部，旨在体现和落实同济大学创新创业人才培养的理念，传播Apple的先进技术以及培养学生的创新创业意识。" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHz-4w-AEQ">
                                 <rect key="frame" x="16" y="275" width="343" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
