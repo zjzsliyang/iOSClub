@@ -1,6 +1,7 @@
 package com.apple.iosclub.mapper;
 
 import com.apple.iosclub.Entity.MyUser;
+import com.apple.iosclub.Model.UserModel;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -10,8 +11,8 @@ import org.apache.ibatis.annotations.Select;
 public interface UserMapper {
 
 
-    @Select("select * from user natural join university where email=#{email}")
-    MyUser getByEmail(String email);
+//    @Select("select * from user natural join university where email=#{email}")
+//    MyUser getByEmail(String email);
 
     @Select("select password from user where email=#{email}")
     String getPassWord(String email);
@@ -26,6 +27,9 @@ public interface UserMapper {
                     @Param("description") String description,
                     @Param("avatar") String avatar);
 
+
+    @Select("select * from user natural join university where email=#{email}")
+    UserModel getInfoByEmail(String email);
 
 
 }

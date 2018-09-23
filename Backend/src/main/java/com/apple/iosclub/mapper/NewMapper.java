@@ -2,6 +2,7 @@ package com.apple.iosclub.mapper;
 
 import com.apple.iosclub.Entity.DBNew;
 import com.apple.iosclub.Entity.MyNew;
+import com.apple.iosclub.Model.NewModel;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,5 +22,13 @@ public interface NewMapper {
 
     @Insert("insert into news(postemail,time,title,content,video,images,tags,n_privilege) values(#{dbNew.postemail},#{dbNew.time},#{dbNew.title},#{dbNew.content},#{dbNew.video},#{dbNew.images},#{dbNew.tags},${dbNew.news_privilege})")
     void insertNew(@Param("dbNew") DBNew dbNew);
+
+    @Select("select * from news , (user NATURAL JOIN university) where postemail = email and n_privilege <= #{privilege}")
+    List<NewModel> getNewsByPrivilege(int privilege);
+
+    @Select("select * from news , (user NATURAL JOIN university) where postemail = email")
+    List<NewModel> getAllNews();
+
+
 
 }

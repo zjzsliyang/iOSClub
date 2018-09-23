@@ -11,7 +11,7 @@ import SwiftyJSON
 import Alamofire
 class UniversityDetailViewController: UIViewController {
 
-    var university:JSON = nil
+    var university:JSON = JSON.null
     
     @IBOutlet weak var uiniversityIcon: UIImageView!
     

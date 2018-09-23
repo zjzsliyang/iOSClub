@@ -4,6 +4,7 @@ import com.apple.iosclub.Entity.DBNew;
 import com.apple.iosclub.Entity.MyNew;
 import com.apple.iosclub.FormatModel.FormatNew;
 import com.apple.iosclub.mapper.NewMapper;
+import com.apple.iosclub.service.myimplement.NewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,32 +17,58 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/news")
-public class NewsController {
+public class NewController {
 
     @Autowired
     public NewMapper newMapper;
 
+    private NewService newService;
+
+    @Autowired
+    public NewController(NewService newService){
+        this.newService = newService;
+    }
+
+//    @GetMapping("/getAll")
+//    public Object getAll() throws UnknownHostException {
+//
+//        ArrayList<FormatNew> list = new ArrayList<>();
+//
+//        for(MyNew myNew : newMapper.getAll()){
+//            list.add(new FormatNew(myNew));
+//        }
+//
+//        return list;
+//    }
     @GetMapping("/getAll")
-    public Object getAll() throws UnknownHostException {
-
-        ArrayList<FormatNew> list = new ArrayList<>();
-
-        for(MyNew myNew : newMapper.getAll()){
-            list.add(new FormatNew(myNew));
-        }
-
-        return list;
+    public Object getAll() {
+        return newService.getAllNews();
     }
+
+
+//    @GetMapping("/getByPrivilege")
+//    public Object getByPrivilege(int u_privilege) throws UnknownHostException {
+//        ArrayList<FormatNew> list = new ArrayList<>();
+//
+//        for(MyNew myNew : newMapper.getByPrivilege(u_privilege)){
+//            list.add(new FormatNew(myNew));
+//        }
+//
+//        return list;
+//    }
     @GetMapping("/getByPrivilege")
-    public Object getByPrivilege(int u_privilege) throws UnknownHostException {
-        ArrayList<FormatNew> list = new ArrayList<>();
+    public Object getByPrivilege(int u_privilege){
 
-        for(MyNew myNew : newMapper.getByPrivilege(u_privilege)){
-            list.add(new FormatNew(myNew));
-        }
-
-        return list;
+        return newService.getNewsByPrivilege(u_privilege);
     }
+
+
+
+
+
+
+
+
 
     @PostMapping("/publish")
     public Object publish(@RequestBody HashMap<String, Object> req){
@@ -68,8 +95,9 @@ public class NewsController {
         return dbNew;
 
     }
-    public static final String uploadingdir = System.getProperty("user.dir") + "/src/main/resources/static/news_images/";
 
+
+    public static final String uploadingdir = System.getProperty("user.dir") + "/src/main/resources/static/news_images/";
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public Object uploadingPost(@RequestPart("files") MultipartFile[] uploadingFiles, @RequestPart HashMap<String,Object> req) throws IOException {
 

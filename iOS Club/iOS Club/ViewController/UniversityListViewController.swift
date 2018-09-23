@@ -13,7 +13,7 @@ import SwiftyJSON
 
 class UniversityListViewController: UIViewController ,UICollectionViewDataSource,UICollectionViewDelegate{
     
-    var universityArray:JSON = nil
+    var universityArray:JSON = JSON.null
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.universityArray.count
@@ -23,7 +23,7 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "universityCell", for: indexPath) as! UniversityCell
         
-        let icon = cell.icon as! UIImageView
+        let icon = cell.icon as UIImageView
         
 //        icon.image = UIImage(named: "avatar")
         let iconUrl  = universityArray[indexPath.item]["icon"].rawString()
