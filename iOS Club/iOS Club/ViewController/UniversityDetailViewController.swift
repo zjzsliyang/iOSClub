@@ -11,10 +11,9 @@ import SwiftyJSON
 import Alamofire
 class UniversityDetailViewController: UIViewController {
 
-    var university:JSON = JSON.null
+    var university = JSON.null
     
     @IBOutlet weak var uiniversityIcon: UIImageView!
-    
     
     @IBOutlet weak var universityDesc: UITextView!
     
@@ -68,7 +67,6 @@ class UniversityDetailViewController: UIViewController {
                  self.studentEmail.text = json["email"].rawString()
                 
                 self.setImage(imageView: self.teacherIcon,urlString: json["avatar"].rawString()!)
-                
             }
         }
         
@@ -86,7 +84,6 @@ class UniversityDetailViewController: UIViewController {
         }
         
     }
-    
 
     func setImage(imageView:UIImageView, urlString:String) -> Void {
         
@@ -98,16 +95,5 @@ class UniversityDetailViewController: UIViewController {
         }
         
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

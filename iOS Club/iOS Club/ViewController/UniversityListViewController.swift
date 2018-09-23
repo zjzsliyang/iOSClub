@@ -13,7 +13,9 @@ import SwiftyJSON
 
 class UniversityListViewController: UIViewController ,UICollectionViewDataSource,UICollectionViewDelegate{
     
-    var universityArray:JSON = JSON.null
+
+    var universityArray = JSON.null
+
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.universityArray.count
@@ -23,9 +25,8 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "universityCell", for: indexPath) as! UniversityCell
         
-        let icon = cell.icon as UIImageView
-        
-//        icon.image = UIImage(named: "avatar")
+
+        let icon = cell.icon!
         let iconUrl  = universityArray[indexPath.item]["icon"].rawString()
 
         let url = URL(string: iconUrl!)!
@@ -36,18 +37,15 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
                 print(error!)
                 return
             }
-            
             DispatchQueue.main.async {
                 if let image = UIImage(data: data!) {
 //                    imageCache.setObject(image, forKey: urlString as NSString)
                     icon.image = image
                 }
             }
-            
         }).resume()
         
         return cell
-        
     }
     
 
@@ -55,26 +53,22 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         collectionView.dataSource = self
         
-        let url:NSURL! = NSURL(string: backendUrl + "/club/info/getAll")
-        let urlRequest:NSURLRequest = NSURLRequest(url: url as URL)
-        var response:URLResponse?
+        let url = NSURL(string: backendUrl + "/club/info/getAll")!
+        let urlRequest = NSURLRequest(url: url as URL)
+        var response: URLResponse?
         
         do{
-            let data:NSData? = try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest,returning: &response) as NSData
+            let data: NSData? = try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest,returning: &response) as NSData
             if let value = data {
                 let json = JSON(value)
                 self.universityArray = json
             }
-        }catch let error as NSError{
-            //打印错误消息
+        } catch let error as NSError {
             print(error.code)
             print(error.description)
         }
-        
-        
         
     }
     
@@ -86,23 +80,10 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
             controller.university = self.universityArray[(indexPath?.item)!]
         }
     }
-    
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 class UniversityCell:UICollectionViewCell{
-    
     
     @IBOutlet weak var icon: UIImageView!
     
