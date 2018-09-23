@@ -12,31 +12,17 @@ import Alamofire
 class UniversityDetailViewController: UIViewController {
 
     var university = JSON.null
-
     
     @IBOutlet weak var uiniversityIcon: UIImageView!
-    
     @IBOutlet weak var universityDesc: UITextView!
-    
     @IBOutlet weak var teacherIcon: UIImageView!
-    
     @IBOutlet weak var teacherName: UILabel!
-    
-    
     @IBOutlet weak var teacherEmail: UILabel!
-    
-
     @IBOutlet weak var teacherRole: UILabel!
-    
     @IBOutlet weak var studentIcon: UIImageView!
-    
     @IBOutlet weak var studentName: UILabel!
-    
-
     @IBOutlet weak var studentRole: UILabel!
-    
     @IBOutlet weak var studentEmail: UILabel!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +36,6 @@ class UniversityDetailViewController: UIViewController {
         studentIcon.layer.cornerRadius = 30
         studentIcon.layer.masksToBounds = true
         
-   
-        
         self.setImage(imageView: uiniversityIcon,urlString: university["icon"].rawString()!)
         universityDesc.text = university["description"].rawString()
         
@@ -59,24 +43,21 @@ class UniversityDetailViewController: UIViewController {
         let studentUrl = backendUrl + "/club/sm/getByCode?code=" + university["code"].rawString()!
         
         Alamofire.request(teacherUrl).responseJSON { response in
-            debugPrint(response)
-            
             if let data = response.result.value {
                 let json = JSON(data)[0]
                 self.teacherName.text = json["name"].rawString()
                 self.teacherRole.text = json["position"].rawString()
-                 self.studentEmail.text = json["email"].rawString()
+                self.studentEmail.text = json["email"].rawString()
                 
                 self.setImage(imageView: self.teacherIcon,urlString: json["avatar"].rawString()!)
             }
         }
         
         Alamofire.request(studentUrl).responseJSON { response in
-            debugPrint(response)
             
             if let data = response.result.value {
                 let json = JSON(data)[0]
-                print(json)
+                
                 self.studentName.text = json["name"].rawString()
                 self.studentRole.text = json["position"].rawString()
                 self.studentEmail.text = json["email"].rawString()
@@ -87,14 +68,12 @@ class UniversityDetailViewController: UIViewController {
     }
 
     func setImage(imageView:UIImageView, urlString:String) -> Void {
-        
         let url = URL(string: urlString)
         let data = try? Data(contentsOf: url!)
         if data != nil {
             let image = UIImage(data: data!)
             imageView.image = image
         }
-        
     }
 
 }

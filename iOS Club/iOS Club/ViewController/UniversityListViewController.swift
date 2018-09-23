@@ -10,13 +10,10 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-
 class UniversityListViewController: UIViewController ,UICollectionViewDataSource,UICollectionViewDelegate{
-    
 
     var universityArray = JSON.null
 
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.universityArray.count
     }
@@ -24,19 +21,18 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "universityCell", for: indexPath) as! UniversityCell
-        
-
+    
         let icon = cell.icon!
         let iconUrl  = universityArray[indexPath.item]["icon"].rawString()
 
         let url = URL(string: iconUrl!)!
         
-        
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-            if error != nil {
-                print(error!)
+            guard error == nil else {
+                debugPrint(error!)
                 return
             }
+            
             DispatchQueue.main.async {
                 if let image = UIImage(data: data!) {
                     icon.image = image
@@ -65,10 +61,8 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
                 self.universityArray = json
             }
         } catch let error as NSError {
-            print(error.code)
-            print(error.description)
+            debugPrint(error)
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,7 +73,6 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
             controller.university = self.universityArray[(indexPath?.item)!]
         }
     }
-
 }
 
 class UniversityCell:UICollectionViewCell{

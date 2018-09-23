@@ -9,17 +9,14 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+
 class MeViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
 
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var name: UILabel!
-    
     @IBOutlet weak var position: UILabel!
-
-  
     @IBOutlet weak var personalDescription: UITextView!
-    
     @IBOutlet weak var email: UILabel!
     
     override func viewDidLoad() {
@@ -27,15 +24,12 @@ UINavigationControllerDelegate {
 
         let emailAddress = "zhuhongming@tongji.edu.cn"
         
-
         avatar.layer.masksToBounds = true
-        avatar.layer.cornerRadius = avatar.frame.width/2
+        avatar.layer.cornerRadius = avatar.frame.width / 2
         
         avatar.isUserInteractionEnabled = true
         
-        
-        Alamofire.request(backendUrl+"/user/getInfoByEmail?email="+emailAddress).responseJSON { response in
-            debugPrint(response)
+        Alamofire.request(backendUrl + "/user/getInfoByEmail?email=" + emailAddress).responseJSON { response in
             
             if let data = response.result.value {
                 let json = JSON(data)
@@ -45,8 +39,8 @@ UINavigationControllerDelegate {
                 
                 let url = URL(string: json["avatar"].rawString()!)
                 URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                    if error != nil {
-                        print(error!)
+                    guard error == nil else {
+                        debugPrint(error!)
                         return
                     }
                     DispatchQueue.main.async {
@@ -55,39 +49,22 @@ UINavigationControllerDelegate {
                         }
                     }
                 }).resume()
-                
             }
         }
-        
     }
-    
     
     @IBAction func choose(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
             let picker = UIImagePickerController()
             picker.delegate = self
             picker.sourceType = .photoLibrary
-            self.present(picker, animated: true, completion: {
-                () -> Void in
-            })
-        }else{
-            print("读取相册错误")
+            self.present(picker, animated: true, completion: nil)
         }
     }
+
     
-    
-    
-    
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [String : Any]) {
-        let pickedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        
-//        let file = pickedImage
-//        let imageData = UIImagePNGRepresentation(file)
-        
-        
-        let image = pickedImage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         let imgData = UIImageJPEGRepresentation(image, 0.2)!
         
         let parameters = ["email": "zhuhongming@tongji.edu.cn"]
@@ -97,39 +74,13 @@ UINavigationControllerDelegate {
             for (key, value) in parameters {
                 multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
             }
-        }, to: backendUrl + "/user/upload"){ (result) in
-            switch result {
-            case .success(let upload, _, _):
-                
-                upload.uploadProgress(closure: { (progress) in
-                    print("Upload Progress: \(progress.fractionCompleted)")
-                })
-                
-                upload.responseJSON { response in
-                    print(response.result.value)
-                    print("哎呀，爸爸上传成功了呀")
-                }
-                
-            case .failure(let encodingError):
-                print("哎呀，上传失败")
-                print(encodingError)
-            }
-        }
+        }, to: backendUrl + "/user/upload"){ (result) in }
         
-        
-        avatar.image = pickedImage
+        avatar.image = image
         picker.dismiss(animated: true, completion:nil)
     }
-    
-    
-    
-    
-    
-    
-    
+  
     @IBAction func test(_ sender: Any) {
-        
-        
         
         let image = avatar.image
         let imgData = UIImageJPEGRepresentation(image!, 0.2)!
@@ -147,22 +98,18 @@ UINavigationControllerDelegate {
             case .success(let upload, _, _):
                 
                 upload.uploadProgress(closure: { (progress) in
-                    print("Upload Progress: \(progress.fractionCompleted)")
+                    
                 })
                 
                 upload.responseJSON { response in
-                    print(response.result.value)
-                    print("哎呀，爸爸上传成功了呀")
+                    
                 }
                 
-            case .failure(let encodingError):
-                print("哎呀，上传失败")
-                print(encodingError)
+            case .failure(let encodingError): break
             }
         }
         
     }
-    
     
 }
 
