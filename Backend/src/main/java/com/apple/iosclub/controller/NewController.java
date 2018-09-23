@@ -1,13 +1,11 @@
 package com.apple.iosclub.controller;
 
 import com.apple.iosclub.entity.DBNew;
-
 import com.apple.iosclub.mapper.NewMapper;
 import com.apple.iosclub.service.myimplement.NewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.*;
 import java.util.HashMap;
 
@@ -25,20 +23,16 @@ public class NewController {
         this.newService = newService;
     }
 
-
     @GetMapping("/getAll")
     public Object getAll() {
         return newService.getAllNews();
     }
-
 
     @GetMapping("/getByPrivilege")
     public Object getByPrivilege(int u_privilege){
 
         return newService.getNewsByPrivilege(u_privilege);
     }
-
-
 
     @PostMapping("/publish")
     public Object publish(@RequestBody HashMap<String, Object> req){
@@ -50,7 +44,6 @@ public class NewController {
         }catch (Exception e){
             dbNew.postemail = (String)req.get("email");
         }
-
 
         dbNew.time =  (String)req.get("time");
         dbNew.title =  (String)req.get("title");
@@ -71,15 +64,10 @@ public class NewController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public Object uploadingPost(@RequestPart("file") MultipartFile[] uploadingFiles, @RequestParam HashMap<String,Object> req) throws IOException {
 
-
-        for(MultipartFile uploadedFile : uploadingFiles) {
+        for (MultipartFile uploadedFile : uploadingFiles) {
             File file = new File(uploadingdir + uploadedFile.getOriginalFilename());
             uploadedFile.transferTo(file);
         }
-
-
         return req;
     }
-
-
 }

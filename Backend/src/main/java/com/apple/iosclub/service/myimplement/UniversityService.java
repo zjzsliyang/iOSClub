@@ -6,7 +6,6 @@ import com.apple.iosclub.mapper.UniversityMapper;
 import com.apple.iosclub.service.myinterface.UniversityInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
