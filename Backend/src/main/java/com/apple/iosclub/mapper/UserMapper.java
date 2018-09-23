@@ -1,11 +1,7 @@
 package com.apple.iosclub.mapper;
 
-import com.apple.iosclub.Entity.MyUser;
 import com.apple.iosclub.Model.UserModel;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface UserMapper {
@@ -30,6 +26,9 @@ public interface UserMapper {
 
     @Select("select * from user natural join university where email=#{email}")
     UserModel getInfoByEmail(String email);
+
+    @Update("update user set avatar=#{avatar} where email=#{email}")
+    void avatarUpdate(@Param("avatar") String avatar, @Param("email") String email);
 
 
 }
