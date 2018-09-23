@@ -1,6 +1,6 @@
 package com.apple.iosclub.mapper;
 
-import com.apple.iosclub.Model.TeacherModel;
+import com.apple.iosclub.model.TeacherModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

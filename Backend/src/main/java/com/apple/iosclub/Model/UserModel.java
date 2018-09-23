@@ -1,4 +1,4 @@
-package com.apple.iosclub.Model;
+package com.apple.iosclub.model;
 
 public class UserModel {
 

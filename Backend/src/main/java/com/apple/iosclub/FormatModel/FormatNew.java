@@ -1,8 +1,8 @@
 //package com.apple.iosclub.FormatModel;
 //
-//import com.apple.iosclub.Entity.MyNew;
-//import com.apple.iosclub.Entity.MyUser;
-//import com.apple.iosclub.Utils.Common;
+//import com.apple.iosclub.entity.MyNew;
+//import com.apple.iosclub.entity.MyUser;
+//import com.apple.iosclub.utils.Common;
 //
 //import java.net.UnknownHostException;
 //import java.util.ArrayList;

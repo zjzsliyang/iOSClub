@@ -1,6 +1,6 @@
 package com.apple.iosclub.service.myimplement;
-import com.apple.iosclub.Model.UserModel;
-import com.apple.iosclub.Utils.Common;
+import com.apple.iosclub.model.UserModel;
+import com.apple.iosclub.utils.Common;
 import com.apple.iosclub.mapper.UserMapper;
 import com.apple.iosclub.service.myinterface.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,8 +94,9 @@ public class UserService implements UserServiceInterface {
         HashMap<String, Object> res = new HashMap<>();
         try {
 
-            String directory = System.getProperty("user.dir")
-                    + "/src/main/resources/static/avatar/";
+            String directory = Common.root + "/avatar/";
+
+//            System.out.println(directory);
 
             String fileName = image.getOriginalFilename();
             String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
@@ -107,7 +108,7 @@ public class UserService implements UserServiceInterface {
             image.transferTo(file);
 
             // 更新数据库
-            userMapper.avatarUpdate("/avatar/" + newName, email);
+            userMapper.avatarUpdate(Common.virtual + "avatar/" + newName, email);
 
             res.put("code", 0);
             res.put("msg","修改成功");

@@ -1,7 +1,7 @@
 package com.apple.iosclub.service.myimplement;
 
-import com.apple.iosclub.Model.UniversityModel;
-import com.apple.iosclub.Utils.Common;
+import com.apple.iosclub.model.UniversityModel;
+import com.apple.iosclub.utils.Common;
 import com.apple.iosclub.mapper.UniversityMapper;
 import com.apple.iosclub.service.myinterface.UniversityInterface;
 import org.springframework.beans.factory.annotation.Autowired;

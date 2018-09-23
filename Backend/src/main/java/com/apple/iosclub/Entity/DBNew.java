@@ -1,4 +1,4 @@
-package com.apple.iosclub.Entity;
+package com.apple.iosclub.entity;
 
 public class DBNew {
     public String getPostemail() {

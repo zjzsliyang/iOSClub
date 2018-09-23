@@ -1,8 +1,8 @@
 //package com.apple.iosclub.FormatModel;
 //
-//import com.apple.iosclub.Model.UniversityModel;
+//import com.apple.iosclub.model.UniversityModel;
 //
-//import com.apple.iosclub.Utils.Common;
+//import com.apple.iosclub.utils.Common;
 //import org.springframework.beans.factory.annotation.Value;
 //
 //import java.net.InetAddress;
