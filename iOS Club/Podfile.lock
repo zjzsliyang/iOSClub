@@ -12,6 +12,7 @@ PODS:
   - Hue (3.0.1)
   - Imaginary (3.0.3):
     - Cache (~> 4.0)
+  - IQKeyboardManagerSwift (6.1.1)
   - Kingfisher (4.8.1)
   - LGButton (1.0.5)
   - Lightbox (2.1.2):
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - BMPlayer
   - Gallery (from `https://github.com/hyperoslo/Gallery.git`, branch `master`)
   - Hue
+  - IQKeyboardManagerSwift
   - LGButton
   - Lightbox
   - LLCycleScrollView
@@ -51,6 +53,7 @@ SPEC REPOS:
     - Cache
     - Hue
     - Imaginary
+    - IQKeyboardManagerSwift
     - Kingfisher
     - LGButton
     - Lightbox
@@ -80,6 +83,7 @@ SPEC CHECKSUMS:
   Gallery: f75c3faefcb5da2cae2150ce3db29fcfbeed8b0f
   Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
   Imaginary: 9b45836a5af881f452a86e0a1215772ae4712d00
+  IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
   LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
   Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
@@ -92,6 +96,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
   VACalendar: f189d1b713b8a38d85fe679afef5dc21105c6259
 
-PODFILE CHECKSUM: 0007cad97403be2406f11a165fd577ccc217d54f
+PODFILE CHECKSUM: 83b5d8b237e2ef547ac0b179f3edea8dab8a6bb9
 
 COCOAPODS: 1.5.3
