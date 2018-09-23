@@ -5,6 +5,10 @@ import com.apple.iosclub.mapper.UserMapper;
 import com.apple.iosclub.service.myinterface.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 @Service
@@ -66,7 +70,7 @@ public class UserService implements UserServiceInterface {
             String password = (String) req.get("password");
             String position =  (String) req.get("position");
             String description =  (String) req.get("description");
-            String avatar =  "";
+            String avatar =  "/avatar/avatar.png";
             userMapper.insertUser(username, u_code, privilege, email, password, position, description, avatar);
 
             res.put("code", 0);
@@ -81,6 +85,37 @@ public class UserService implements UserServiceInterface {
         }
 
 
+        return res;
+    }
+
+    @Override
+    public Object avatarUpdate(MultipartFile image, String email) throws IOException {
+
+        HashMap<String, Object> res = new HashMap<>();
+        try {
+
+            String directory = System.getProperty("user.dir")
+                    + "/src/main/resources/static/avatar/";
+
+            String fileName = image.getOriginalFilename();
+            String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+
+            String newName = email.replace(".", "-") + "." + suffix;
+
+            File file = new File(directory + newName);
+
+            image.transferTo(file);
+
+            // 更新数据库
+            userMapper.avatarUpdate("/avatar/" + newName, email);
+
+            res.put("code", 0);
+            res.put("msg","修改成功");
+        }catch (ExceptionInInitializerError e){
+            res.put("code", 1);
+            res.put("msg","修改失败");
+        }
+        
         return res;
     }
 

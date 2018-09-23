@@ -18,13 +18,18 @@ class MeViewController: UIViewController {
     
 
   
+    @IBOutlet weak var personalDescription: UITextView!
     
     @IBOutlet weak var email: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var emailAddress = "zhuhongming@tongji.edu.cn"
+        let emailAddress = "zhuhongming@tongji.edu.cn"
+        
+
+        avatar.layer.masksToBounds = true
+        avatar.layer.cornerRadius = avatar.frame.width/2
         
         Alamofire.request(backendUrl+"/user/getInfoByEmail?email="+emailAddress).responseJSON { response in
             debugPrint(response)
