@@ -46,7 +46,7 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        button.center = CGPoint(x: view.bounds.size.width/2, y: view.bounds.size.height/5*2)
+        button.center = CGPoint(x: view.bounds.size.width/2, y: 320)
     }
     
     @objc func buttonTouched(_ button: UIButton) {
@@ -87,6 +87,7 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
     }
     
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        print(images)
         controller.dismiss(animated: true, completion: nil)
         gallery = nil
     }
