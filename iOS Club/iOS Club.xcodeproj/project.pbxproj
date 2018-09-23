@@ -10,6 +10,7 @@
 		1E62BC9E2156841F00263B8D /* UniversityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */; };
 		1E62BCA02156938500263B8D /* UniversityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */; };
 		2F3E45342157C81900710141 /* EmbedPostInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */; };
+		2F3E453F2157FD5A00710141 /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E453E2157FD5A00710141 /* SelectedCell.swift */; };
 		2F67E33C2156625C0076B1DA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33B2156625C0076B1DA /* PostViewController.swift */; };
 		2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33F2157326A0076B1DA /* LoginViewController.swift */; };
 		2F74A520215538EC00341862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74A51F215538EC00341862 /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 		1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityListViewController.swift; sourceTree = "<group>"; };
 		1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDetailViewController.swift; sourceTree = "<group>"; };
 		2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedPostInfoTableViewController.swift; sourceTree = "<group>"; };
+		2F3E453E2157FD5A00710141 /* SelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
 		2F67E33B2156625C0076B1DA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		2F67E33F2157326A0076B1DA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2F74A51C215538EC00341862 /* iOS Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +138,7 @@
 			children = (
 				2FCA360F2155633900816691 /* NewsCell.swift */,
 				2FB21B49215790C700D2814F /* ActivityCell.swift */,
+				2F3E453E2157FD5A00710141 /* SelectedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */,
 				2FCA3617215572EC00816691 /* Blog.swift in Sources */,
 				2FCA36102155633900816691 /* NewsCell.swift in Sources */,
+				2F3E453F2157FD5A00710141 /* SelectedCell.swift in Sources */,
 				1E62BCA02156938500263B8D /* UniversityDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
