@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     @IBAction func login(_ sender: LGButton) {
         print("login")
         sender.isLoading = true
-        let deadlineTime = DispatchTime.now() + .seconds(3)
+        let deadlineTime = DispatchTime.now() + .seconds(1)
         DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
             sender.isLoading = false
             // DO SOMETHING
@@ -25,6 +25,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
     }
 }

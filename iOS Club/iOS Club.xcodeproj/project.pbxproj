@@ -20,7 +20,6 @@
 		2FCA35F92155402100816691 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F42155402100816691 /* NewsViewController.swift */; };
 		2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F52155402100816691 /* TabBarViewController.swift */; };
 		2FCA35FB2155402100816691 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F62155402100816691 /* MeViewController.swift */; };
-		2FCA36082155568600816691 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA36072155568600816691 /* utilities.swift */; };
 		2FCA360A215556A000816691 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3609215556A000816691 /* config.swift */; };
 		2FCA36102155633900816691 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA360F2155633900816691 /* NewsCell.swift */; };
 		2FCA3614215572E300816691 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3613215572E300816691 /* News.swift */; };
@@ -46,7 +45,6 @@
 		2FCA35F42155402100816691 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		2FCA35F52155402100816691 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2FCA35F62155402100816691 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
-		2FCA36072155568600816691 /* utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		2FCA3609215556A000816691 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		2FCA360F2155633900816691 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		2FCA3613215572E300816691 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 		2F74A51E215538EC00341862 /* iOS Club */ = {
 			isa = PBXGroup;
 			children = (
-				2FCA36072155568600816691 /* utilities.swift */,
 				2FCA3609215556A000816691 /* config.swift */,
 				2FCA360E2155631700816691 /* View */,
 				2FCA35FC2155406200816691 /* Model */,
@@ -292,7 +289,6 @@
 				2FCA35F82155402100816691 /* BlogViewController.swift in Sources */,
 				2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */,
 				2FCA3614215572E300816691 /* News.swift in Sources */,
-				2FCA36082155568600816691 /* utilities.swift in Sources */,
 				2FCA3618215572EC00816691 /* User.swift in Sources */,
 				2FCA35F92155402100816691 /* NewsViewController.swift in Sources */,
 				2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */,
