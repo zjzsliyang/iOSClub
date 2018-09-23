@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SafariServices
 import URLEmbeddedView
 
 class BlogCell: UITableViewCell {

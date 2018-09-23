@@ -8,6 +8,7 @@
 
 import UIKit
 import SkeletonView
+import SafariServices
 import URLEmbeddedView
 
 class BlogViewController: UIViewController {
@@ -48,11 +49,22 @@ extension BlogViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
         return blogs.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let blog = blogs[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "BlogCell") as! BlogCell
-        print(indexPath.row)
         cell.setBlog(blog: blog)
+        
+        cell.previewView.didTapHandler = { [weak self] previewView, URL in
+            guard let URL = URL else { return }
+            if #available(iOS 9.0, *) {
+                self?.present(SFSafariViewController(url: URL), animated: true, completion: nil)
+            }
+        }
+        
         return cell
     }
 }
