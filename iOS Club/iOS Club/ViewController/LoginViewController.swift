@@ -11,6 +11,17 @@ import LGButton
 import TextFieldEffects
 
 class LoginViewController: UIViewController {
+    
+    @IBAction func login(_ sender: LGButton) {
+        print("login")
+        sender.isLoading = true
+        let deadlineTime = DispatchTime.now() + .seconds(3)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            sender.isLoading = false
+            // DO SOMETHING
+        }
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
