@@ -1,6 +1,6 @@
 //
 //  ShareViewController.swift
-//  iOSClubShare
+//  Club Share
 //
 //  Created by 罗忠金 on 2018/9/24.
 //  Copyright © 2018 Yang LI. All rights reserved.

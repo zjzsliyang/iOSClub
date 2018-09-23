@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		1E62BC9E2156841F00263B8D /* UniversityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */; };
 		1E62BCA02156938500263B8D /* UniversityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */; };
-		1EA4B7512158264400DD5941 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA4B7502158264400DD5941 /* ShareViewController.swift */; };
-		1EA4B7542158264400DD5941 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EA4B7522158264400DD5941 /* MainInterface.storyboard */; };
 		1EA4B7582158264400DD5941 /* iOSClubShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1EA4B74E2158264400DD5941 /* iOSClubShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1EA4B764215828B800DD5941 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA4B763215828B800DD5941 /* ShareViewController.swift */; };
+		1EA4B767215828B800DD5941 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EA4B765215828B800DD5941 /* MainInterface.storyboard */; };
+		1EA4B76B215828B800DD5941 /* Club Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1EA4B761215828B800DD5941 /* Club Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2F3E45342157C81900710141 /* EmbedPostInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */; };
 		2F3E453F2157FD5A00710141 /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E453E2157FD5A00710141 /* SelectedCell.swift */; };
 		2F67E33C2156625C0076B1DA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33B2156625C0076B1DA /* PostViewController.swift */; };
@@ -42,6 +43,13 @@
 			remoteGlobalIDString = 1EA4B74D2158264400DD5941;
 			remoteInfo = iOSClubShare;
 		};
+		1EA4B769215828B800DD5941 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F74A514215538EC00341862 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EA4B760215828B800DD5941;
+			remoteInfo = "Club Share";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +60,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				1EA4B7582158264400DD5941 /* iOSClubShare.appex in Embed App Extensions */,
+				1EA4B76B215828B800DD5941 /* Club Share.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,9 +72,10 @@
 		1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityListViewController.swift; sourceTree = "<group>"; };
 		1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDetailViewController.swift; sourceTree = "<group>"; };
 		1EA4B74E2158264400DD5941 /* iOSClubShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iOSClubShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		1EA4B7502158264400DD5941 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		1EA4B7532158264400DD5941 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		1EA4B7552158264400DD5941 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EA4B761215828B800DD5941 /* Club Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Club Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EA4B763215828B800DD5941 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		1EA4B766215828B800DD5941 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		1EA4B768215828B800DD5941 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedPostInfoTableViewController.swift; sourceTree = "<group>"; };
 		2F3E453E2157FD5A00710141 /* SelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
 		2F67E33B2156625C0076B1DA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +109,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1EA4B75E215828B800DD5941 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2F74A519215538EC00341862 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -110,21 +127,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1EA4B74F2158264400DD5941 /* iOSClubShare */ = {
+		1EA4B762215828B800DD5941 /* Club Share */ = {
 			isa = PBXGroup;
 			children = (
-				1EA4B7502158264400DD5941 /* ShareViewController.swift */,
-				1EA4B7522158264400DD5941 /* MainInterface.storyboard */,
-				1EA4B7552158264400DD5941 /* Info.plist */,
+				1EA4B763215828B800DD5941 /* ShareViewController.swift */,
+				1EA4B765215828B800DD5941 /* MainInterface.storyboard */,
+				1EA4B768215828B800DD5941 /* Info.plist */,
 			);
-			path = iOSClubShare;
+			path = "Club Share";
 			sourceTree = "<group>";
 		};
 		2F74A513215538EC00341862 = {
 			isa = PBXGroup;
 			children = (
 				2F74A51E215538EC00341862 /* iOS Club */,
-				1EA4B74F2158264400DD5941 /* iOSClubShare */,
+				1EA4B762215828B800DD5941 /* Club Share */,
 				2F74A51D215538EC00341862 /* Products */,
 				C0892115C36F6AD1C68966B4 /* Pods */,
 				B46904ED13DAD0DBA721C4D0 /* Frameworks */,
@@ -136,6 +153,7 @@
 			children = (
 				2F74A51C215538EC00341862 /* iOS Club.app */,
 				1EA4B74E2158264400DD5941 /* iOSClubShare.appex */,
+				1EA4B761215828B800DD5941 /* Club Share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -230,6 +248,23 @@
 			productReference = 1EA4B74E2158264400DD5941 /* iOSClubShare.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		1EA4B760215828B800DD5941 /* Club Share */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EA4B76C215828B800DD5941 /* Build configuration list for PBXNativeTarget "Club Share" */;
+			buildPhases = (
+				1EA4B75D215828B800DD5941 /* Sources */,
+				1EA4B75E215828B800DD5941 /* Frameworks */,
+				1EA4B75F215828B800DD5941 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Club Share";
+			productName = "Club Share";
+			productReference = 1EA4B761215828B800DD5941 /* Club Share.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		2F74A51B215538EC00341862 /* iOS Club */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F74A52E215538EE00341862 /* Build configuration list for PBXNativeTarget "iOS Club" */;
@@ -245,6 +280,7 @@
 			);
 			dependencies = (
 				1EA4B7572158264400DD5941 /* PBXTargetDependency */,
+				1EA4B76A215828B800DD5941 /* PBXTargetDependency */,
 			);
 			name = "iOS Club";
 			productName = "iOS Club";
@@ -262,6 +298,9 @@
 				ORGANIZATIONNAME = "Yang LI";
 				TargetAttributes = {
 					1EA4B74D2158264400DD5941 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					1EA4B760215828B800DD5941 = {
 						CreatedOnToolsVersion = 10.0;
 					};
 					2F74A51B215538EC00341862 = {
@@ -285,6 +324,7 @@
 			targets = (
 				2F74A51B215538EC00341862 /* iOS Club */,
 				1EA4B74D2158264400DD5941 /* iOSClubShare */,
+				1EA4B760215828B800DD5941 /* Club Share */,
 			);
 		};
 /* End PBXProject section */
@@ -294,7 +334,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EA4B7542158264400DD5941 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EA4B75F215828B800DD5941 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EA4B767215828B800DD5941 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +445,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EA4B7512158264400DD5941 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EA4B75D215828B800DD5941 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EA4B764215828B800DD5941 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,13 +489,18 @@
 			target = 1EA4B74D2158264400DD5941 /* iOSClubShare */;
 			targetProxy = 1EA4B7562158264400DD5941 /* PBXContainerItemProxy */;
 		};
+		1EA4B76A215828B800DD5941 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EA4B760215828B800DD5941 /* Club Share */;
+			targetProxy = 1EA4B769215828B800DD5941 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1EA4B7522158264400DD5941 /* MainInterface.storyboard */ = {
+		1EA4B765215828B800DD5941 /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1EA4B7532158264400DD5941 /* Base */,
+				1EA4B766215828B800DD5941 /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -496,6 +555,44 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.tongji.iOS-Club.iOSClubShare";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1EA4B76D215828B800DD5941 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G4WT85FFHH;
+				INFOPLIST_FILE = "Club Share/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.tongji.iOS-Club.Club-Share";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1EA4B76E215828B800DD5941 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G4WT85FFHH;
+				INFOPLIST_FILE = "Club Share/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.tongji.iOS-Club.Club-Share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -669,6 +766,15 @@
 			buildConfigurations = (
 				1EA4B7592158264400DD5941 /* Debug */,
 				1EA4B75A2158264400DD5941 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EA4B76C215828B800DD5941 /* Build configuration list for PBXNativeTarget "Club Share" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EA4B76D215828B800DD5941 /* Debug */,
+				1EA4B76E215828B800DD5941 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
