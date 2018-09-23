@@ -120,7 +120,7 @@
             </objects>
             <point key="canvasLocation" x="-1078" y="371"/>
         </scene>
-        <!--Embed Post Info Table View Controller-->
+        <!--Delegate-->
         <scene sceneID="ZbE-4d-SfX">
             <objects>
                 <tableViewController id="2dL-78-Lc3" customClass="EmbedPostInfoTableViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
@@ -144,6 +144,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="2dL-78-Lc3" id="MJf-mC-qSQ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -159,6 +162,9 @@
                                                     <rect key="frame" x="16" y="6" width="311" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="2dL-78-Lc3" id="kck-7O-zur"/>
+                                                    </connections>
                                                 </view>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -219,7 +225,7 @@
                                 <rect key="frame" x="16" y="350" width="343" height="110"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="2dL-78-Lc3" kind="embed" id="iHZ-wV-qav"/>
+                                    <segue destination="2dL-78-Lc3" kind="embed" identifier="postinfo" id="iHZ-wV-qav"/>
                                 </connections>
                             </containerView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vHE-go-O77">

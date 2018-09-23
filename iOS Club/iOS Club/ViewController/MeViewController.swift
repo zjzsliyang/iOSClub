@@ -80,37 +80,6 @@ UINavigationControllerDelegate {
         avatar.image = image
         picker.dismiss(animated: true, completion:nil)
     }
-  
-    @IBAction func test(_ sender: Any) {
-        
-        let image = avatar.image
-        let imgData = UIImageJPEGRepresentation(image!, 0.2)!
-        
-        let parameters = ["req": "zhuhongming@tongji.edu.cn"]
-        
-        Alamofire.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(imgData, withName: "file",fileName: "file.jpg", mimeType: "image/jpg")
-            multipartFormData.append(imgData, withName: "file",fileName: "file2.jpg", mimeType: "image/jpg")
-            for (key, value) in parameters {
-                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
-            }
-        }, to: backendUrl + "/news/upload"){ (result) in
-            switch result {
-            case .success(let upload, _, _):
-                
-                upload.uploadProgress(closure: { (progress) in
-                    
-                })
-                
-                upload.responseJSON { response in
-                    
-                }
-                
-            case .failure(let encodingError): break
-            }
-        }
-        
-    }
     
 }
 

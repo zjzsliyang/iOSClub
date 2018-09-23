@@ -9,11 +9,17 @@
 import UIKit
 import WSTagsField
 
+protocol PostInfoProtocol: class {
+    func postTitle(title: String)
+    func postTags(tags: [String])
+}
+
 class EmbedPostInfoTableViewController: UITableViewController {
     
     @IBOutlet var postInfoTableView: UITableView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tagsField: WSTagsField!
+    weak var delegate: PostInfoProtocol? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +29,16 @@ class EmbedPostInfoTableViewController: UITableViewController {
         tagsField.placeholder = "tags"
         tagsField.cornerRadius = 10
         tagsField.layoutMargins = UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6)
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            print(titleTextField.text)
-        } else if indexPath.row == 1 {
-            print(tagsField.text)
+        
+        tagsField.onDidChangeText = { (_, _) in
+            self.delegate!.postTags(tags: self.tagsField.tags.map({ return $0.text }))
         }
     }
-
 }
+
+extension EmbedPostInfoTableViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate!.postTitle(title: titleTextField.text!)
+    }
+}
+
