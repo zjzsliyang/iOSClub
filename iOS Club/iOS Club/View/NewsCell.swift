@@ -63,9 +63,5 @@ class NewsCell: UITableViewCell {
             imagesplayer.imagePaths = images
         }
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 
 }

@@ -18,11 +18,3 @@ struct User: Decodable {
     let position: String
     let description: String
 }
-
-struct University: Decodable {
-    let code: Int
-    let name: String
-    let email: String
-    let icon: String
-    let description: String
-}
