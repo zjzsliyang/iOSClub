@@ -120,12 +120,12 @@
             </objects>
             <point key="canvasLocation" x="-1078" y="371"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Embed Post Info Table View Controller-->
         <scene sceneID="ZbE-4d-SfX">
             <objects>
-                <tableViewController id="2dL-78-Lc3" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ld9-3n-CjB">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="125"/>
+                <tableViewController id="2dL-78-Lc3" customClass="EmbedPostInfoTableViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ld9-3n-CjB">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="110"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
@@ -138,13 +138,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UpB-ha-bAg">
-                                                    <rect key="frame" x="16" y="12" width="34" height="21"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HFj-bP-qOh">
+                                                    <rect key="frame" x="16" y="3" width="311" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -155,13 +155,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2R9-hC-Pxu">
-                                                    <rect key="frame" x="16" y="12" width="28" height="21"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#Tags" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6eE-xi-KKz">
+                                                    <rect key="frame" x="16" y="11" width="311" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -173,10 +173,15 @@
                             <outlet property="delegate" destination="2dL-78-Lc3" id="9yu-mf-yb8"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="postInfoTableView" destination="ld9-3n-CjB" id="iWT-oG-2al"/>
+                        <outlet property="tagsTextField" destination="6eE-xi-KKz" id="Xqw-ne-0VT"/>
+                        <outlet property="titleTextField" destination="HFj-bP-qOh" id="fdB-Wp-Tt7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFY-dc-SyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1050.4000000000001" y="1556.8965517241379"/>
+            <point key="canvasLocation" x="-1079.2" y="1564.2857142857144"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="lqR-qm-fm9">
@@ -206,14 +211,14 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Lp-Tv-HBH">
-                                <rect key="frame" x="16" y="110" width="343" height="250"/>
+                                <rect key="frame" x="16" y="110" width="343" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WOd-bq-4NH">
-                                <rect key="frame" x="16" y="368" width="343" height="125"/>
+                                <rect key="frame" x="16" y="350" width="343" height="110"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="2dL-78-Lc3" kind="embed" id="iHZ-wV-qav"/>
@@ -229,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sEN-ps-pnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1050.4000000000001" y="1099.5073891625616"/>
+            <point key="canvasLocation" x="-1079.2" y="1090.6403940886701"/>
         </scene>
         <!--Activity-->
         <scene sceneID="Qgs-fX-SIE">
@@ -255,7 +260,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="activity" id="7rj-2d-6jQ" customClass="ActivityCell" customModule="iOS_Club" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7rj-2d-6jQ" id="4F1-qZ-MfE">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666666666666664"/>

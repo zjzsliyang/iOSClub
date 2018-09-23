@@ -40,8 +40,6 @@ class LoginViewController: UIViewController {
             let responseData = response.result.value!
             do {
                 let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
-//                TODO: update me info
-                print(responseJson)
                 
                 DispatchQueue.main.async {
                     sender.isLoading = false
@@ -54,6 +52,8 @@ class LoginViewController: UIViewController {
                     DispatchQueue.main.async {
                         let userDefault = UserDefaults.standard
                         userDefault.set(true, forKey: "isLogin")
+                        userDefault.set(responseJson["user"]["email"].rawString()!, forKey: "email")
+                        userDefault.synchronize()
                         self.autoLogin()
                     }
                 } else if responseJson["code"] == -1 {

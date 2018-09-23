@@ -28,11 +28,13 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 4.0.1)
   - NVActivityIndicatorView/Presenter (4.0.1)
   - SkeletonView (1.4)
+  - SKPhotoBrowser (5.1.0)
   - SnapKit (4.0.0)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.1.0)
   - TextFieldEffects (1.4.0)
   - VACalendar (1.2)
+  - WSTagsField (3.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -45,11 +47,13 @@ DEPENDENCIES:
   - LLCycleScrollView
   - NotificationBannerSwift
   - SkeletonView
+  - SKPhotoBrowser
   - SnapKit
   - SVProgressHUD
   - SwiftyJSON (~> 4.0)
   - TextFieldEffects
   - VACalendar
+  - WSTagsField
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -67,11 +71,13 @@ SPEC REPOS:
     - NotificationBannerSwift
     - NVActivityIndicatorView
     - SkeletonView
+    - SKPhotoBrowser
     - SnapKit
     - SVProgressHUD
     - SwiftyJSON
     - TextFieldEffects
     - VACalendar
+    - WSTagsField
 
 EXTERNAL SOURCES:
   Gallery:
@@ -99,12 +105,14 @@ SPEC CHECKSUMS:
   NotificationBannerSwift: b231e4c3244848ef300e1c53ce027b9756b9b06f
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
   SkeletonView: 50f7a9b04e3a62bd0ae964859c19317fabaea367
+  SKPhotoBrowser: c20c1da34d737b4e3e101feead6c8dd92ebf860a
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
   VACalendar: f189d1b713b8a38d85fe679afef5dc21105c6259
+  WSTagsField: 53055749c03769b2b297f2a629ba23a26931e3ff
 
-PODFILE CHECKSUM: e3b2c5e11a643d9449d04f655d3550eed474b451
+PODFILE CHECKSUM: 6bd2a78d7bcbdc4f1ef397b600d7bc1eff60c98d
 
 COCOAPODS: 1.5.3

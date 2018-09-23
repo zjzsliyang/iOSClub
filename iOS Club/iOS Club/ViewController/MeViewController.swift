@@ -21,8 +21,9 @@ UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let emailAddress = "zhuhongming@tongji.edu.cn"
+        
+        let userDefault = UserDefaults.standard
+        let emailAddress = userDefault.value(forKey: "email")! as! String
         
         avatar.layer.masksToBounds = true
         avatar.layer.cornerRadius = avatar.frame.width / 2
