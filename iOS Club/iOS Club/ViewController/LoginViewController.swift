@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
         ]
         
         Alamofire.request(backendUrl + "/user/login/", method: .post, parameters: userParameters, encoding: JSONEncoding.default).responseString { (response) in
+            print(response)
             guard (response.result.value != nil) else {
                 DispatchQueue.main.async {
                     let banner = NotificationBanner(title: "Login Fail", subtitle: "Fatal Server Error", style: BannerStyle.danger)
@@ -85,7 +86,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        autoLogin()
+        autoLogin()
     }
     
     func autoLogin() {

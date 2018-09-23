@@ -15,6 +15,7 @@
 		2F74A525215538EC00341862 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74A523215538EC00341862 /* Main.storyboard */; };
 		2F74A527215538EE00341862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F74A526215538EE00341862 /* Assets.xcassets */; };
 		2F74A52A215538EE00341862 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74A528215538EE00341862 /* LaunchScreen.storyboard */; };
+		2FB21B4A215790C700D2814F /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB21B49215790C700D2814F /* ActivityCell.swift */; };
 		2FCA35F72155402100816691 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F22155402100816691 /* ActivityViewController.swift */; };
 		2FCA35F82155402100816691 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F32155402100816691 /* BlogViewController.swift */; };
 		2FCA35F92155402100816691 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F42155402100816691 /* NewsViewController.swift */; };
@@ -40,6 +41,7 @@
 		2F74A526215538EE00341862 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F74A529215538EE00341862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F74A52B215538EE00341862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FB21B49215790C700D2814F /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		2FCA35F22155402100816691 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		2FCA35F32155402100816691 /* BlogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
 		2FCA35F42155402100816691 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				2FCA360F2155633900816691 /* NewsCell.swift */,
+				2FB21B49215790C700D2814F /* ActivityCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */,
 				2FCA3614215572E300816691 /* News.swift in Sources */,
 				2FCA3618215572EC00816691 /* User.swift in Sources */,
+				2FB21B4A215790C700D2814F /* ActivityCell.swift in Sources */,
 				2FCA35F92155402100816691 /* NewsViewController.swift in Sources */,
 				2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */,
 				2FCA3617215572EC00816691 /* Blog.swift in Sources */,
