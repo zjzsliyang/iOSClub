@@ -44,6 +44,16 @@ class ActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let calendar = VACalendar(calendar: defaultCalendar)
+        calendarView = VACalendarView(frame: .zero, calendar: calendar)
+        calendarView.showDaysOut = true
+        calendarView.selectionStyle = .single
+        calendarView.monthDelegate = monthHeaderView
+        calendarView.dayViewAppearanceDelegate = self
+        calendarView.monthViewAppearanceDelegate = self
+        calendarView.calendarDelegate = self
+        calendarView.scrollDirection = .horizontal
+        
         let eventStore = EKEventStore()
         eventStore.requestAccess(to: .event) { (granted, error) in
             if granted && (error == nil) {
@@ -69,30 +79,32 @@ class ActivityViewController: UIViewController {
                         do {
                             try eventStore.saveCalendar(iOSCalendar!, commit: true)
                         } catch {
-                            let banner = NotificationBanner(title: "Create Calendar Fail", subtitle: (error as NSError).localizedDescription, style: BannerStyle.danger)
-                            banner.show()
+                            DispatchQueue.main.async {
+                                let banner = NotificationBanner(title: "Create Calendar Fail", subtitle: (error as NSError).localizedDescription, style: BannerStyle.danger)
+                                banner.show()
+                            }
                         }
                     }
                 }
-                print(iOSCalendar)
+                
+                let oneMonthAgo = NSDate(timeIntervalSinceNow: -30*24*3600)
+                let oneMonthAfter = NSDate(timeIntervalSinceNow: +30*24*3600)
+                
+                let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
+                
+                let events = eventStore.events(matching: predicate)
+                
+                for event in events {
+                    print(event)
+                    DispatchQueue.main.async {
+                        self.calendarView.setSupplementaries([
+                            (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
+                            ])
+                    }
+                }
             }
         }
-        
-        let calendar = VACalendar(calendar: defaultCalendar)
-        calendarView = VACalendarView(frame: .zero, calendar: calendar)
-        calendarView.showDaysOut = true
-        calendarView.selectionStyle = .single
-        calendarView.monthDelegate = monthHeaderView
-        calendarView.dayViewAppearanceDelegate = self
-        calendarView.monthViewAppearanceDelegate = self
-        calendarView.calendarDelegate = self
-        calendarView.scrollDirection = .horizontal
-        calendarView.setSupplementaries([
-            (Date().addingTimeInterval(-(60 * 60 * 70)), [VADaySupplementary.bottomDots([.red, .magenta])]),
-            (Date().addingTimeInterval((60 * 60 * 110)), [VADaySupplementary.bottomDots([.red])]),
-            (Date().addingTimeInterval((60 * 60 * 370)), [VADaySupplementary.bottomDots([.blue, .darkGray])]),
-            (Date().addingTimeInterval((60 * 60 * 430)), [VADaySupplementary.bottomDots([.orange, .purple, .cyan])])
-            ])
+
         view.addSubview(calendarView)
     }
     
