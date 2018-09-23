@@ -1,7 +1,7 @@
 package com.apple.iosclub.mapper;
 
-import com.apple.iosclub.Entity.DBNew;
-import com.apple.iosclub.Model.NewModel;
+import com.apple.iosclub.entity.DBNew;
+import com.apple.iosclub.model.NewModel;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

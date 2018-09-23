@@ -380,6 +380,7 @@
                                             <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="ff:" destination="WsA-N9-ZJ2" eventType="touchUpInside" id="4RH-qJ-F6a"/>
                                             <segue destination="Bgd-MU-cYl" kind="show" id="ePN-wv-Dlj"/>
                                         </connections>
                                     </button>
@@ -390,13 +391,25 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ob-lZ-Qvl">
+                                        <rect key="frame" x="-23" y="156" width="101" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="test:" destination="WsA-N9-ZJ2" eventType="touchUpInside" id="taa-wc-wJB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="info_edit" translatesAutoresizingMaskIntoConstraints="NO" id="Gs4-tf-nUK">
-                                <rect key="frame" x="204" y="165" width="42" height="42"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phC-IR-gpe">
+                                <rect key="frame" x="205" y="164" width="42" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <state key="normal" title="Button" image="info_edit"/>
+                                <connections>
+                                    <action selector="choose:" destination="WsA-N9-ZJ2" eventType="touchUpInside" id="D6q-Dy-t3g"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="L2z-Fi-oJ6"/>

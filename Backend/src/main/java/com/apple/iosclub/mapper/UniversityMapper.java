@@ -1,6 +1,6 @@
 package com.apple.iosclub.mapper;
 
-import com.apple.iosclub.Model.UniversityModel;
+import com.apple.iosclub.model.UniversityModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;

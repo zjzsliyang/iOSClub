@@ -1,6 +1,6 @@
 package com.apple.iosclub.mapper;
 
-import com.apple.iosclub.Model.UserModel;
+import com.apple.iosclub.model.UserModel;
 import org.apache.ibatis.annotations.*;
 
 @Mapper

@@ -1,16 +1,13 @@
 package com.apple.iosclub.controller;
 
 
-import com.apple.iosclub.Model.UserModel;
 import com.apple.iosclub.mapper.UserMapper;
 import com.apple.iosclub.service.myimplement.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.HashMap;
 
 @RestController
@@ -64,6 +61,7 @@ public class UserController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public Object avatarUpdate(@RequestPart("file") MultipartFile image, @RequestParam HashMap<String, Object> req) throws IOException {
 
+        System.out.println("hehhe");
         return userService.avatarUpdate(image, (String) req.get("email"));
 
     }

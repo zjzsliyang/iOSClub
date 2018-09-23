@@ -1,7 +1,7 @@
 package com.apple.iosclub.service.myimplement;
 
-import com.apple.iosclub.Model.TeacherModel;
-import com.apple.iosclub.Utils.Common;
+import com.apple.iosclub.model.TeacherModel;
+import com.apple.iosclub.utils.Common;
 import com.apple.iosclub.mapper.TeacherMapper;
 import com.apple.iosclub.service.myinterface.TeacherInterface;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.apple.iosclub.controller;
 
-import com.apple.iosclub.Entity.DBNew;
+import com.apple.iosclub.entity.DBNew;
 
 import com.apple.iosclub.mapper.NewMapper;
 import com.apple.iosclub.service.myimplement.NewService;
@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 @RestController
@@ -91,13 +89,16 @@ public class NewController {
 
     public static final String uploadingdir = System.getProperty("user.dir") + "/src/main/resources/static/news_images/";
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public Object uploadingPost(@RequestPart("files") MultipartFile[] uploadingFiles, @RequestPart HashMap<String,Object> req) throws IOException {
+    public Object uploadingPost(@RequestPart("file") MultipartFile[] uploadingFiles, @RequestPart HashMap<String,Object> req) throws IOException {
 
 
         for(MultipartFile uploadedFile : uploadingFiles) {
             File file = new File(uploadingdir + uploadedFile.getOriginalFilename());
             uploadedFile.transferTo(file);
+            System.out.println("hahah");
         }
+
+        System.out.println("垃圾");
 
         return req;
     }

@@ -1,15 +1,10 @@
 package com.apple.iosclub.controller;
 
-import com.apple.iosclub.Model.TeacherModel;
-import com.apple.iosclub.Utils.Common;
-import com.apple.iosclub.mapper.TeacherMapper;
 import com.apple.iosclub.service.myimplement.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 
 @RestController
