@@ -98,7 +98,6 @@ class ActivityViewController: UIViewController {
                 self.events = eventStore.events(matching: predicate)
                 
                 for event in self.events {
-                    print(event)
                     DispatchQueue.main.async {
                         self.calendarView.setSupplementaries([
                             (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
