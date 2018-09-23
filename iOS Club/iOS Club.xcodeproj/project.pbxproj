@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F67E33C2156625C0076B1DA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33B2156625C0076B1DA /* PostViewController.swift */; };
+		2F67E33E215725F30076B1DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33D215725F30076B1DA /* LoginViewController.swift */; };
 		2F74A520215538EC00341862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74A51F215538EC00341862 /* AppDelegate.swift */; };
 		2F74A525215538EC00341862 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74A523215538EC00341862 /* Main.storyboard */; };
 		2F74A527215538EE00341862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F74A526215538EE00341862 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		0542B2711A8608583C219358 /* Pods-iOS Club.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Club.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club.release.xcconfig"; sourceTree = "<group>"; };
 		2F67E33B2156625C0076B1DA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		2F67E33D215725F30076B1DA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2F74A51C215538EC00341862 /* iOS Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F74A51F215538EC00341862 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F74A524215538EC00341862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				2FCA35F42155402100816691 /* NewsViewController.swift */,
 				2FCA35F52155402100816691 /* TabBarViewController.swift */,
 				2F67E33B2156625C0076B1DA /* PostViewController.swift */,
+				2F67E33D215725F30076B1DA /* LoginViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F67E33E215725F30076B1DA /* LoginViewController.swift in Sources */,
 				2FCA35FB2155402100816691 /* MeViewController.swift in Sources */,
 				2F74A520215538EC00341862 /* AppDelegate.swift in Sources */,
 				2F67E33C2156625C0076B1DA /* PostViewController.swift in Sources */,

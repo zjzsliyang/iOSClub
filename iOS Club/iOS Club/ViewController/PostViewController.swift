@@ -97,7 +97,7 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
         SVProgressHUD.show()
         Image.resolve(images: images, completion: { [weak self] resolvedImages in
             SVProgressHUD.dismiss()
-            self?.showLightbox(images: resolvedImages.flatMap({ $0 }))
+            self?.showLightbox(images: resolvedImages.compactMap({ $0 }))
         })
     }
     
