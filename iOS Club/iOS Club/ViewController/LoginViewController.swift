@@ -51,6 +51,9 @@ class LoginViewController: UIViewController {
                 if responseJson["code"] == 0 {
                     DispatchQueue.main.async {
                         let userDefault = UserDefaults.standard
+                        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+                        suiteDefault?.set(responseJson["user"]["email"].rawString()!, forKey: "email")
+                        suiteDefault?.synchronize()
                         userDefault.set(true, forKey: "isLogin")
                         userDefault.set(responseJson["user"]["email"].rawString()!, forKey: "email")
                         userDefault.synchronize()

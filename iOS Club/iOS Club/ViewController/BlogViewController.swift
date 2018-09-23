@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import URLEmbeddedView
 
 class BlogViewController: UIViewController {
+    
+    @IBOutlet weak var blogTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        fetchBlogs()
+    }
+    
+    func fetchBlogs() {
+        
     }
     
 }
