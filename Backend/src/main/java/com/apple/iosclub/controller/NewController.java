@@ -25,33 +25,13 @@ public class NewController {
         this.newService = newService;
     }
 
-//    @GetMapping("/getAll")
-//    public Object getAll() throws UnknownHostException {
-//
-//        ArrayList<FormatNew> list = new ArrayList<>();
-//
-//        for(MyNew myNew : newMapper.getAll()){
-//            list.add(new FormatNew(myNew));
-//        }
-//
-//        return list;
-//    }
+
     @GetMapping("/getAll")
     public Object getAll() {
         return newService.getAllNews();
     }
 
 
-//    @GetMapping("/getByPrivilege")
-//    public Object getByPrivilege(int u_privilege) throws UnknownHostException {
-//        ArrayList<FormatNew> list = new ArrayList<>();
-//
-//        for(MyNew myNew : newMapper.getByPrivilege(u_privilege)){
-//            list.add(new FormatNew(myNew));
-//        }
-//
-//        return list;
-//    }
     @GetMapping("/getByPrivilege")
     public Object getByPrivilege(int u_privilege){
 
@@ -95,10 +75,8 @@ public class NewController {
         for(MultipartFile uploadedFile : uploadingFiles) {
             File file = new File(uploadingdir + uploadedFile.getOriginalFilename());
             uploadedFile.transferTo(file);
-            System.out.println("hahah");
         }
 
-        System.out.println("垃圾");
 
         return req;
     }

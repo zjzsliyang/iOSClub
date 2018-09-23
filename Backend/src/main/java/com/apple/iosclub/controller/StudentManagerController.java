@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentManagerController {
 
 
-//    @Autowired
-//    private StudentManagerMapper studentManagerMapper;
-
     private StudentManagerService studentManagerService;
 
     @Autowired
@@ -29,11 +26,7 @@ public class StudentManagerController {
     @GetMapping("/getByCode")
     public Object getByCode(int code){
 
-//        List<StudentManagerModel> list = studentManagerMapper.getByCode(code);
-//
-//        for(StudentManagerModel studentManagerModel : list){
-//            studentManagerModel.avatar = "http://" + Common.ip + ":" + Common.port + studentManagerModel.avatar;
-//        }
+
 
         return studentManagerService.getByCode(code);
 

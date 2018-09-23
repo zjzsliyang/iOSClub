@@ -14,20 +14,12 @@ import java.util.HashMap;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserMapper userMapper;
 
     private UserService userService;
     @Autowired
     public UserController(UserService userService){
         this.userService = userService;
     }
-
-
-//    @GetMapping("/getInfoByEmail")
-//    public Object getInfoByEmail(String email) throws UnknownHostException {
-//        return new User(userMapper.getByEmail(email));
-//    }
 
 
     @GetMapping("/getInfoByEmail")
@@ -44,8 +36,6 @@ public class UserController {
         String email = (String) req.get("email");
         String password = (String) req.get("password");
 
-//        Thread.sleep(10000);
-
         return userService.login(email, password);
 
     }
@@ -61,7 +51,7 @@ public class UserController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public Object avatarUpdate(@RequestPart("file") MultipartFile image, @RequestParam HashMap<String, Object> req) throws IOException {
 
-        System.out.println("hehhe");
+
         return userService.avatarUpdate(image, (String) req.get("email"));
 
     }

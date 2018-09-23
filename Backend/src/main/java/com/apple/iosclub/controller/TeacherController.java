@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/club/teacher")
 public class TeacherController {
 
-//    @Autowired
-//    private TeacherMapper teacherMapper;
 
     private TeacherService teacherService;
     @Autowired
