@@ -32,6 +32,10 @@ class LoginViewController: UIViewController {
                 let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
                 print(responseJson)
                 
+                DispatchQueue.main.async {
+                    sender.isLoading = false
+                }
+                
                 if responseJson["code"] == 0 {
                     let userDefault = UserDefaults.standard
                     userDefault.set(true, forKey: "isLogin")
@@ -52,12 +56,6 @@ class LoginViewController: UIViewController {
                 print(error.description)
             }
         }
-        
-        let deadlineTime = DispatchTime.now() + .seconds(1)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-            sender.isLoading = false
-            // DO SOMETHING
-        }
     }
     
 
@@ -69,8 +67,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        autoLogin()
+        autoLogin()
     }
     
     func autoLogin() {
