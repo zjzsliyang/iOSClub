@@ -4,6 +4,7 @@ import com.apple.iosclub.entity.DBNew;
 import com.apple.iosclub.mapper.NewMapper;
 import com.apple.iosclub.service.myimplement.NewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
@@ -36,7 +37,8 @@ public class NewController {
     }
 
     @PostMapping("/publish")
-    public Object publish(@RequestParam HashMap<String, Object> req, @RequestPart("files") MultipartFile[] uploadingFiles) throws IOException {
+    @Required
+    public Object publish(@RequestParam HashMap<String, Object> req, @RequestPart(value = "files", required = false) MultipartFile[] uploadingFiles) throws IOException {
 
         HashMap<String, Object> res = new HashMap<>();
         try {
