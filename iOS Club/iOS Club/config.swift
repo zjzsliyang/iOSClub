@@ -10,4 +10,4 @@ import Foundation
 
 let backendUrl = "http://10.0.1.13:8888"
 
-let groupIdentifier = "cn.edu.tongji.iOS-Club"
+let groupIdentifier = "group.cn.zjzsliyang.iosclub"

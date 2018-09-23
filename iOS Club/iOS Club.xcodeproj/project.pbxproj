@@ -69,6 +69,8 @@
 		1EA4B768215828B800DD5941 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedPostInfoTableViewController.swift; sourceTree = "<group>"; };
 		2F3E453E2157FD5A00710141 /* SelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
+		2F45EB252158322200C5B9D3 /* iOS Club.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iOS Club.entitlements"; sourceTree = "<group>"; };
+		2F45EB262158336A00C5B9D3 /* Club Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Club Share.entitlements"; sourceTree = "<group>"; };
 		2F67E33B2156625C0076B1DA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		2F67E33F2157326A0076B1DA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2F74A51C215538EC00341862 /* iOS Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 		1EA4B762215828B800DD5941 /* Club Share */ = {
 			isa = PBXGroup;
 			children = (
+				2F45EB262158336A00C5B9D3 /* Club Share.entitlements */,
 				1EA4B763215828B800DD5941 /* ShareViewController.swift */,
 				1EA4B765215828B800DD5941 /* MainInterface.storyboard */,
 				1EA4B768215828B800DD5941 /* Info.plist */,
@@ -148,6 +151,7 @@
 		2F74A51E215538EC00341862 /* iOS Club */ = {
 			isa = PBXGroup;
 			children = (
+				2F45EB252158322200C5B9D3 /* iOS Club.entitlements */,
 				2FCA3609215556A000816691 /* config.swift */,
 				2FCA360E2155631700816691 /* View */,
 				2FCA35FC2155406200816691 /* Model */,
@@ -272,10 +276,20 @@
 				TargetAttributes = {
 					1EA4B760215828B800DD5941 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					2F74A51B215538EC00341862 = {
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1000;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -497,6 +511,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C0B0F6D11214A245B6F3D3F9 /* Pods-Club Share.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Club Share/Club Share.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4WT85FFHH;
 				INFOPLIST_FILE = "Club Share/Info.plist";
@@ -517,6 +532,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A4A8788B85CA2E189D1702F9 /* Pods-Club Share.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Club Share/Club Share.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4WT85FFHH;
 				INFOPLIST_FILE = "Club Share/Info.plist";
@@ -655,6 +671,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "iOS Club/iOS Club.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4WT85FFHH;
 				INFOPLIST_FILE = "iOS Club/Info.plist";
@@ -676,6 +693,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "iOS Club/iOS Club.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4WT85FFHH;
 				INFOPLIST_FILE = "iOS Club/Info.plist";
