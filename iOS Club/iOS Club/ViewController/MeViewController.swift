@@ -16,7 +16,6 @@ UINavigationControllerDelegate {
     @IBOutlet weak var name: UILabel!
     
     @IBOutlet weak var position: UILabel!
-    
 
   
     @IBOutlet weak var personalDescription: UITextView!
