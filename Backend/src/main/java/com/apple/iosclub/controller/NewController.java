@@ -38,8 +38,18 @@ public class NewController {
     @PostMapping("/publish")
     public Object publish(@RequestParam HashMap<String, Object> req, @RequestPart("files") MultipartFile[] uploadingFiles) throws IOException {
 
-        return newService.publish(req, uploadingFiles);
+        HashMap<String, Object> res = new HashMap<>();
+        try {
+            DBNew dbNew =  (DBNew)newService.publish(req, uploadingFiles);
+            res.put("new", dbNew);
+            res.put("code", 0);
+            res.put("msg", "发布成功");
+        }catch (Exception e){
+            res.put("code", 1);
+            res.put("msg", "发布失败");
+        }
 
+        return res;
     }
 
 

@@ -57,6 +57,7 @@ public class NewService implements NewServiceInterface{
         }catch (Exception e){
             dbNew.postemail = (String)req.get("postmail");
         }
+
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dbNew.time =  sdf.format(d).toString();
@@ -79,7 +80,7 @@ public class NewService implements NewServiceInterface{
         }
         dbNew.images = images;
 
-        dbNew.tags = (String)req.get("tags");
+        dbNew.tags = (req.get("tags")).toString();
         dbNew.news_privilege =  Integer.parseInt(req.get("news_privilege").toString());
 
         newMapper.insertNew(dbNew);
