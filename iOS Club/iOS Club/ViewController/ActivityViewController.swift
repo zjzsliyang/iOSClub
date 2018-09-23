@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import EventKit
 import VACalendar
+import NotificationBannerSwift
 
 class ActivityViewController: UIViewController {
     
@@ -41,6 +43,40 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let eventStore = EKEventStore()
+        eventStore.requestAccess(to: .event) { (granted, error) in
+            if granted && (error == nil) {
+                let calendars = eventStore.calendars(for: .event)
+                var iOSCalendar: EKCalendar? = nil
+                for calendar in calendars {
+                    if calendar.title == "iOS Club" {
+                        iOSCalendar = calendar
+                    }
+                }
+                if iOSCalendar == nil {
+                    iOSCalendar = EKCalendar(for: .event, eventStore: eventStore)
+                    iOSCalendar!.title = "iOS Club"
+                    var iCloudSource: EKSource? = nil
+                    for source in eventStore.sources {
+                        if (source.sourceType == .calDAV) && (source.title == "iCloud") {
+                            iCloudSource = source
+                            break
+                        }
+                    }
+                    if (iCloudSource) != nil {
+                        iOSCalendar!.source = iCloudSource
+                        do {
+                            try eventStore.saveCalendar(iOSCalendar!, commit: true)
+                        } catch {
+                            let banner = NotificationBanner(title: "Create Calendar Fail", subtitle: (error as NSError).localizedDescription, style: BannerStyle.danger)
+                            banner.show()
+                        }
+                    }
+                }
+                print(iOSCalendar)
+            }
+        }
         
         let calendar = VACalendar(calendar: defaultCalendar)
         calendarView = VACalendarView(frame: .zero, calendar: calendar)
