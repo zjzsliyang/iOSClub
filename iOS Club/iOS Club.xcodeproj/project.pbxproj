@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1E62BC9E2156841F00263B8D /* UniversityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */; };
 		1E62BCA02156938500263B8D /* UniversityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */; };
+		1EA4B7512158264400DD5941 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA4B7502158264400DD5941 /* ShareViewController.swift */; };
+		1EA4B7542158264400DD5941 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EA4B7522158264400DD5941 /* MainInterface.storyboard */; };
+		1EA4B7582158264400DD5941 /* iOSClubShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1EA4B74E2158264400DD5941 /* iOSClubShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2F3E45342157C81900710141 /* EmbedPostInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */; };
 		2F3E453F2157FD5A00710141 /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E453E2157FD5A00710141 /* SelectedCell.swift */; };
 		2F67E33C2156625C0076B1DA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33B2156625C0076B1DA /* PostViewController.swift */; };
@@ -31,10 +34,38 @@
 		FB5A3A00D1163C45F5C17B87 /* Pods_iOS_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1EA4B7562158264400DD5941 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F74A514215538EC00341862 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EA4B74D2158264400DD5941;
+			remoteInfo = iOSClubShare;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1EA4B75C2158264400DD5941 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1EA4B7582158264400DD5941 /* iOSClubShare.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0542B2711A8608583C219358 /* Pods-iOS Club.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Club.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club.release.xcconfig"; sourceTree = "<group>"; };
 		1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityListViewController.swift; sourceTree = "<group>"; };
 		1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDetailViewController.swift; sourceTree = "<group>"; };
+		1EA4B74E2158264400DD5941 /* iOSClubShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iOSClubShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EA4B7502158264400DD5941 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		1EA4B7532158264400DD5941 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		1EA4B7552158264400DD5941 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedPostInfoTableViewController.swift; sourceTree = "<group>"; };
 		2F3E453E2157FD5A00710141 /* SelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
 		2F67E33B2156625C0076B1DA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +92,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1EA4B74B2158264400DD5941 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2F74A519215538EC00341862 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,10 +110,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1EA4B74F2158264400DD5941 /* iOSClubShare */ = {
+			isa = PBXGroup;
+			children = (
+				1EA4B7502158264400DD5941 /* ShareViewController.swift */,
+				1EA4B7522158264400DD5941 /* MainInterface.storyboard */,
+				1EA4B7552158264400DD5941 /* Info.plist */,
+			);
+			path = iOSClubShare;
+			sourceTree = "<group>";
+		};
 		2F74A513215538EC00341862 = {
 			isa = PBXGroup;
 			children = (
 				2F74A51E215538EC00341862 /* iOS Club */,
+				1EA4B74F2158264400DD5941 /* iOSClubShare */,
 				2F74A51D215538EC00341862 /* Products */,
 				C0892115C36F6AD1C68966B4 /* Pods */,
 				B46904ED13DAD0DBA721C4D0 /* Frameworks */,
@@ -86,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				2F74A51C215538EC00341862 /* iOS Club.app */,
+				1EA4B74E2158264400DD5941 /* iOSClubShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +213,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1EA4B74D2158264400DD5941 /* iOSClubShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EA4B75B2158264400DD5941 /* Build configuration list for PBXNativeTarget "iOSClubShare" */;
+			buildPhases = (
+				1EA4B74A2158264400DD5941 /* Sources */,
+				1EA4B74B2158264400DD5941 /* Frameworks */,
+				1EA4B74C2158264400DD5941 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSClubShare;
+			productName = iOSClubShare;
+			productReference = 1EA4B74E2158264400DD5941 /* iOSClubShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		2F74A51B215538EC00341862 /* iOS Club */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F74A52E215538EE00341862 /* Build configuration list for PBXNativeTarget "iOS Club" */;
@@ -172,10 +239,12 @@
 				2F74A519215538EC00341862 /* Frameworks */,
 				2F74A51A215538EC00341862 /* Resources */,
 				DA2C399EA0204978E9EC604F /* [CP] Embed Pods Frameworks */,
+				1EA4B75C2158264400DD5941 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1EA4B7572158264400DD5941 /* PBXTargetDependency */,
 			);
 			name = "iOS Club";
 			productName = "iOS Club";
@@ -192,6 +261,9 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Yang LI";
 				TargetAttributes = {
+					1EA4B74D2158264400DD5941 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					2F74A51B215538EC00341862 = {
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1000;
@@ -212,11 +284,20 @@
 			projectRoot = "";
 			targets = (
 				2F74A51B215538EC00341862 /* iOS Club */,
+				1EA4B74D2158264400DD5941 /* iOSClubShare */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1EA4B74C2158264400DD5941 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EA4B7542158264400DD5941 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2F74A51A215538EC00341862 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,6 +392,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1EA4B74A2158264400DD5941 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EA4B7512158264400DD5941 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2F74A518215538EC00341862 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,7 +427,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		1EA4B7572158264400DD5941 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EA4B74D2158264400DD5941 /* iOSClubShare */;
+			targetProxy = 1EA4B7562158264400DD5941 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		1EA4B7522158264400DD5941 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1EA4B7532158264400DD5941 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		2F74A523215538EC00341862 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -358,6 +463,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1EA4B7592158264400DD5941 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G4WT85FFHH;
+				INFOPLIST_FILE = iOSClubShare/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.tongji.iOS-Club.iOSClubShare";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1EA4B75A2158264400DD5941 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G4WT85FFHH;
+				INFOPLIST_FILE = iOSClubShare/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.tongji.iOS-Club.iOSClubShare";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		2F74A52C215538EE00341862 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -478,6 +621,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 592E44713D18C94351F0FA02 /* Pods-iOS Club.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4WT85FFHH;
@@ -498,6 +642,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0542B2711A8608583C219358 /* Pods-iOS Club.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4WT85FFHH;
@@ -517,6 +662,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1EA4B75B2158264400DD5941 /* Build configuration list for PBXNativeTarget "iOSClubShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EA4B7592158264400DD5941 /* Debug */,
+				1EA4B75A2158264400DD5941 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2F74A517215538EC00341862 /* Build configuration list for PBXProject "iOS Club" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
