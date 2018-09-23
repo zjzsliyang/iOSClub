@@ -89,7 +89,7 @@ class ActivityViewController: UIViewController {
                         }
                     }
                 }
-                
+
                 let oneMonthAgo = NSDate(timeIntervalSinceNow: -30*24*3600)
                 let oneMonthAfter = NSDate(timeIntervalSinceNow: +30*24*3600)
                 
