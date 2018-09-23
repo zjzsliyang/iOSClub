@@ -33,7 +33,7 @@ class NewsViewController: UIViewController {
                         self.newsTableView.reloadData()
                     }
                 } else {
-                    print("JSON parse failed")
+                    debugPrint("JSON parse failed")
                 }
             }.resume()
         }
