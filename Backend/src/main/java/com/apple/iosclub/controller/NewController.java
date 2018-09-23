@@ -89,7 +89,7 @@ public class NewController {
 
     public static final String uploadingdir = System.getProperty("user.dir") + "/src/main/resources/static/news_images/";
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public Object uploadingPost(@RequestPart("file") MultipartFile[] uploadingFiles, @RequestPart HashMap<String,Object> req) throws IOException {
+    public Object uploadingPost(@RequestPart("file") MultipartFile[] uploadingFiles, @RequestParam HashMap<String,Object> req) throws IOException {
 
 
         for(MultipartFile uploadedFile : uploadingFiles) {

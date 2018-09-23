@@ -18,7 +18,7 @@ public class UniversityService implements UniversityInterface{
     public Object getAll(){
         List<UniversityModel> universityModelList =  universityMapper.getAll();
         for(UniversityModel universityModel : universityModelList){
-            universityModel.icon = Common.backendUrl + universityModel.icon;
+            universityModel.icon = Common.backendUrl  + universityModel.icon;
         }
         return universityModelList;
     }
