@@ -89,6 +89,9 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
                 }
             }
         }
+        if selectedImages.count == 0 {
+            self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextField.text!, news_privilege: "5", tags: self.postTags)
+        }
 
         self.dismiss(animated: true, completion: nil)
     }
