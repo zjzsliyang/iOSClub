@@ -33,6 +33,7 @@ PODS:
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.1.0)
   - TextFieldEffects (1.4.0)
+  - URLEmbeddedView (0.16.2)
   - VACalendar (1.2)
   - WSTagsField (3.1.0)
 
@@ -52,6 +53,7 @@ DEPENDENCIES:
   - SVProgressHUD
   - SwiftyJSON (~> 4.0)
   - TextFieldEffects
+  - URLEmbeddedView
   - VACalendar
   - WSTagsField
 
@@ -76,6 +78,7 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftyJSON
     - TextFieldEffects
+    - URLEmbeddedView
     - VACalendar
     - WSTagsField
 
@@ -110,9 +113,10 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
+  URLEmbeddedView: 5fa153bf91a78642c6677aded9a1494c09b75e86
   VACalendar: f189d1b713b8a38d85fe679afef5dc21105c6259
   WSTagsField: 53055749c03769b2b297f2a629ba23a26931e3ff
 
-PODFILE CHECKSUM: 6bd2a78d7bcbdc4f1ef397b600d7bc1eff60c98d
+PODFILE CHECKSUM: 891239da85a7531d2c12b452fb166afbf1e57b61
 
 COCOAPODS: 1.5.3
