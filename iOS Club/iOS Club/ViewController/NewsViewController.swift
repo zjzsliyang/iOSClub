@@ -16,6 +16,7 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fetchNews()
         setupHideKeyboardOnTap()
     }

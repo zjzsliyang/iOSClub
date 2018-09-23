@@ -12,6 +12,7 @@ target 'iOS Club' do
   pod 'LGButton'
   pod 'VACalendar'
   pod 'SkeletonView'
+  pod 'SwiftEntryKit'
   pod 'SVProgressHUD'
   pod 'TextFieldEffects'
   pod 'LLCycleScrollView'
