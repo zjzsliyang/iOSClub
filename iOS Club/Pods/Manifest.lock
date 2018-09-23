@@ -13,6 +13,7 @@ PODS:
   - Imaginary (3.0.3):
     - Cache (~> 4.0)
   - Kingfisher (4.8.1)
+  - LGButton (1.0.5)
   - Lightbox (2.1.2):
     - Hue (~> 3.0)
     - Imaginary (~> 3.0)
@@ -25,6 +26,7 @@ PODS:
   - SnapKit (4.0.0)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.1.0)
+  - TextFieldEffects (1.4.0)
   - VACalendar (1.2)
 
 DEPENDENCIES:
@@ -32,12 +34,14 @@ DEPENDENCIES:
   - BMPlayer
   - Gallery (from `https://github.com/hyperoslo/Gallery.git`, branch `master`)
   - Hue
+  - LGButton
   - Lightbox
   - LLCycleScrollView
   - SkeletonView
   - SnapKit
   - SVProgressHUD
   - SwiftyJSON (~> 4.0)
+  - TextFieldEffects
   - VACalendar
 
 SPEC REPOS:
@@ -48,6 +52,7 @@ SPEC REPOS:
     - Hue
     - Imaginary
     - Kingfisher
+    - LGButton
     - Lightbox
     - LLCycleScrollView
     - NVActivityIndicatorView
@@ -55,6 +60,7 @@ SPEC REPOS:
     - SnapKit
     - SVProgressHUD
     - SwiftyJSON
+    - TextFieldEffects
     - VACalendar
 
 EXTERNAL SOURCES:
@@ -75,6 +81,7 @@ SPEC CHECKSUMS:
   Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
   Imaginary: 9b45836a5af881f452a86e0a1215772ae4712d00
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
+  LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
   Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
   LLCycleScrollView: e4ec004ac76a0e60e9bbfa3381d9145910d0434f
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
@@ -82,8 +89,9 @@ SPEC CHECKSUMS:
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
   VACalendar: f189d1b713b8a38d85fe679afef5dc21105c6259
 
-PODFILE CHECKSUM: 53275b15ad3baeeb0ab636f47d46b2c37ff7afeb
+PODFILE CHECKSUM: 0007cad97403be2406f11a165fd577ccc217d54f
 
 COCOAPODS: 1.5.3
