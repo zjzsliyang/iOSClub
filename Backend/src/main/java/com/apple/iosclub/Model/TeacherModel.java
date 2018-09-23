@@ -1,6 +1,6 @@
-package com.apple.iosclub.Entity;
+package com.apple.iosclub.Model;
 
-public class StudentManager {
+public class TeacherModel {
 
     public int id;
     public int code;
@@ -25,6 +25,8 @@ public class StudentManager {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+
 
     public int getId() {
         return id;
@@ -65,5 +67,6 @@ public class StudentManager {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
 }

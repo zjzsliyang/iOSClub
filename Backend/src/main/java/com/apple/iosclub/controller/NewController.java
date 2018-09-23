@@ -1,14 +1,12 @@
 package com.apple.iosclub.controller;
 
 import com.apple.iosclub.Entity.DBNew;
-import com.apple.iosclub.Entity.MyNew;
-import com.apple.iosclub.FormatModel.FormatNew;
+
 import com.apple.iosclub.mapper.NewMapper;
 import com.apple.iosclub.service.myimplement.NewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.*;
 import java.net.UnknownHostException;
@@ -61,12 +59,6 @@ public class NewController {
 
         return newService.getNewsByPrivilege(u_privilege);
     }
-
-
-
-
-
-
 
 
 

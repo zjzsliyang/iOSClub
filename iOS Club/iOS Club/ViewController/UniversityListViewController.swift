@@ -39,7 +39,6 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
             }
             DispatchQueue.main.async {
                 if let image = UIImage(data: data!) {
-//                    imageCache.setObject(image, forKey: urlString as NSString)
                     icon.image = image
                 }
             }

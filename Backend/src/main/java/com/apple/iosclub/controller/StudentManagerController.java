@@ -1,9 +1,9 @@
 package com.apple.iosclub.controller;
 
-import com.apple.iosclub.Entity.StudentManager;
-import com.apple.iosclub.Entity.Teacher;
+import com.apple.iosclub.Model.StudentManagerModel;
 import com.apple.iosclub.Utils.Common;
 import com.apple.iosclub.mapper.StudentManagerMapper;
+import com.apple.iosclub.service.myimplement.StudentManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,24 +16,31 @@ import java.util.List;
 public class StudentManagerController {
 
 
+//    @Autowired
+//    private StudentManagerMapper studentManagerMapper;
+
+    private StudentManagerService studentManagerService;
+
     @Autowired
-    private StudentManagerMapper studentManagerMapper;
+    public StudentManagerController(StudentManagerService studentManagerService){
+        this.studentManagerService = studentManagerService;
+    }
 
     @GetMapping("/getAll")
     public Object getAll(){
-        return studentManagerMapper.getAll();
+        return studentManagerService.getAll();
     }
 
     @GetMapping("/getByCode")
     public Object getByCode(int code){
 
-        List<StudentManager> list = studentManagerMapper.getByCode(code);
+//        List<StudentManagerModel> list = studentManagerMapper.getByCode(code);
+//
+//        for(StudentManagerModel studentManagerModel : list){
+//            studentManagerModel.avatar = "http://" + Common.ip + ":" + Common.port + studentManagerModel.avatar;
+//        }
 
-        for(StudentManager studentManager : list){
-            studentManager.avatar = "http://" + Common.ip + ":" + Common.port + studentManager.avatar;
-        }
-
-        return list;
+        return studentManagerService.getByCode(code);
 
     }
 }

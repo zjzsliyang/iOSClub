@@ -1,6 +1,6 @@
 package com.apple.iosclub.mapper;
 
-import com.apple.iosclub.Entity.University;
+import com.apple.iosclub.Model.UniversityModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -19,6 +19,6 @@ public interface UniversityMapper {
             @Result(property = "icon", column = "u_icon"),
             @Result(property = "email", column = "u_email")
     })
-    List<University> getAll();
+    List<UniversityModel> getAll();
 
 }
