@@ -8,5 +8,5 @@ public class Common {
     public static String resPath = "file:/Users/luozhongjin/iOSClub/res/";
     public static String root = "/Users/luozhongjin/iOSClub/res/";
     public static String virtual = "/files/";
-    
+
 }
