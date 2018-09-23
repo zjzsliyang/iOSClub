@@ -10,6 +10,7 @@
 		1E62BC9E2156841F00263B8D /* UniversityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */; };
 		1E62BCA02156938500263B8D /* UniversityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */; };
 		2F67E33C2156625C0076B1DA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33B2156625C0076B1DA /* PostViewController.swift */; };
+		2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33F2157326A0076B1DA /* LoginViewController.swift */; };
 		2F74A520215538EC00341862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74A51F215538EC00341862 /* AppDelegate.swift */; };
 		2F74A525215538EC00341862 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74A523215538EC00341862 /* Main.storyboard */; };
 		2F74A527215538EE00341862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F74A526215538EE00341862 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityListViewController.swift; sourceTree = "<group>"; };
 		1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDetailViewController.swift; sourceTree = "<group>"; };
 		2F67E33B2156625C0076B1DA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		2F67E33F2157326A0076B1DA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2F74A51C215538EC00341862 /* iOS Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F74A51F215538EC00341862 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F74A524215538EC00341862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		2FCA35F121553FB700816691 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2F67E33F2157326A0076B1DA /* LoginViewController.swift */,
 				1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */,
 				2FCA35F22155402100816691 /* ActivityViewController.swift */,
 				2FCA35F32155402100816691 /* BlogViewController.swift */,
@@ -280,7 +283,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F67E33E215725F30076B1DA /* LoginViewController.swift in Sources */,
 				2FCA35FB2155402100816691 /* MeViewController.swift in Sources */,
 				2F74A520215538EC00341862 /* AppDelegate.swift in Sources */,
 				1E62BC9E2156841F00263B8D /* UniversityListViewController.swift in Sources */,
@@ -293,6 +295,7 @@
 				2FCA36082155568600816691 /* utilities.swift in Sources */,
 				2FCA3618215572EC00816691 /* User.swift in Sources */,
 				2FCA35F92155402100816691 /* NewsViewController.swift in Sources */,
+				2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */,
 				2FCA3617215572EC00816691 /* Blog.swift in Sources */,
 				2FCA36102155633900816691 /* NewsCell.swift in Sources */,
 				1E62BCA02156938500263B8D /* UniversityDetailViewController.swift in Sources */,
