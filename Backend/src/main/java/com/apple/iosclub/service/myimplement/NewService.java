@@ -1,13 +1,21 @@
 package com.apple.iosclub.service.myimplement;
 
+import com.apple.iosclub.entity.DBNew;
 import com.apple.iosclub.model.NewModel;
 import com.apple.iosclub.utils.Common;
 import com.apple.iosclub.mapper.NewMapper;
 import com.apple.iosclub.service.myinterface.NewServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,6 +24,8 @@ public class NewService implements NewServiceInterface{
 
     @Autowired
     public NewMapper newMapper;
+
+
 
 
     @Override
@@ -37,6 +47,48 @@ public class NewService implements NewServiceInterface{
 
         return resultList;
     }
+
+    @Override
+    public Object publish(HashMap<String, Object> req, MultipartFile[] files) throws IOException {
+
+        DBNew dbNew = new DBNew();
+        try {
+            dbNew.postemail = (String) ((HashMap<String, Object>)req.get("user")).get("postmail");
+        }catch (Exception e){
+            dbNew.postemail = (String)req.get("postmail");
+        }
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dbNew.time =  sdf.format(d).toString();
+        dbNew.title =  (String)req.get("title");
+        dbNew.content = (String)req.get("content");
+
+        dbNew.video = "";
+
+        String images = "";
+        String directory = Common.root + "news_images/";
+        for (MultipartFile uploadedFile : files) {
+            String oldName = uploadedFile.getOriginalFilename();
+            String suffix = oldName.substring(oldName.lastIndexOf(".") + 1);
+            long timestamp = System.currentTimeMillis();
+            String newName = "" + timestamp + "." + suffix;
+            images += Common.virtual + "news_images/" + newName + ";";
+            File file = new File(directory + newName);
+            uploadedFile.transferTo(file);
+            System.out.println(newName);
+        }
+        dbNew.images = images;
+
+        dbNew.tags = (String)req.get("tags");
+        dbNew.news_privilege =  Integer.parseInt(req.get("news_privilege").toString());
+
+        newMapper.insertNew(dbNew);
+
+
+        return dbNew;
+
+    }
+
 
     public static ArrayList<HashMap<String, Object>> pack(List<NewModel> list){
 
@@ -67,8 +119,22 @@ public class NewService implements NewServiceInterface{
             newsObject.put("time", newModel.time);
             newsObject.put("title", newModel.title);
             newsObject.put("content", newModel.content);
-            newsObject.put("video", Common.backendUrl + newModel.video);
-            newsObject.put("images", new ArrayList<>());//newModel.images);
+
+            if(newModel.video.equals("")){
+                newsObject.put("video", newModel.video);
+                String imagesString = newModel.images;
+                String[] images = imagesString.split(";");
+                ArrayList<String> imageList = new ArrayList<>();
+                for(String i : images){
+                    imageList.add(Common.backendUrl + i);
+                }
+                newsObject.put("images", imageList);
+            }else {
+                newsObject.put("video", Common.backendUrl + newModel.video);
+                newsObject.put("images", new ArrayList<>());
+            }
+
+
             newsObject.put("tags", new ArrayList<>());//newModel.tags);
             newsObject.put("news_privilege",newModel.news_privilege);
 

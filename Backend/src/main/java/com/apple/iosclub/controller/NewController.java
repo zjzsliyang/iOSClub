@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
+import java.util.Date;
 import java.util.HashMap;
 
 @RestController
@@ -35,34 +36,16 @@ public class NewController {
     }
 
     @PostMapping("/publish")
-    public Object publish(@RequestBody HashMap<String, Object> req){
+    public Object publish(@RequestParam HashMap<String, Object> req, @RequestPart("files") MultipartFile[] uploadingFiles) throws IOException {
 
-        DBNew dbNew = new DBNew();
-
-        try {
-            dbNew.postemail = (String) ((HashMap<String, Object>)req.get("user")).get("email");
-        }catch (Exception e){
-            dbNew.postemail = (String)req.get("email");
-        }
-
-        dbNew.time =  (String)req.get("time");
-        dbNew.title =  (String)req.get("title");
-        dbNew.content = (String)req.get("content");
-        dbNew.video = (String)req.get("video");
-        dbNew.images = (String)req.get("images");
-        dbNew.tags = (String)req.get("tags");
-        dbNew.news_privilege = (int)req.get("news_privilege");
-
-        newMapper.insertNew(dbNew);
-
-        return dbNew;
+        return newService.publish(req, uploadingFiles);
 
     }
 
 
     public static final String uploadingdir = System.getProperty("user.dir") + "/src/main/resources/static/news_images/";
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public Object uploadingPost(@RequestPart("file") MultipartFile[] uploadingFiles, @RequestParam HashMap<String,Object> req) throws IOException {
+    public Object uploadingPost(@RequestPart("files") MultipartFile[] uploadingFiles, @RequestParam HashMap<String,Object> req) throws IOException {
 
         for (MultipartFile uploadedFile : uploadingFiles) {
             File file = new File(uploadingdir + uploadedFile.getOriginalFilename());
@@ -70,4 +53,8 @@ public class NewController {
         }
         return req;
     }
+
+
+
+
 }

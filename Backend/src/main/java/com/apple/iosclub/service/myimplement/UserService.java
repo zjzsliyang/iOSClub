@@ -94,7 +94,7 @@ public class UserService implements UserServiceInterface {
         HashMap<String, Object> res = new HashMap<>();
         try {
 
-            String directory = Common.root + "/avatar/";
+            String directory = Common.root + "avatar/";
 
 //            System.out.println(directory);
 
