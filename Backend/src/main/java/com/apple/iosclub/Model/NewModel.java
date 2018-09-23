@@ -3,7 +3,7 @@ package com.apple.iosclub.model;
 public class NewModel {
 
 
-    public int u_code;
+
     public String username;
     public int privilege;
     public String email;
@@ -11,6 +11,8 @@ public class NewModel {
     public String position;
     public String description;
     public String avatar;
+
+    public int u_code;
     public String u_name;
     public String u_description;
     public String u_icon;

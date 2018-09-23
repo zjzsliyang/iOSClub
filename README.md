@@ -1,5 +1,18 @@
 # iOS Club App
 
+An iOS app for iOS Club members communication in Greater China.
+
+## Contributer
+
+- Yang Li
+- Zhongjin Luo
+
+
+
+## Todo Tasks
+
+- [ ] add 
+
 ### Prototype Info
 
 包含 News, Blog, Activity and Me 四个界面.

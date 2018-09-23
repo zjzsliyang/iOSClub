@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 import URLEmbeddedView
 
 class BlogCell: UITableViewCell {
@@ -27,6 +28,11 @@ class BlogCell: UITableViewCell {
             avatarView.image = UIImage(named: "avatar")
         }
         previewView.load(urlString: blog.url)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        previewView.prepareViewsForReuse()
     }
 
 }

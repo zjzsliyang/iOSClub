@@ -9,9 +9,7 @@
 import UIKit
 
 struct Blog: Decodable {
-    let id: Int
     let user: User
-    let sharemail: String
     let url: String
     let time: String
 }

@@ -22,10 +22,10 @@ public interface NewMapper {
     @Insert("insert into news(postemail,time,title,content,video,images,tags,n_privilege) values(#{dbNew.postemail},#{dbNew.time},#{dbNew.title},#{dbNew.content},#{dbNew.video},#{dbNew.images},#{dbNew.tags},${dbNew.news_privilege})")
     void insertNew(@Param("dbNew") DBNew dbNew);
 
-    @Select("select * from news , (user NATURAL JOIN university) where postemail = email and n_privilege <= #{privilege}")
+    @Select("select * from news , (user NATURAL JOIN university) where postemail = email and n_privilege <= #{privilege} order by time desc")
     List<NewModel> getNewsByPrivilege(int privilege);
 
-    @Select("select * from news , (user NATURAL JOIN university) where postemail = email")
+    @Select("select * from news , (user NATURAL JOIN university) where postemail = email order by time desc")
     List<NewModel> getAllNews();
 
 

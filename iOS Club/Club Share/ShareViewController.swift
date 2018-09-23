@@ -11,22 +11,38 @@ import Social
 import Alamofire
 
 class ShareViewController: SLComposeServiceViewController {
-
+    
     override func isContentValid() -> Bool {
-        // Do validation of contentText and/or NSExtensionContext attachments here
         return true
     }
-
-    override func didSelectPost() {
     
+    override func didSelectPost() {
+        
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        print(suiteDefault!.value(forKey: "email"))
+        let email = suiteDefault!.value(forKey: "email") as! String
+        if let item = extensionContext?.inputItems.first as? NSExtensionItem,
+            let itemProvider = item.attachments?.first,
+            itemProvider.hasItemConformingToTypeIdentifier("public.url") {
+            itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil) { (url, error) in
+                if let shareURL = url as? URL {
+                    let parameters: Parameters = [
+                        "sharemail": email,
+                        "url": "\(shareURL)"
+                    ]
+                    Alamofire.request(backendUrl + "/blog/shareBlog", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON {
+                        (response) in
+                        print(response)
+                    }
+                }
+            }
+        }
         
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+        
     }
-
+    
     override func configurationItems() -> [Any]! {
         return []
     }
-
+    
 }

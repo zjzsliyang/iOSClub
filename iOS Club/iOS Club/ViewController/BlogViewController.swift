@@ -51,6 +51,7 @@ extension BlogViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let blog = blogs[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "BlogCell") as! BlogCell
+        print(indexPath.row)
         cell.setBlog(blog: blog)
         return cell
     }
