@@ -4,11 +4,14 @@
 target 'iOS Club' do
   use_frameworks!
 
+  pod 'Hue'
   pod 'SnapKit'
   pod 'Gallery', :git => 'https://github.com/hyperoslo/Gallery.git', :branch => 'master'
   pod 'BMPlayer'
+  pod 'Lightbox'
   pod 'VACalendar'
   pod 'SkeletonView'
+  pod 'SVProgressHUD'
   pod 'LLCycleScrollView'
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON', '~> 4.0'
