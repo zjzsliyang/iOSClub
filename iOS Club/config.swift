@@ -6,8 +6,6 @@
 //  Copyright © 2018 Yang LI. All rights reserved.
 //
 
-import Foundation
-
 let backendUrl = "http://10.0.1.13:8888"
 
 let groupIdentifier = "group.cn.zjzsliyang.iosclub"
