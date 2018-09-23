@@ -11,6 +11,7 @@ import LGButton
 import Alamofire
 import SwiftyJSON
 import TextFieldEffects
+import NotificationBannerSwift
 
 class LoginViewController: UIViewController {
     
@@ -36,13 +37,15 @@ class LoginViewController: UIViewController {
                     userDefault.set(true, forKey: "isLogin")
                     self.autoLogin()
                 } else if responseJson["code"] == -1 {
-                    print("acount does not exist")
                     self.emailTextField.shake()
                     self.emailTextField.placeholderColor = .red
+                    let banner = NotificationBanner(title: "Login Fail", subtitle: "acount does not exist", style: BannerStyle.danger)
+                    banner.show()
                 } else if responseJson["code"] == 1 {
-                    print("password incorrect")
                     self.passwordTextField.shake()
                     self.passwordTextField.placeholderColor = .red
+                    let banner = NotificationBanner(title: "Login Fail", subtitle: "password incorrect", style: BannerStyle.danger)
+                    banner.show()
                 }
             } catch let error as NSError {
                 print(error.code)

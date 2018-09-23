@@ -20,15 +20,16 @@ PODS:
     - Imaginary (~> 3.0)
   - LLCycleScrollView (1.5.0):
     - Kingfisher
+  - MarqueeLabel/Swift (3.1.6)
+  - NotificationBannerSwift (1.6.3):
+    - MarqueeLabel/Swift
+    - SnapKit (~> 4.0)
   - NVActivityIndicatorView (4.0.1):
     - NVActivityIndicatorView/Presenter (= 4.0.1)
   - NVActivityIndicatorView/Presenter (4.0.1)
-  - QuickLayout (2.0.2)
   - SkeletonView (1.4)
   - SnapKit (4.0.0)
   - SVProgressHUD (2.2.5)
-  - SwiftEntryKit (0.5.9):
-    - QuickLayout (= 2.0.2)
   - SwiftyJSON (4.1.0)
   - TextFieldEffects (1.4.0)
   - VACalendar (1.2)
@@ -42,10 +43,10 @@ DEPENDENCIES:
   - LGButton
   - Lightbox
   - LLCycleScrollView
+  - NotificationBannerSwift
   - SkeletonView
   - SnapKit
   - SVProgressHUD
-  - SwiftEntryKit
   - SwiftyJSON (~> 4.0)
   - TextFieldEffects
   - VACalendar
@@ -62,12 +63,12 @@ SPEC REPOS:
     - LGButton
     - Lightbox
     - LLCycleScrollView
+    - MarqueeLabel
+    - NotificationBannerSwift
     - NVActivityIndicatorView
-    - QuickLayout
     - SkeletonView
     - SnapKit
     - SVProgressHUD
-    - SwiftEntryKit
     - SwiftyJSON
     - TextFieldEffects
     - VACalendar
@@ -94,16 +95,16 @@ SPEC CHECKSUMS:
   LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
   Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
   LLCycleScrollView: e4ec004ac76a0e60e9bbfa3381d9145910d0434f
+  MarqueeLabel: 0c41f08ef5773e29c0f71064a8fa788a2fd8b365
+  NotificationBannerSwift: b231e4c3244848ef300e1c53ce027b9756b9b06f
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
-  QuickLayout: a730730b646b231fd4ef7cffaeb1e81fe0e1ca92
   SkeletonView: 50f7a9b04e3a62bd0ae964859c19317fabaea367
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftEntryKit: 97555549a9d1be703a55d9e5e10e9b5c3ed29d99
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
   VACalendar: f189d1b713b8a38d85fe679afef5dc21105c6259
 
-PODFILE CHECKSUM: 6acf4a1ac4c4e3e201f58c8d5db38bc6c8ee4269
+PODFILE CHECKSUM: e3b2c5e11a643d9449d04f655d3550eed474b451
 
 COCOAPODS: 1.5.3

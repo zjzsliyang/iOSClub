@@ -12,12 +12,12 @@ target 'iOS Club' do
   pod 'LGButton'
   pod 'VACalendar'
   pod 'SkeletonView'
-  pod 'SwiftEntryKit'
   pod 'SVProgressHUD'
   pod 'TextFieldEffects'
   pod 'LLCycleScrollView'
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'IQKeyboardManagerSwift'
+  pod 'NotificationBannerSwift'
 
 end
