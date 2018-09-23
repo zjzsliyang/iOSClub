@@ -16,6 +16,7 @@ import SVProgressHUD
 class PostViewController: UIViewController, GalleryControllerDelegate, LightboxControllerDismissalDelegate {
     
     @IBOutlet weak var postTextField: UITextField!
+    @IBOutlet weak var selectedCollectionView: UICollectionView!
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
@@ -28,12 +29,14 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
     var button: UIButton!
     var gallery: GalleryController!
     let editor: VideoEditing = VideoEditor()
+    var selectedImages = [Image]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
         Gallery.Config.VideoEditor.savesEditedVideoToLibrary = true
+        Gallery.Config.Camera.imageLimit = 6
         
         button = UIButton(type: .system)
         button.frame.size = CGSize(width: 200, height: 50)
@@ -87,7 +90,8 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
     }
     
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
-        print(images)
+        selectedImages = images
+        selectedCollectionView.reloadData()
         controller.dismiss(animated: true, completion: nil)
         gallery = nil
     }
@@ -115,4 +119,20 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
         
         gallery.present(lightbox, animated: true, completion: nil)
     }
+}
+
+
+extension PostViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return selectedImages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = selectedCollectionView.dequeueReusableCell(withReuseIdentifier: "selected", for: indexPath) as! SelectedCell
+        selectedImages[indexPath.item].resolve { (image) in
+            cell.setSelectedImage(selectedImage: image!)
+        }
+        return cell
+    }
+    
 }
