@@ -1,0 +1,112 @@
+package com.apple.iosclub.service.myimplement;
+import com.apple.iosclub.Model.UserModel;
+import com.apple.iosclub.Utils.Common;
+import com.apple.iosclub.mapper.UserMapper;
+import com.apple.iosclub.service.myinterface.UserServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.HashMap;
+
+@Service
+public class UserService implements UserServiceInterface {
+
+    @Autowired
+    public UserMapper userMapper;
+
+
+    @Override
+    public Object getInfoByEmail(String email) {
+
+        UserModel userModel = userMapper.getInfoByEmail(email);
+
+        return pack(userModel);
+    }
+
+    @Override
+    public HashMap<String, Object> login(String email, String password) {
+
+
+        String real = userMapper.getPassWord(email);
+
+        HashMap<String, Object> res = new HashMap<>();
+
+        if (real==null){
+            res.put("code", -1);
+            res.put("msg", "用户不存在");
+            return res;
+        }
+
+        if (password.equals(real)){
+            res.put("code", 0);
+            res.put("msg", "登陆成功");
+            res.put("user", getInfoByEmail(email));
+        }else {
+            res.put("code", 1);
+            res.put("msg", "密码错误");
+        }
+        return res;
+
+    }
+
+    @Override
+    public HashMap<String, Object> register(HashMap<String, Object> req) {
+        HashMap<String, Object> res = new HashMap<>();
+        try {
+
+            String username =  (String)req.get("username");
+            int u_code = (int) req.get("u_code");
+            int privilege = (int) req.get("user_privilege");
+            String email = (String) req.get("email");
+            String real = (String)userMapper.getPassWord(email);
+            if (real!=null){
+                res.put("code", -1);
+                res.put("msg", "邮箱已经注册");
+                return res;
+            }
+            String password = (String) req.get("password");
+            String position =  (String) req.get("position");
+            String description =  (String) req.get("description");
+            String avatar =  "";
+            userMapper.insertUser(username, u_code, privilege, email, password, position, description, avatar);
+
+            res.put("code", 0);
+            res.put("msg", "注册成功");
+
+            res.put("user", getInfoByEmail(email));
+
+        }catch (Exception e){
+            e.printStackTrace();
+            res.put("code", 1);
+            res.put("msg", "注册失败");
+        }
+
+
+        return res;
+    }
+
+
+    public static HashMap<String, Object> pack(UserModel userModel){
+
+        HashMap<String, Object> userObject = new HashMap<>();
+        HashMap<String, Object> universityObject = new HashMap<>();
+
+        universityObject.put("code", userModel.u_code);
+        universityObject.put("name", userModel.u_name);
+        universityObject.put("description", userModel.u_description);
+        universityObject.put("icon", Common.backendUrl + userModel.u_icon);
+        universityObject.put("email", userModel.u_email);
+
+        userObject.put("university", universityObject);
+        userObject.put("username", userModel.username);
+        userObject.put("user_privilege", userModel.user_privilege);
+        userObject.put("email", userModel.email);
+        userObject.put("password", "这个值只是逗逗你");
+        userObject.put("position", userModel.position);
+        userObject.put("description", userModel.description);
+        userObject.put("avatar", Common.backendUrl + userModel.avatar);
+
+        return userObject;
+
+    }
+
+}
