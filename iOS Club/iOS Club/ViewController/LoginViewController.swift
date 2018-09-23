@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
             guard (response.result.value != nil) else {
                 debugPrint(response)
                 DispatchQueue.main.async {
-                    let banner = NotificationBanner(title: "Login Fail", subtitle: "Fatal Server Error", style: BannerStyle.danger)
+                    let banner = NotificationBanner(title: "Login Fail", subtitle: "Fatal Server Error", style: .danger)
                     banner.show()
                     sender.isLoading = false
                 }
@@ -60,14 +60,14 @@ class LoginViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.emailTextField.shake()
                         self.emailTextField.placeholderColor = .red
-                        let banner = NotificationBanner(title: "Login Fail", subtitle: "acount does not exist", style: BannerStyle.danger)
+                        let banner = NotificationBanner(title: "Login Fail", subtitle: "acount does not exist", style: .danger)
                         banner.show()
                     }
                 } else if responseJson["code"] == 1 {
                     DispatchQueue.main.async {
                         self.passwordTextField.shake()
                         self.passwordTextField.placeholderColor = .red
-                        let banner = NotificationBanner(title: "Login Fail", subtitle: "password incorrect", style: BannerStyle.danger)
+                        let banner = NotificationBanner(title: "Login Fail", subtitle: "password incorrect", style: .danger)
                         banner.show()
                     }
                 }

@@ -83,7 +83,7 @@ class ActivityViewController: UIViewController {
                             try eventStore.saveCalendar(iOSCalendar!, commit: true)
                         } catch {
                             DispatchQueue.main.async {
-                                let banner = NotificationBanner(title: "Create Calendar Fail", subtitle: (error as NSError).localizedDescription, style: BannerStyle.danger)
+                                let banner = NotificationBanner(title: "Create Calendar Fail", subtitle: (error as NSError).localizedDescription, style: .danger)
                                 banner.show()
                             }
                         }
