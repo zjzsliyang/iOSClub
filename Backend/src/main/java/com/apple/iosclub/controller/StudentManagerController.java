@@ -25,10 +25,6 @@ public class StudentManagerController {
 
     @GetMapping("/getByCode")
     public Object getByCode(int code){
-
-
-
         return studentManagerService.getByCode(code);
-
     }
 }
