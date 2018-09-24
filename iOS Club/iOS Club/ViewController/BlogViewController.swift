@@ -33,7 +33,7 @@ class BlogViewController: UIViewController {
                         self.blogTableView.reloadData()
                     }
                 } else {
-                    debugPrint("JSON parse failed")
+                    log.error("[BLOG]: JSON parse failed")
                 }
             }.resume()
         }

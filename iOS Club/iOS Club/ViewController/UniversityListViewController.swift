@@ -29,7 +29,7 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             guard error == nil else {
-                debugPrint(error!)
+                log.error("[U LIST]: " + String(describing: error))
                 return
             }
             
@@ -61,7 +61,7 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
                 self.universityArray = json
             }
         } catch let error as NSError {
-            debugPrint(error)
+            log.error("[U LIST]: " + String(describing: error))
         }
     }
     

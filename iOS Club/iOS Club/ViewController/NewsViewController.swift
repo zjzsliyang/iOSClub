@@ -16,7 +16,6 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         fetchNews()
         setupHideKeyboardOnTap()
     }
@@ -33,7 +32,7 @@ class NewsViewController: UIViewController {
                         self.newsTableView.reloadData()
                     }
                 } else {
-                    debugPrint("JSON parse failed")
+                    log.error("[News]: fetched JSON parse failed")
                 }
             }.resume()
         }
@@ -74,10 +73,7 @@ extension NewsViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text!.count > 0 {
-            print("search in news: " + searchBar.text!)
-            Alamofire.request(backendUrl).response { (response) in
-                print(response)
-            }
+            log.debug("[News]: search news: " + searchBar.text!)
         }
     }
 }

@@ -5,6 +5,7 @@ target 'Club Share' do
   use_frameworks!
     
   pod 'Alamofire', '~> 4.7'
+  pod 'SwiftyJSON', '~> 4.0'
     
 end
 
@@ -20,6 +21,7 @@ target 'iOS Club' do
   pod 'LGButton'
   pod 'VACalendar'
   pod 'WSTagsField'
+  pod 'SwiftyBeaver'
   pod 'SkeletonView'
   pod 'SVProgressHUD'
   pod 'SKPhotoBrowser'

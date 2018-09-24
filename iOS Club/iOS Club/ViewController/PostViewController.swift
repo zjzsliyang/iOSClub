@@ -64,13 +64,13 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
                             let banner = NotificationBanner(title: "Post Fail", subtitle: responseJson["msg"].rawString(), style: .danger)
                             banner.show()
                         }
-                    } catch {
-                        
+                    } catch let error as NSError {
+                        log.error("[POST]: upload post return error: " + String(describing: error))
                     }
                 })
                 
             case .failure(let encodingError):
-                debugPrint(encodingError)
+                log.error("[POST]: upload post encoding error: " + String(describing: encodingError))
             }
         }
     }

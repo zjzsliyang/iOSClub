@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SkeletonView
 
 class MeViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
@@ -40,7 +41,7 @@ UINavigationControllerDelegate {
                 let url = URL(string: json["avatar"].rawString()!)
                 URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
                     guard error == nil else {
-                        debugPrint(error!)
+                        log.error("[ME]: " + String(describing: error))
                         return
                     }
                     DispatchQueue.main.async {
@@ -67,7 +68,9 @@ UINavigationControllerDelegate {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         let imgData = UIImageJPEGRepresentation(image, 0.2)!
         
-        let parameters = ["email": "zhuhongming@tongji.edu.cn"]
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        let email = suiteDefault!.value(forKey: "email") as! String
+        let parameters = ["email": email]
         
         Alamofire.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(imgData, withName: "file",fileName: "file.jpg", mimeType: "image/jpg")

@@ -205,7 +205,7 @@ extension ActivityViewController: VACalendarViewDelegate {
     
     func selectedDates(_ dates: [Date]) {
         calendarView.startDate = dates.last ?? Date()
-        print(dates)
+        log.debug("[ACTIVITY]: " + String(describing: dates))
     }
     
 }

@@ -31,6 +31,7 @@ PODS:
   - SKPhotoBrowser (5.1.0)
   - SnapKit (4.0.0)
   - SVProgressHUD (2.2.5)
+  - SwiftyBeaver (1.6.0)
   - SwiftyJSON (4.1.0)
   - TextFieldEffects (1.4.0)
   - URLEmbeddedView (0.16.2)
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - SKPhotoBrowser
   - SnapKit
   - SVProgressHUD
+  - SwiftyBeaver
   - SwiftyJSON (~> 4.0)
   - TextFieldEffects
   - URLEmbeddedView
@@ -76,6 +78,7 @@ SPEC REPOS:
     - SKPhotoBrowser
     - SnapKit
     - SVProgressHUD
+    - SwiftyBeaver
     - SwiftyJSON
     - TextFieldEffects
     - URLEmbeddedView
@@ -111,12 +114,13 @@ SPEC CHECKSUMS:
   SKPhotoBrowser: c20c1da34d737b4e3e101feead6c8dd92ebf860a
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
   URLEmbeddedView: 5fa153bf91a78642c6677aded9a1494c09b75e86
   VACalendar: f189d1b713b8a38d85fe679afef5dc21105c6259
   WSTagsField: 53055749c03769b2b297f2a629ba23a26931e3ff
 
-PODFILE CHECKSUM: 59e9be5b93c1c8e7f4be98fe1f71af911474b676
+PODFILE CHECKSUM: 1ee9007e52dbe8f68cc45bfc0f100b228869a5b5
 
 COCOAPODS: 1.5.3

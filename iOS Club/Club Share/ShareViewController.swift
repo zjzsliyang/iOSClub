@@ -9,6 +9,7 @@
 import UIKit
 import Social
 import Alamofire
+import SwiftyJSON
 
 class ShareViewController: SLComposeServiceViewController {
     
@@ -29,9 +30,16 @@ class ShareViewController: SLComposeServiceViewController {
                         "sharemail": email,
                         "url": "\(shareURL)"
                     ]
-                    Alamofire.request(backendUrl + "/blog/shareBlog", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON {
-                        (response) in
-                        print(response)
+                    Alamofire.request(backendUrl + "/blog/shareBlog", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { (response) in
+                        let responseData = response.result.value!
+                        do {
+                            let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
+                            if responseJson["code"] != 0 {
+                                debugPrint(responseJson)
+                            }
+                        } catch let error as NSError {
+                            debugPrint(error)
+                        }
                     }
                 }
             }

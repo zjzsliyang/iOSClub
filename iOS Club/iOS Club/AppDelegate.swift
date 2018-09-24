@@ -7,18 +7,21 @@
 //
 
 import UIKit
+import SwiftyBeaver
 import IQKeyboardManagerSwift
+
+let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         IQKeyboardManager.shared.enable = true
-        
+        let console = ConsoleDestination()
+        log.addDestination(console)
         return true
     }
 
