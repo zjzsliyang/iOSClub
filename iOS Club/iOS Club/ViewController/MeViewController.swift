@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SkeletonView
+import VegaScrollFlowLayout
 
 class MeViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
