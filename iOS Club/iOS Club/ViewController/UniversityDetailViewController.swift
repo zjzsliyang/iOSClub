@@ -2,7 +2,7 @@
 //  UniversityDetailViewController.swift
 //  iOS Club
 //
-//  Created by 罗忠金 on 2018/9/22.
+//  Created by Zhongjin Luo on 2018/9/22.
 //  Copyright © 2018 Yang LI. All rights reserved.
 //
 
