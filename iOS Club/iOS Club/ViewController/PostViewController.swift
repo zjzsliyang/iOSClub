@@ -77,8 +77,8 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
     
     @IBAction func done(_ sender: UIBarButtonItem) {
         
-        let userDefault = UserDefaults.standard
-        let postmail = userDefault.value(forKey: "email")! as! String
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        let postmail = suiteDefault!.value(forKey: "email") as! String
         
         var postImages = [UIImage]()
         for selectedImage in selectedImages {

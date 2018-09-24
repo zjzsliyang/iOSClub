@@ -300,7 +300,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="activity" id="7rj-2d-6jQ" customClass="ActivityCell" customModule="iOS_Club" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7rj-2d-6jQ" id="4F1-qZ-MfE">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666666666666664"/>
@@ -452,11 +452,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="GtQ-A3-mjc"/>
                     <connections>
-                        <outlet property="avatar" destination="I8h-wF-k3A" id="tG4-LH-eR7"/>
-                        <outlet property="email" destination="pOJ-bw-wmN" id="MVa-ws-zh4"/>
-                        <outlet property="name" destination="sMo-uP-C9u" id="CWQ-tG-Rxs"/>
+                        <outlet property="avatarView" destination="I8h-wF-k3A" id="ocs-M7-zEN"/>
+                        <outlet property="emailLabel" destination="pOJ-bw-wmN" id="nqb-Al-LxM"/>
+                        <outlet property="nameLabel" destination="sMo-uP-C9u" id="kbt-Re-P9U"/>
                         <outlet property="personalDescription" destination="HTe-4R-4n3" id="CeQ-OQ-P4S"/>
-                        <outlet property="position" destination="oPG-sc-len" id="WKB-MT-KB8"/>
+                        <outlet property="positionLabel" destination="oPG-sc-len" id="eJi-tR-bYF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRY-sn-qVm" userLabel="First Responder" sceneMemberID="firstResponder"/>

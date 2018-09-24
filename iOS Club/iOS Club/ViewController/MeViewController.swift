@@ -13,30 +13,29 @@ import SwiftyJSON
 class MeViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
 
-    @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var position: UILabel!
+    @IBOutlet weak var avatarView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var personalDescription: UITextView!
-    @IBOutlet weak var email: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        let email = suiteDefault!.value(forKey: "email") as! String
         
-        let userDefault = UserDefaults.standard
-        let emailAddress = userDefault.value(forKey: "email")! as! String
+        avatarView.layer.masksToBounds = true
+        avatarView.layer.cornerRadius = avatarView.frame.width / 2
+        avatarView.isUserInteractionEnabled = true
         
-        avatar.layer.masksToBounds = true
-        avatar.layer.cornerRadius = avatar.frame.width / 2
-        
-        avatar.isUserInteractionEnabled = true
-        
-        Alamofire.request(backendUrl + "/user/getInfoByEmail?email=" + emailAddress).responseJSON { response in
+        Alamofire.request(backendUrl + "/user/getInfoByEmail?email=" + email).responseJSON { response in
             
             if let data = response.result.value {
                 let json = JSON(data)
-                self.name.text = json["username"].rawString()
-                self.position.text = json["position"].rawString()
-                self.email.text = json["email"].rawString()
+                self.nameLabel.text = json["username"].rawString()
+                self.positionLabel.text = json["position"].rawString()
+                self.emailLabel.text = json["email"].rawString()
                 
                 let url = URL(string: json["avatar"].rawString()!)
                 URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
@@ -46,7 +45,7 @@ UINavigationControllerDelegate {
                     }
                     DispatchQueue.main.async {
                         if let image = UIImage(data: data!) {
-                            self.avatar.image = image
+                            self.avatarView.image = image
                         }
                     }
                 }).resume()
@@ -77,7 +76,7 @@ UINavigationControllerDelegate {
             }
         }, to: backendUrl + "/user/upload"){ (result) in }
         
-        avatar.image = image
+        avatarView.image = image
         picker.dismiss(animated: true, completion:nil)
     }
     

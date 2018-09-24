@@ -50,13 +50,10 @@ class LoginViewController: UIViewController {
                 
                 if responseJson["code"] == 0 {
                     DispatchQueue.main.async {
-                        let userDefault = UserDefaults.standard
                         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+                        suiteDefault?.set(true, forKey: "isLogin")
                         suiteDefault?.set(responseJson["user"]["email"].rawString()!, forKey: "email")
                         suiteDefault?.synchronize()
-                        userDefault.set(true, forKey: "isLogin")
-                        userDefault.set(responseJson["user"]["email"].rawString()!, forKey: "email")
-                        userDefault.synchronize()
                         self.autoLogin()
                     }
                 } else if responseJson["code"] == -1 {
@@ -93,8 +90,8 @@ class LoginViewController: UIViewController {
     }
     
     func autoLogin() {
-        let userDefault = UserDefaults.standard
-        if userDefault.bool(forKey: "isLogin") {
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        if suiteDefault?.bool(forKey: "isLogin") == true {
             self.performSegue(withIdentifier: "login", sender: nil)
         }
     }
