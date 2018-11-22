@@ -15,8 +15,7 @@ class ActivityCell: UITableViewCell {
     
     func setActivity(title: String?, location: String?, time: Date?) {
         titleLabel.text = title
-        locationLabel.text = location
-        
+        locationLabel.text = location        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Calendar.current.locale
         dateFormatter.dateFormat = "MM-dd HH:mm"

@@ -47,7 +47,7 @@ class UniversityDetailViewController: UIViewController {
                 let json = JSON(data)[0]
                 self.teacherName.text = json["name"].rawString()
                 self.teacherRole.text = json["position"].rawString()
-                self.studentEmail.text = json["email"].rawString()
+                self.teacherEmail.text = json["email"].rawString()
                 
                 self.setImage(imageView: self.teacherIcon,urlString: json["avatar"].rawString()!)
             }

@@ -19,6 +19,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var personalDescription: UITextView!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var descriptionView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ UINavigationControllerDelegate {
                 self.nameLabel.text = json["username"].rawString()
                 self.positionLabel.text = json["position"].rawString()
                 self.emailLabel.text = json["email"].rawString()
+                self.descriptionView.text = json["description"].rawString()
                 
                 let url = URL(string: json["avatar"].rawString()!)
                 URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
