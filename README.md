@@ -14,3 +14,13 @@ An iOS app for iOS Club members communication in Greater China.
 - [ ] search news with content or tag
 - [ ] support multiple phone sizes
 - [ ] refactor me tab
+
+## Screenshots
+
+![](res/screenshots/1.png)
+
+![](res/screenshots/2.png)
+
+![](res/screenshots/3.png)
+
+![](res/screenshots/4.png)
