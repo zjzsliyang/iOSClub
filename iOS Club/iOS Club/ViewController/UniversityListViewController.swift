@@ -13,7 +13,8 @@ import SwiftyJSON
 class UniversityListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     var universityArray = JSON.null
-
+    var universityLogo = [UIImage?]()
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.universityArray.count
     }
@@ -23,22 +24,25 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "universityCell", for: indexPath) as! UniversityCell
     
         let icon = cell.icon!
-        let iconUrl  = universityArray[indexPath.item]["icon"].rawString()
-
-        let url = URL(string: iconUrl!)!
         
-        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-            guard error == nil else {
-                log.error("[U LIST]: " + String(describing: error))
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if let image = UIImage(data: data!) {
-                    icon.image = image
+        if universityLogo[indexPath.item] == nil {
+            let iconUrl  = universityArray[indexPath.item]["icon"].rawString()
+            let url = URL(string: iconUrl!)!
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                guard error == nil else {
+                    log.error("[U LIST]: " + String(describing: error))
+                    return
                 }
-            }
-        }).resume()
+                DispatchQueue.main.async {
+                    if let image = UIImage(data: data!) {
+                        self.universityLogo[indexPath.item] = image
+                        icon.image = self.universityLogo[indexPath.item]
+                    }
+                }
+            }).resume()
+        } else {
+            icon.image = universityLogo[indexPath.item]
+        }
         
         return cell
     }
@@ -59,7 +63,7 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
             if let value = data {
                 let json = JSON(value)
                 self.universityArray = json
-                print(universityArray)
+                self.universityLogo = [UIImage?](repeating: nil, count: universityArray.count)
             }
         } catch let error as NSError {
             log.error("[U LIST]: " + String(describing: error))
