@@ -34,6 +34,7 @@
 		2FCA3614215572E300816691 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3613215572E300816691 /* News.swift */; };
 		2FCA3617215572EC00816691 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3615215572EB00816691 /* Blog.swift */; };
 		2FCA3618215572EC00816691 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3616215572EB00816691 /* User.swift */; };
+		2FCEF4A421BAA2550049B487 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEF4A321BAA2550049B487 /* NewsDetailViewController.swift */; };
 		DB6B77D94612984515143E75 /* Pods_Student_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DA9A47D866643F67242478 /* Pods_Student_Club.framework */; };
 		F979DBA415204E790093D7EA /* Pods_Club_Share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B289982896208F7687FA90 /* Pods_Club_Share.framework */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		2FCA3613215572E300816691 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		2FCA3615215572EB00816691 /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		2FCA3616215572EB00816691 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2FCEF4A321BAA2550049B487 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Club.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		719BA57F08CA1638C0D5536B /* Pods-Student Club.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Student Club.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Student Club/Pods-Student Club.debug.xcconfig"; sourceTree = "<group>"; };
 		73DA9A47D866643F67242478 /* Pods_Student_Club.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Student_Club.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +186,7 @@
 				2F67E33B2156625C0076B1DA /* PostViewController.swift */,
 				1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */,
 				2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */,
+				2FCEF4A321BAA2550049B487 /* NewsDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -392,7 +395,6 @@
 				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 				"${BUILT_PRODUCTS_DIR}/URLEmbeddedView/URLEmbeddedView.framework",
 				"${BUILT_PRODUCTS_DIR}/VACalendar/VACalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/VegaScrollFlowLayout/VegaScrollFlowLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/WSTagsField/WSTagsField.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS12.0/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS12.0/SwiftyJSON.framework",
@@ -423,7 +425,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLEmbeddedView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VACalendar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VegaScrollFlowLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WSTagsField.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +469,7 @@
 				2FCA35FB2155402100816691 /* MeViewController.swift in Sources */,
 				2F74A520215538EC00341862 /* AppDelegate.swift in Sources */,
 				1E62BC9E2156841F00263B8D /* UniversityListViewController.swift in Sources */,
+				2FCEF4A421BAA2550049B487 /* NewsDetailViewController.swift in Sources */,
 				2F67E33C2156625C0076B1DA /* PostViewController.swift in Sources */,
 				2FCA35F72155402100816691 /* ActivityViewController.swift in Sources */,
 				2FCA35F82155402100816691 /* BlogViewController.swift in Sources */,

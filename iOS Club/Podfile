@@ -15,7 +15,6 @@ target 'Student Club' do
 
   pod 'Hue'
   pod 'SnapKit'
-  pod 'Gallery', :git => 'https://github.com/hyperoslo/Gallery.git', :branch => 'master'
   pod 'BMPlayer'
   pod 'Lightbox'
   pod 'LGButton'
@@ -31,8 +30,8 @@ target 'Student Club' do
   pod 'LLCycleScrollView'
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON', '~> 4.0'
-  pod 'VegaScrollFlowLayout'
   pod 'IQKeyboardManagerSwift'
   pod 'NotificationBannerSwift'
+  pod 'Gallery', :git => 'https://github.com/hyperoslo/Gallery.git', :branch => 'master'
 
 end

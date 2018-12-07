@@ -37,7 +37,6 @@ PODS:
   - TextFieldEffects (1.4.0)
   - URLEmbeddedView (0.16.2)
   - VACalendar (1.2)
-  - VegaScrollFlowLayout (1.1)
   - WSTagsField (3.1.0)
 
 DEPENDENCIES:
@@ -60,7 +59,6 @@ DEPENDENCIES:
   - TextFieldEffects
   - URLEmbeddedView
   - VACalendar
-  - VegaScrollFlowLayout
   - WSTagsField
 
 SPEC REPOS:
@@ -88,7 +86,6 @@ SPEC REPOS:
     - TextFieldEffects
     - URLEmbeddedView
     - VACalendar
-    - VegaScrollFlowLayout
     - WSTagsField
 
 EXTERNAL SOURCES:
@@ -126,9 +123,8 @@ SPEC CHECKSUMS:
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
   URLEmbeddedView: 5fa153bf91a78642c6677aded9a1494c09b75e86
   VACalendar: f189d1b713b8a38d85fe679afef5dc21105c6259
-  VegaScrollFlowLayout: 9158061f29179147755f937c2b21693fc5dbbac3
   WSTagsField: 53055749c03769b2b297f2a629ba23a26931e3ff
 
-PODFILE CHECKSUM: 45418062fadeb8510024ff16dd1a74cae134881f
+PODFILE CHECKSUM: e00acbffd7ec81004f5090c53a35b28b2332ea19
 
 COCOAPODS: 1.5.3

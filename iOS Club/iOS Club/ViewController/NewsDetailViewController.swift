@@ -1,8 +1,8 @@
 //
-//  NewsCell.swift
-//  iOS Club
+//  NewsDetailViewController.swift
+//  Student Club
 //
-//  Created by Yang Li on 2018/9/22.
+//  Created by Yang Li on 2018/12/7.
 //  Copyright © 2018 Yang LI. All rights reserved.
 //
 
@@ -12,29 +12,29 @@ import BMPlayer
 import SkeletonView
 import LLCycleScrollView
 
-class NewsCell: UITableViewCell {
-    
-    @IBOutlet weak var avatarView: UIImageView!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var userButton: UIButton!
+class NewsDetailViewController: UIViewController {
+
+    var news: News?
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var avatarView: UIImageView!
+    @IBOutlet weak var userButton: UIButton!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        for mediaView in self.subviews {
-            if type(of: mediaView) == BMPlayer.self || type(of: mediaView) == LLCycleScrollView.self {
-                mediaView.removeFromSuperview()
-            }
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        setNews(news: news!)
     }
-    
+
     func setNews(news: News) {
         userButton.setTitle(news.user.username, for: .normal)
         timeLabel.text = news.time
         titleLabel.text = news.title
         contentTextView.text = news.content
-        contentTextView.textContainer.maximumNumberOfLines = 3
+        contentTextView.translatesAutoresizingMaskIntoConstraints = true
+        contentTextView.sizeToFit()
+        contentTextView.isScrollEnabled = false
         do {
             let avatarData = try Data(contentsOf: URL(string: news.user.avatar)!)
             avatarView.image = UIImage(data: avatarData)
@@ -55,10 +55,10 @@ class NewsCell: UITableViewCell {
         BMPlayerConf.shouldAutoPlay = false
         BMPlayerConf.topBarShowInCase = .none
         let videoplayer = BMPlayer()
-        self.addSubview(videoplayer)
+        self.view.addSubview(videoplayer)
         videoplayer.snp.makeConstraints { (make) in
-            make.top.equalTo(contentView).offset(150)
-            make.left.right.equalTo(self)
+            make.top.equalTo(contentTextView.frame.maxY)
+            make.left.right.equalTo(self.view)
             make.height.equalTo(videoplayer.snp.width).multipliedBy(9.0/16.0).priority(750)
         }
         let asset = BMPlayerResource(url: URL(string: video)!)
@@ -66,14 +66,13 @@ class NewsCell: UITableViewCell {
     }
     
     func setupImages(images: [String]) {
-        let imagesplayer = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect(x: 0, y: 150, width: self.frame.width, height: self.frame.width / 16 * 9))
+        let imagesplayer = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect(x: 0, y: contentTextView.frame.maxY, width: self.view.frame.width, height: self.view.frame.width / 16 * 9))
         imagesplayer.autoScroll = true
         imagesplayer.infiniteLoop = true
         imagesplayer.imageViewContentMode = .scaleAspectFit
-        self.addSubview(imagesplayer)
+        self.view.addSubview(imagesplayer)
         DispatchQueue.main.async {
             imagesplayer.imagePaths = images
         }
     }
-
 }

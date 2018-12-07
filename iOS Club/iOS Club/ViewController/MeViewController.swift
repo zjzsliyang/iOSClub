@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import VegaScrollFlowLayout
 
 class MeViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
@@ -66,6 +65,8 @@ UINavigationControllerDelegate {
     }
 
     @IBAction func logout(_ sender: UIBarButtonItem) {
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        suiteDefault?.set(false, forKey: "isLogin")
         self.tabBarController?.dismiss(animated: true, completion: nil)
     }
     

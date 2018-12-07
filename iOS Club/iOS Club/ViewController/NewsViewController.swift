@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SkeletonView
 import PullToRefresh
+import NotificationBannerSwift
 
 class NewsViewController: UIViewController {
     var newses = [News]()
@@ -24,6 +25,11 @@ class NewsViewController: UIViewController {
         }
         fetchNews()
         setupHideKeyboardOnTap()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func fetchNews() {
@@ -44,6 +50,21 @@ class NewsViewController: UIViewController {
                 }
             }.resume()
         }
+    }
+    
+    @IBAction func more(_ sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+            let title = self.newses[self.newsTableView.indexPath(for: sender)![1]].title
+            self.newses.remove(at: self.newsTableView.indexPath(for: sender)![1])
+            self.newsTableView.reloadData()
+            let banner = NotificationBanner(title: "Delete Success", subtitle: "delete post titled " + title, style: .success)
+            banner.show()
+//            TODO: post to backend
+            print("delete post")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 }
 
@@ -74,7 +95,15 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        TODO
+        self.performSegue(withIdentifier: "newsDetail", sender: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "newsDetail" {
+            let controller = segue.destination as! NewsDetailViewController
+            controller.news = newses[sender as! Int]
+        }
     }
 }
 
@@ -97,5 +126,12 @@ extension UIViewController {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
         tap.cancelsTouchesInView = false
         return tap
+    }
+}
+
+extension UITableView {
+    func indexPath(for view: UIView) -> IndexPath? {
+        let location = view.convert(CGPoint.zero, to: self)
+        return self.indexPathForRow(at: location)
     }
 }

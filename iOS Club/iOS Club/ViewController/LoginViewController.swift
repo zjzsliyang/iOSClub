@@ -77,6 +77,10 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func guest(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "login", sender: nil)
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
