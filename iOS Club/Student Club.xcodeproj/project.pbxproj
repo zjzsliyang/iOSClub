@@ -36,7 +36,6 @@
 		2FCA3618215572EC00816691 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3616215572EB00816691 /* User.swift */; };
 		DB6B77D94612984515143E75 /* Pods_Student_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DA9A47D866643F67242478 /* Pods_Student_Club.framework */; };
 		F979DBA415204E790093D7EA /* Pods_Club_Share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B289982896208F7687FA90 /* Pods_Club_Share.framework */; };
-		FB5A3A00D1163C45F5C17B87 /* Pods_iOS_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +63,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0542B2711A8608583C219358 /* Pods-iOS Club.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Club.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club.release.xcconfig"; sourceTree = "<group>"; };
 		1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityListViewController.swift; sourceTree = "<group>"; };
 		1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDetailViewController.swift; sourceTree = "<group>"; };
 		1EA4B761215828B800DD5941 /* Club Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Club Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +95,6 @@
 		2FCA3615215572EB00816691 /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		2FCA3616215572EB00816691 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		524CB23F7315B13E3B8AFFBC /* Pods_iOS_Club.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Club.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		592E44713D18C94351F0FA02 /* Pods-iOS Club.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Club.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Club/Pods-iOS Club.debug.xcconfig"; sourceTree = "<group>"; };
 		719BA57F08CA1638C0D5536B /* Pods-Student Club.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Student Club.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Student Club/Pods-Student Club.debug.xcconfig"; sourceTree = "<group>"; };
 		73DA9A47D866643F67242478 /* Pods_Student_Club.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Student_Club.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B289982896208F7687FA90 /* Pods_Club_Share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Club_Share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB5A3A00D1163C45F5C17B87 /* Pods_iOS_Club.framework in Frameworks */,
 				DB6B77D94612984515143E75 /* Pods_Student_Club.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,8 +223,6 @@
 		C0892115C36F6AD1C68966B4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				592E44713D18C94351F0FA02 /* Pods-iOS Club.debug.xcconfig */,
-				0542B2711A8608583C219358 /* Pods-iOS Club.release.xcconfig */,
 				C0B0F6D11214A245B6F3D3F9 /* Pods-Club Share.debug.xcconfig */,
 				A4A8788B85CA2E189D1702F9 /* Pods-Club Share.release.xcconfig */,
 				719BA57F08CA1638C0D5536B /* Pods-Student Club.debug.xcconfig */,
