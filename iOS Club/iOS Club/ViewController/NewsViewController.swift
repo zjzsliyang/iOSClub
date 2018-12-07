@@ -9,13 +9,19 @@
 import UIKit
 import Alamofire
 import SkeletonView
+import PullToRefresh
 
 class NewsViewController: UIViewController {
     var newses = [News]()
+    let refresher = PullToRefresh()
     @IBOutlet weak var newsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        newsTableView.addPullToRefresh(refresher) {
+            self.fetchNews()
+        }
         fetchNews()
         setupHideKeyboardOnTap()
     }
@@ -31,6 +37,7 @@ class NewsViewController: UIViewController {
                     self.newses.append(contentsOf: newsdata)
                     DispatchQueue.main.async {
                         self.newsTableView.reloadData()
+                        self.newsTableView.endAllRefreshing()
                     }
                 } else {
                     log.error("[News]: fetched JSON parse failed")

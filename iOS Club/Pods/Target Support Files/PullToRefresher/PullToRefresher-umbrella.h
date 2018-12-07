@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_iOS_ClubVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_iOS_ClubVersionString[];
+FOUNDATION_EXPORT double PullToRefreshVersionNumber;
+FOUNDATION_EXPORT const unsigned char PullToRefreshVersionString[];
 
