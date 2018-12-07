@@ -79,7 +79,7 @@
 		2F45EB2E215840AD00C5B9D3 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
 		2F67E33B2156625C0076B1DA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		2F67E33F2157326A0076B1DA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2F74A51C215538EC00341862 /* iOS Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F74A51C215538EC00341862 /* Student Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Student Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F74A51F215538EC00341862 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F74A524215538EC00341862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F74A526215538EE00341862 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		2F74A51D215538EC00341862 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2F74A51C215538EC00341862 /* iOS Club.app */,
+				2F74A51C215538EC00341862 /* Student Club.app */,
 				1EA4B761215828B800DD5941 /* Club Share.appex */,
 			);
 			name = Products;
@@ -250,9 +250,9 @@
 			productReference = 1EA4B761215828B800DD5941 /* Club Share.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		2F74A51B215538EC00341862 /* iOS Club */ = {
+		2F74A51B215538EC00341862 /* Student Club */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2F74A52E215538EE00341862 /* Build configuration list for PBXNativeTarget "iOS Club" */;
+			buildConfigurationList = 2F74A52E215538EE00341862 /* Build configuration list for PBXNativeTarget "Student Club" */;
 			buildPhases = (
 				1BA1A680B4C0BC7B81D44DB0 /* [CP] Check Pods Manifest.lock */,
 				2F74A518215538EC00341862 /* Sources */,
@@ -266,9 +266,9 @@
 			dependencies = (
 				1EA4B76A215828B800DD5941 /* PBXTargetDependency */,
 			);
-			name = "iOS Club";
+			name = "Student Club";
 			productName = "iOS Club";
-			productReference = 2F74A51C215538EC00341862 /* iOS Club.app */;
+			productReference = 2F74A51C215538EC00341862 /* Student Club.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -300,7 +300,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2F74A517215538EC00341862 /* Build configuration list for PBXProject "iOS Club" */;
+			buildConfigurationList = 2F74A517215538EC00341862 /* Build configuration list for PBXProject "Student Club" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -313,7 +313,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2F74A51B215538EC00341862 /* iOS Club */,
+				2F74A51B215538EC00341862 /* Student Club */,
 				1EA4B760215828B800DD5941 /* Club Share */,
 			);
 		};
@@ -736,7 +736,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2F74A517215538EC00341862 /* Build configuration list for PBXProject "iOS Club" */ = {
+		2F74A517215538EC00341862 /* Build configuration list for PBXProject "Student Club" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F74A52C215538EE00341862 /* Debug */,
@@ -745,7 +745,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2F74A52E215538EE00341862 /* Build configuration list for PBXNativeTarget "iOS Club" */ = {
+		2F74A52E215538EE00341862 /* Build configuration list for PBXNativeTarget "Student Club" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F74A52F215538EE00341862 /* Debug */,

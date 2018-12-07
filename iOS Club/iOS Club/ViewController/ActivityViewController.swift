@@ -96,8 +96,6 @@ class ActivityViewController: UIViewController {
                 let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
                 
                 self.events = eventStore.events(matching: predicate)
-                print(self.events[0].location)
-                print(self.events[1].location)
                 
                 for event in self.events {
                     DispatchQueue.main.async {

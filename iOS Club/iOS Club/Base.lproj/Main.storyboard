@@ -13,7 +13,7 @@
         <!--News-->
         <scene sceneID="ImA-eZ-GKl">
             <objects>
-                <viewController id="sc4-RS-yn1" customClass="NewsViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sc4-RS-yn1" customClass="NewsViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5vl-ts-tGr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,7 +39,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="300" id="b72-0O-Hxx" customClass="NewsCell" customModule="iOS_Club" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="300" id="b72-0O-Hxx" customClass="NewsCell" customModule="Student_Club" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b72-0O-Hxx" id="S0F-ik-Sgw">
@@ -51,7 +51,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxh-HW-82n">
-                                                    <rect key="frame" x="68" y="34" width="100" height="15"/>
+                                                    <rect key="frame" x="68" y="34" width="139" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -118,12 +118,12 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1078" y="371"/>
+            <point key="canvasLocation" x="-1079.2" y="370.93596059113304"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="ZbE-4d-SfX">
             <objects>
-                <tableViewController id="2dL-78-Lc3" customClass="EmbedPostInfoTableViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="2dL-78-Lc3" customClass="EmbedPostInfoTableViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ld9-3n-CjB">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="110"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,7 +190,7 @@
         <!--Post View Controller-->
         <scene sceneID="lqR-qm-fm9">
             <objects>
-                <viewController id="f6c-U9-a5t" customClass="PostViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="f6c-U9-a5t" customClass="PostViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wlc-HH-hWg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,7 +239,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="selected" id="taw-eM-lzA" customClass="SelectedCell" customModule="iOS_Club" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="selected" id="taw-eM-lzA" customClass="SelectedCell" customModule="Student_Club" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -279,7 +279,7 @@
         <!--Activity-->
         <scene sceneID="Qgs-fX-SIE">
             <objects>
-                <viewController id="F5v-co-rvG" customClass="ActivityViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="F5v-co-rvG" customClass="ActivityViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w64-vb-33a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,7 +299,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="activity" id="7rj-2d-6jQ" customClass="ActivityCell" customModule="iOS_Club" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="activity" id="7rj-2d-6jQ" customClass="ActivityCell" customModule="Student_Club" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7rj-2d-6jQ" id="4F1-qZ-MfE">
@@ -359,7 +359,7 @@
         <!--Me View Controller-->
         <scene sceneID="OZW-bb-B9H">
             <objects>
-                <viewController id="WsA-N9-ZJ2" customClass="MeViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WsA-N9-ZJ2" customClass="MeViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pXi-sG-sVc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -450,7 +450,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="L2z-Fi-oJ6"/>
                     </view>
-                    <navigationItem key="navigationItem" id="GtQ-A3-mjc"/>
+                    <navigationItem key="navigationItem" id="GtQ-A3-mjc">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="8cp-JC-hdk">
+                            <connections>
+                                <action selector="logout:" destination="WsA-N9-ZJ2" id="8tJ-bi-Rsd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="avatarView" destination="I8h-wF-k3A" id="ocs-M7-zEN"/>
                         <outlet property="descriptionView" destination="kGR-fC-b8O" id="KSc-PK-MOQ"/>
@@ -466,13 +472,13 @@
         <!--University List View Controller-->
         <scene sceneID="vDJ-c1-eum">
             <objects>
-                <viewController id="Bgd-MU-cYl" customClass="UniversityListViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Bgd-MU-cYl" customClass="UniversityListViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p6P-31-ZaU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fHX-vm-JsH">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="641"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="htz-Ky-sbU">
@@ -482,7 +488,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="universityCell" id="BcT-qy-MO0" customClass="UniversityCell" customModule="iOS_Club" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="universityCell" id="BcT-qy-MO0" customClass="UniversityCell" customModule="Student_Club" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -518,7 +524,7 @@
         <!--University Detail View Controller-->
         <scene sceneID="9AZ-bL-X7e">
             <objects>
-                <viewController id="Jwf-DE-7u2" customClass="UniversityDetailViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Jwf-DE-7u2" customClass="UniversityDetailViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bv3-KJ-vtE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -630,7 +636,7 @@
         <!--Blog-->
         <scene sceneID="Lae-1w-qjV">
             <objects>
-                <viewController id="2lN-lv-SSr" customClass="BlogViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2lN-lv-SSr" customClass="BlogViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gcb-vl-JeE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -640,7 +646,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlogCell" rowHeight="200" id="YZl-Tb-lle" customClass="BlogCell" customModule="iOS_Club" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlogCell" rowHeight="200" id="YZl-Tb-lle" customClass="BlogCell" customModule="Student_Club" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YZl-Tb-lle" id="rZV-GI-2Md">
@@ -704,7 +710,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="shJ-nF-ULk">
             <objects>
-                <tabBarController id="bMo-NY-kuX" customClass="TabBarViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="bMo-NY-kuX" customClass="TabBarViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XSX-lB-HK6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -724,7 +730,7 @@
         <!--Login View Controller-->
         <scene sceneID="Cfz-Ao-TxX">
             <objects>
-                <viewController id="TYc-qL-zzU" customClass="LoginViewController" customModule="iOS_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TYc-qL-zzU" customClass="LoginViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YnV-mR-HNa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

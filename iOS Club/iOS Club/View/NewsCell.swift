@@ -20,6 +20,15 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        for mediaView in self.subviews {
+            if type(of: mediaView) == BMPlayer.self || type(of: mediaView) == LLCycleScrollView.self {
+                mediaView.removeFromSuperview()
+            }
+        }
+    }
+    
     func setNews(news: News) {
         userButton.setTitle(news.user.username, for: .normal)
         timeLabel.text = news.time
@@ -59,7 +68,7 @@ class NewsCell: UITableViewCell {
         imagesplayer.autoScroll = true
         imagesplayer.infiniteLoop = true
         self.addSubview(imagesplayer)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        DispatchQueue.main.async {
             imagesplayer.imagePaths = images
         }
     }

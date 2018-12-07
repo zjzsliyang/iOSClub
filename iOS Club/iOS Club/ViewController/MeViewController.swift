@@ -65,6 +65,9 @@ UINavigationControllerDelegate {
         }
     }
 
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        self.tabBarController?.dismiss(animated: true, completion: nil)
+    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class UniversityListViewController: UIViewController ,UICollectionViewDataSource,UICollectionViewDelegate{
+class UniversityListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     var universityArray = JSON.null
 
@@ -55,10 +55,11 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
         var response: URLResponse?
         
         do{
-            let data: NSData? = try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest,returning: &response) as NSData
+            let data: NSData? = try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest, returning: &response) as NSData
             if let value = data {
                 let json = JSON(value)
                 self.universityArray = json
+                print(universityArray)
             }
         } catch let error as NSError {
             log.error("[U LIST]: " + String(describing: error))
@@ -75,7 +76,7 @@ class UniversityListViewController: UIViewController ,UICollectionViewDataSource
     }
 }
 
-class UniversityCell:UICollectionViewCell{
+class UniversityCell: UICollectionViewCell{
     
     @IBOutlet weak var icon: UIImageView!
     

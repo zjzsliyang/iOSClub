@@ -21,6 +21,7 @@ class NewsViewController: UIViewController {
     }
     
     func fetchNews() {
+        newses = []
         if let url = URL(string: backendUrl + "/news/getByPrivilege?u_privilege=" + "5") {
             let session = URLSession(configuration: .default)
             session.dataTask(with: url) { (data, _, err) in
@@ -59,10 +60,11 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let news = newses[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
         cell.setNews(news: news)
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        TODO
