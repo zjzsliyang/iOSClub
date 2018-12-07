@@ -214,13 +214,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Lp-Tv-HBH">
-                                <rect key="frame" x="16" y="110" width="343" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WOd-bq-4NH">
                                 <rect key="frame" x="16" y="350" width="343" height="110"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -263,12 +256,22 @@
                                     <outlet property="delegate" destination="f6c-U9-a5t" id="zm7-tI-Guf"/>
                                 </connections>
                             </collectionView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lrT-Jl-XAs">
+                                <rect key="frame" x="16" y="103" width="343" height="239"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="f6c-U9-a5t" id="R0X-lB-r8X"/>
+                                </connections>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Wda-1b-CJA"/>
                     </view>
                     <connections>
-                        <outlet property="postTextField" destination="2Lp-Tv-HBH" id="arH-ps-3LK"/>
+                        <outlet property="postTextView" destination="lrT-Jl-XAs" id="02K-UX-URK"/>
                         <outlet property="selectedCollectionView" destination="vHE-go-O77" id="oro-wW-Win"/>
                     </connections>
                 </viewController>

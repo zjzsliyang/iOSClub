@@ -16,9 +16,9 @@ import AVFoundation
 import SVProgressHUD
 import NotificationBannerSwift
 
-class PostViewController: UIViewController, GalleryControllerDelegate, LightboxControllerDismissalDelegate {
+class PostViewController: UIViewController, GalleryControllerDelegate, LightboxControllerDismissalDelegate, UITextViewDelegate {
     
-    @IBOutlet weak var postTextField: UITextField!
+    @IBOutlet weak var postTextView: UITextView!
     @IBOutlet weak var selectedCollectionView: UICollectionView!
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -85,12 +85,12 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
             selectedImage.resolve { (image) in
                 postImages.append(image!)
                 if postImages.count == self.selectedImages.count {
-                    self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextField.text!, news_privilege: "5", tags: self.postTags)
+                    self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: "5", tags: self.postTags)
                 }
             }
         }
         if selectedImages.count == 0 {
-            self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextField.text!, news_privilege: "5", tags: self.postTags)
+            self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: "5", tags: self.postTags)
         }
 
         self.dismiss(animated: true, completion: nil)
@@ -115,12 +115,28 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
         button.setTitle("Open Gallery", for: UIControlState())
         button.addTarget(self, action: #selector(buttonTouched(_:)), for: .touchUpInside)
         
+        postTextView.text = "Content from here..."
+        postTextView.textColor = UIColor.lightGray
+        
         view.addSubview(button)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if postTextView.textColor == UIColor.lightGray {
+            postTextView.text = nil
+            postTextView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if postTextView.text.isEmpty {
+            postTextView.text = "Content from here..."
+            postTextView.textColor = UIColor.lightGray
+        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         button.center = CGPoint(x: view.bounds.size.width/2, y: 320)
     }
     
