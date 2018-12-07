@@ -51,6 +51,7 @@ class NewsCell: UITableViewCell {
     func setupVideo(video: String) {
         BMPlayerConf.enableBrightnessGestures = false
         BMPlayerConf.enableVolumeGestures = false
+        BMPlayerConf.shouldAutoPlay = false
         BMPlayerConf.topBarShowInCase = .none
         let videoplayer = BMPlayer()
         self.addSubview(videoplayer)
