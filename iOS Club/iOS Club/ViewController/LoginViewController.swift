@@ -77,7 +77,9 @@ class LoginViewController: UIViewController {
                     DispatchQueue.main.async {
                         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
                         suiteDefault?.set(responseJson["user"]["email"].rawString()!, forKey: "email")
-                        suiteDefault?.set(self.passwordTextField.text!, forKey: "password")
+                        if self.passwordTextField.text! != "" {
+                            suiteDefault?.set(self.passwordTextField.text!, forKey: "password")
+                        }
                         suiteDefault?.synchronize()
                         self.performSegue(withIdentifier: "login", sender: nil)
                     }

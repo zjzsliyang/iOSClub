@@ -34,7 +34,8 @@ class NewsViewController: UIViewController {
     
     func fetchNews() {
         newses = []
-        if let url = URL(string: backendUrl + "/news/getByPrivilege?u_privilege=" + "5") {
+        let privilege = 5
+        if let url = URL(string: backendUrl + "/news/getByPrivilege?u_privilege=" + String(describing: privilege)) {
             let session = URLSession(configuration: .default)
             session.dataTask(with: url) { (data, _, err) in
                 guard err == nil else { return }
