@@ -33,6 +33,14 @@
 	<string>This app need to access your camera to post.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app need to access your photo library to post.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This app may need to access your contacts.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app may need to access your microphone.</string>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>This app may need to access your music.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This app may need to access your speech recognition.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

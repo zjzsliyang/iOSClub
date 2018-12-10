@@ -43,7 +43,9 @@ class LoginViewController: UIViewController {
             }
         }
         
-        SPPermission.Dialog.request(with: [.camera, .photoLibrary, .calendar, .notification], on: self)
+        if !(SPPermission.isAllow(.camera) && SPPermission.isAllow(.photoLibrary) && SPPermission.isAllow(.calendar) && SPPermission.isAllow(.notification)) {
+            SPPermission.Dialog.request(with: [.camera, .photoLibrary, .calendar, .notification], on: self)
+        }
     }
     
     func postLogin(email: String, password: String, sender: LGButton) {
