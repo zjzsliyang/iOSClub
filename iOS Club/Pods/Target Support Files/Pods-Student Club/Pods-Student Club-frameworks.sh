@@ -143,8 +143,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS11.0/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS11.0/SwiftyJSON.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Cache/Cache.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Gallery/Gallery.framework"
@@ -160,6 +160,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PullToRefresher/PullToRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SPPermission/SPPermission.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
@@ -168,12 +169,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/URLEmbeddedView/URLEmbeddedView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/VACalendar/VACalendar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WSTagsField/WSTagsField.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS12.0/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS12.0/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS11.0/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS11.0/SwiftyJSON.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Cache/Cache.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Gallery/Gallery.framework"
@@ -189,6 +188,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PullToRefresher/PullToRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SPPermission/SPPermission.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
@@ -197,8 +197,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/URLEmbeddedView/URLEmbeddedView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/VACalendar/VACalendar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WSTagsField/WSTagsField.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS12.0/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS12.0/SwiftyJSON.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

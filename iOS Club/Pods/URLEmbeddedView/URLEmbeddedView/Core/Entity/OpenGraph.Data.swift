@@ -12,13 +12,13 @@ extension OpenGraph {
 
     /// OGP object for Swift
     public struct Data {
-        public let imageUrl: URL?
-        public let pageDescription: String?
-        public let pageTitle: String?
-        public let pageType: String?
-        public let siteName: String?
-        public let sourceUrl: URL?
-        public let url: URL?
+        public private(set) var imageUrl: URL?
+        public private(set) var pageDescription: String?
+        public private(set) var pageTitle: String?
+        public private(set) var pageType: String?
+        public private(set) var siteName: String?
+        public private(set) var sourceUrl: URL?
+        public private(set) var url: URL?
     }
 }
 
@@ -118,61 +118,33 @@ extension OpenGraph.Data {
     }
 
     init(html: OpenGraph.HTML, sourceUrl: String) {
-        let data = html.metaList.reduce(OpenGraph.Data(sourceUrl: sourceUrl)) { r, m in
-            guard let propertyName = PropertyName(m) else {
-                return r
+        let data = html.metaList.reduce(into: OpenGraph.Data(sourceUrl: sourceUrl)) { result, meta in
+            guard let propertyName = PropertyName(meta) else {
+                return
             }
+
             switch propertyName  {
             case .siteName:
-                return OpenGraph.Data(imageUrl: r.imageUrl,
-                                      pageDescription: r.pageDescription,
-                                      pageTitle: r.pageTitle,
-                                      pageType: r.pageType,
-                                      siteName: m.content,
-                                      sourceUrl: r.sourceUrl,
-                                      url: r.url)
+                result.siteName = meta.content
+
             case .type:
-                return OpenGraph.Data(imageUrl: r.imageUrl,
-                                      pageDescription: r.pageDescription,
-                                      pageTitle: r.pageTitle,
-                                      pageType: m.content,
-                                      siteName: r.siteName,
-                                      sourceUrl: r.sourceUrl,
-                                      url: r.url)
+                result.pageType = meta.content
+
             case .title:
-                return OpenGraph.Data(imageUrl: r.imageUrl,
-                                      pageDescription: r.pageDescription,
-                                      pageTitle: (try? m.unescapedContent()) ?? "",
-                                      pageType: r.pageType,
-                                      siteName: r.siteName,
-                                      sourceUrl: r.sourceUrl,
-                                      url: r.url)
+                result.pageTitle = (try? meta.unescapedContent()) ?? ""
+
             case .image:
-                return OpenGraph.Data(imageUrl: URL(string: m.content),
-                                      pageDescription: r.pageDescription,
-                                      pageTitle: r.pageTitle,
-                                      pageType: r.pageType,
-                                      siteName: r.siteName,
-                                      sourceUrl: r.sourceUrl,
-                                      url: r.url)
-            case .url         :
-                return OpenGraph.Data(imageUrl: r.imageUrl,
-                                      pageDescription: r.pageDescription,
-                                      pageTitle: r.pageTitle,
-                                      pageType: r.pageType,
-                                      siteName: r.siteName,
-                                      sourceUrl: r.sourceUrl,
-                                      url: URL(string: m.content))
+                result.imageUrl = URL(string: meta.content)
+
+            case .url:
+                result.url = URL(string: meta.content)
+
             case .description :
-                return OpenGraph.Data(imageUrl: r.imageUrl,
-                                      pageDescription: m.content.replacingOccurrences(of: "\n", with: " "),
-                                      pageTitle: r.pageTitle,
-                                      pageType: r.pageType,
-                                      siteName: r.siteName,
-                                      sourceUrl: r.sourceUrl,
-                                      url: r.url)
+                result.pageDescription = ((try? meta.unescapedContent()) ?? "")
+                    .replacingOccurrences(of: "\n", with: " ")
             }
         }
+
         self.imageUrl = data.imageUrl
         self.pageDescription = data.pageDescription
         self.pageTitle = data.pageTitle

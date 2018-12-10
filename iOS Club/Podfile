@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '10.0'
+# platform :ios, '11.0'
 
 target 'Club Share' do
   use_frameworks!
-    
+  
+  pod 'SwiftyJSON'
   pod 'Alamofire', '~> 4.7'
-  pod 'SwiftyJSON', '~> 4.0'
     
 end
 
@@ -14,12 +14,15 @@ target 'Student Club' do
   use_frameworks!
 
   pod 'Hue'
+  pod 'Gallery'
   pod 'SnapKit'
-  pod 'BMPlayer'
   pod 'Lightbox'
+  pod 'BMPlayer'
   pod 'LGButton'
+  pod 'SwiftyJSON'
   pod 'VACalendar'
   pod 'WSTagsField'
+  pod 'SPPermission'
   pod 'SwiftyBeaver'
   pod 'SkeletonView'
   pod 'SVProgressHUD'
@@ -29,9 +32,7 @@ target 'Student Club' do
   pod 'TextFieldEffects'
   pod 'LLCycleScrollView'
   pod 'Alamofire', '~> 4.7'
-  pod 'SwiftyJSON', '~> 4.0'
   pod 'IQKeyboardManagerSwift'
   pod 'NotificationBannerSwift'
-  pod 'Gallery', :git => 'https://github.com/hyperoslo/Gallery.git', :branch => 'master'
 
 end

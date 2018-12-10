@@ -16,9 +16,17 @@ protocol URLImageViewProtocol: class {
 final class URLImageView: UIImageView {
 
     #if os(iOS)
-    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        #if swift(>=4.2)
+        private let activityView = UIActivityIndicatorView(style: .gray)
+        #else
+        private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        #endif
     #elseif os(tvOS)
-    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        #if swift(>=4.2)
+        private let activityView = UIActivityIndicatorView(style: .white)
+        #else
+        private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        #endif
     #endif
     private lazy var presenter: URLImageViewPresenterProtocol = URLImageViewPresenter(view: self)
 

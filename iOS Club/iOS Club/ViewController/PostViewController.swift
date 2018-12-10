@@ -44,8 +44,8 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
         
         Alamofire.upload(multipartFormData: { multipartFormData in
             for image in postImages {
-                let imgData = UIImageJPEGRepresentation(image, 0.2)!
-                multipartFormData.append(imgData, withName: "files",fileName: String(describing: postImages.firstIndex(of: image)) + ".jpg", mimeType: "image/jpg")
+                let imgData = image.jpegData(compressionQuality: 1)
+                multipartFormData.append(imgData!, withName: "files", fileName: String(describing: postImages.firstIndex(of: image)) + ".jpg", mimeType: "image/jpg")
             }
             for (key, value) in parameters {
                 multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
@@ -112,7 +112,7 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
         
         button = UIButton(type: .system)
         button.frame.size = CGSize(width: 200, height: 50)
-        button.setTitle("Open Gallery", for: UIControlState())
+        button.setTitle("Open Gallery", for: UIControl.State())
         button.addTarget(self, action: #selector(buttonTouched(_:)), for: .touchUpInside)
         
         postTextView.text = "Content from here..."

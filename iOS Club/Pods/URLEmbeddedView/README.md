@@ -1,7 +1,7 @@
 # URLEmbeddedView
 
 [![Platform](http://img.shields.io/badge/platform-iOS%20|%20tvOS-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
-[![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
+[![Language](http://img.shields.io/badge/swift-4.0%20|%204.1%20|%204.2-orange.svg?style=flat)](https://developer.apple.com/swift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/URLEmbeddedView.svg?style=flat)](http://cocoapods.org/pods/URLEmbeddedView)
 [![CocoaPods](https://img.shields.io/cocoapods/dt/URLEmbeddedView.svg)](https://cocoapods.org/?q=URLEmbeddedView)
@@ -23,6 +23,7 @@
 - [x] Support Swift4
 - [x] Support Carthage since 0.11.1
 - [x] Supprot Swift4.1 since 0.15.0
+- [x] Supprot Swift4.2 since 0.17.0
 - [x] Support tvOS since 0.16.0
 - [x] Custom implementation of OGData cache
 

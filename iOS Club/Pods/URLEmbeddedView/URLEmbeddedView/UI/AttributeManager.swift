@@ -62,7 +62,11 @@ public final class AttributeManager {
         self.numberOfLines = style.numberOfLines
         self.fontColor = style.fontColor
     }
-    
+
+    #if swift(>=4.2)
+    typealias NSAttributedStringKey = NSAttributedString.Key
+    #endif
+
     func attributedText(_ string: String) -> NSAttributedString {
         let attributes: [NSAttributedStringKey : Any] = [
             .font : font,

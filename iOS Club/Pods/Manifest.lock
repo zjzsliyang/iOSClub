@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.7.3)
+  - Alamofire (4.8.0)
   - BMPlayer (1.0.1):
     - BMPlayer/Full (= 1.0.1)
   - BMPlayer/Core (1.0.1)
@@ -7,42 +7,42 @@ PODS:
     - BMPlayer/Core
     - NVActivityIndicatorView (~> 4.0.0)
     - SnapKit (~> 4.0.0)
-  - Cache (4.2.0)
-  - Gallery (2.0.6)
+  - Cache (5.2.0)
+  - Gallery (2.2.0)
   - Hue (3.0.1)
-  - Imaginary (3.0.3):
-    - Cache (~> 4.0)
-  - IQKeyboardManagerSwift (6.1.1)
-  - Kingfisher (4.8.1)
+  - Imaginary (4.2.0):
+    - Cache (~> 5.0)
+  - IQKeyboardManagerSwift (6.2.0)
+  - Kingfisher (5.0.0)
   - LGButton (1.0.5)
-  - Lightbox (2.1.2):
-    - Hue (~> 3.0)
-    - Imaginary (~> 3.0)
-  - LLCycleScrollView (1.5.0):
+  - Lightbox (2.3.0):
+    - Imaginary (~> 4.0)
+  - LLCycleScrollView (1.5.1):
     - Kingfisher
-  - MarqueeLabel/Swift (3.1.6)
-  - NotificationBannerSwift (1.6.3):
-    - MarqueeLabel/Swift
-    - SnapKit (~> 4.0)
+  - MarqueeLabel/Swift (3.2.0)
+  - NotificationBannerSwift (1.8.0):
+    - MarqueeLabel/Swift (~> 3.2.0)
+    - SnapKit (~> 4.0.1)
   - NVActivityIndicatorView (4.0.1):
     - NVActivityIndicatorView/Presenter (= 4.0.1)
   - NVActivityIndicatorView/Presenter (4.0.1)
-  - PullToRefresher (3.0.2)
-  - SkeletonView (1.4)
-  - SKPhotoBrowser (5.1.0)
-  - SnapKit (4.0.0)
+  - PullToRefresher (3.1)
+  - SkeletonView (1.4.1)
+  - SKPhotoBrowser (6.0.0)
+  - SnapKit (4.0.1)
+  - SPPermission (2.4.2)
   - SVProgressHUD (2.2.5)
-  - SwiftyBeaver (1.6.0)
-  - SwiftyJSON (4.1.0)
-  - TextFieldEffects (1.4.0)
-  - URLEmbeddedView (0.16.2)
-  - VACalendar (1.2)
-  - WSTagsField (3.1.0)
+  - SwiftyBeaver (1.6.1)
+  - SwiftyJSON (4.2.0)
+  - TextFieldEffects (1.5.1)
+  - URLEmbeddedView (0.17.1)
+  - VACalendar (1.3)
+  - WSTagsField (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - BMPlayer
-  - Gallery (from `https://github.com/hyperoslo/Gallery.git`, branch `master`)
+  - Gallery
   - Hue
   - IQKeyboardManagerSwift
   - LGButton
@@ -53,9 +53,10 @@ DEPENDENCIES:
   - SkeletonView
   - SKPhotoBrowser
   - SnapKit
+  - SPPermission
   - SVProgressHUD
   - SwiftyBeaver
-  - SwiftyJSON (~> 4.0)
+  - SwiftyJSON
   - TextFieldEffects
   - URLEmbeddedView
   - VACalendar
@@ -66,6 +67,7 @@ SPEC REPOS:
     - Alamofire
     - BMPlayer
     - Cache
+    - Gallery
     - Hue
     - Imaginary
     - IQKeyboardManagerSwift
@@ -80,6 +82,7 @@ SPEC REPOS:
     - SkeletonView
     - SKPhotoBrowser
     - SnapKit
+    - SPPermission
     - SVProgressHUD
     - SwiftyBeaver
     - SwiftyJSON
@@ -88,43 +91,34 @@ SPEC REPOS:
     - VACalendar
     - WSTagsField
 
-EXTERNAL SOURCES:
-  Gallery:
-    :branch: master
-    :git: https://github.com/hyperoslo/Gallery.git
-
-CHECKOUT OPTIONS:
-  Gallery:
-    :commit: bf4d1afe75adadd4da75d963bb84db925eee12f7
-    :git: https://github.com/hyperoslo/Gallery.git
-
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   BMPlayer: 44eebf06eb01450dd14ea74b27d07c5222f0eed1
-  Cache: f28f8dd64b632155aabf9b3906b036a659048251
-  Gallery: f75c3faefcb5da2cae2150ce3db29fcfbeed8b0f
+  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
+  Gallery: 3f4c780c4b22906d6b0a5e55d12167cdc4b4fc5b
   Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
-  Imaginary: 9b45836a5af881f452a86e0a1215772ae4712d00
-  IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
-  Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
+  Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  Kingfisher: 2b0dd651e4fe5a07305b8242fde56f8e2d410f58
   LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
-  Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
-  LLCycleScrollView: e4ec004ac76a0e60e9bbfa3381d9145910d0434f
-  MarqueeLabel: 0c41f08ef5773e29c0f71064a8fa788a2fd8b365
-  NotificationBannerSwift: b231e4c3244848ef300e1c53ce027b9756b9b06f
+  Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
+  LLCycleScrollView: 52c2e96a92b6d16d8e0fe46b6aedb8a320bc846b
+  MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
+  NotificationBannerSwift: 49fc4be7fabada55b189b50e72184c92edd5f7f7
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
-  PullToRefresher: 25a367871a70b1da0b28e8e7cecceb4ef04f5f56
-  SkeletonView: 50f7a9b04e3a62bd0ae964859c19317fabaea367
-  SKPhotoBrowser: c20c1da34d737b4e3e101feead6c8dd92ebf860a
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  PullToRefresher: ec8c1942bd61bb512ff520c49f9f00903cfa86c7
+  SkeletonView: 60d6ce7edb0cb4c7758db33c74add50392b3c475
+  SKPhotoBrowser: 76eb862685761707b5745fde7762757966565e07
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SPPermission: 73109eaacf9249b59d422a367045d66d870431cd
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
-  TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
-  URLEmbeddedView: 5fa153bf91a78642c6677aded9a1494c09b75e86
-  VACalendar: f189d1b713b8a38d85fe679afef5dc21105c6259
-  WSTagsField: 53055749c03769b2b297f2a629ba23a26931e3ff
+  SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
+  URLEmbeddedView: 08237f670e68c9ba7ae98f7de9e3e48ae2492126
+  VACalendar: 3e5a001cbf437ebed2bcfc747f3187e555d65175
+  WSTagsField: 3a10b75c304999ead6fb2251ddc2844266e7d9f2
 
-PODFILE CHECKSUM: 17f86f7f0debc01c07e673de89340c3b961d15b4
+PODFILE CHECKSUM: 5636bc8e126094734675062f63c034e0658df5a2
 
 COCOAPODS: 1.5.3

@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 /// Use for test
 protocol OGImageProviderProtocol: class {

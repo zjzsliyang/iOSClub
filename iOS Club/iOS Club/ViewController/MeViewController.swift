@@ -71,16 +71,19 @@ UINavigationControllerDelegate {
         self.tabBarController?.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let imgData = UIImageJPEGRepresentation(image, 0.2)!
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        
+        let imgData = image.jpegData(compressionQuality: 1)
         
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
         let email = suiteDefault!.value(forKey: "email") as! String
         let parameters = ["email": email]
         
         Alamofire.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(imgData, withName: "file",fileName: "file.jpg", mimeType: "image/jpg")
+            multipartFormData.append(imgData!, withName: "file",fileName: "file.jpg", mimeType: "image/jpg")
             for (key, value) in parameters {
                 multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
             }

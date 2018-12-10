@@ -8,6 +8,11 @@
 
 import UIKit
 
+#if swift(>=4.2)
+typealias NSLayoutRelation = NSLayoutConstraint.Relation
+typealias NSLayoutAttribute = NSLayoutConstraint.Attribute
+#endif
+
 extension UIView {
     struct Size {
         static let zero = Size(width: 0, height: 0)

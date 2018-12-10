@@ -56,6 +56,7 @@ class NewsCell: UITableViewCell {
         BMPlayerConf.topBarShowInCase = .none
         let videoplayer = BMPlayer()
         self.addSubview(videoplayer)
+        videoplayer.gestureRecognizers?.removeAll()
         videoplayer.snp.makeConstraints { (make) in
             make.top.equalTo(contentView).offset(150)
             make.left.right.equalTo(self)

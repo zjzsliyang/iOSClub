@@ -18,10 +18,13 @@ class ActivityViewController: UIViewController {
     
     @IBOutlet weak var monthHeaderView: VAMonthHeaderView! {
         didSet {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "LLLL"
+            
             let appereance = VAMonthHeaderViewAppearance(
                 previousButtonImage: #imageLiteral(resourceName: "previous"),
                 nextButtonImage: #imageLiteral(resourceName: "next"),
-                dateFormat: "LLLL"
+                dateFormatter: dateFormatter
             )
             monthHeaderView.delegate = self
             monthHeaderView.appearance = appereance

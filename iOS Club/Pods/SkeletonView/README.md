@@ -31,7 +31,9 @@
     </a>
 </p>
 
-🌎  Translations: [ [🇨🇳](https://github.com/Juanpe/SkeletonView/blob/master/README_zh.md) by [@WhatsXie](https://twitter.com/WhatsXie) ]
+🌎  Translations: </br>
+[🇨🇳](https://github.com/Juanpe/SkeletonView/blob/master/README_zh.md) by [@WhatsXie](https://twitter.com/WhatsXie) </br>
+[🇧🇷](https://github.com/Juanpe/SkeletonView/blob/master/README_pt-br.md) by [@brunomunizaf](https://twitter.com/brunomuniz_af)
 
 Today almost all apps have async processes, such as Api requests, long running processes, etc. And while the processes are working, usually developers place a loading view to show users that something is going on.
 
@@ -41,6 +43,7 @@ Enjoy it! 🙂
 
 * [Features](#-features)
 * [Requirements](#-supported-os--sdk-versions)
+* [Guides](#-guides)
 * [Example Project](#-example)
 * [Installation](#-installation)
   * [Cocoapods](#using-cocoapods)
@@ -76,6 +79,10 @@ Enjoy it! 🙂
 * iOS 9.0+
 * tvOS 9.0+
 * Swift 4
+
+### 🎬 Guides
+
+ [<img src="Assets/thumb_getting_started.png">](https://youtu.be/75kgOhWsPNA)
 
 ### 🔮 Example
 

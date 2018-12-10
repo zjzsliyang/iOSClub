@@ -37,7 +37,13 @@ final class OGImageCacheManager: NSObject, OGImageCacheManagerProtocol {
 //            ud.synchronize()
 //        }
 //    }
-    
+
+    #if swift(>=4.2)
+    private let didReceiveMemoryWarningNotification = UIApplication.didReceiveMemoryWarningNotification
+    #else
+    private let didReceiveMemoryWarningNotification = NSNotification.Name.UIApplicationDidReceiveMemoryWarning
+    #endif
+
     init(fileManager: FileManagerProtocol = FileManager(),
          notificationCenter: NotificationCenter = .default) {
         self.fileManager = fileManager
@@ -46,13 +52,13 @@ final class OGImageCacheManager: NSObject, OGImageCacheManagerProtocol {
         createDirectoriesIfNeeded()
         notificationCenter.addObserver(self,
                                        selector: #selector(type(of: self).didReceiveMemoryWarning(_:)),
-                                       name: .UIApplicationDidReceiveMemoryWarning,
+                                       name: didReceiveMemoryWarningNotification,
                                        object: nil)
     }
     
     deinit {
         notificationCenter.removeObserver(self,
-                                          name: .UIApplicationDidReceiveMemoryWarning,
+                                          name: didReceiveMemoryWarningNotification,
                                           object: nil)
     }
     
