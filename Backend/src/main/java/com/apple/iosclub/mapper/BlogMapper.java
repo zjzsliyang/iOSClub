@@ -12,7 +12,11 @@ import java.util.List;
 @Mapper
 public interface BlogMapper {
 
+<<<<<<< HEAD
+    @Select("select * from blog_share, (user NATURAL JOIN university) WHERE user.email = blog_share.sharemail order by time desc")
+=======
     @Select("select * from blog_share,(user NATURAL JOIN university) WHERE user.email = blog_share.sharemail order by time desc")
+>>>>>>> b2c3a5bd59618ae54d7e7ec959fbf033f545b497
     List<BlogModel> getAll();
 
     @Insert("insert into blog_share(sharemail, url, time) values(#{sharemail}, #{url}, #{time})")

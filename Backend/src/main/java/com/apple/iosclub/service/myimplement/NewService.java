@@ -124,7 +124,11 @@ public class NewService implements NewServiceInterface{
             if(newModel.video.equals("")){
                 newsObject.put("video", newModel.video);
                 String imagesString = newModel.images;
-                String[] images = imagesString.split(";");
+                String[] images = {};
+                if(imagesString.contains(";")){
+                    images = imagesString.split(";");
+                }
+
                 ArrayList<String> imageList = new ArrayList<>();
                 for(String i : images){
                     imageList.add(Common.backendUrl + i);
