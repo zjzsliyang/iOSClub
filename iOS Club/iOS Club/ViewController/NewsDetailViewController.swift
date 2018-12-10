@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import BMPlayer
 import SkeletonView
+import SKPhotoBrowser
 import LLCycleScrollView
 
 class NewsDetailViewController: UIViewController {
@@ -70,9 +71,22 @@ class NewsDetailViewController: UIViewController {
         imagesplayer.autoScroll = true
         imagesplayer.infiniteLoop = true
         imagesplayer.imageViewContentMode = .scaleAspectFit
+        imagesplayer.lldidSelectItemAtIndex = { index in
+            self.detailImages(images: images, index: index)
+        }
         self.view.addSubview(imagesplayer)
         DispatchQueue.main.async {
             imagesplayer.imagePaths = images
         }
+    }
+    
+    func detailImages(images: [String], index: Int) {
+        var photos = [SKPhoto]()
+        for image in images {
+            photos.append(SKPhoto.photoWithImageURL(image))
+        }
+        let browser = SKPhotoBrowser(photos: photos)
+        browser.initializePageIndex(index)
+        self.present(browser, animated: true, completion: nil)
     }
 }
