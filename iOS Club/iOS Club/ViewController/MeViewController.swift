@@ -56,7 +56,7 @@ UINavigationControllerDelegate {
     }
     
     @IBAction func choose(_ sender: Any) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let picker = UIImagePickerController()
             picker.delegate = self
             picker.sourceType = .photoLibrary

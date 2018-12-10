@@ -22,7 +22,7 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "universityCell", for: indexPath) as! UniversityCell
-    
+
         let icon = cell.icon!
         
         if universityLogo[indexPath.item] == nil {
@@ -58,7 +58,7 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
         let urlRequest = NSURLRequest(url: url as URL)
         var response: URLResponse?
         
-        do{
+        do {
             let data: NSData? = try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest, returning: &response) as NSData
             if let value = data {
                 let json = JSON(value)
@@ -80,7 +80,7 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
     }
 }
 
-class UniversityCell: UICollectionViewCell{
+class UniversityCell: UICollectionViewCell {
     
     @IBOutlet weak var icon: UIImageView!
     
