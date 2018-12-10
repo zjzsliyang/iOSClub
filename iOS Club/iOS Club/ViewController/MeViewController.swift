@@ -66,7 +66,8 @@ UINavigationControllerDelegate {
 
     @IBAction func logout(_ sender: UIBarButtonItem) {
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        suiteDefault?.set(false, forKey: "isLogin")
+        suiteDefault?.removeObject(forKey: "email")
+        suiteDefault?.removeObject(forKey: "password")
         self.tabBarController?.dismiss(animated: true, completion: nil)
     }
     

@@ -17,13 +17,38 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: HoshiTextField!
     @IBOutlet weak var passwordTextField: HoshiTextField!
+    @IBOutlet weak var loginButton: LGButton!
     
     @IBAction func login(_ sender: LGButton) {
+        postLogin(email: emailTextField.text!, password: passwordTextField.text!, sender: sender)
+    }
+    
+    @IBAction func guest(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "login", sender: nil)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupHideKeyboardOnTap()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        if let email = suiteDefault?.value(forKey: "email") {
+            if let password = suiteDefault?.value(forKey: "password") {
+                postLogin(email: email as! String, password: password as! String, sender: loginButton)
+            }
+        }
+    }
+    
+    func postLogin(email: String, password: String, sender: LGButton) {
         sender.isLoading = true
         
         let userParameters: Parameters = [
-            "email": emailTextField.text!,
-            "password": passwordTextField.text!
+            "email": email,
+            "password": password
         ]
         
         Alamofire.request(backendUrl + "/user/login/", method: .post, parameters: userParameters, encoding: JSONEncoding.default).responseString { (response) in
@@ -51,10 +76,10 @@ class LoginViewController: UIViewController {
                 if responseJson["code"] == 0 {
                     DispatchQueue.main.async {
                         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-                        suiteDefault?.set(true, forKey: "isLogin")
                         suiteDefault?.set(responseJson["user"]["email"].rawString()!, forKey: "email")
+                        suiteDefault?.set(self.passwordTextField.text!, forKey: "password")
                         suiteDefault?.synchronize()
-                        self.autoLogin()
+                        self.performSegue(withIdentifier: "login", sender: nil)
                     }
                 } else if responseJson["code"] == -1 {
                     DispatchQueue.main.async {
@@ -74,29 +99,6 @@ class LoginViewController: UIViewController {
             } catch let error as NSError {
                 log.error("[LOGIN]: " + String(describing: error))
             }
-        }
-    }
-    
-    @IBAction func guest(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "login", sender: nil)
-    }
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupHideKeyboardOnTap()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        autoLogin()
-    }
-    
-    func autoLogin() {
-        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        if suiteDefault?.bool(forKey: "isLogin") == true {
-            self.performSegue(withIdentifier: "login", sender: nil)
         }
     }
 }

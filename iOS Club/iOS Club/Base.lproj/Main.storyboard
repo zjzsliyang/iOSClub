@@ -943,6 +943,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="JVc-IX-l8J" id="ysL-zy-t7a"/>
+                        <outlet property="loginButton" destination="wuW-il-Ddv" id="B05-jw-Ojb"/>
                         <outlet property="passwordTextField" destination="KaV-o5-WSe" id="qrk-Jj-OzP"/>
                         <segue destination="bMo-NY-kuX" kind="presentation" identifier="login" id="l02-rQ-XU4"/>
                     </connections>
