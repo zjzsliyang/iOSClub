@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>0.2</string>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>8</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -31,14 +31,12 @@
 	<string>This app need to access your calendar to record club activity.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app need to access your camera to post.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app need to access your photo library to post.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>This app may need to access your contacts.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app may need to access your microphone.</string>
-	<key>kTCCServiceMediaLibrary</key>
-	<string>This app may need to access your music.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app need to access your photo library to post.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>This app may need to access your speech recognition.</string>
 	<key>UILaunchStoryboardName</key>
@@ -60,5 +58,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>This app may need to access your music.</string>
 </dict>
 </plist>
