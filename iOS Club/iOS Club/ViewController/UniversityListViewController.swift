@@ -1,6 +1,6 @@
 //
 //  UniversityListViewController.swift
-//  iOS Club
+//  Student Club
 //
 //  Created by Zhongjin Luo on 2018/9/22.
 //  Copyright © 2018 Yang LI. All rights reserved.

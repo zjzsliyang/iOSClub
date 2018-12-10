@@ -1,6 +1,6 @@
 //
 //  LoginViewController.swift
-//  iOS Club
+//  Student Club
 //
 //  Created by Yang Li on 2018/9/23.
 //  Copyright © 2018 Yang LI. All rights reserved.
@@ -10,6 +10,7 @@ import UIKit
 import LGButton
 import Alamofire
 import SwiftyJSON
+import SPPermission
 import TextFieldEffects
 import NotificationBannerSwift
 
@@ -41,6 +42,8 @@ class LoginViewController: UIViewController {
                 postLogin(email: email as! String, password: password as! String, sender: loginButton)
             }
         }
+        
+        SPPermission.Dialog.request(with: [.camera, .photoLibrary, .calendar, .notification], on: self)
     }
     
     func postLogin(email: String, password: String, sender: LGButton) {
