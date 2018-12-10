@@ -14,6 +14,7 @@ import NotificationBannerSwift
 class ActivityViewController: UIViewController {
     
     var events = [EKEvent]()
+    var nowevents = [EKEvent]()
     @IBOutlet weak var activityTableView: UITableView!
     
     @IBOutlet weak var monthHeaderView: VAMonthHeaderView! {
@@ -60,6 +61,9 @@ class ActivityViewController: UIViewController {
         calendarView.calendarDelegate = self
         calendarView.scrollDirection = .horizontal
         
+        self.activityTableView.tableFooterView?.backgroundColor = UIColor.black
+        self.activityTableView.backgroundColor = UIColor.black
+        self.activityTableView.separatorColor = UIColor.darkGray
         let eventStore = EKEventStore()
         eventStore.requestAccess(to: .event) { (granted, error) in
             if granted && (error == nil) {
@@ -93,25 +97,28 @@ class ActivityViewController: UIViewController {
                     }
                 }
 
-                let oneMonthAgo = NSDate(timeIntervalSinceNow: -30*24*3600)
-                let oneMonthAfter = NSDate(timeIntervalSinceNow: +30*24*3600)
+                let oneMonthAgo = NSDate(timeIntervalSinceNow: -31*24*3600)
+                let nowTime = NSDate(timeIntervalSinceNow: 0)
+                let oneMonthAfter = NSDate(timeIntervalSinceNow: +31*24*3600)
                 
                 let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
-                
+                let nowPredicate = eventStore.predicateForEvents(withStart: nowTime as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
+
                 self.events = eventStore.events(matching: predicate)
+                self.nowevents = eventStore.events(matching: nowPredicate)
+                log.debug("[ACTIVITY]: " + String(describing: self.events))
+                log.debug("[ACTIVITY]: " + String(describing: self.nowevents))
                 
-                for event in self.events {
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    for event in self.events {
                         self.calendarView.setSupplementaries([
                             (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
                             ])
-                        
-                        self.activityTableView.reloadData()
                     }
+                    self.activityTableView.reloadData()
                 }
             }
         }
-
         view.addSubview(calendarView)
     }
     
@@ -215,14 +222,22 @@ extension ActivityViewController: VACalendarViewDelegate {
 
 extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        return nowevents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activity") as! ActivityCell
-        let event = events[indexPath.row]
+        let event = nowevents[indexPath.row]
         cell.setActivity(title: event.title, location: event.location, time: event.startDate)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        TODO:
         
+    }
 }
