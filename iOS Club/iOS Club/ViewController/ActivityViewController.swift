@@ -8,7 +8,9 @@
 
 import UIKit
 import EventKit
+import Alamofire
 import VACalendar
+import SwiftyJSON
 import NotificationBannerSwift
 
 class ActivityViewController: UIViewController {
@@ -50,6 +52,7 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getEvents()
         
         let calendar = VACalendar(calendar: defaultCalendar)
         calendarView = VACalendarView(frame: .zero, calendar: calendar)
@@ -67,35 +70,7 @@ class ActivityViewController: UIViewController {
         let eventStore = EKEventStore()
         eventStore.requestAccess(to: .event) { (granted, error) in
             if granted && (error == nil) {
-                let calendars = eventStore.calendars(for: .event)
-                var iOSCalendar: EKCalendar? = nil
-                for calendar in calendars {
-                    if calendar.title == "iOS Club" {
-                        iOSCalendar = calendar
-                    }
-                }
-                if iOSCalendar == nil {
-                    iOSCalendar = EKCalendar(for: .event, eventStore: eventStore)
-                    iOSCalendar!.title = "iOS Club"
-                    var iCloudSource: EKSource? = nil
-                    for source in eventStore.sources {
-                        if (source.sourceType == .calDAV) && (source.title == "iCloud") {
-                            iCloudSource = source
-                            break
-                        }
-                    }
-                    if (iCloudSource) != nil {
-                        iOSCalendar!.source = iCloudSource
-                        do {
-                            try eventStore.saveCalendar(iOSCalendar!, commit: true)
-                        } catch {
-                            DispatchQueue.main.async {
-                                let banner = NotificationBanner(title: "Create Calendar Fail", subtitle: (error as NSError).localizedDescription, style: .danger)
-                                banner.show()
-                            }
-                        }
-                    }
-                }
+                let iOSCalendar = self.getCalendar(eventStore: eventStore)
 
                 let oneMonthAgo = NSDate(timeIntervalSinceNow: -31*24*3600)
                 let nowTime = NSDate(timeIntervalSinceNow: 0)
@@ -120,6 +95,80 @@ class ActivityViewController: UIViewController {
             }
         }
         view.addSubview(calendarView)
+    }
+    
+    func getCalendar(eventStore: EKEventStore) -> EKCalendar? {
+        let calendars = eventStore.calendars(for: .event)
+        var iOSCalendar: EKCalendar? = nil
+        for calendar in calendars {
+            if calendar.title == "iOS Club" {
+                iOSCalendar = calendar
+            }
+        }
+        if iOSCalendar == nil {
+            iOSCalendar = EKCalendar(for: .event, eventStore: eventStore)
+            iOSCalendar!.title = "iOS Club"
+            var iCloudSource: EKSource? = nil
+            for source in eventStore.sources {
+                if (source.sourceType == .calDAV) && (source.title == "iCloud") {
+                    iCloudSource = source
+                    break
+                }
+            }
+            if (iCloudSource) != nil {
+                iOSCalendar!.source = iCloudSource
+                do {
+                    try eventStore.saveCalendar(iOSCalendar!, commit: true)
+                } catch {
+                    DispatchQueue.main.async {
+                        let banner = NotificationBanner(title: "Create Calendar Fail", subtitle: (error as NSError).localizedDescription, style: .danger)
+                        banner.show()
+                    }
+                }
+            }
+        }
+        return iOSCalendar
+    }
+    
+    func getEvents() {
+        Alamofire.request(backendUrl + "/events/getAll").responseString { (response) in
+            guard (response.result.value != nil) else {
+                log.error("[ACTIVITY]: " + String(describing: response))
+                DispatchQueue.main.async {
+                    let banner = NotificationBanner(title: "Get Events Fail", subtitle: "Fatal Server Error", style: .danger)
+                    banner.show()
+                }
+                return
+            }
+            let responseData = response.result.value!
+            do {
+                let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
+                if responseJson["code"] == 0 {
+                    for eventInfo in responseJson["data"].arrayValue {
+                        let eventStore = EKEventStore()
+                        eventStore.requestAccess(to: .event, completion: { (granted, error) in
+                            if granted && (error == nil) {
+                                let event = EKEvent(eventStore: eventStore)
+                                event.title = eventInfo["title"].string
+                                event.location = eventInfo["location"].string
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                event.startDate = dateFormatter.date(from: eventInfo["lastModified"].stringValue)
+                                event.endDate = dateFormatter.date(from: eventInfo["lastModified"].stringValue)
+                                event.calendar = self.getCalendar(eventStore: eventStore)
+                                do {
+                                    try eventStore.save(event, span: .thisEvent)
+                                } catch let error as NSError {
+                                    log.error("[ACTIVITY]: failed to save event with error : \(error)")
+                                }
+                            }
+                        })
+                    }
+                }
+            } catch let error as NSError {
+                log.error("[ACTIVITY]: " + String(describing: error))
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {

@@ -47,7 +47,7 @@ class NewsViewController: UIViewController {
                         self.newsTableView.endAllRefreshing()
                     }
                 } else {
-                    log.error("[News]: fetched JSON parse failed")
+                    log.error("[NEWS]: fetched JSON parse failed")
                 }
             }.resume()
         }
@@ -61,7 +61,7 @@ class NewsViewController: UIViewController {
             let newsParameters: Parameters = ["id": news.title]
             Alamofire.request(backendUrl + "/news/delete", method: .post, parameters: newsParameters, encoding: JSONEncoding.default).responseString(completionHandler: { (response) in
                 guard (response.result.value != nil) else {
-                    log.error("[News]: " + String(describing: response))
+                    log.error("[NEWS]: " + String(describing: response))
                     DispatchQueue.main.async {
                         let banner = NotificationBanner(title: "Delete Fail", subtitle: "Fatal Server Error", style: .danger)
                         banner.show()
@@ -78,7 +78,7 @@ class NewsViewController: UIViewController {
                         banner.show()
                     }
                 } catch let error as NSError {
-                    log.error("[News]: " + String(describing: error))
+                    log.error("[NEWS]: " + String(describing: error))
                 }
             })
         }))
@@ -130,7 +130,7 @@ extension NewsViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text!.count > 0 {
-            log.debug("[News]: search news: " + searchBar.text!)
+            log.debug("[NEWS]: search news: " + searchBar.text!)
         }
     }
 }
