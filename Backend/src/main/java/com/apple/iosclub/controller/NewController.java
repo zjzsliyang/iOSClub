@@ -67,6 +67,9 @@ public class NewController {
     }
 
 
-
-
+    @PostMapping("/delete")
+    public Object delete(@RequestBody HashMap<String, Object> req) {
+        int id = Integer.parseInt(req.get("id").toString());
+        return newService.deleteById(id);
+    }
 }

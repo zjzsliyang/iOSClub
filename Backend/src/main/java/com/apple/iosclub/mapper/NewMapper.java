@@ -2,10 +2,7 @@ package com.apple.iosclub.mapper;
 
 import com.apple.iosclub.entity.DBNew;
 import com.apple.iosclub.model.NewModel;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -29,5 +26,6 @@ public interface NewMapper {
     List<NewModel> getAllNews();
 
 
-
+    @Delete("delete from news where n_id=#{id}")
+    void deleteById(int id);
 }

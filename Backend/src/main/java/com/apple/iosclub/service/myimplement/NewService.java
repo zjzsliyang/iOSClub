@@ -90,6 +90,20 @@ public class NewService implements NewServiceInterface{
 
     }
 
+    @Override
+    public Object deleteById(int id) {
+        HashMap<String, Object> res = new HashMap<>();
+        try {
+            newMapper.deleteById(id);
+            res.put("code", 0);
+            res.put("msg", "删除成功");
+        } catch (Exception e) {
+            res.put("code", 1);
+            res.put("msg", e);
+        }
+        return res;
+    }
+
 
     public static ArrayList<HashMap<String, Object>> pack(List<NewModel> list){
 

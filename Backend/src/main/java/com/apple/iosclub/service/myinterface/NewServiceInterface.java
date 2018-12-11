@@ -11,5 +11,5 @@ public interface NewServiceInterface {
     Object getNewsByPrivilege(int privilege);
     Object getAllNews();
     Object publish(HashMap<String, Object> req, MultipartFile[] uploadingFiles) throws IOException;
-
+    Object deleteById(int id);
 }
