@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 import SkeletonView
 import PullToRefresh
 import NotificationBannerSwift
@@ -19,16 +20,15 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         newsTableView.addPullToRefresh(refresher) {
             self.fetchNews()
         }
-        fetchNews()
         setupHideKeyboardOnTap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        fetchNews()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -56,13 +56,31 @@ class NewsViewController: UIViewController {
     @IBAction func more(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-            let title = self.newses[self.newsTableView.indexPath(for: sender)![1]].title
-            self.newses.remove(at: self.newsTableView.indexPath(for: sender)![1])
-            self.newsTableView.reloadData()
-            let banner = NotificationBanner(title: "Delete Success", subtitle: "delete post titled " + title, style: .success)
-            banner.show()
-//            TODO: post to backend
-            print("delete post")
+            let news = self.newses[(self.newsTableView.indexPath(for: sender)?.row)!]
+//            TODO: replace title with id
+            let newsParameters: Parameters = ["id": news.title]
+            Alamofire.request(backendUrl + "/news/delete", method: .post, parameters: newsParameters, encoding: JSONEncoding.default).responseString(completionHandler: { (response) in
+                guard (response.result.value != nil) else {
+                    log.error("[News]: " + String(describing: response))
+                    DispatchQueue.main.async {
+                        let banner = NotificationBanner(title: "Delete Fail", subtitle: "Fatal Server Error", style: .danger)
+                        banner.show()
+                    }
+                    return
+                }
+                let responseData = response.result.value!
+                do {
+                    let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
+                    if responseJson["code"] == 0 {
+                        self.newses.remove(at: self.newsTableView.indexPath(for: sender)!.row)
+                        self.newsTableView.reloadData()
+                        let banner = NotificationBanner(title: "Delete Success", subtitle: "delete post titled " + news.title, style: .success)
+                        banner.show()
+                    }
+                } catch let error as NSError {
+                    log.error("[News]: " + String(describing: error))
+                }
+            })
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
