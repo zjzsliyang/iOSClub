@@ -76,21 +76,22 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
     }
     
     @IBAction func done(_ sender: UIBarButtonItem) {
-        
-        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        let postmail = suiteDefault!.value(forKey: "email") as! String
-        
-        var postImages = [UIImage]()
-        for selectedImage in selectedImages {
-            selectedImage.resolve { (image) in
-                postImages.append(image!)
-                if postImages.count == self.selectedImages.count {
-                    self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: "5", tags: self.postTags)
+        if postTextView.textColor != UIColor.lightGray {
+            let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+            let postmail = suiteDefault!.value(forKey: "email") as! String
+            
+            var postImages = [UIImage]()
+            for selectedImage in selectedImages {
+                selectedImage.resolve { (image) in
+                    postImages.append(image!)
+                    if postImages.count == self.selectedImages.count {
+                        self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: "5", tags: self.postTags)
+                    }
                 }
             }
-        }
-        if selectedImages.count == 0 {
-            self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: "5", tags: self.postTags)
+            if selectedImages.count == 0 {
+                self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: "5", tags: self.postTags)
+            }
         }
 
         self.dismiss(animated: true, completion: nil)
