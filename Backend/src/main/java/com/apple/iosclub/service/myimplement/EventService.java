@@ -53,14 +53,16 @@ public class EventService implements EventInterface{
     }
 
     @Override
-    public Object createEvent(String title, String location, String alarms, String url, String lastModified, String startTimeZone) {
+    public Object createEvent(String title, String location, String alarms, String startTime, String endTime, String url, String lastModified, String startTimeZone) {
         HashMap<String, Object> res = new HashMap<>();
         try {
             EventModel eventModel = new EventModel();
             eventModel.setTitle(title);
             eventModel.setAlarms(alarms);
-            eventModel.setLocation(location);
+            eventModel.setStartTime(startTime);
+            eventModel.setEndTime(endTime);
             eventModel.setUrl(url);
+            eventModel.setLocation(location);
             eventModel.setLastModified(lastModified);
             eventModel.setStartTimeZone(startTimeZone);
             eventMapper.insertEvent(eventModel);
@@ -74,13 +76,15 @@ public class EventService implements EventInterface{
     }
 
     @Override
-    public Object updateEvent(int id, String title, String location, String alarms, String url, String lastModified, String startTimeZone) {
+    public Object updateEvent(int id, String title, String location, String alarms, String startTime, String endTime, String url, String lastModified, String startTimeZone) {
         HashMap<String, Object> res = new HashMap<>();
         try {
             EventModel eventModel = new EventModel();
             eventModel.setId(id);
             eventModel.setTitle(title);
             eventModel.setAlarms(alarms);
+            eventModel.setStartTime(startTime);
+            eventModel.setEndTime(endTime);
             eventModel.setLocation(location);
             eventModel.setUrl(url);
             eventModel.setLastModified(lastModified);
