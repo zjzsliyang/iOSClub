@@ -3,7 +3,7 @@ package com.apple.iosclub.model;
 public class NewModel {
 
 
-
+    public int n_id;
     public String username;
     public int privilege;
     public String email;
@@ -27,6 +27,14 @@ public class NewModel {
     public int news_privilege;
 
 
+
+    public int getN_id() {
+        return n_id;
+    }
+
+    public void setN_id(int n_id) {
+        this.n_id = n_id;
+    }
 
     public int getU_code() {
         return u_code;
