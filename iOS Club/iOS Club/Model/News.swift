@@ -17,4 +17,5 @@ struct News: Decodable {
     var images: [String]
     var tags: [String]
     let news_privilege: Int
+    let id: Int
 }
