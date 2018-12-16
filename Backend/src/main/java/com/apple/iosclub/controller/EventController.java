@@ -40,13 +40,15 @@ public class EventController {
         String title = req.get("title").toString();
         String location = req.get("location").toString();
         String alarms = req.get("alarms").toString();
+        String startTime = req.get("startTime").toString();
+        String endTime = req.get("endTime").toString();
         String url = req.get("url").toString();
         String startTimeZone = req.get("startTimeZone").toString();
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String lastModified = sdf.format(d).toString();
 
-        return eventService.createEvent(title, location, alarms, url, lastModified, startTimeZone);
+        return eventService.createEvent(title, location, alarms, startTime, endTime, url, lastModified, startTimeZone);
     }
 
     @PostMapping("/update")
@@ -56,13 +58,15 @@ public class EventController {
         String title = req.get("title").toString();
         String location = req.get("location").toString();
         String alarms = req.get("alarms").toString();
+        String startTime = req.get("startTime").toString();
+        String endTime = req.get("endTime").toString();
         String url = req.get("url").toString();
         String startTimeZone = req.get("startTimeZone").toString();
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String lastModified = sdf.format(d).toString();
 
-        return eventService.updateEvent(id, title, location, alarms, url, lastModified, startTimeZone);
+        return eventService.updateEvent(id, title, location, alarms, startTime, endTime, url, lastModified, startTimeZone);
     }
 
 

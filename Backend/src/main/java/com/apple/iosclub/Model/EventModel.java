@@ -6,6 +6,8 @@ public class EventModel {
     public String title;
     public String location;
     public String alarms;
+    public String startTime;
+    public String endTime;
     public String url;
     public String lastModified;
     public String startTimeZone;
@@ -64,5 +66,21 @@ public class EventModel {
 
     public void setStartTimeZone(String startTimeZone) {
         this.startTimeZone = startTimeZone;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

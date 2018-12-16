@@ -130,6 +130,7 @@ public class NewService implements NewServiceInterface{
             userObject.put("description", newModel.description);
             userObject.put("avatar", Common.backendUrl + newModel.avatar);
 
+            newsObject.put("id", newModel.n_id);
             newsObject.put("user", userObject);
             newsObject.put("time", newModel.time);
             newsObject.put("title", newModel.title);
