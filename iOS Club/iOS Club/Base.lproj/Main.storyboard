@@ -417,11 +417,27 @@
                         <outlet property="activityTableView" destination="nhg-0j-KHe" id="ITy-W5-6bj"/>
                         <outlet property="monthHeaderView" destination="mcK-Uv-RjA" id="AfN-mO-IDO"/>
                         <outlet property="weekDaysView" destination="xYV-NQ-v99" id="xiQ-5h-uGw"/>
+                        <segue destination="bNO-Or-Afe" kind="presentation" identifier="addevent" id="sBK-4r-CaO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yGN-sB-IBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="725.60000000000002" y="370.93596059113304"/>
+        </scene>
+        <!--Event View Controller-->
+        <scene sceneID="KSz-h1-Pr9">
+            <objects>
+                <viewController id="bNO-Or-Afe" customClass="EventViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lgj-bp-mut">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dKV-bO-Nmt"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nqP-t1-Z2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725" y="1175"/>
         </scene>
         <!--Me View Controller-->
         <scene sceneID="OZW-bb-B9H">
@@ -993,7 +1009,7 @@
     <resources>
         <image name="activity" width="32" height="32"/>
         <image name="blog" width="32" height="32"/>
-        <image name="edit" width="40" height="40"/>
+        <image name="edit" width="129" height="129"/>
         <image name="iosclub" width="256" height="256"/>
         <image name="me" width="32" height="32"/>
         <image name="more" width="128" height="128"/>

@@ -27,6 +27,7 @@ class ActivityViewController: UIViewController {
             let appereance = VAMonthHeaderViewAppearance(
                 previousButtonImage: #imageLiteral(resourceName: "previous"),
                 nextButtonImage: #imageLiteral(resourceName: "next"),
+                addEventButtonImage: UIImage(named: "add")!,
                 dateFormatter: dateFormatter
             )
             monthHeaderView.delegate = self
@@ -194,6 +195,10 @@ extension ActivityViewController: VAMonthHeaderViewDelegate {
     
     func didTapPreviousMonth() {
         calendarView.previousMonth()
+    }
+    
+    func didTapAdd() {
+        self.performSegue(withIdentifier: "addevent", sender: nil)
     }
 }
 
