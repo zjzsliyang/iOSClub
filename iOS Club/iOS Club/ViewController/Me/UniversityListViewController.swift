@@ -12,11 +12,11 @@ import SwiftyJSON
 
 class UniversityListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    var universityArray = JSON.null
+    var universityDict = [Int: JSON]()
     var universityLogo = [UIImage?]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.universityArray.count
+        return self.universityDict.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -26,7 +26,8 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
         let icon = cell.icon!
         
         if universityLogo[indexPath.item] == nil {
-            let iconUrl  = universityArray[indexPath.item]["icon"].rawString()
+            let iconUrl  = universityDict[indexPath.item]?["icon"].rawString()
+            print(indexPath.item)
             let url = URL(string: iconUrl!)!
             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                 guard error == nil else {
@@ -50,23 +51,19 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
 
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
         collectionView.dataSource = self
         
-        let url = NSURL(string: backendUrl + "/club/info/getAll")!
-        let urlRequest = NSURLRequest(url: url as URL)
-        var response: URLResponse?
-        
-        do {
-            let data: NSData? = try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest, returning: &response) as NSData
-            if let value = data {
-                let json = JSON(value)
-                self.universityArray = json
-                self.universityLogo = [UIImage?](repeating: nil, count: universityArray.count)
+        Alamofire.request(backendUrl + "/club/info/getAll").responseJSON { (response) in
+            if let data = response.result.value {
+                let json = JSON(data)
+                for item in json.arrayValue {
+                    self.universityDict[item["code"].int!] = item
+                }
+                self.universityLogo = [UIImage?](repeating: nil, count: self.universityDict.count)
             }
-        } catch let error as NSError {
-            log.error("[U LIST]: " + String(describing: error))
+            self.collectionView.reloadData()
         }
     }
     
@@ -75,7 +72,7 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
             let controller = segue.destination as! UniversityDetailViewController
             let cell = sender as! UICollectionViewCell
             let indexPath = self.collectionView!.indexPath(for: cell)
-            controller.university = self.universityArray[(indexPath?.item)!]
+            controller.university = self.universityDict[(indexPath?.item)!]!
         }
     }
 }
