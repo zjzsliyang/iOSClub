@@ -14,6 +14,9 @@ import PullToRefresh
 import NotificationBannerSwift
 
 class NewsViewController: UIViewController {
+    var privilege: Int?
+    var code: Int?
+    
     var newses = [News]()
     let refresher = PullToRefresh()
     @IBOutlet weak var newsTableView: UITableView!
@@ -34,8 +37,8 @@ class NewsViewController: UIViewController {
     
     func fetchNews() {
         newses = []
-        let privilege = 5
-        if let url = URL(string: backendUrl + "/news/getByPrivilege?u_privilege=" + String(describing: privilege)) {
+
+        if let url = URL(string: backendUrl + "/news/getNews?u_privilege=" + String(describing: privilege!) + "&code=" + String(describing: code!)) {
             let session = URLSession(configuration: .default)
             session.dataTask(with: url) { (data, _, err) in
                 guard err == nil else { return }

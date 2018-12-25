@@ -25,7 +25,10 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func guest(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "login", sender: nil)
+        var userInfo = [String: Int?]()
+        userInfo["user_privilege"] = 0
+        userInfo["code"] = -1
+        self.performSegue(withIdentifier: "login", sender: userInfo)
     }
 
     override func viewDidLoad() {
@@ -86,7 +89,10 @@ class LoginViewController: UIViewController {
                             suiteDefault?.set(self.passwordTextField.text!, forKey: "password")
                         }
                         suiteDefault?.synchronize()
-                        self.performSegue(withIdentifier: "login", sender: nil)
+                        var userInfo = [String: Int?]()
+                        userInfo["user_privilege"] = responseJson["user"]["user_privilege"].int!
+                        userInfo["code"] = responseJson["user"]["university"]["code"].int
+                        self.performSegue(withIdentifier: "login", sender: userInfo)
                     }
                 } else if responseJson["code"] == -1 {
                     DispatchQueue.main.async {
@@ -106,6 +112,17 @@ class LoginViewController: UIViewController {
             } catch let error as NSError {
                 log.error("[LOGIN]: " + String(describing: error))
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "login" {
+            
+            let newsViewController = (segue.destination.children[0] as! UINavigationController).children[0] as! NewsViewController
+            
+            let userInfo = sender as! [String: Int?]
+            newsViewController.code = userInfo["code"]!
+            newsViewController.privilege = userInfo["user_privilege"]!
         }
     }
 }
