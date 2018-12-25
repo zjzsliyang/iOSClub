@@ -27,7 +27,6 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
         
         if universityLogo[indexPath.item] == nil {
             let iconUrl  = universityDict[indexPath.item]?["icon"].rawString()
-            print(indexPath.item)
             let url = URL(string: iconUrl!)!
             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                 guard error == nil else {
@@ -62,6 +61,7 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
                     self.universityDict[item["code"].int!] = item
                 }
                 self.universityLogo = [UIImage?](repeating: nil, count: self.universityDict.count)
+                self.collectionView.reloadData()
             }
             self.collectionView.reloadData()
         }
