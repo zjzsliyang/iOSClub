@@ -6,11 +6,12 @@ An iOS app for iOS Club members communication in Greater China.
 
 - [Yang Li](https://github.com/zjzsliyang)
 - [Zhongjin Luo](https://github.com/tjluozhongjin)
+- [Yu Qian](https://github.com/DancingLinks)
 
 ## Todo Tasks
 
 - [ ] add privilege management
-- [ ] delete news
+- [x] delete news
 - [ ] search news with content or tag
 - [ ] support multiple phone sizes
 - [ ] refactor me tab
