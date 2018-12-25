@@ -1295,7 +1295,7 @@
         <image name="activity" width="32" height="32"/>
         <image name="blog" width="32" height="32"/>
         <image name="edit" width="129" height="129"/>
-        <image name="iosclub" width="256" height="256"/>
+        <image name="iosclub" width="512" height="512"/>
         <image name="location" width="64" height="64"/>
         <image name="me" width="32" height="32"/>
         <image name="more" width="128" height="128"/>

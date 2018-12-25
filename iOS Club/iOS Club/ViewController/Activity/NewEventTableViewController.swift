@@ -9,6 +9,7 @@
 import UIKit
 
 class NewEventTableViewController: UITableViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,5 +18,13 @@ class NewEventTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 3 && indexPath.row == 1 {
+            return 88
+        } else {
+            return 44
+        }
     }
 }
