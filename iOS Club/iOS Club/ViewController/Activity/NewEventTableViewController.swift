@@ -13,9 +13,12 @@ class NewEventTableViewController: UITableViewController, CLLocationManagerDeleg
     let timePicker = UIDatePicker()
     let formatter = DateFormatter()
     let locationManager = CLLocationManager()
+    var isStartTime = true
+    
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
-    var isStartTime = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,7 @@ class NewEventTableViewController: UITableViewController, CLLocationManagerDeleg
         guard let location = manager.location else{
             return
         }
-        var currentLocationCoordinate = location.coordinate
+        let currentLocationCoordinate = location.coordinate
         print(currentLocationCoordinate)
     }
     

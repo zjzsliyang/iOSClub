@@ -34,6 +34,6 @@ target 'Student Club' do
   pod 'Alamofire', '~> 4.7'
   pod 'IQKeyboardManagerSwift'
   pod 'NotificationBannerSwift'
-  pod 'SwiftLocation', '~> 3.2.3'
+  pod 'SwiftLocation', '~> 3.3.0'
 
 end

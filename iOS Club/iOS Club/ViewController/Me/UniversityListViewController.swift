@@ -16,7 +16,6 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
     var universityLogo = [UIImage?]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(self.universityDict.count)
         return self.universityDict.count
     }
     
