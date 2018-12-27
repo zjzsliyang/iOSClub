@@ -71,3 +71,4 @@ fastlane/test_output
 backend_res
 *.entitlements
 /privite
+*.psd

@@ -1163,7 +1163,7 @@
                                 </connections>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JVc-IX-l8J" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="87" y="397" width="201" height="50"/>
+                                <rect key="frame" x="87" y="471" width="201" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="fm4-wT-d2D"/>
                                 </constraints>
@@ -1183,7 +1183,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KaV-o5-WSe" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="87" y="462" width="201" height="50"/>
+                                <rect key="frame" x="87" y="536" width="201" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bJN-ak-Sn2"/>
                                 </constraints>
@@ -1207,7 +1207,7 @@
                                 <state key="normal" title="Signup"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iosclub" translatesAutoresizingMaskIntoConstraints="NO" id="QSd-yY-gH4">
-                                <rect key="frame" x="59.666666666666657" y="116" width="255.99999999999997" height="256"/>
+                                <rect key="frame" x="22.666666666666657" y="116" width="330" height="330"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QSd-yY-gH4" secondAttribute="height" multiplier="1:1" id="svN-31-N6k"/>
                                 </constraints>
