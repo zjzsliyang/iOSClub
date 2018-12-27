@@ -22,7 +22,9 @@ class BlogViewController: UIViewController {
     }
     
     func fetchBlogs() {
-        if let url = URL(string: backendUrl + "/blog/getAll") {
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        let code = suiteDefault!.integer(forKey: "code")
+        if let url = URL(string: backendUrl + "/blog/getByCode?code=" + String(describing: code)) {
             let session = URLSession(configuration: .default)
             session.dataTask(with: url) { (data, _, err) in
                 guard err == nil else { return }

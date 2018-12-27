@@ -125,6 +125,7 @@ class LoginViewController: UIViewController {
             newsViewController.privilege = userInfo["user_privilege"]!
             let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
             suiteDefault?.set(userInfo["user_privilege"]!, forKey: "user_privilege")
+            suiteDefault?.set(userInfo["code"]!, forKey: "code")
         }
     }
 }
