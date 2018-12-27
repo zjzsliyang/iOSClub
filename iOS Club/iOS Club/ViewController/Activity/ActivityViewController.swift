@@ -17,6 +17,7 @@ class ActivityViewController: UIViewController {
     
     var events = [EKEvent]()
     var nowevents = [EKEvent]()
+    var activitiesEvents = [String: String]()
     @IBOutlet weak var activityTableView: UITableView!
     
     @IBOutlet weak var monthHeaderView: VAMonthHeaderView! {
@@ -53,6 +54,12 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        let map = suiteDefault?.object(forKey: "activities")
+        if map != nil {
+            activitiesEvents = map as! [String : String]
+        }
+        
         getEvents()
         
         let calendar = VACalendar(calendar: defaultCalendar)
@@ -65,9 +72,9 @@ class ActivityViewController: UIViewController {
         calendarView.calendarDelegate = self
         calendarView.scrollDirection = .horizontal
         
-        self.activityTableView.tableFooterView?.backgroundColor = UIColor.black
-        self.activityTableView.backgroundColor = UIColor.black
-        self.activityTableView.separatorColor = UIColor.darkGray
+        self.activityTableView.tableFooterView?.backgroundColor = .black
+        self.activityTableView.backgroundColor = .black
+        self.activityTableView.separatorColor = .darkGray
         let eventStore = EKEventStore()
         eventStore.requestAccess(to: .event) { (granted, error) in
             if granted && (error == nil) {
@@ -83,7 +90,6 @@ class ActivityViewController: UIViewController {
                 self.events = eventStore.events(matching: predicate)
                 self.nowevents = eventStore.events(matching: nowPredicate)
                 log.debug("[ACTIVITY]: " + String(describing: self.events))
-                log.debug("[ACTIVITY]: " + String(describing: self.nowevents))
                 
                 DispatchQueue.main.async {
                     for event in self.events {
@@ -132,7 +138,9 @@ class ActivityViewController: UIViewController {
     }
     
     func getEvents() {
-        Alamofire.request(backendUrl + "/events/getAll").responseString { (response) in
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        let code = suiteDefault!.integer(forKey: "code")
+        Alamofire.request(backendUrl + "/events/getEvents?code=" + String(describing: code)).responseString { (response) in
             guard (response.result.value != nil) else {
                 log.error("[ACTIVITY]: " + String(describing: response))
                 DispatchQueue.main.async {
@@ -152,13 +160,35 @@ class ActivityViewController: UIViewController {
                                 let event = EKEvent(eventStore: eventStore)
                                 event.title = eventInfo["title"].string
                                 event.location = eventInfo["location"].string
+                                
                                 let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                                event.startDate = dateFormatter.date(from: eventInfo["lastModified"].stringValue)
-                                event.endDate = dateFormatter.date(from: eventInfo["lastModified"].stringValue)
+                                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                                event.isAllDay = eventInfo["allDay"] == 1
+                                event.startDate = dateFormatter.date(from: eventInfo["startTime"].stringValue)
+                                event.endDate = dateFormatter.date(from: eventInfo["endTime"].stringValue)
+                                
+                                event.timeZone = TimeZone(identifier: TimeZone.knownTimeZoneIdentifiers.filter { $0.contains(eventInfo["timeZone"].stringValue) }.first ?? "")
+                                
+                                event.url = URL(string: eventInfo["url"].stringValue)
+                                event.notes = eventInfo["notes"].stringValue
+
                                 event.calendar = self.getCalendar(eventStore: eventStore)
+                                
                                 do {
-                                    try eventStore.save(event, span: .thisEvent)
+                                    if !self.activitiesEvents.keys.contains(String(describing: eventInfo["id"])) {
+                                        try eventStore.save(event, span: .thisEvent)
+                                        self.activitiesEvents[String(describing: eventInfo["id"])] = event.eventIdentifier
+                                        suiteDefault?.set(self.activitiesEvents, forKey: "activities")
+                                        suiteDefault?.synchronize()
+                                        DispatchQueue.main.async {
+                                            for event in self.events {
+                                                self.calendarView.setSupplementaries([
+                                                    (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
+                                                    ])
+                                            }
+                                            self.activityTableView.reloadData()
+                                        }
+                                    }
                                 } catch let error as NSError {
                                     log.error("[ACTIVITY]: failed to save event with error : \(error)")
                                 }

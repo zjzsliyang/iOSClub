@@ -555,7 +555,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CDw-nv-z0Y">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CDw-nv-z0Y">
                                                     <rect key="frame" x="310" y="5" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </switch>
@@ -624,8 +624,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beijing" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqh-pW-wSX">
-                                                    <rect key="frame" x="282" y="12" width="51" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shanghai" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqh-pW-wSX">
+                                                    <rect key="frame" x="261" y="12" width="72" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -717,7 +717,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Show As" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lhi-hm-6Xr">
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Calendar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lhi-hm-6Xr">
                                                     <rect key="frame" x="16" y="6" width="97" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
@@ -741,7 +741,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Calendar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eDd-yR-WyW">
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Show As" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eDd-yR-WyW">
                                                     <rect key="frame" x="16" y="6" width="97" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
@@ -805,10 +805,19 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="alertsLabel" destination="qj8-7J-Xn1" id="VeX-TO-Qs8"/>
+                        <outlet property="allDaySwitch" destination="CDw-nv-z0Y" id="4NS-Xz-Kgw"/>
+                        <outlet property="calendarLabel" destination="j17-Vo-UGQ" id="Gv8-1B-7KN"/>
                         <outlet property="endTimeLabel" destination="VPY-gu-Fju" id="ake-mf-hxM"/>
+                        <outlet property="inviteesLabel" destination="jSG-6f-Xnp" id="rl7-4b-Zsc"/>
                         <outlet property="locationTextField" destination="zej-43-PJE" id="iQk-Nq-E6T"/>
+                        <outlet property="notesTextField" destination="RvE-Up-Dp6" id="KwG-CL-62y"/>
+                        <outlet property="repeatLabel" destination="hCY-KS-vbe" id="obm-3f-2vU"/>
+                        <outlet property="showAsLabel" destination="bo9-zb-rDV" id="bdl-CJ-zJ0"/>
                         <outlet property="startTimeLabel" destination="4Ho-XC-zim" id="Vds-fw-OMx"/>
+                        <outlet property="timeZoneLabel" destination="cqh-pW-wSX" id="Rgw-Nh-nhV"/>
                         <outlet property="titleTextField" destination="3ce-SO-bfp" id="J58-JG-UQ4"/>
+                        <outlet property="urlTextField" destination="JSb-qb-KJR" id="r8A-ja-1wY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c5j-jA-Sfo" userLabel="First Responder" sceneMemberID="firstResponder"/>

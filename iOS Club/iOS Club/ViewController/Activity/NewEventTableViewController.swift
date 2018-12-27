@@ -17,8 +17,20 @@ class NewEventTableViewController: UITableViewController, CLLocationManagerDeleg
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
+    
+    @IBOutlet weak var allDaySwitch: UISwitch!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
+    @IBOutlet weak var timeZoneLabel: UILabel!
+    
+    @IBOutlet weak var repeatLabel: UILabel!
+    @IBOutlet weak var inviteesLabel: UILabel!
+    @IBOutlet weak var alertsLabel: UILabel!
+    @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var showAsLabel: UILabel!
+    
+    @IBOutlet weak var urlTextField: UITextField!
+    @IBOutlet weak var notesTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,16 +43,16 @@ class NewEventTableViewController: UITableViewController, CLLocationManagerDeleg
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
+//        self.locationManager.startUpdatingLocation()
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
-        guard let location = manager.location else{
-            return
-        }
-        let currentLocationCoordinate = location.coordinate
-        print(currentLocationCoordinate)
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+//        guard let location = manager.location else{
+//            return
+//        }
+//        let currentLocationCoordinate = location.coordinate
+//        print(currentLocationCoordinate)
+//    }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20

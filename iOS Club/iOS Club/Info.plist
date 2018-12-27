@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2</string>
+	<string>0.3</string>
 	<key>CFBundleVersion</key>
-	<string>11</string>
+	<string>4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -31,12 +31,12 @@
 	<string>This app may need to access your music.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>This app need to access your calendar to record club activity.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app need to access your location to create event.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app need to access your camera to post.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>This app may need to access your contacts.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app need to access your location to create event.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app may need to access your microphone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
