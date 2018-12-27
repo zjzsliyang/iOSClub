@@ -31,6 +31,8 @@
 	<string>This app may need to access your music.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>This app need to access your calendar to record club activity.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app need to access your location to create event.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app need to access your camera to post.</string>
 	<key>NSContactsUsageDescription</key>
