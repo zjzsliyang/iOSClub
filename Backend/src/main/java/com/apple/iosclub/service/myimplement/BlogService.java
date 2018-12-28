@@ -24,11 +24,22 @@ public class BlogService implements BlogInterface {
     }
 
     @Override
-    public Object insertBlog(String sharemail, String url, String time) {
+    public Object getByCode(int code) {
+
+        if (code == -1){
+            return pack(blogMapper.getAll());
+        }
+
+        return pack(blogMapper.getByCode(code));
+    }
+
+
+    @Override
+    public Object insertBlog(String sharemail, String url, String time, int code) {
 
         HashMap<String, Object> res = new HashMap<>();
 
-        blogMapper.insertBlog(sharemail, url, time);
+        blogMapper.insertBlog(sharemail, url, time, code);
 
         res.put("code", 0);
         res.put("msg", "分享成功");

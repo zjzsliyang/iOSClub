@@ -1,5 +1,8 @@
 package com.apple.iosclub.model;
 
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Select;
+
 public class NewModel {
 
 
@@ -24,7 +27,8 @@ public class NewModel {
     public String video;
     public String images;
     public String tags;
-    public int news_privilege;
+
+    public int n_privilege;
 
 
 
@@ -180,12 +184,12 @@ public class NewModel {
         this.tags = tags;
     }
 
-    public int getNews_privilege() {
-        return news_privilege;
+    public int getn_privilege() {
+        return n_privilege;
     }
 
-    public void setNews_privilege(int news_privilege) {
-        this.news_privilege = news_privilege;
+    public void setn_privilege(int news_privilege) {
+        this.n_privilege = news_privilege;
     }
 
 

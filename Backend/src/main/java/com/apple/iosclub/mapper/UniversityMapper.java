@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface UniversityMapper {
 
-    @Select("select * from university")
+    @Select("select * from university where u_code != -1;")
     @Results({
             @Result(property = "code", column = "u_code"),
             @Result(property = "name", column = "u_name"),

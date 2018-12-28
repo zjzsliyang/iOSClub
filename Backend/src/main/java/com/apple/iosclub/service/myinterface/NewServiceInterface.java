@@ -9,6 +9,7 @@ import java.util.HashMap;
 public interface NewServiceInterface {
 
     Object getNewsByPrivilege(int privilege);
+    Object getByPrivilegeAndCode(int privilege, int code);
     Object getAllNews();
     Object publish(HashMap<String, Object> req, MultipartFile[] uploadingFiles) throws IOException;
     Object deleteById(int id);
