@@ -19,9 +19,15 @@ public interface NewMapper {
     @Insert("insert into news(postemail,time,title,content,video,images,tags,n_privilege) values(#{dbNew.postemail},#{dbNew.time},#{dbNew.title},#{dbNew.content},#{dbNew.video},#{dbNew.images},#{dbNew.tags},${dbNew.news_privilege})")
     void insertNew(@Param("dbNew") DBNew dbNew);
 
-    @Select("select * from news , (user NATURAL JOIN university) where postemail = email and n_privilege <= #{privilege} order by time desc")
+    // visitor get
+    @Select("select * from news , (user NATURAL JOIN university) where (postemail = email and u_code = -1 and n_privilege <= #{privilege}) or (postemail = email and n_privilege <= #{privilege}) order by time desc")
     List<NewModel> getNewsByPrivilege(int privilege);
 
+    // teacher/president get
+    @Select("select * from news , (user NATURAL JOIN university) where (postemail = email and u_code = -1 and n_privilege <= #{privilege}) or (postemail = email and n_privilege <= #{privilege} and u_code = #{code}) order by time desc")
+    List<NewModel> getByPrivilegeAndCode(@Param("privilege") int privilege, @Param("code") int code);
+
+    // admin get
     @Select("select * from news , (user NATURAL JOIN university) where postemail = email order by time desc")
     List<NewModel> getAllNews();
 

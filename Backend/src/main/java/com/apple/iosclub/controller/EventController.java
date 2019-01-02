@@ -24,6 +24,18 @@ public class EventController {
         this.eventService = eventService;
     }
 
+    @GetMapping("/getEvents")
+    public Object getEvents(int code) {
+
+//        System.out.println(code);
+
+        if(code == -1){
+            return eventService.getAll();
+        }
+
+        return eventService.getEvents(code);
+    }
+
     @GetMapping("/getAll")
     public Object getAll() {
         return eventService.getAll();
@@ -37,18 +49,21 @@ public class EventController {
     @PostMapping("/create")
     public Object create(@RequestBody HashMap<String, Object> req) {
 
-        String title = req.get("title").toString();
-        String location = req.get("location").toString();
-        String alarms = req.get("alarms").toString();
-        String startTime = req.get("startTime").toString();
-        String endTime = req.get("endTime").toString();
-        String url = req.get("url").toString();
-        String startTimeZone = req.get("startTimeZone").toString();
-        Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String lastModified = sdf.format(d).toString();
+//        String title = req.get("title").toString();
+//        String location = req.get("location").toString();
+//
+//        int allDay = Integer.parseInt(req.get("allDay").toString());
+//        String startTime = req.get("startTime").toString();
+//        String endTime = req.get("endTime").toString();
+//        String timeZone = req.get("timeZone").toString();
+//
+//        String repeatTime = req.get("repeatTime").toString();
+//        String invitees = req.get("invitees").toString();
+//        String alerts = req.get("alerts").toString();
+//        String showAs = req.get("showAs").toString();
+//        String calendar = req.get("calendar").toString();
 
-        return eventService.createEvent(title, location, alarms, startTime, endTime, url, lastModified, startTimeZone);
+        return eventService.createEvent(req);
     }
 
     @PostMapping("/update")

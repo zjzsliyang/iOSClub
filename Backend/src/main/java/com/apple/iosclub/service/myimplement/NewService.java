@@ -7,8 +7,6 @@ import com.apple.iosclub.mapper.NewMapper;
 import com.apple.iosclub.service.myinterface.NewServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -32,6 +30,16 @@ public class NewService implements NewServiceInterface{
     public Object getNewsByPrivilege(int privilege) {
 
         List<NewModel> list = newMapper.getNewsByPrivilege(privilege);
+
+        ArrayList<HashMap<String,Object>> resultList = pack(list);
+
+        return resultList;
+    }
+
+    @Override
+    public Object getByPrivilegeAndCode(int privilege, int code) {
+
+        List<NewModel> list = newMapper.getByPrivilegeAndCode(privilege, code);
 
         ArrayList<HashMap<String,Object>> resultList = pack(list);
 
@@ -156,7 +164,7 @@ public class NewService implements NewServiceInterface{
 
 
             newsObject.put("tags", new ArrayList<>());//newModel.tags);
-            newsObject.put("news_privilege",newModel.news_privilege);
+            newsObject.put("news_privilege",newModel.n_privilege);
 
             resultList.add(newsObject);
         }

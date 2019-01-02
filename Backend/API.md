@@ -32,10 +32,6 @@ GET /club/sm/getAll
 GET /club/sm/getByCode?code=10247
 ```
 
-
-
-
-
 #### 根据权限获取新闻
 
 ```
@@ -103,19 +99,106 @@ GET /club/sm/getByCode?code=10247
 
 
 
+#### 发布新闻
+
+```
+post localhost:8080/news/publish
+```
+
+```
+{
+    "postmail": "a",
+    "title": "这是一条官方测试新闻",
+    "content": "这是一条官方测试新闻",
+    "video": 二进制,
+    "images": 二进制,
+    "tags": "[]",
+    "news_privilege": 2,
+    "user_privilege": 3
+}
+```
 
 
 
+#### 删除新闻
+
+```
+post localhost:8080/news/delete
+```
+
+```
+{
+	"id": 3,
+	"news_privilege": 1,
+	"user_privilege": 2
+}
+```
 
 
 
+#### 根据学校获取分享
+
+```
+get localhost:8080/blog/getByCode?code=29
+```
+
+#### 根据权限分享
+
+```
+post localhost:8080/blog/shareBlog
+```
+
+```
+{
+	"sharemail": "zhuhongming.tongji.edu.cn",
+	"url": "https://cn.bing.com/",
+	"user_privilege": 2,
+	"code":29
+}
+```
 
 
 
+#### 获取事件
 
+```
+get localhost:8080/events/getAll
+```
 
+```
+get /events/getEvents?code=29
+```
 
+#### 发布事件
 
+```
+post localhost:8080/events/create
+```
+
+```
+{
+    "title": "同济主席请吃饭",
+    "location": "同济大学嘉定校区",
+    
+    "allDay": 1,
+    "startTime": "2018-12-30 11:00",
+    "endTime": "2018-12-30 18:00",
+    "timeZone": "Beijing",
+    
+    "repeatTime": "每周三顿",
+    "invitees": "小金、小金、小金",
+    "alerts": ["a","b","c"],
+    "showAs": "busy",
+    "calendar": "",
+    
+    "url":"",
+    "notes":"",
+    
+    "u_code": 1,
+    "user_privilege":3,
+    "event_privilege": 1
+}
+```
 
 
 
