@@ -26,4 +26,8 @@ public interface EventMapper {
 
     @Delete("delete from event where id=#{id}")
     void deleteById(int id);
+
+    @Select("select u_code from event where id=#{id}")
+    int selectById(int id);
+
 }

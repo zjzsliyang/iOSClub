@@ -113,8 +113,8 @@ public class NewController {
             int id = Integer.parseInt(req.get("id").toString());
             int news_privilege = Integer.parseInt(req.get("news_privilege").toString());
             int user_privilege = Integer.parseInt(req.get("user_privilege").toString());
-
-            if(user_privilege >= news_privilege){
+            int code = Integer.parseInt(req.get("code").toString());
+            if(user_privilege >= news_privilege&&newService.selectById(id) == code){
                 return newService.deleteById(id);
             }else{
                 res.put("code", 2);

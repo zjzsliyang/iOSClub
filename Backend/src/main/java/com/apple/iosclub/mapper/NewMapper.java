@@ -34,4 +34,7 @@ public interface NewMapper {
 
     @Delete("delete from news where n_id=#{id}")
     void deleteById(int id);
+
+    @Select("select user.u_code from news, user where news.postemail=user.email and news.n_id=#{id}")
+    int selectById(int id);
 }

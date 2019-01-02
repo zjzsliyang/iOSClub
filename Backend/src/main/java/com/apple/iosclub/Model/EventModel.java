@@ -16,6 +16,7 @@ public class EventModel {
 
     public String repeatTime;
     public String invitees;
+    public List<String> inviteesList;
     public String alerts;
     public List<String> alertsList;
     public String showAs;

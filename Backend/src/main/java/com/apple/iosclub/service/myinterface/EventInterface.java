@@ -10,4 +10,5 @@ public interface EventInterface {
     Object createEvent(HashMap<String, Object> req);
     Object updateEvent(int id, String title, String location, String alarms, String startTime, String endTime, String url, String lastModified, String startTimeZone);
     Object deleteById(int id);
+    int selectById(int id);
 }
