@@ -61,6 +61,7 @@ class NewsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
             let news = self.newses[(self.newsTableView.indexPath(for: sender)?.row)!]
             let newsParameters: Parameters = ["id": news.id,
+                                              "code": self.code ?? -1,
                                               "news_privilege": news.news_privilege,
                                               "user_privilege": self.privilege!]
             Alamofire.request(backendUrl + "/news/delete", method: .post, parameters: newsParameters, encoding: JSONEncoding.default).responseString(completionHandler: { (response) in

@@ -57,7 +57,7 @@ class UniversityDetailViewController: UIViewController {
             
             if let data = response.result.value {
                 let json = JSON(data)[0]
-                
+                log.error(json)
                 self.studentName.text = json["name"].rawString()
                 self.studentRole.text = json["position"].rawString()
                 self.studentEmail.text = json["email"].rawString()

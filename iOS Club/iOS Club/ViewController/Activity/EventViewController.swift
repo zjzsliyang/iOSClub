@@ -73,7 +73,7 @@ class EventViewController: UIViewController {
         ]
         Alamofire.request(backendUrl + "/events/create", method: .post, parameters: eventParameters, encoding: JSONEncoding.default).responseString { (response) in
             guard (response.result.value != nil) else {
-                log.error("[NEWS]: " + String(describing: response))
+                log.error("[ACTIVITY]: " + String(describing: response))
                 DispatchQueue.main.async {
                     let banner = NotificationBanner(title: "Add Event Fail", subtitle: "Fatal Server Error", style: .danger)
                     banner.show()
@@ -93,7 +93,7 @@ class EventViewController: UIViewController {
                     banner.show()
                 }
             } catch let error as NSError {
-                log.error("[NEWS]: " + String(describing: error))
+                log.error("[ACTIVITY]: " + String(describing: error))
             }
             self.dismiss(animated: true, completion: nil)
         }

@@ -55,7 +55,7 @@ class ActivityViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateActivity()
+        getEvents()
     }
     
     override func viewDidLoad() {
@@ -190,8 +190,9 @@ class ActivityViewController: UIViewController {
                             let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
                             if responseJson["code"] == 0 {
                                 self.nowevents.remove(at: indexPath.item)
-                                self.updateActivity()
-                                let banner = NotificationBanner(title: "Delete Success", subtitle: "delete post titled " + event.title, style: .success)
+                                self.getEvents()
+                                self.activityTableView.reloadData()
+                                let banner = NotificationBanner(title: "Delete Success", subtitle: "delete event titled " + event.title, style: .success)
                                 banner.show()
                             }
                         } catch let error as NSError {
