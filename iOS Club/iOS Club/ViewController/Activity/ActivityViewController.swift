@@ -17,6 +17,7 @@ class ActivityViewController: UIViewController {
     
     var events = [EKEvent]()
     var nowevents = [EKEvent]()
+    var nowids = [Int]()
     var activitiesEvents = [String: String]()
     @IBOutlet weak var activityTableView: UITableView!
     
@@ -54,7 +55,7 @@ class ActivityViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getEvents()
+        updateActivity()
     }
     
     override func viewDidLoad() {
@@ -80,32 +81,8 @@ class ActivityViewController: UIViewController {
         self.activityTableView.tableFooterView?.backgroundColor = .black
         self.activityTableView.backgroundColor = .black
         self.activityTableView.separatorColor = .darkGray
-        let eventStore = EKEventStore()
-        eventStore.requestAccess(to: .event) { (granted, error) in
-            if granted && (error == nil) {
-                let iOSCalendar = self.getCalendar(eventStore: eventStore)
-
-                let oneMonthAgo = NSDate(timeIntervalSinceNow: -31*24*3600)
-                let nowTime = NSDate(timeIntervalSinceNow: 0)
-                let oneMonthAfter = NSDate(timeIntervalSinceNow: +31*24*3600)
-                
-                let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
-                let nowPredicate = eventStore.predicateForEvents(withStart: nowTime as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
-
-                self.events = eventStore.events(matching: predicate)
-                self.nowevents = eventStore.events(matching: nowPredicate)
-                log.debug("[ACTIVITY]: " + String(describing: self.events))
-                
-                DispatchQueue.main.async {
-                    for event in self.events {
-                        self.calendarView.setSupplementaries([
-                            (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
-                            ])
-                    }
-                    self.activityTableView.reloadData()
-                }
-            }
-        }
+        
+        updateActivity()
         view.addSubview(calendarView)
     }
     
@@ -140,6 +117,91 @@ class ActivityViewController: UIViewController {
             }
         }
         return iOSCalendar
+    }
+    
+    func updateActivity() {
+        let eventStore = EKEventStore()
+        eventStore.requestAccess(to: .event) { (granted, error) in
+            if granted && (error == nil) {
+                let iOSCalendar = self.getCalendar(eventStore: eventStore)
+                
+                let oneMonthAgo = NSDate(timeIntervalSinceNow: -31*24*3600)
+                let nowTime = NSDate(timeIntervalSinceNow: 0)
+                let oneMonthAfter = NSDate(timeIntervalSinceNow: +31*24*3600)
+                
+                let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
+                let nowPredicate = eventStore.predicateForEvents(withStart: nowTime as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
+                
+                self.events = eventStore.events(matching: predicate)
+                self.nowevents = eventStore.events(matching: nowPredicate)
+                log.debug("[ACTIVITY]: " + String(describing: self.events))
+                
+                DispatchQueue.main.async {
+                    for event in self.events {
+                        self.calendarView.setSupplementaries([
+                            (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
+                            ])
+                    }
+                    self.activityTableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func deleteEvent(indexPath: IndexPath) {
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        let code = suiteDefault!.integer(forKey: "code")
+        let userPrivilege = suiteDefault!.integer(forKey: "user_privilege")
+        
+        let eventStore = EKEventStore()
+        eventStore.requestAccess(to: .event) { (granted, error) in
+            if granted && (error == nil) {
+                let iOSCalendar = self.getCalendar(eventStore: eventStore)
+                
+                let oneMonthAgo = NSDate(timeIntervalSinceNow: -31*24*3600)
+                let nowTime = NSDate(timeIntervalSinceNow: 0)
+                let oneMonthAfter = NSDate(timeIntervalSinceNow: +31*24*3600)
+                
+                let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
+                let nowPredicate = eventStore.predicateForEvents(withStart: nowTime as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
+                
+                self.events = eventStore.events(matching: predicate)
+                self.nowevents = eventStore.events(matching: nowPredicate)
+                
+                let event = self.nowevents[indexPath.item]
+                let ids = ((self.activitiesEvents as NSDictionary).allKeys(for: event.eventIdentifier) as! [String])
+                if ids.count > 0 {
+                    let eventParameters: Parameters = ["id": ids[0],
+                                                       "code": code,
+                                                       "event_privilege": 1,
+                                                       "user_privilege": userPrivilege]
+                    Alamofire.request(backendUrl + "/events/delete", method: .post, parameters: eventParameters, encoding: JSONEncoding.default).responseString { (response) in
+                        
+                        guard (response.result.value != nil) else {
+                            log.error("[ACTIVITY]: " + String(describing: response))
+                            DispatchQueue.main.async {
+                                let banner = NotificationBanner(title: "Delete Fail", subtitle: "Fatal Server Error", style: .danger)
+                                banner.show()
+                            }
+                            return
+                        }
+                        let responseData = response.result.value!
+                        do {
+                            let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
+                            if responseJson["code"] == 0 {
+                                self.nowevents.remove(at: indexPath.item)
+                                self.updateActivity()
+                                let banner = NotificationBanner(title: "Delete Success", subtitle: "delete post titled " + event.title, style: .success)
+                                banner.show()
+                            }
+                        } catch let error as NSError {
+                            log.error("[ACTIVITY]: " + String(describing: error))
+                        }
+                    }
+                }
+                
+            }
+        }
     }
     
     func getEvents() {
@@ -181,11 +243,9 @@ class ActivityViewController: UIViewController {
                                 
                                 do {
                                     if !self.activitiesEvents.keys.contains(String(describing: eventInfo["id"])) {
-                                        try eventStore.save(event, span: .thisEvent)
+                                        try eventStore.save(event, span: .thisEvent, commit: true)
                                         self.activitiesEvents[String(describing: eventInfo["id"])] = event.eventIdentifier
-                                        self.events.append(event)
-                                        // BUGS:
-                                        self.nowevents.append(event)
+                                        self.updateActivity()
                                         suiteDefault?.set(self.activitiesEvents, forKey: "activities")
                                         suiteDefault?.synchronize()
                                         DispatchQueue.main.async {
@@ -332,5 +392,15 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        TODO:
         tableView.cellForRow(at: indexPath)?.isSelected = false
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteEvent(indexPath: indexPath)
+        }
     }
 }
