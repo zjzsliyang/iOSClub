@@ -19,40 +19,52 @@ UINavigationControllerDelegate {
     @IBOutlet weak var personalDescription: UITextView!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        let email = suiteDefault!.value(forKey: "email") as! String
         
-        avatarView.layer.masksToBounds = true
-        avatarView.layer.cornerRadius = avatarView.frame.width / 2
-        avatarView.isUserInteractionEnabled = true
-        
-        Alamofire.request(backendUrl + "/user/getInfoByEmail?email=" + email).responseJSON { response in
+        if let email = suiteDefault!.value(forKey: "email") {
+            avatarView.layer.masksToBounds = true
+            avatarView.layer.cornerRadius = avatarView.frame.width / 2
+            avatarView.isUserInteractionEnabled = true
             
-            if let data = response.result.value {
-                let json = JSON(data)
-                self.nameLabel.text = json["username"].rawString()
-                self.positionLabel.text = json["position"].rawString()
-                self.emailLabel.text = json["email"].rawString()
-                self.descriptionView.text = json["description"].rawString()
+            Alamofire.request(backendUrl + "/user/getInfoByEmail?email=" + String(describing: email)).responseJSON { response in
                 
-                let url = URL(string: json["avatar"].rawString()!)
-                URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                    guard error == nil else {
-                        log.error("[ME]: " + String(describing: error))
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        if let image = UIImage(data: data!) {
-                            self.avatarView.image = image
+                if let data = response.result.value {
+                    let json = JSON(data)
+                    self.nameLabel.text = json["username"].rawString()
+                    self.positionLabel.text = json["position"].rawString()
+                    self.emailLabel.text = json["email"].rawString()
+                    self.descriptionView.text = json["description"].rawString()
+                    
+                    let url = URL(string: json["avatar"].rawString()!)
+                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                        guard error == nil else {
+                            log.error("[ME]: " + String(describing: error))
+                            return
                         }
-                    }
-                }).resume()
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data!) {
+                                self.avatarView.image = image
+                            }
+                        }
+                    }).resume()
+                }
             }
+        } else {
+            presentGuestView()
+            logoutButton.title = "Login"
         }
+    }
+    
+    func presentGuestView() {
+        let webView = UIWebView(frame: view.frame)
+        let url: URL! = URL(string: backendUrl.dropLast(3) + "/files/iOS_Club_Playbook.pdf")
+        webView.loadRequest(URLRequest(url: url))
+        view.addSubview(webView)
     }
     
     @IBAction func choose(_ sender: Any) {
@@ -94,5 +106,3 @@ UINavigationControllerDelegate {
     }
     
 }
-
-

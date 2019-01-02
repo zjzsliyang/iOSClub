@@ -929,6 +929,7 @@
                         <outlet property="avatarView" destination="I8h-wF-k3A" id="ocs-M7-zEN"/>
                         <outlet property="descriptionView" destination="kGR-fC-b8O" id="KSc-PK-MOQ"/>
                         <outlet property="emailLabel" destination="pOJ-bw-wmN" id="nqb-Al-LxM"/>
+                        <outlet property="logoutButton" destination="8cp-JC-hdk" id="Db7-Gc-AUg"/>
                         <outlet property="nameLabel" destination="sMo-uP-C9u" id="kbt-Re-P9U"/>
                         <outlet property="positionLabel" destination="oPG-sc-len" id="eJi-tR-bYF"/>
                     </connections>

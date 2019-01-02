@@ -109,9 +109,9 @@ class EventViewController: UIViewController {
     
     func getFormattedDate(date: String) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEE, MMM d, YYYY, HH:mm"
+        formatter.dateFormat = "EEE, MMM d, yyyy, HH:mm"
         let formattedDate = formatter.date(from: date)
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.dateFormat = "yyyy-MM-d HH:mm"
         return formatter.string(from: formattedDate!)
     }
 }
