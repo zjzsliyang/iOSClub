@@ -128,9 +128,10 @@ post localhost:8080/news/delete
 
 ```
 {
-	"id": 3,
-	"news_privilege": 1,
-	"user_privilege": 2
+	"id": 41,
+	"news_privilege": 0,
+	"user_privilege": 3,
+	"code": -1
 }
 ```
 
@@ -169,6 +170,47 @@ get localhost:8080/events/getAll
 get /events/getEvents?code=29
 ```
 
+```
+//response
+{
+    "msg": "成功",
+    "code": 0,
+    "data": [
+        {
+            "id": 28,
+            "title": "同济主席请吃饭",
+            "location": "同济大学嘉定校区",
+            "allDay": 1,
+            "startTime": "2018-12-30 11:00",
+            "endTime": "2018-12-30 18:00",
+            "timeZone": "Beijing",
+            "repeatTime": "每周三顿",
+            "invitees": "[小金,小金,小金]",
+            "inviteesList": [
+                "小金",
+                "小金",
+                "小金"
+            ],
+            "alerts": "[a,b,c]",
+            "alertsList": [
+                "a",
+                "b",
+                "c"
+            ],
+            "showAs": "busy",
+            "calendar": "",
+            "url": "",
+            "notes": "",
+            "u_code": 1,
+            "event_privilege": 1,
+            "user_privilege": 3
+        }
+    ]
+}
+```
+
+
+
 #### 发布事件
 
 ```
@@ -186,7 +228,7 @@ post localhost:8080/events/create
     "timeZone": "Beijing",
     
     "repeatTime": "每周三顿",
-    "invitees": "小金、小金、小金",
+    "invitees": ["小金", "小金", "小金"],
     "alerts": ["a","b","c"],
     "showAs": "busy",
     "calendar": "",
@@ -200,9 +242,20 @@ post localhost:8080/events/create
 }
 ```
 
+#### 删除事件
 
+```
+post /events/delete
+```
 
-
+```
+{
+	"id": 38,
+	"event_privilege": 1,
+	"user_privilege": 2,
+	"code": -1
+}
+```
 
 
 

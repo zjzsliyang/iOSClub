@@ -112,6 +112,11 @@ public class NewService implements NewServiceInterface{
         return res;
     }
 
+    @Override
+    public int selectById(int id) {
+        return newMapper.selectById(id);
+    }
+
 
     public static ArrayList<HashMap<String, Object>> pack(List<NewModel> list){
 

@@ -87,7 +87,23 @@ public class EventController {
 
     @PostMapping("/delete")
     public Object delete(@RequestBody HashMap<String, Object> req) {
-        int id = Integer.parseInt(req.get("id").toString());
-        return eventService.deleteById(id);
+        HashMap<String, Object> res = new HashMap<>();
+        try {
+            int id = Integer.parseInt(req.get("id").toString());
+            int event_privilege = Integer.parseInt(req.get("event_privilege").toString());
+            int user_privilege = Integer.parseInt(req.get("user_privilege").toString());
+            int code = Integer.parseInt(req.get("code").toString());
+            if(user_privilege >= event_privilege && eventService.selectById(id) == code){
+                return eventService.deleteById(id);
+            }
+            else{
+                res.put("code", 2);
+                res.put("msg", "权限不足");
+            }
+        }catch (Exception e){
+            res.put("code", 1);
+            res.put("msg", e);
+        }
+        return res;
     }
 }

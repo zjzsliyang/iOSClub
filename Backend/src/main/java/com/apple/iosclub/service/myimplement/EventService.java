@@ -27,6 +27,7 @@ public class EventService implements EventInterface{
             res.put("data", data);
             for(EventModel eventModel : data){
                 eventModel.alertsList = Arrays.asList(eventModel.alerts.substring(1,eventModel.alerts.length()-1).split(","));
+                eventModel.inviteesList = Arrays.asList(eventModel.invitees.substring(1,eventModel.invitees.length()-1).split(","));
             }
         } catch (Exception e) {
             res.put("code", 1);
@@ -45,6 +46,7 @@ public class EventService implements EventInterface{
             res.put("data", data);
             for(EventModel eventModel : data){
                 eventModel.alertsList = Arrays.asList(eventModel.alerts.substring(1,eventModel.alerts.length()-1).split(","));
+                eventModel.inviteesList = Arrays.asList(eventModel.invitees.substring(1,eventModel.invitees.length()-1).split(","));
             }
         } catch (Exception e) {
             res.put("code", 1);
@@ -97,8 +99,8 @@ public class EventService implements EventInterface{
             String timeZone = req.get("timeZone").toString();
 
             String repeatTime = req.get("repeatTime").toString();
-            String invitees = req.get("invitees").toString();
-            String alerts = req.get("alerts").toString();
+            String invitees = req.get("invitees").toString().replaceAll(" ", "");
+            String alerts = req.get("alerts").toString().replaceAll(" ", "");
             String showAs = req.get("showAs").toString();
             String calendar = req.get("calendar").toString();
 
@@ -176,4 +178,10 @@ public class EventService implements EventInterface{
         }
         return res;
     }
+
+    @Override
+    public int selectById(int id){
+        return eventMapper.selectById(id);
+    }
+
 }
