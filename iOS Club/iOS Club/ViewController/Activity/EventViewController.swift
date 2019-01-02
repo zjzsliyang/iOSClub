@@ -40,7 +40,7 @@ class EventViewController: UIViewController {
         let timeZone = newEventTableViewController?.timeZoneLabel.text
         
         let repeatTime = newEventTableViewController?.repeatLabel.text
-        let invitees = newEventTableViewController?.inviteesLabel.text
+        let invitees = [newEventTableViewController?.inviteesLabel.text!]
         let alerts = [newEventTableViewController!.alertsLabel!.text!]
         
         let calendar = newEventTableViewController?.calendarLabel.text
@@ -59,7 +59,7 @@ class EventViewController: UIViewController {
             "timeZone": timeZone ?? "",
             
             "repeatTime": repeatTime ?? "",
-            "invitees": invitees ?? "",
+            "invitees": invitees,
             "alerts": alerts,
             "calendar": calendar ?? "iOS Club",
             "showAs": showAs ?? "",

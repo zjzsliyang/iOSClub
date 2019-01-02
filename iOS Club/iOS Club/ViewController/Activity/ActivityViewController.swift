@@ -52,6 +52,11 @@ class ActivityViewController: UIViewController {
     
     var calendarView: VACalendarView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getEvents()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
@@ -162,7 +167,7 @@ class ActivityViewController: UIViewController {
                                 event.location = eventInfo["location"].string
                                 
                                 let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                                dateFormatter.dateFormat = "yyyy-MM-d HH:mm"
                                 event.isAllDay = eventInfo["allDay"] == 1
                                 event.startDate = dateFormatter.date(from: eventInfo["startTime"].stringValue)
                                 event.endDate = dateFormatter.date(from: eventInfo["endTime"].stringValue)
@@ -178,6 +183,9 @@ class ActivityViewController: UIViewController {
                                     if !self.activitiesEvents.keys.contains(String(describing: eventInfo["id"])) {
                                         try eventStore.save(event, span: .thisEvent)
                                         self.activitiesEvents[String(describing: eventInfo["id"])] = event.eventIdentifier
+                                        self.events.append(event)
+                                        // BUGS:
+                                        self.nowevents.append(event)
                                         suiteDefault?.set(self.activitiesEvents, forKey: "activities")
                                         suiteDefault?.synchronize()
                                         DispatchQueue.main.async {
@@ -185,6 +193,7 @@ class ActivityViewController: UIViewController {
                                                 self.calendarView.setSupplementaries([
                                                     (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
                                                     ])
+                                                log.debug(event)
                                             }
                                             self.activityTableView.reloadData()
                                         }
@@ -322,6 +331,6 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        TODO:
-        
+        tableView.cellForRow(at: indexPath)?.isSelected = false
     }
 }
