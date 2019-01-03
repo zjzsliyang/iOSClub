@@ -30,6 +30,16 @@ public class TeacherService implements TeacherInterface {
 
         List<TeacherModel> list = teacherMapper.getByCode(code);
 
+
+        // 暂时默认每个学校都有老师，若没有，则置空
+        if(list.size() == 0){
+            TeacherModel teacherModel = new TeacherModel();
+            teacherModel.code = code;
+            teacherModel.name = "俱乐部老师";
+            teacherModel.avatar = "/files/high_level/avatar.png";
+            list.add(teacherModel);
+        }
+
         for(TeacherModel teacherModel : list){
             teacherModel.avatar = Common.backendUrl + teacherModel.avatar;
         }

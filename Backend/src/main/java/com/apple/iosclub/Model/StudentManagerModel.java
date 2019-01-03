@@ -10,6 +10,16 @@ public class StudentManagerModel {
     public String department;
     public String avatar;
 
+    public StudentManagerModel() {
+        this.id = -1;
+        this.code = -2;
+        this.name = "";
+        this.position = "";
+        this.email = "";
+        this.department = "";
+        this.avatar = "";
+    }
+
     public String getDepartment() {
         return department;
     }

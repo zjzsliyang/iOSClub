@@ -19,6 +19,16 @@ public class StudentManagerService implements StudentManagerInterface {
 
         List<StudentManagerModel> list = studentManagerMapper.getByCode(code);
 
+        // 暂时默认每个学校都有主席
+        if (list.size() == 0){
+            StudentManagerModel studentManagerModel = new StudentManagerModel();
+            studentManagerModel.code = code;
+            studentManagerModel.name = "俱乐部主席";
+            studentManagerModel.avatar = "/files/high_level/avatar.png";
+            list.add(studentManagerModel);
+        }
+
+
         for(StudentManagerModel studentManagerModel : list){
             studentManagerModel.avatar = Common.backendUrl + studentManagerModel.avatar;
         }
