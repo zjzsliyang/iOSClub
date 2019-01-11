@@ -281,11 +281,8 @@ class ActivityViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showevent") {
-            
-//            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! QuestionnaireController
-//            let row = (sender as! NSIndexPath).row; //we know that sender is an NSIndexPath here.
-//            let patientQuestionnaire = patientQuestionnaires[row] as! PatientQuestionnaire
-//            controller.selectedQuestionnaire = patientQuestionnaire
+            let viewcontroller = segue.destination as! EventDetailViewController
+            viewcontroller.event = events[(sender as! IndexPath).item]
         }
     }
 }

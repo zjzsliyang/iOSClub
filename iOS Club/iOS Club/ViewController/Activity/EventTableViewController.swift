@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 import CoreLocation
 
 class EventTableViewController: UITableViewController, CLLocationManagerDelegate {
@@ -15,6 +16,7 @@ class EventTableViewController: UITableViewController, CLLocationManagerDelegate
     let locationManager = CLLocationManager()
     var isStartTime = true
     var isNew = true
+    var currentEvent: EKEvent?
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
@@ -35,6 +37,7 @@ class EventTableViewController: UITableViewController, CLLocationManagerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadCurrentEvent(isNew: isNew, currentEvent: currentEvent)
         
         let currentTime = Date()
         formatter.dateFormat = "EEE, MMM d, YYYY, HH:mm"
@@ -99,5 +102,22 @@ class EventTableViewController: UITableViewController, CLLocationManagerDelegate
             endTimeLabel.text = formatter.string(from: sender.date)
         }
         timePicker.removeFromSuperview()
+    }
+    
+    func loadCurrentEvent(isNew: Bool, currentEvent: EKEvent?) {
+        guard (!isNew) && (currentEvent != nil) else {
+            return
+        }
+        titleTextField.text = currentEvent?.title
+        locationTextField.text = currentEvent?.location
+        
+        allDaySwitch.isOn = currentEvent?.isAllDay ?? false
+        formatter.dateFormat = "EEE, MMM d, YYYY, HH:mm"
+        startTimeLabel.text = formatter.string(from: (currentEvent?.startDate)!)
+        endTimeLabel.text = formatter.string(from: (currentEvent?.endDate)!)
+        timeZoneLabel.text = String(String(describing: currentEvent?.timeZone).split(separator: "/").last!)
+        
+        urlTextField.text = String(describing: currentEvent?.url)
+        notesTextField.text = currentEvent?.notes
     }
 }

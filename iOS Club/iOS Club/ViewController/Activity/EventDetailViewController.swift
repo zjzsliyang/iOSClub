@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import EventKit
 
 class EventDetailViewController: UIViewController {
     var eventDetailTableViewController: EventTableViewController?
+    var event: EKEvent?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,7 @@ class EventDetailViewController: UIViewController {
         if segue.identifier == "eventdetail" {
             let viewcontroller = segue.destination as! EventTableViewController
             viewcontroller.isNew = false
+            viewcontroller.currentEvent = event
         }
     }
 }
