@@ -66,12 +66,12 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
                             banner.show()
                         }
                     } catch let error as NSError {
-                        log.error("[POST]: upload post return error: " + String(describing: error))
+                        log.error(error)
                     }
                 })
                 
             case .failure(let encodingError):
-                log.error("[POST]: upload post encoding error: " + String(describing: encodingError))
+                log.error("upload post encoding error: " + String(describing: encodingError))
             }
         }
     }

@@ -132,7 +132,7 @@ class ActivityViewController: UIViewController {
                 let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
                 
                 self.events = eventStore.events(matching: predicate)
-                log.debug("[ACTIVITY]: " + String(describing: self.events))
+                log.debug(self.events)
                 
                 DispatchQueue.main.async {
                     for event in self.events {
@@ -171,7 +171,7 @@ class ActivityViewController: UIViewController {
                     Alamofire.request(backendUrl + "/events/delete", method: .post, parameters: eventParameters, encoding: JSONEncoding.default).responseString { (response) in
                         
                         guard (response.result.value != nil) else {
-                            log.error("[ACTIVITY]: " + String(describing: response))
+                            log.error(response)
                             DispatchQueue.main.async {
                                 let banner = NotificationBanner(title: "Delete Fail", subtitle: "Fatal Server Error", style: .danger)
                                 banner.show()
@@ -189,7 +189,7 @@ class ActivityViewController: UIViewController {
                                 banner.show()
                             }
                         } catch let error as NSError {
-                            log.error("[ACTIVITY]: " + String(describing: error))
+                            log.error(error)
                         }
                     }
                 }
@@ -203,7 +203,7 @@ class ActivityViewController: UIViewController {
         let code = suiteDefault!.integer(forKey: "code")
         Alamofire.request(backendUrl + "/events/getEvents?code=" + String(describing: code)).responseString { (response) in
             guard (response.result.value != nil) else {
-                log.error("[ACTIVITY]: " + String(describing: response))
+                log.error(response)
                 DispatchQueue.main.async {
                     let banner = NotificationBanner(title: "Get Events Fail", subtitle: "Fatal Server Error", style: .danger)
                     banner.show()
@@ -253,14 +253,14 @@ class ActivityViewController: UIViewController {
                                         }
                                     }
                                 } catch let error as NSError {
-                                    log.error("[ACTIVITY]: failed to save event with error : \(error)")
+                                    log.error(error)
                                 }
                             }
                         })
                     }
                 }
             } catch let error as NSError {
-                log.error("[ACTIVITY]: " + String(describing: error))
+                log.error(error)
             }
         }
     }
@@ -369,7 +369,7 @@ extension ActivityViewController: VACalendarViewDelegate {
     
     func selectedDates(_ dates: [Date]) {
         calendarView.startDate = dates.last ?? Date()
-        log.debug("[ACTIVITY]: " + String(describing: dates))
+        log.debug(dates)
     }
     
 }
