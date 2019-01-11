@@ -16,7 +16,6 @@ import NotificationBannerSwift
 class ActivityViewController: UIViewController {
     
     var events = [EKEvent]()
-    var nowevents = [EKEvent]()
     var nowids = [Int]()
     var activitiesEvents = [String: String]()
     @IBOutlet weak var activityTableView: UITableView!
@@ -126,14 +125,11 @@ class ActivityViewController: UIViewController {
                 let iOSCalendar = self.getCalendar(eventStore: eventStore)
                 
                 let oneMonthAgo = NSDate(timeIntervalSinceNow: -31*24*3600)
-                let nowTime = NSDate(timeIntervalSinceNow: 0)
                 let oneMonthAfter = NSDate(timeIntervalSinceNow: +31*24*3600)
                 
                 let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
-                let nowPredicate = eventStore.predicateForEvents(withStart: nowTime as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
                 
                 self.events = eventStore.events(matching: predicate)
-                self.nowevents = eventStore.events(matching: nowPredicate)
                 log.debug("[ACTIVITY]: " + String(describing: self.events))
                 
                 DispatchQueue.main.async {
@@ -159,16 +155,11 @@ class ActivityViewController: UIViewController {
                 let iOSCalendar = self.getCalendar(eventStore: eventStore)
                 
                 let oneMonthAgo = NSDate(timeIntervalSinceNow: -31*24*3600)
-                let nowTime = NSDate(timeIntervalSinceNow: 0)
                 let oneMonthAfter = NSDate(timeIntervalSinceNow: +31*24*3600)
-                
                 let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
-                let nowPredicate = eventStore.predicateForEvents(withStart: nowTime as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
-                
                 self.events = eventStore.events(matching: predicate)
-                self.nowevents = eventStore.events(matching: nowPredicate)
                 
-                let event = self.nowevents[indexPath.item]
+                let event = self.events[indexPath.item]
                 let ids = ((self.activitiesEvents as NSDictionary).allKeys(for: event.eventIdentifier) as! [String])
                 if ids.count > 0 {
                     let eventParameters: Parameters = ["id": ids[0],
@@ -189,7 +180,7 @@ class ActivityViewController: UIViewController {
                         do {
                             let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
                             if responseJson["code"] == 0 {
-                                self.nowevents.remove(at: indexPath.item)
+                                self.events.remove(at: indexPath.item)
                                 self.getEvents()
                                 self.activityTableView.reloadData()
                                 let banner = NotificationBanner(title: "Delete Success", subtitle: "delete event titled " + event.title, style: .success)
@@ -376,12 +367,12 @@ extension ActivityViewController: VACalendarViewDelegate {
 
 extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nowevents.count
+        return events.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activity") as! ActivityCell
-        let event = nowevents[indexPath.row]
+        let event = events[indexPath.row]
         cell.setActivity(title: event.title, location: event.location, time: event.startDate)
         return cell
     }
