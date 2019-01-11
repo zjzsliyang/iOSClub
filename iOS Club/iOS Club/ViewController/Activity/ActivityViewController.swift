@@ -54,11 +54,13 @@ class ActivityViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
         getEvents()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
         let map = suiteDefault?.object(forKey: "activities")
         if map != nil {
@@ -276,6 +278,16 @@ class ActivityViewController: UIViewController {
             calendarView.setup()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showevent") {
+            
+//            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! QuestionnaireController
+//            let row = (sender as! NSIndexPath).row; //we know that sender is an NSIndexPath here.
+//            let patientQuestionnaire = patientQuestionnaires[row] as! PatientQuestionnaire
+//            controller.selectedQuestionnaire = patientQuestionnaire
+        }
+    }
 }
 
 extension ActivityViewController: VAMonthHeaderViewDelegate {
@@ -382,8 +394,8 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        TODO:
         tableView.cellForRow(at: indexPath)?.isSelected = false
+        self.performSegue(withIdentifier: "showevent", sender: indexPath)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

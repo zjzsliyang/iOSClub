@@ -362,7 +362,7 @@
             </objects>
             <point key="canvasLocation" x="-1050.4000000000001" y="1090.6403940886701"/>
         </scene>
-        <!--Activity-->
+        <!--Activity View Controller-->
         <scene sceneID="Qgs-fX-SIE">
             <objects>
                 <viewController id="F5v-co-rvG" customClass="ActivityViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
@@ -433,22 +433,23 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fqo-8U-zm0"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Activity" image="activity" id="pCf-zS-alQ"/>
+                    <navigationItem key="navigationItem" id="Abk-Yx-0zP"/>
                     <connections>
                         <outlet property="activityTableView" destination="nhg-0j-KHe" id="ITy-W5-6bj"/>
                         <outlet property="monthHeaderView" destination="mcK-Uv-RjA" id="AfN-mO-IDO"/>
                         <outlet property="weekDaysView" destination="xYV-NQ-v99" id="xiQ-5h-uGw"/>
                         <segue destination="bNO-Or-Afe" kind="presentation" identifier="addevent" id="sBK-4r-CaO"/>
+                        <segue destination="DHF-wH-7dt" kind="show" identifier="showevent" id="Uze-tm-e2g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yGN-sB-IBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="725.60000000000002" y="370.93596059113304"/>
+            <point key="canvasLocation" x="1668" y="370.93596059113304"/>
         </scene>
-        <!--Event View Controller-->
+        <!--New Event View Controller-->
         <scene sceneID="KSz-h1-Pr9">
             <objects>
-                <viewController id="bNO-Or-Afe" customClass="EventViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bNO-Or-Afe" customClass="NewEventViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lgj-bp-mut">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -485,12 +486,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nqP-t1-Z2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="726" y="1100"/>
+            <point key="canvasLocation" x="892" y="1100"/>
         </scene>
-        <!--New Event Table View Controller-->
+        <!--Event Detail View Controller-->
+        <scene sceneID="a0r-Pz-k9Y">
+            <objects>
+                <viewController id="DHF-wH-7dt" customClass="EventDetailViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OGI-7C-W1a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcT-7w-9yk">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="x7q-TS-2K7" kind="embed" identifier="eventdetail" id="TmN-Hu-UTc"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="nHW-Ce-U2v"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="91m-N4-bNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1976.8" y="1099.5073891625616"/>
+        </scene>
+        <!--Event Table View Controller-->
         <scene sceneID="fPz-CZ-XcR">
             <objects>
-                <tableViewController id="x7q-TS-2K7" customClass="NewEventTableViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="x7q-TS-2K7" customClass="EventTableViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="AQf-g1-ifb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -822,7 +847,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c5j-jA-Sfo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="725.60000000000002" y="1776.3546798029558"/>
+            <point key="canvasLocation" x="1375" y="1810"/>
         </scene>
         <!--Me View Controller-->
         <scene sceneID="OZW-bb-B9H">
@@ -936,7 +961,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRY-sn-qVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2718" y="371"/>
+            <point key="canvasLocation" x="3660" y="370.93596059113304"/>
         </scene>
         <!--University List View Controller-->
         <scene sceneID="vDJ-c1-eum">
@@ -988,7 +1013,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NdW-Bm-QGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2717.5999999999999" y="1099.5073891625616"/>
+            <point key="canvasLocation" x="3660" y="1100"/>
         </scene>
         <!--University Detail View Controller-->
         <scene sceneID="9AZ-bL-X7e">
@@ -1092,7 +1117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ZL-93-HfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2717.5999999999999" y="1809.6059113300494"/>
+            <point key="canvasLocation" x="3660" y="1822"/>
         </scene>
         <!--Blog-->
         <scene sceneID="Lae-1w-qjV">
@@ -1180,7 +1205,7 @@
                     <connections>
                         <segue destination="PqX-Wm-EmG" kind="relationship" relationship="viewControllers" id="lML-wu-hSL"/>
                         <segue destination="2lN-lv-SSr" kind="relationship" relationship="viewControllers" id="rd0-rc-RdO"/>
-                        <segue destination="F5v-co-rvG" kind="relationship" relationship="viewControllers" id="G7w-I9-3y5"/>
+                        <segue destination="i3w-Ox-nRJ" kind="relationship" relationship="viewControllers" id="G7w-I9-3y5"/>
                         <segue destination="Am4-qN-Tw2" kind="relationship" relationship="viewControllers" id="vvb-MM-OeW"/>
                     </connections>
                 </tabBarController>
@@ -1362,7 +1387,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAn-EM-fFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1777" y="371"/>
+            <point key="canvasLocation" x="2719.1999999999998" y="370.93596059113304"/>
         </scene>
         <!--News-->
         <scene sceneID="MIA-w7-4oB">
@@ -1383,6 +1408,25 @@
             </objects>
             <point key="canvasLocation" x="-2023" y="371"/>
         </scene>
+        <!--Activity-->
+        <scene sceneID="9Qc-Os-Y0Z">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="i3w-Ox-nRJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Activity" image="activity" id="pCf-zS-alQ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qhY-xz-Uui">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="F5v-co-rvG" kind="relationship" relationship="rootViewController" id="gNf-1i-WTs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gQy-wD-a3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725.60000000000002" y="370.93596059113304"/>
+        </scene>
     </scenes>
     <resources>
         <image name="activity" width="32" height="32"/>
@@ -1394,4 +1438,7 @@
         <image name="more" width="128" height="128"/>
         <image name="news" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="TmN-Hu-UTc"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -1,5 +1,5 @@
 //
-//  EventViewController.swift
+//  NewEventViewController.swift
 //  Student Club
 //
 //  Created by Yang Li on 2018/12/19.
@@ -11,8 +11,8 @@ import Alamofire
 import SwiftyJSON
 import NotificationBannerSwift
 
-class EventViewController: UIViewController {
-    var newEventTableViewController: NewEventTableViewController?
+class NewEventViewController: UIViewController {
+    var newEventTableViewController: EventTableViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +101,7 @@ class EventViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newevent" {
-            if let destinationViewController = segue.destination as? NewEventTableViewController {
+            if let destinationViewController = segue.destination as? EventTableViewController {
                 newEventTableViewController = destinationViewController
             }
         }

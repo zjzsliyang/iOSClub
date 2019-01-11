@@ -1,5 +1,5 @@
 //
-//  NewEventTableViewController.swift
+//  EventTableViewController.swift
 //  Student Club
 //
 //  Created by Yang Li on 2018/12/23.
@@ -9,11 +9,12 @@
 import UIKit
 import CoreLocation
 
-class NewEventTableViewController: UITableViewController, CLLocationManagerDelegate {
+class EventTableViewController: UITableViewController, CLLocationManagerDelegate {
     let timePicker = UIDatePicker()
     let formatter = DateFormatter()
     let locationManager = CLLocationManager()
     var isStartTime = true
+    var isNew = true
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
@@ -85,7 +86,7 @@ class NewEventTableViewController: UITableViewController, CLLocationManagerDeleg
         timePicker.frame = CGRect(x: 0.0, y: (self.view.frame.height - 150), width: self.view.frame.width, height: 150.0)
         timePicker.backgroundColor = .white
         self.view.addSubview(timePicker)
-        timePicker.addTarget(self, action: #selector(NewEventTableViewController.startTimeDiveChanged), for: UIControl.Event.valueChanged)
+        timePicker.addTarget(self, action: #selector(EventTableViewController.startTimeDiveChanged), for: UIControl.Event.valueChanged)
     }
     
     @objc func startTimeDiveChanged(sender: UIDatePicker) {
