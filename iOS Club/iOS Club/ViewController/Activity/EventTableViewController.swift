@@ -115,7 +115,9 @@ class EventTableViewController: UITableViewController, CLLocationManagerDelegate
         formatter.dateFormat = "EEE, MMM d, YYYY, HH:mm"
         startTimeLabel.text = formatter.string(from: (currentEvent?.startDate)!)
         endTimeLabel.text = formatter.string(from: (currentEvent?.endDate)!)
-        timeZoneLabel.text = String(String(describing: currentEvent?.timeZone).split(separator: "/").last!)
+
+        let splitted = String(describing: currentEvent?.timeZone).split { ["/", "(", ")", " "].contains(String($0)) }
+        timeZoneLabel.text = splitted.map { String($0).trimmingCharacters(in: .whitespaces) }[2]
         
         urlTextField.text = String(describing: currentEvent?.url)
         notesTextField.text = currentEvent?.notes
