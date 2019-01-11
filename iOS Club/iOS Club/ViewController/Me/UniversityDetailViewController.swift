@@ -72,7 +72,6 @@ extension UITextView {
         let attributedString = NSMutableAttributedString(string: email)
         attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 10), range: NSRange(location: 0, length: attributedString.length))
         let style = NSMutableParagraphStyle()
-        style.alignment = .center
         attributedString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: attributedString.length))
         attributedString.addAttribute(.link, value: "mailto:" + email, range: NSRange(location: 0, length: attributedString.length))
         self.attributedText = attributedString
