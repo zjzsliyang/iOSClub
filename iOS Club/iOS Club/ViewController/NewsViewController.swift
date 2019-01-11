@@ -23,6 +23,7 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.delegate = self
         newsTableView.addPullToRefresh(refresher) {
             self.fetchNews()
         }
@@ -131,6 +132,13 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
     }
 }
 
+extension NewsViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        self.fetchNews()
+        self.newsTableView.setContentOffset(CGPoint.zero, animated: true)
+    }
+}
+
 extension NewsViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -148,12 +156,22 @@ extension NewsViewController: UISearchBarDelegate {
                 do {
                     let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
                     if responseJson["code"] == 0 {
-                        for tagNews in responseJson["tag_list"].arrayValue {
-                            print(tagNews)
+                        self.newses = []
+                        if let tagNews = try? JSONDecoder().decode([News].self, from: responseJson["tag_list"].rawData()) {
+                            self.newses.append(contentsOf: tagNews)
+                            DispatchQueue.main.async {
+                                self.newsTableView.reloadData()
+                            }
+                        } else {
+                            log.error("fetched JSON parse failed")
                         }
-                        
-                        for titleNews in responseJson["title_list"].arrayValue {
-                            print(titleNews)
+                        if let titleNews = try? JSONDecoder().decode([News].self, from: responseJson["title_list"].rawData()) {
+                            self.newses.append(contentsOf: titleNews)
+                            DispatchQueue.main.async {
+                                self.newsTableView.reloadData()
+                            }
+                        } else {
+                            log.error("fetched JSON parse failed")
                         }
                     }
                 } catch let error as NSError {
@@ -161,6 +179,7 @@ extension NewsViewController: UISearchBarDelegate {
                 }
             }
         }
+        self.view.endEditing(true)
     }
 }
 
