@@ -14,8 +14,8 @@ An iOS app for iOS Club members communication in Greater China.
 - [x] delete news
 - [x] search news with content or tag
 - [x] support multiple phone sizes
-- [ ] optimize UI
 - [ ] refactor me tab
+- [ ] optimize UI
 
 ## Screenshots
 
