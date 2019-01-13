@@ -23,6 +23,7 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.delegate = self
         newsTableView.addPullToRefresh(refresher) {
             self.fetchNews()
         }
@@ -50,7 +51,7 @@ class NewsViewController: UIViewController {
                         self.newsTableView.endAllRefreshing()
                     }
                 } else {
-                    log.error("[NEWS]: fetched JSON parse failed")
+                    log.error("fetched JSON parse failed")
                 }
             }.resume()
         }
@@ -66,7 +67,7 @@ class NewsViewController: UIViewController {
                                               "user_privilege": self.privilege!]
             Alamofire.request(backendUrl + "/news/delete", method: .post, parameters: newsParameters, encoding: JSONEncoding.default).responseString(completionHandler: { (response) in
                 guard (response.result.value != nil) else {
-                    log.error("[NEWS]: " + String(describing: response))
+                    log.error(response)
                     DispatchQueue.main.async {
                         let banner = NotificationBanner(title: "Delete Fail", subtitle: "Fatal Server Error", style: .danger)
                         banner.show()
@@ -83,7 +84,7 @@ class NewsViewController: UIViewController {
                         banner.show()
                     }
                 } catch let error as NSError {
-                    log.error("[NEWS]: " + String(describing: error))
+                    log.error(error)
                 }
             })
         }))
@@ -131,12 +132,54 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
     }
 }
 
+extension NewsViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        self.fetchNews()
+        self.newsTableView.setContentOffset(CGPoint.zero, animated: true)
+    }
+}
+
 extension NewsViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text!.count > 0 {
-            log.debug("[NEWS]: search news: " + searchBar.text!)
+            Alamofire.request((backendUrl + "/news/search?text=" + searchBar.text! + "&u_privilege=" + String(describing: privilege!) + "&code=" + String(describing: code!)).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!).responseString { (response) in
+                guard (response.result.value != nil) else {
+                    log.error(response)
+                    DispatchQueue.main.async {
+                        let banner = NotificationBanner(title: "Get Search Result Fail", subtitle: "Fatal Server Error", style: .danger)
+                        banner.show()
+                    }
+                    return
+                }
+                let responseData = response.result.value!
+                do {
+                    let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
+                    if responseJson["code"] == 0 {
+                        self.newses = []
+                        if let tagNews = try? JSONDecoder().decode([News].self, from: responseJson["tag_list"].rawData()) {
+                            self.newses.append(contentsOf: tagNews)
+                            DispatchQueue.main.async {
+                                self.newsTableView.reloadData()
+                            }
+                        } else {
+                            log.error("fetched JSON parse failed")
+                        }
+                        if let titleNews = try? JSONDecoder().decode([News].self, from: responseJson["title_list"].rawData()) {
+                            self.newses.append(contentsOf: titleNews)
+                            DispatchQueue.main.async {
+                                self.newsTableView.reloadData()
+                            }
+                        } else {
+                            log.error("fetched JSON parse failed")
+                        }
+                    }
+                } catch let error as NSError {
+                    log.error(error)
+                }
+            }
         }
+        self.view.endEditing(true)
     }
 }
 

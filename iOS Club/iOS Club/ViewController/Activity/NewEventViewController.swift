@@ -1,5 +1,5 @@
 //
-//  EventViewController.swift
+//  NewEventViewController.swift
 //  Student Club
 //
 //  Created by Yang Li on 2018/12/19.
@@ -11,8 +11,8 @@ import Alamofire
 import SwiftyJSON
 import NotificationBannerSwift
 
-class EventViewController: UIViewController {
-    var newEventTableViewController: NewEventTableViewController?
+class NewEventViewController: UIViewController {
+    var newEventTableViewController: EventTableViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +73,7 @@ class EventViewController: UIViewController {
         ]
         Alamofire.request(backendUrl + "/events/create", method: .post, parameters: eventParameters, encoding: JSONEncoding.default).responseString { (response) in
             guard (response.result.value != nil) else {
-                log.error("[ACTIVITY]: " + String(describing: response))
+                log.error(response)
                 DispatchQueue.main.async {
                     let banner = NotificationBanner(title: "Add Event Fail", subtitle: "Fatal Server Error", style: .danger)
                     banner.show()
@@ -93,7 +93,7 @@ class EventViewController: UIViewController {
                     banner.show()
                 }
             } catch let error as NSError {
-                log.error("[ACTIVITY]: " + String(describing: error))
+                log.error(error)
             }
             self.dismiss(animated: true, completion: nil)
         }
@@ -101,7 +101,7 @@ class EventViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newevent" {
-            if let destinationViewController = segue.destination as? NewEventTableViewController {
+            if let destinationViewController = segue.destination as? EventTableViewController {
                 newEventTableViewController = destinationViewController
             }
         }

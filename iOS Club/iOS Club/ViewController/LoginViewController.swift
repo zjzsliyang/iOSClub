@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
         
         Alamofire.request(backendUrl + "/user/login/", method: .post, parameters: userParameters, encoding: JSONEncoding.default).responseString { (response) in
             guard (response.result.value != nil) else {
-                log.error("[LOGIN]: " + String(describing: response))
+                log.error(response)
                 DispatchQueue.main.async {
                     let banner = NotificationBanner(title: "Login Fail", subtitle: "Fatal Server Error", style: .danger)
                     banner.show()
@@ -110,7 +110,7 @@ class LoginViewController: UIViewController {
                     }
                 }
             } catch let error as NSError {
-                log.error("[LOGIN]: " + String(describing: error))
+                log.error(error)
             }
         }
     }

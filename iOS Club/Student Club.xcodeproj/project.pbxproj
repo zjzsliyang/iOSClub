@@ -14,7 +14,7 @@
 		1EA4B767215828B800DD5941 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EA4B765215828B800DD5941 /* MainInterface.storyboard */; };
 		1EA4B76B215828B800DD5941 /* Club Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1EA4B761215828B800DD5941 /* Club Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2F0E668C21D54E20005E21F8 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E668B21D54E20005E21F8 /* Event.swift */; };
-		2F124CC121CAE61B00314461 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F124CC021CAE61B00314461 /* EventViewController.swift */; };
+		2F124CC121CAE61B00314461 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F124CC021CAE61B00314461 /* NewEventViewController.swift */; };
 		2F3E45342157C81900710141 /* EmbedPostInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */; };
 		2F3E453F2157FD5A00710141 /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E453E2157FD5A00710141 /* SelectedCell.swift */; };
 		2F45EB2A215835DD00C5B9D3 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F45EB29215835DC00C5B9D3 /* config.swift */; };
@@ -23,12 +23,13 @@
 		2F45EB2F215840AD00C5B9D3 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F45EB2E215840AD00C5B9D3 /* University.swift */; };
 		2F67E33C2156625C0076B1DA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33B2156625C0076B1DA /* PostViewController.swift */; };
 		2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33F2157326A0076B1DA /* LoginViewController.swift */; };
-		2F6918D321CFDC6D00D361C6 /* NewEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6918D221CFDC6D00D361C6 /* NewEventTableViewController.swift */; };
+		2F6918D321CFDC6D00D361C6 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6918D221CFDC6D00D361C6 /* EventTableViewController.swift */; };
 		2F74A520215538EC00341862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74A51F215538EC00341862 /* AppDelegate.swift */; };
 		2F74A525215538EC00341862 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74A523215538EC00341862 /* Main.storyboard */; };
 		2F74A527215538EE00341862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F74A526215538EE00341862 /* Assets.xcassets */; };
 		2F74A52A215538EE00341862 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74A528215538EE00341862 /* LaunchScreen.storyboard */; };
 		2FB21B4A215790C700D2814F /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB21B49215790C700D2814F /* ActivityCell.swift */; };
+		2FC6552F21E8F6BD003F3E43 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC6552E21E8F6BD003F3E43 /* EventDetailViewController.swift */; };
 		2FCA35F72155402100816691 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F22155402100816691 /* ActivityViewController.swift */; };
 		2FCA35F82155402100816691 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F32155402100816691 /* BlogViewController.swift */; };
 		2FCA35F92155402100816691 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F42155402100816691 /* NewsViewController.swift */; };
@@ -75,7 +76,7 @@
 		1EA4B766215828B800DD5941 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		1EA4B768215828B800DD5941 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F0E668B21D54E20005E21F8 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		2F124CC021CAE61B00314461 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		2F124CC021CAE61B00314461 /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedPostInfoTableViewController.swift; sourceTree = "<group>"; };
 		2F3E453E2157FD5A00710141 /* SelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
 		2F45EB252158322200C5B9D3 /* iOS Club.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iOS Club.entitlements"; sourceTree = "<group>"; };
@@ -85,7 +86,7 @@
 		2F45EB2E215840AD00C5B9D3 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
 		2F67E33B2156625C0076B1DA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		2F67E33F2157326A0076B1DA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2F6918D221CFDC6D00D361C6 /* NewEventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventTableViewController.swift; sourceTree = "<group>"; };
+		2F6918D221CFDC6D00D361C6 /* EventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		2F74A51C215538EC00341862 /* Student Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Student Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F74A51F215538EC00341862 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F74A524215538EC00341862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		2F74A529215538EE00341862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F74A52B215538EE00341862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FB21B49215790C700D2814F /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		2FC6552E21E8F6BD003F3E43 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		2FCA35F22155402100816691 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		2FCA35F32155402100816691 /* BlogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
 		2FCA35F42155402100816691 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -145,8 +147,9 @@
 			isa = PBXGroup;
 			children = (
 				2FCA35F22155402100816691 /* ActivityViewController.swift */,
-				2F124CC021CAE61B00314461 /* EventViewController.swift */,
-				2F6918D221CFDC6D00D361C6 /* NewEventTableViewController.swift */,
+				2F124CC021CAE61B00314461 /* NewEventViewController.swift */,
+				2FC6552E21E8F6BD003F3E43 /* EventDetailViewController.swift */,
+				2F6918D221CFDC6D00D361C6 /* EventTableViewController.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -512,7 +515,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FCA35FB2155402100816691 /* MeViewController.swift in Sources */,
-				2F124CC121CAE61B00314461 /* EventViewController.swift in Sources */,
+				2FC6552F21E8F6BD003F3E43 /* EventDetailViewController.swift in Sources */,
+				2F124CC121CAE61B00314461 /* NewEventViewController.swift in Sources */,
 				2F74A520215538EC00341862 /* AppDelegate.swift in Sources */,
 				1E62BC9E2156841F00263B8D /* UniversityListViewController.swift in Sources */,
 				2FCEF4A421BAA2550049B487 /* NewsDetailViewController.swift in Sources */,
@@ -531,7 +535,7 @@
 				2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */,
 				2FCA3617215572EC00816691 /* Blog.swift in Sources */,
 				2FCA36102155633900816691 /* NewsCell.swift in Sources */,
-				2F6918D321CFDC6D00D361C6 /* NewEventTableViewController.swift in Sources */,
+				2F6918D321CFDC6D00D361C6 /* EventTableViewController.swift in Sources */,
 				2F45EB2A215835DD00C5B9D3 /* config.swift in Sources */,
 				2F3E453F2157FD5A00710141 /* SelectedCell.swift in Sources */,
 				1E62BCA02156938500263B8D /* UniversityDetailViewController.swift in Sources */,
@@ -747,7 +751,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2XYAGB2947;
 				INFOPLIST_FILE = "iOS Club/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -771,7 +775,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2XYAGB2947;
 				INFOPLIST_FILE = "iOS Club/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -15,26 +15,18 @@ class UniversityDetailViewController: UIViewController {
     
     @IBOutlet weak var uiniversityIcon: UIImageView!
     @IBOutlet weak var universityDesc: UITextView!
-    @IBOutlet weak var teacherIcon: UIImageView!
     @IBOutlet weak var teacherName: UILabel!
-    @IBOutlet weak var teacherEmail: UILabel!
+    @IBOutlet weak var teacherEmail: UITextView!
     @IBOutlet weak var teacherRole: UILabel!
-    @IBOutlet weak var studentIcon: UIImageView!
     @IBOutlet weak var studentName: UILabel!
     @IBOutlet weak var studentRole: UILabel!
-    @IBOutlet weak var studentEmail: UILabel!
+    @IBOutlet weak var studentEmail: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         uiniversityIcon.layer.cornerRadius = 30
         uiniversityIcon.layer.masksToBounds = true
-        
-        teacherIcon.layer.cornerRadius = 30
-        teacherIcon.layer.masksToBounds = true
-        
-        studentIcon.layer.cornerRadius = 30
-        studentIcon.layer.masksToBounds = true
         
         self.setImage(imageView: uiniversityIcon,urlString: university["icon"].rawString()!)
         universityDesc.text = university["description"].rawString()
@@ -47,9 +39,8 @@ class UniversityDetailViewController: UIViewController {
                 let json = JSON(data)[0]
                 self.teacherName.text = json["name"].rawString()
                 self.teacherRole.text = json["position"].rawString()
-                self.teacherEmail.text = json["email"].rawString()
+                self.teacherEmail.addEmailLink(email: json["email"].rawString() ?? "")
                 
-                self.setImage(imageView: self.teacherIcon,urlString: json["avatar"].rawString()!)
             }
         }
         
@@ -57,11 +48,9 @@ class UniversityDetailViewController: UIViewController {
             
             if let data = response.result.value {
                 let json = JSON(data)[0]
-                log.error(json)
                 self.studentName.text = json["name"].rawString()
                 self.studentRole.text = json["position"].rawString()
-                self.studentEmail.text = json["email"].rawString()
-                self.setImage(imageView: self.studentIcon,urlString: json["avatar"].rawString()!)
+                self.studentEmail.addEmailLink(email: json["email"].rawString() ?? "")
             }
         }
         
@@ -76,4 +65,15 @@ class UniversityDetailViewController: UIViewController {
         }
     }
 
+}
+
+extension UITextView {
+    func addEmailLink(email: String = "") {
+        let attributedString = NSMutableAttributedString(string: email)
+        attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 10), range: NSRange(location: 0, length: attributedString.length))
+        let style = NSMutableParagraphStyle()
+        attributedString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(.link, value: "mailto:" + email, range: NSRange(location: 0, length: attributedString.length))
+        self.attributedText = attributedString
+    }
 }

@@ -1,5 +1,5 @@
 //
-//  NewEventTableViewController.swift
+//  EventTableViewController.swift
 //  Student Club
 //
 //  Created by Yang Li on 2018/12/23.
@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import EventKit
 import CoreLocation
 
-class NewEventTableViewController: UITableViewController, CLLocationManagerDelegate {
+class EventTableViewController: UITableViewController, CLLocationManagerDelegate {
     let timePicker = UIDatePicker()
     let formatter = DateFormatter()
     let locationManager = CLLocationManager()
     var isStartTime = true
+    var isNew = true
+    var currentEvent: EKEvent?
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
@@ -34,6 +37,7 @@ class NewEventTableViewController: UITableViewController, CLLocationManagerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadCurrentEvent(isNew: isNew, currentEvent: currentEvent)
         
         let currentTime = Date()
         formatter.dateFormat = "EEE, MMM d, YYYY, HH:mm"
@@ -85,7 +89,7 @@ class NewEventTableViewController: UITableViewController, CLLocationManagerDeleg
         timePicker.frame = CGRect(x: 0.0, y: (self.view.frame.height - 150), width: self.view.frame.width, height: 150.0)
         timePicker.backgroundColor = .white
         self.view.addSubview(timePicker)
-        timePicker.addTarget(self, action: #selector(NewEventTableViewController.startTimeDiveChanged), for: UIControl.Event.valueChanged)
+        timePicker.addTarget(self, action: #selector(EventTableViewController.startTimeDiveChanged), for: UIControl.Event.valueChanged)
     }
     
     @objc func startTimeDiveChanged(sender: UIDatePicker) {
@@ -98,5 +102,24 @@ class NewEventTableViewController: UITableViewController, CLLocationManagerDeleg
             endTimeLabel.text = formatter.string(from: sender.date)
         }
         timePicker.removeFromSuperview()
+    }
+    
+    func loadCurrentEvent(isNew: Bool, currentEvent: EKEvent?) {
+        guard (!isNew) && (currentEvent != nil) else {
+            return
+        }
+        titleTextField.text = currentEvent?.title
+        locationTextField.text = currentEvent?.location
+        
+        allDaySwitch.isOn = currentEvent?.isAllDay ?? false
+        formatter.dateFormat = "EEE, MMM d, YYYY, HH:mm"
+        startTimeLabel.text = formatter.string(from: (currentEvent?.startDate)!)
+        endTimeLabel.text = formatter.string(from: (currentEvent?.endDate)!)
+
+        let splitted = String(describing: currentEvent?.timeZone).split { ["/", "(", ")", " "].contains(String($0)) }
+        timeZoneLabel.text = splitted.map { String($0).trimmingCharacters(in: .whitespaces) }[2]
+        
+        urlTextField.text = String(describing: currentEvent?.url)
+        notesTextField.text = currentEvent?.notes
     }
 }
