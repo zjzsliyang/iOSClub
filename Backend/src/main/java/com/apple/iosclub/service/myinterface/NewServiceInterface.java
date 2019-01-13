@@ -14,4 +14,7 @@ public interface NewServiceInterface {
     Object publish(HashMap<String, Object> req, MultipartFile[] uploadingFiles) throws IOException;
     Object deleteById(int id);
     int selectById(int id);
+    Object simpleSearch(String text);
+    Object simpleSearch(String text, int u_privilege);
+    Object simpleSearch(String text, int u_privilege, int code);
 }

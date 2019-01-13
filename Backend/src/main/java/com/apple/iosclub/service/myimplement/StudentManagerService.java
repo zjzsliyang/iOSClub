@@ -23,7 +23,7 @@ public class StudentManagerService implements StudentManagerInterface {
         if (list.size() == 0){
             StudentManagerModel studentManagerModel = new StudentManagerModel();
             studentManagerModel.code = code;
-            studentManagerModel.name = "俱乐部主席";
+            studentManagerModel.position = "俱乐部主席";
             studentManagerModel.avatar = "/files/high_level/avatar.png";
             list.add(studentManagerModel);
         }

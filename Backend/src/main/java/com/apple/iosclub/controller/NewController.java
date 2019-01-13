@@ -16,8 +16,6 @@ import java.util.HashMap;
 @RequestMapping("/news")
 public class NewController {
 
-    @Autowired
-    public NewMapper newMapper;
 
     private NewService newService;
 
@@ -48,8 +46,8 @@ public class NewController {
             }
             switch (u_privilege){
                 case Common.level0: return newService.getNewsByPrivilege(u_privilege); // visitor get
-                case Common.level3: return newService.getAllNews();  // teacher/president get
-                default: return newService.getByPrivilegeAndCode(u_privilege, code); // admin get
+                case Common.level3: return newService.getAllNews();  // admin get
+                default: return newService.getByPrivilegeAndCode(u_privilege, code);// teacher/student get
             }
         }catch (Exception e){
             return null;
@@ -134,4 +132,19 @@ public class NewController {
         return newService.deleteById(id);
     }
 
+
+
+    @GetMapping("/search")
+    public Object simpleSearch(@RequestParam(required = false)String text, @RequestParam(required = false)Integer u_privilege, @RequestParam(required = false) Integer code){
+        if (u_privilege == null){
+            u_privilege = Common.level0;
+            code = -1;
+        }
+        switch (u_privilege){
+            case Common.level0: return newService.simpleSearch(text, u_privilege); // visitor get
+            case Common.level3: return newService.simpleSearch(text);  // admin get
+            default: return newService.simpleSearch(text, u_privilege, code); // teacher/student get
+
+        }
+    }
 }
