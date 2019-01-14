@@ -141,6 +141,19 @@ class SignupViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "signup" {            
+            let newsViewController = (segue.destination.children[0] as! UINavigationController).children[0] as! NewsViewController
+
+            let userInfo = sender as! [String: Int?]
+            newsViewController.code = userInfo["code"]!
+            newsViewController.privilege = userInfo["user_privilege"]!
+            let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+            suiteDefault?.set(userInfo["user_privilege"]!, forKey: "user_privilege")
+            suiteDefault?.set(userInfo["code"]!, forKey: "code")
+        }
+    }
+    
 }
 
 extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {

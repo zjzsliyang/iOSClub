@@ -117,7 +117,6 @@ class LoginViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "login" {
-            
             let newsViewController = (segue.destination.children[0] as! UINavigationController).children[0] as! NewsViewController
             
             let userInfo = sender as! [String: Int?]
