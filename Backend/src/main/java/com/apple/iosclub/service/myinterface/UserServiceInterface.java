@@ -13,5 +13,6 @@ public interface UserServiceInterface {
     Object login(String email, String password);
     Object register(HashMap<String, Object> req);
     Object avatarUpdate(MultipartFile image, String email)throws IOException;
+    Object changePassword(HashMap<String, Object> req);
 
 }
