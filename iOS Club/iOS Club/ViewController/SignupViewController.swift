@@ -28,6 +28,7 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
         getUniversityInfo()
         university.inputView = UIView(frame: CGRect.zero)
+        university.inputAccessoryView = UIView.init()
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -35,16 +36,10 @@ class SignupViewController: UIViewController {
     }
     
     @IBAction func pickUniversity(_ sender: HoshiTextField) {
-        UIView.animate(withDuration: 0.3) {
-            let universityPicker = UIPickerView(frame: CGRect(x: 0, y: self.view.frame.maxY, width: self.view.frame.width, height: 200))
-            universityPicker.backgroundColor = UIColor.white
-            universityPicker.delegate = self
-            self.view.addSubview(universityPicker)
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= 200
-            }
-        }
-        
+        let universityPicker = UIPickerView(frame: CGRect(x: 0, y: self.view.frame.maxY - 190, width: self.view.frame.width, height: 190))
+        universityPicker.backgroundColor = UIColor.white
+        universityPicker.delegate = self
+        self.view.addSubview(universityPicker)
     }
     
     @IBAction func signup(_ sender: LGButton) {
@@ -165,12 +160,7 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource, UI
         self.university.text = universityDict[row]
         self.code = row
         university.endEditing(true)
-        UIView.animate(withDuration: 0.3) {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y = 0
-            }
-            pickerView.removeFromSuperview()
-        }
+        pickerView.removeFromSuperview()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
