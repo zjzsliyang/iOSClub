@@ -137,6 +137,76 @@ post localhost:8080/news/delete
 
 
 
+### 新闻查询
+
+```
+get /news/search?text=a&u_privilege=1&code=0
+```
+
+```
+{
+    "msg": "查询成功",
+    "code": 0,
+    "tag_list": [
+        {
+            "images": [],
+            "id": 19,
+            "time": "2018-02-07 10:59:32",
+            "video": "",
+            "title": "深圳科技大学 -- 文章权限1",
+            "user": {
+                "password": "这个值只是逗逗你",
+                "university": {
+                    "code": 0,
+                    "name": "同济大学",
+                    "icon": "http://121.196.192.132:80/files/university_icon/0.png",
+                    "description": "同济大学苹果俱乐部是苹果公司在中国成立的第一个学生俱乐部，每年不但组织多名获奖学生赴美参加 WWDC( 全球苹果开发者大会 )，而且总能摘得中国苹果高校技术开发者大赛桂冠。苹果技术实验室配有 iMac、iPhone、iPod Touch、iPad 与Apple Watch 等最新的苹果设备，常年面向会员免费开放。更有俱乐部学长亲身向您传授苹果技术与实习经验。",
+                    "email": "tac@tongji.edu.cn"
+                },
+                "description": "t1",
+                "position": "t1",
+                "avatar": "http://121.196.192.132:80",
+                "email": "t1",
+                "username": "t1",
+                "user_privilege": 1
+            },
+            "content": "深圳科技大学",
+            "tags": "a",
+            "news_privilege": 1
+        },
+        {
+            "images": [],
+            "id": 21,
+            "time": "2018-04-07 10:59:32",
+            "video": "",
+            "title": "深圳科技大学 -- 文章权限0",
+            "user": {
+                "password": "这个值只是逗逗你",
+                "university": {
+                    "code": 0,
+                    "name": "同济大学",
+                    "icon": "http://121.196.192.132:80/files/university_icon/0.png",
+                    "description": "同济大学苹果俱乐部是苹果公司在中国成立的第一个学生俱乐部，每年不但组织多名获奖学生赴美参加 WWDC( 全球苹果开发者大会 )，而且总能摘得中国苹果高校技术开发者大赛桂冠。苹果技术实验室配有 iMac、iPhone、iPod Touch、iPad 与Apple Watch 等最新的苹果设备，常年面向会员免费开放。更有俱乐部学长亲身向您传授苹果技术与实习经验。",
+                    "email": "tac@tongji.edu.cn"
+                },
+                "description": "t1",
+                "position": "t1",
+                "avatar": "http://121.196.192.132:80",
+                "email": "t1",
+                "username": "t1",
+                "user_privilege": 1
+            },
+            "content": "深圳科技大学",
+            "tags": "a",
+            "news_privilege": 0
+        }
+    ],
+    "title_list": []
+}
+```
+
+
+
 #### 根据学校获取分享
 
 ```

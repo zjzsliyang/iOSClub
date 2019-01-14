@@ -35,7 +35,7 @@ public class TeacherService implements TeacherInterface {
         if(list.size() == 0){
             TeacherModel teacherModel = new TeacherModel();
             teacherModel.code = code;
-            teacherModel.name = "俱乐部老师";
+            teacherModel.position = "俱乐部老师";
             teacherModel.avatar = "/files/high_level/avatar.png";
             list.add(teacherModel);
         }

@@ -12,18 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class NewService implements NewServiceInterface{
 
     @Autowired
     public NewMapper newMapper;
-
-
 
 
     @Override
@@ -118,6 +113,78 @@ public class NewService implements NewServiceInterface{
     }
 
 
+    @Override
+    public Object simpleSearch(String text) {
+
+        HashMap<String, Object> res = new HashMap<>();
+
+        try {
+            List<NewModel> list_title = newMapper.simpleSearch("%" + text + "%");
+            ArrayList<HashMap<String,Object>> resultList_title = pack(list_title);
+            res.put("title_list", resultList_title);
+            List<NewModel> list_tag = newMapper.simpleSearchByTag("%" + text + "%");
+            ArrayList<HashMap<String,Object>> resultList_tag = pack(list_tag);
+            res.put("tag_list", resultList_tag);
+            res.put("code", 0);
+            res.put("msg", "查询成功");
+        } catch (Exception e) {
+            res.put("code", 1);
+            res.put("msg", e);
+        }
+
+        return res;
+
+    }
+
+
+    @Override
+    public Object simpleSearch(String text, int u_privilege) {
+
+        HashMap<String, Object> res = new HashMap<>();
+
+        try {
+            List<NewModel> list_title = newMapper.simpleSearchOfVisitor("%" + text + "%", u_privilege);
+            ArrayList<HashMap<String,Object>> resultList_title = pack(list_title);
+            res.put("title_list", resultList_title);
+            List<NewModel> list_tag = newMapper.simpleSearchByTagOfVisitor("%" + text + "%", u_privilege);
+            ArrayList<HashMap<String,Object>> resultList_tag = pack(list_tag);
+            res.put("tag_list", resultList_tag);
+            res.put("code", 0);
+            res.put("msg", "查询成功");
+        } catch (Exception e) {
+            res.put("code", 1);
+            res.put("msg", e);
+        }
+
+        return res;
+
+    }
+
+
+    @Override
+    public Object simpleSearch(String text, int u_privilege, int code) {
+
+        HashMap<String, Object> res = new HashMap<>();
+
+        try {
+            List<NewModel> list_title = newMapper.simpleSearchOfTS("%" + text + "%", u_privilege, code);
+            ArrayList<HashMap<String,Object>> resultList_title = pack(list_title);
+            res.put("title_list", resultList_title);
+            List<NewModel> list_tag = newMapper.simpleSearchByTagOfTS("%" + text + "%", u_privilege, code);
+            ArrayList<HashMap<String,Object>> resultList_tag = pack(list_tag);
+            res.put("tag_list", resultList_tag);
+            res.put("code", 0);
+            res.put("msg", "查询成功");
+        } catch (Exception e) {
+            res.put("code", 1);
+            res.put("msg", e);
+        }
+
+        return res;
+
+    }
+
+
     public static ArrayList<HashMap<String, Object>> pack(List<NewModel> list){
 
         ArrayList<HashMap<String,Object>> resultList = new ArrayList<>();
@@ -168,7 +235,14 @@ public class NewService implements NewServiceInterface{
             }
 
 
-            newsObject.put("tags", new ArrayList<>());//newModel.tags);
+            Arrays.asList(newModel.tags.split(","));
+            List<String> tagsList = new ArrayList<>();
+            newModel.tags = newModel.tags.replace(" ", "");
+            if(newModel.tags != "")
+                tagsList = Arrays.asList(newModel.tags.split(","));
+            newsObject.put("tags", tagsList);//newModel.tags);
+
+
             newsObject.put("news_privilege",newModel.n_privilege);
 
             resultList.add(newsObject);

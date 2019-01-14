@@ -20,10 +20,10 @@ public interface NewMapper {
     void insertNew(@Param("dbNew") DBNew dbNew);
 
     // visitor get
-    @Select("select * from news , (user NATURAL JOIN university) where (postemail = email and u_code = -1 and n_privilege <= #{privilege}) or (postemail = email and n_privilege <= #{privilege}) order by time desc")
+    @Select("select * from news , (user NATURAL JOIN university) where postemail = email and n_privilege <= #{privilege} order by time desc")
     List<NewModel> getNewsByPrivilege(int privilege);
 
-    // teacher/president get
+    // teacher/student get
     @Select("select * from news , (user NATURAL JOIN university) where (postemail = email and u_code = -1 and n_privilege <= #{privilege}) or (postemail = email and n_privilege <= #{privilege} and u_code = #{code}) order by time desc")
     List<NewModel> getByPrivilegeAndCode(@Param("privilege") int privilege, @Param("code") int code);
 
@@ -37,4 +37,31 @@ public interface NewMapper {
 
     @Select("select user.u_code from news, user where news.postemail=user.email and news.n_id=#{id}")
     int selectById(int id);
+
+    // visitor get
+    @Select("select * from news , (user NATURAL JOIN university) where postemail = email and n_privilege <= #{u_privilege} AND title LIKE #{text} order by time desc")
+    List<NewModel> simpleSearchOfVisitor(@Param("text")String text, @Param("u_privilege")int u_privilege);
+
+    // teacher/student get
+    @Select("select * from news , (user NATURAL JOIN university) where ((postemail = email and u_code = -1 and n_privilege <= #{u_privilege}) or (postemail = email and n_privilege <= #{u_privilege} and u_code = #{code})) AND title LIKE #{text} order by time desc")
+    List<NewModel> simpleSearchOfTS(@Param("text")String text, @Param("u_privilege")int u_privilege, @Param("code")int code);
+
+    // admin get
+    @Select("select * from news , (user NATURAL JOIN university) where postemail = email AND title LIKE #{text} order by time desc")
+    List<NewModel> simpleSearch(String text);
+
+
+    // visitor get
+    @Select("select * from news , (user NATURAL JOIN university) where (postemail = email and n_privilege <= #{u_privilege}) AND news.tags LIKE #{text} order by time desc")
+    List<NewModel> simpleSearchByTagOfVisitor(@Param("text")String text, @Param("u_privilege")int u_privilege);
+
+    // teacher/student get
+    @Select("select * from news , (user NATURAL JOIN university) where ((postemail = email and u_code = -1 and n_privilege <= #{u_privilege}) or (postemail = email and n_privilege <= #{u_privilege} and u_code = #{code})) AND news.tags LIKE #{text} order by time desc")
+    List<NewModel> simpleSearchByTagOfTS(@Param("text")String text, @Param("u_privilege")int u_privilege, @Param("code")int code);
+
+    // admin get
+    @Select("select * from news , (user NATURAL JOIN university) where postemail = email AND news.tags LIKE #{text} order by time desc")
+    List<NewModel> simpleSearchByTag(String text);
+
+
 }

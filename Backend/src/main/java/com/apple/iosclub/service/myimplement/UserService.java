@@ -3,9 +3,12 @@ import com.apple.iosclub.model.UserModel;
 import com.apple.iosclub.utils.Common;
 import com.apple.iosclub.mapper.UserMapper;
 import com.apple.iosclub.service.myinterface.UserServiceInterface;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import sun.misc.BASE64Decoder;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -117,6 +120,41 @@ public class UserService implements UserServiceInterface {
             res.put("msg","修改失败");
         }
         
+        return res;
+    }
+
+    @Override
+    public Object changePassword(HashMap<String, Object> req) {
+        HashMap<String, Object> res = new HashMap<>();
+
+        String base="MTIz";
+
+        try {
+            String email = (String) req.get("email");
+
+//            String oldBase = (String) req.get("oldPassword");
+//            byte[] oldByte = Base64.decodeBase64(oldBase);
+//            String oldPassword = new String(oldByte);
+            String oldPassword = (String) req.get("oldPassword");
+
+//            String newBase = (String) req.get("newPassword");
+//            byte[] newByte = Base64.decodeBase64(newBase);
+//            String newPassword = new String(newByte);
+            String newPassword = (String) req.get("newPassword");
+
+            String old = userMapper.getPassWord (email);
+            if(!oldPassword.equals(old)){
+                res.put("code", 2);
+                res.put("msg","原密码错误");
+            }else {
+                userMapper.changePassword(email, newPassword);
+                res.put("code", 0);
+                res.put("msg","修改成功");
+            }
+        }catch (Exception e){
+            res.put("code", 1);
+            res.put("msg","修改失败");
+        }
         return res;
     }
 

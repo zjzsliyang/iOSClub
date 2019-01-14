@@ -42,6 +42,13 @@ public class UserController {
 
     }
 
+    @PostMapping("/changePassword")
+    public Object changePassword(@RequestBody HashMap<String, Object> req){
+
+        return userService.changePassword(req);
+
+    }
+
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public Object avatarUpdate(@RequestPart("file") MultipartFile image, @RequestParam HashMap<String, Object> req) throws IOException {
