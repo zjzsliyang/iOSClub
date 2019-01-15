@@ -15,7 +15,7 @@ public interface BlogMapper {
     @Select("select * from blog_share, (user NATURAL JOIN university) WHERE user.email = blog_share.sharemail order by time desc")
     List<BlogModel> getAll();
 
-    @Select("select * from blog_share, (user NATURAL JOIN university) WHERE user.email = blog_share.sharemail and user.u_code = #{code} order by time desc")
+    @Select("select * from blog_share, (user NATURAL JOIN university) WHERE user.email = blog_share.sharemail and blog_share.u_code = #{code} order by time desc")
     List<BlogModel> getByCode(int code);
 
     @Insert("insert into blog_share(sharemail, url, time, u_code) values(#{sharemail}, #{url}, #{time}, #{code})")

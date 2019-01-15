@@ -71,11 +71,16 @@ public class UserService implements UserServiceInterface {
                 return res;
             }
             String password = (String) req.get("password");
-            String position =  (String) req.get("position");
-            String description =  (String) req.get("description");
+
+            // 暂时不用，这里方便扩展
+            String position =  "";
+            String description =  "";
+//            String position =  (String) req.get("position");
+//            String description =  (String) req.get("description");
+
             String avatar =  "/avatar/avatar.png";
             userMapper.insertUser(username, u_code, privilege, email, password, position, description, avatar);
-
+            res.put("user", getInfoByEmail(email));
             res.put("code", 0);
             res.put("msg", "注册成功");
 
@@ -126,8 +131,6 @@ public class UserService implements UserServiceInterface {
     @Override
     public Object changePassword(HashMap<String, Object> req) {
         HashMap<String, Object> res = new HashMap<>();
-
-        String base="MTIz";
 
         try {
             String email = (String) req.get("email");
