@@ -21,6 +21,8 @@ class ShareViewController: SLComposeServiceViewController {
         
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
         let email = suiteDefault!.value(forKey: "email") as! String
+        let userPrivilege = suiteDefault!.integer(forKey: "user_privilege")
+        let code = suiteDefault!.integer(forKey: "code")
         if let item = extensionContext?.inputItems.first as? NSExtensionItem,
             let itemProvider = item.attachments?.first,
             itemProvider.hasItemConformingToTypeIdentifier("public.url") {
@@ -28,7 +30,9 @@ class ShareViewController: SLComposeServiceViewController {
                 if let shareURL = url as? URL {
                     let parameters: Parameters = [
                         "sharemail": email,
-                        "url": "\(shareURL)"
+                        "url": "\(shareURL)",
+                        "user_privilege": userPrivilege,
+                        "code": code
                     ]
                     Alamofire.request(backendUrl + "/blog/shareBlog", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { (response) in
                         let responseData = response.result.value!

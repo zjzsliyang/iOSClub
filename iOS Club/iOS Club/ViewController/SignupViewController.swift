@@ -52,7 +52,7 @@ class SignupViewController: UIViewController {
             "email": email.text!,
             "password": newPassword.text!,
             "username": name.text!,
-            "user_privilege": 2
+            "user_privilege": 1
         ]
         
         Alamofire.request(backendUrl + "/user/register", method: .post, parameters: userParameters, encoding: JSONEncoding.default).responseString { (response) in
