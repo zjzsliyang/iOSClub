@@ -30,7 +30,7 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
             let url = URL(string: iconUrl!)!
             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                 guard error == nil else {
-                    log.error(error)
+                    log.error(error!)
                     return
                 }
                 DispatchQueue.main.async {
