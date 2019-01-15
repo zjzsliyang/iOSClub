@@ -28,6 +28,10 @@ class LoginViewController: UIViewController {
         var userInfo = [String: Int?]()
         userInfo["user_privilege"] = 0
         userInfo["code"] = -1
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        suiteDefault?.set(userInfo["user_privilege"]!, forKey: "user_privilege")
+        suiteDefault?.set(userInfo["code"]!, forKey: "code")
+        suiteDefault?.synchronize()
         self.performSegue(withIdentifier: "login", sender: userInfo)
     }
 

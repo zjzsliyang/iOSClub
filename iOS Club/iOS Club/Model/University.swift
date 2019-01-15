@@ -10,6 +10,7 @@ import Foundation
 
 struct University: Decodable {
     let code: Int
+    let rank: Int
     let name: String
     let email: String
     let icon: String

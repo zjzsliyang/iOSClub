@@ -58,7 +58,7 @@ class UniversityListViewController: UIViewController, UICollectionViewDataSource
             if let data = response.result.value {
                 let json = JSON(data)
                 for item in json.arrayValue {
-                    self.universityDict[item["code"].int!] = item
+                    self.universityDict[item["rank"].int!] = item
                 }
                 self.universityLogo = [UIImage?](repeating: nil, count: self.universityDict.count)
                 self.collectionView.reloadData()
