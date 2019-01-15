@@ -15,13 +15,16 @@
 		1EA4B76B215828B800DD5941 /* Club Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1EA4B761215828B800DD5941 /* Club Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2F0E668C21D54E20005E21F8 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E668B21D54E20005E21F8 /* Event.swift */; };
 		2F124CC121CAE61B00314461 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F124CC021CAE61B00314461 /* NewEventViewController.swift */; };
-		2F3E45342157C81900710141 /* EmbedPostInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */; };
+		2F3B947A21ECD9D50076C1D6 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3B947921ECD9D50076C1D6 /* SignupViewController.swift */; };
+		2F3B947F21ECDA580076C1D6 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3B947B21ECDA580076C1D6 /* NewsViewController.swift */; };
+		2F3B948021ECDA580076C1D6 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3B947C21ECDA580076C1D6 /* NewsDetailViewController.swift */; };
+		2F3B948121ECDA580076C1D6 /* EmbedPostInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3B947D21ECDA580076C1D6 /* EmbedPostInfoTableViewController.swift */; };
+		2F3B948221ECDA580076C1D6 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3B947E21ECDA580076C1D6 /* PostViewController.swift */; };
 		2F3E453F2157FD5A00710141 /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E453E2157FD5A00710141 /* SelectedCell.swift */; };
 		2F45EB2A215835DD00C5B9D3 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F45EB29215835DC00C5B9D3 /* config.swift */; };
 		2F45EB2B2158373C00C5B9D3 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F45EB29215835DC00C5B9D3 /* config.swift */; };
 		2F45EB2D21583E6F00C5B9D3 /* BlogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F45EB2C21583E6F00C5B9D3 /* BlogCell.swift */; };
 		2F45EB2F215840AD00C5B9D3 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F45EB2E215840AD00C5B9D3 /* University.swift */; };
-		2F67E33C2156625C0076B1DA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33B2156625C0076B1DA /* PostViewController.swift */; };
 		2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33F2157326A0076B1DA /* LoginViewController.swift */; };
 		2F6918D321CFDC6D00D361C6 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6918D221CFDC6D00D361C6 /* EventTableViewController.swift */; };
 		2F74A520215538EC00341862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74A51F215538EC00341862 /* AppDelegate.swift */; };
@@ -32,14 +35,12 @@
 		2FC6552F21E8F6BD003F3E43 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC6552E21E8F6BD003F3E43 /* EventDetailViewController.swift */; };
 		2FCA35F72155402100816691 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F22155402100816691 /* ActivityViewController.swift */; };
 		2FCA35F82155402100816691 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F32155402100816691 /* BlogViewController.swift */; };
-		2FCA35F92155402100816691 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F42155402100816691 /* NewsViewController.swift */; };
 		2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F52155402100816691 /* TabBarViewController.swift */; };
 		2FCA35FB2155402100816691 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F62155402100816691 /* MeViewController.swift */; };
 		2FCA36102155633900816691 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA360F2155633900816691 /* NewsCell.swift */; };
 		2FCA3614215572E300816691 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3613215572E300816691 /* News.swift */; };
 		2FCA3617215572EC00816691 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3615215572EB00816691 /* Blog.swift */; };
 		2FCA3618215572EC00816691 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3616215572EB00816691 /* User.swift */; };
-		2FCEF4A421BAA2550049B487 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEF4A321BAA2550049B487 /* NewsDetailViewController.swift */; };
 		32E69BC4764C75F88EFEC33D /* Pods_Club_Share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8461758B497893D9D9DE37 /* Pods_Club_Share.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,14 +78,17 @@
 		1EA4B768215828B800DD5941 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F0E668B21D54E20005E21F8 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		2F124CC021CAE61B00314461 /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
-		2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedPostInfoTableViewController.swift; sourceTree = "<group>"; };
+		2F3B947921ECD9D50076C1D6 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		2F3B947B21ECDA580076C1D6 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsViewController.swift; path = News/NewsViewController.swift; sourceTree = "<group>"; };
+		2F3B947C21ECDA580076C1D6 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsDetailViewController.swift; path = News/NewsDetailViewController.swift; sourceTree = "<group>"; };
+		2F3B947D21ECDA580076C1D6 /* EmbedPostInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmbedPostInfoTableViewController.swift; path = News/EmbedPostInfoTableViewController.swift; sourceTree = "<group>"; };
+		2F3B947E21ECDA580076C1D6 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = News/PostViewController.swift; sourceTree = "<group>"; };
 		2F3E453E2157FD5A00710141 /* SelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
 		2F45EB252158322200C5B9D3 /* iOS Club.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iOS Club.entitlements"; sourceTree = "<group>"; };
 		2F45EB262158336A00C5B9D3 /* Club Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Club Share.entitlements"; sourceTree = "<group>"; };
 		2F45EB29215835DC00C5B9D3 /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		2F45EB2C21583E6F00C5B9D3 /* BlogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogCell.swift; sourceTree = "<group>"; };
 		2F45EB2E215840AD00C5B9D3 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
-		2F67E33B2156625C0076B1DA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		2F67E33F2157326A0076B1DA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2F6918D221CFDC6D00D361C6 /* EventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		2F74A51C215538EC00341862 /* Student Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Student Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,14 +101,12 @@
 		2FC6552E21E8F6BD003F3E43 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		2FCA35F22155402100816691 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		2FCA35F32155402100816691 /* BlogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
-		2FCA35F42155402100816691 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		2FCA35F52155402100816691 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2FCA35F62155402100816691 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		2FCA360F2155633900816691 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		2FCA3613215572E300816691 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		2FCA3615215572EB00816691 /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		2FCA3616215572EB00816691 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		2FCEF4A321BAA2550049B487 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		5EAD9DB662EC826B9606B184 /* Pods-Club Share.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Club Share.release.xcconfig"; path = "Pods/Target Support Files/Pods-Club Share/Pods-Club Share.release.xcconfig"; sourceTree = "<group>"; };
 		8B2E2264885BB2A89426E18C /* Pods-Club Share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Club Share.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Club Share/Pods-Club Share.debug.xcconfig"; sourceTree = "<group>"; };
 		D1D32E9CF6C188D69087BD75 /* Pods-Student Club.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Student Club.release.xcconfig"; path = "Pods/Target Support Files/Pods-Student Club/Pods-Student Club.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,10 +177,10 @@
 		2F6918D721D0C73A00D361C6 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				2FCA35F42155402100816691 /* NewsViewController.swift */,
-				2F67E33B2156625C0076B1DA /* PostViewController.swift */,
-				2F3E45332157C81900710141 /* EmbedPostInfoTableViewController.swift */,
-				2FCEF4A321BAA2550049B487 /* NewsDetailViewController.swift */,
+				2F3B947D21ECDA580076C1D6 /* EmbedPostInfoTableViewController.swift */,
+				2F3B947C21ECDA580076C1D6 /* NewsDetailViewController.swift */,
+				2F3B947B21ECDA580076C1D6 /* NewsViewController.swift */,
+				2F3B947E21ECDA580076C1D6 /* PostViewController.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				2FCA35F52155402100816691 /* TabBarViewController.swift */,
+				2F3B947921ECD9D50076C1D6 /* SignupViewController.swift */,
 				2F67E33F2157326A0076B1DA /* LoginViewController.swift */,
 				2F6918D621D0C71A00D361C6 /* Me */,
 				2F6918D421D0C6F500D361C6 /* Activity */,
@@ -514,14 +517,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F3B948021ECDA580076C1D6 /* NewsDetailViewController.swift in Sources */,
 				2FCA35FB2155402100816691 /* MeViewController.swift in Sources */,
 				2FC6552F21E8F6BD003F3E43 /* EventDetailViewController.swift in Sources */,
+				2F3B947F21ECDA580076C1D6 /* NewsViewController.swift in Sources */,
 				2F124CC121CAE61B00314461 /* NewEventViewController.swift in Sources */,
 				2F74A520215538EC00341862 /* AppDelegate.swift in Sources */,
 				1E62BC9E2156841F00263B8D /* UniversityListViewController.swift in Sources */,
-				2FCEF4A421BAA2550049B487 /* NewsDetailViewController.swift in Sources */,
-				2F67E33C2156625C0076B1DA /* PostViewController.swift in Sources */,
 				2FCA35F72155402100816691 /* ActivityViewController.swift in Sources */,
+				2F3B948121ECDA580076C1D6 /* EmbedPostInfoTableViewController.swift in Sources */,
 				2FCA35F82155402100816691 /* BlogViewController.swift in Sources */,
 				2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */,
 				2F45EB2D21583E6F00C5B9D3 /* BlogCell.swift in Sources */,
@@ -529,13 +533,13 @@
 				2F45EB2F215840AD00C5B9D3 /* University.swift in Sources */,
 				2FCA3618215572EC00816691 /* User.swift in Sources */,
 				2FB21B4A215790C700D2814F /* ActivityCell.swift in Sources */,
-				2FCA35F92155402100816691 /* NewsViewController.swift in Sources */,
-				2F3E45342157C81900710141 /* EmbedPostInfoTableViewController.swift in Sources */,
+				2F3B948221ECDA580076C1D6 /* PostViewController.swift in Sources */,
 				2F0E668C21D54E20005E21F8 /* Event.swift in Sources */,
 				2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */,
 				2FCA3617215572EC00816691 /* Blog.swift in Sources */,
 				2FCA36102155633900816691 /* NewsCell.swift in Sources */,
 				2F6918D321CFDC6D00D361C6 /* EventTableViewController.swift in Sources */,
+				2F3B947A21ECD9D50076C1D6 /* SignupViewController.swift in Sources */,
 				2F45EB2A215835DD00C5B9D3 /* config.swift in Sources */,
 				2F3E453F2157FD5A00710141 /* SelectedCell.swift in Sources */,
 				1E62BCA02156938500263B8D /* UniversityDetailViewController.swift in Sources */,

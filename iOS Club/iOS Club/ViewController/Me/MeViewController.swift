@@ -43,7 +43,7 @@ UINavigationControllerDelegate {
                     let url = URL(string: json["avatar"].rawString()!)
                     URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
                         guard error == nil else {
-                            log.error(error)
+                            log.error(error!)
                             return
                         }
                         DispatchQueue.main.async {

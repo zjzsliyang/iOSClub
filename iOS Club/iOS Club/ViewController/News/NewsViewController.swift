@@ -95,6 +95,9 @@ class NewsViewController: UIViewController {
 
 extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDelegate {
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        if indexPath.row >= newses.count {
+            return "EmptyCell"
+        }
         return "NewsCell"
     }
     
@@ -103,6 +106,9 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row >= newses.count {
+            return self.view.frame.size.height
+        }
         if (newses[indexPath.row].images != []) || (newses[indexPath.row].video != "") {
             return 370
         } else {
@@ -112,6 +118,10 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row >= newses.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell")
+            return cell!
+        }
         let news = newses[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
         cell.setNews(news: news)
