@@ -95,9 +95,6 @@ class NewsViewController: UIViewController {
 
 extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDelegate {
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        if indexPath.row >= newses.count {
-            return "EmptyCell"
-        }
         return "NewsCell"
     }
     
@@ -118,13 +115,11 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row >= newses.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell")
-            return cell!
-        }
-        let news = newses[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-        cell.setNews(news: news)
+        if newses.count != 0 {
+            let news = newses[indexPath.row]
+            cell.setNews(news: news)
+        }
         return cell
     }
     
