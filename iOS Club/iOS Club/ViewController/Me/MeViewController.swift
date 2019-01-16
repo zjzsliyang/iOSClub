@@ -62,7 +62,7 @@ UINavigationControllerDelegate {
     
     func presentGuestView() {
         let webView = UIWebView(frame: view.frame)
-        let url: URL! = URL(string: backendUrl.dropLast(3) + "/files/iOS_Club_Playbook.pdf")
+        let url: URL! = URL(string: staticUrl + "/iOS_Club_Playbook.pdf")
         webView.loadRequest(URLRequest(url: url))
         view.addSubview(webView)
     }
