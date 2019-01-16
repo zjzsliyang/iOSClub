@@ -20,6 +20,7 @@ class NewsViewController: UIViewController {
     var newses = [News]()
     let refresher = PullToRefresh()
     @IBOutlet weak var newsTableView: UITableView!
+    @IBOutlet weak var newsSearchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +38,12 @@ class NewsViewController: UIViewController {
     }
     
     func fetchNews() {
-        newses = []
-        
         if let url = URL(string: backendUrl + "/news/getNews?u_privilege=" + String(describing: privilege!) + "&code=" + String(describing: code!)) {
             let session = URLSession(configuration: .default)
             session.dataTask(with: url) { (data, _, err) in
                 guard err == nil else { return }
                 guard let data = data else { return }
+                self.newses = []
                 if let newsdata = try? JSONDecoder().decode([News].self, from: data) {
                     self.newses.append(contentsOf: newsdata)
                     DispatchQueue.main.async {
@@ -139,7 +139,10 @@ extension NewsViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
 
 extension NewsViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        self.fetchNews()
+        if newsSearchBar?.text != "" {
+            self.fetchNews()
+            newsSearchBar.text = ""
+        }
         self.newsTableView.setContentOffset(CGPoint.zero, animated: true)
     }
 }

@@ -165,6 +165,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hQw-19-NZM"/>
                     <connections>
+                        <outlet property="newsSearchBar" destination="9BE-3l-0Bj" id="Jl5-fX-A80"/>
                         <outlet property="newsTableView" destination="Wwo-aD-Tb7" id="fEb-2y-zFY"/>
                         <outlet property="searchDisplayController" destination="LPh-Xi-uBE" id="2Yx-U1-Ehm"/>
                         <segue destination="KFS-5Z-4Rd" kind="show" identifier="newsDetail" id="VmY-x6-4ge"/>
