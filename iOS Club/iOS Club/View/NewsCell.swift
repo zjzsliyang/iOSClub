@@ -50,6 +50,9 @@ class NewsCell: UITableViewCell {
     }
     
     func setupVideo(video: String) {
+        guard URL(string: video) != nil else {
+            return
+        }
         BMPlayerConf.enableBrightnessGestures = false
         BMPlayerConf.enableVolumeGestures = false
         BMPlayerConf.shouldAutoPlay = false

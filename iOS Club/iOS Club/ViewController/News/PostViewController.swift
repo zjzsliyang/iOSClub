@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 import Gallery
 import Lightbox
+import BMPlayer
 import Alamofire
 import SwiftyJSON
 import AVFoundation
@@ -32,7 +33,7 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
         }
     }
     
-    func uploadPost(postImages: [UIImage], postmail: String, title: String, content: String, news_privilege: Int, user_privilege: Int, tags: [String]) {
+    func uploadPost(postImages: [UIImage], postVideo: URL?, postmail: String, title: String, content: String, news_privilege: Int, user_privilege: Int, tags: [String]) {
         
         let parameters = [
             "postmail": postmail,
@@ -40,13 +41,23 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
             "content": content,
             "news_privilege": String(describing: news_privilege),
             "user_privilege": String(describing: user_privilege),
-            "tags": tags.description
+            "tags": tags.description,
+            "iov": postVideo == nil ? "0": "1"
         ]
         
         Alamofire.upload(multipartFormData: { multipartFormData in
-            for image in postImages {
-                let imgData = image.jpegData(compressionQuality: 1)
-                multipartFormData.append(imgData!, withName: "files", fileName: String(describing: postImages.firstIndex(of: image)) + ".jpg", mimeType: "image/jpg")
+            if postVideo != nil {
+                do {
+                    let videoData = try Data(contentsOf: postVideo!)
+                    multipartFormData.append(videoData, withName: "files", fileName: (postVideo?.absoluteString)!, mimeType: "video/mp4")
+                } catch {
+                    log.error("convert video to data error")
+                }
+            } else {
+                for image in postImages {
+                    let imgData = image.jpegData(compressionQuality: 1)
+                    multipartFormData.append(imgData!, withName: "files", fileName: String(describing: postImages.firstIndex(of: image)) + ".jpg", mimeType: "image/jpg")
+                }
             }
             for (key, value) in parameters {
                 multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
@@ -69,7 +80,6 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
                         log.error(error)
                     }
                 })
-                
             case .failure(let encodingError):
                 log.error("upload post encoding error: " + String(describing: encodingError))
             }
@@ -86,12 +96,12 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
                 selectedImage.resolve { (image) in
                     postImages.append(image!)
                     if postImages.count == self.selectedImages.count {
-                        self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: self.postPrivilege, user_privilege: userPrivilege, tags: self.postTags)
+                        self.uploadPost(postImages: postImages, postVideo: self.selectedVideo, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: self.postPrivilege, user_privilege: userPrivilege, tags: self.postTags)
                     }
                 }
             }
             if selectedImages.count == 0 {
-                self.uploadPost(postImages: postImages, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: self.postPrivilege, user_privilege: 3, tags: self.postTags)
+                self.uploadPost(postImages: postImages, postVideo: selectedVideo, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: self.postPrivilege, user_privilege: 3, tags: self.postTags)
             }
         }
 
@@ -105,12 +115,15 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
     var postTags = [String]()
     var postPrivilege = 3
     var selectedImages = [Image]()
+    let videoplayer = BMPlayer()
+    var selectedVideo: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
         Gallery.Config.VideoEditor.savesEditedVideoToLibrary = true
+        Gallery.Config.VideoEditor.maximumDuration = 30
         Gallery.Config.Camera.imageLimit = 6
         
         button = UIButton(type: .system)
@@ -166,22 +179,39 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
     func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
         controller.dismiss(animated: true, completion: nil)
         gallery = nil
-        
-        
         editor.edit(video: video) { (editedVideo: Video?, tempPath: URL?) in
             DispatchQueue.main.async {
                 if let tempPath = tempPath {
                     let controller = AVPlayerViewController()
                     controller.player = AVPlayer(url: tempPath)
-                    
-                    self.present(controller, animated: true, completion: nil)
+                    self.present(controller, animated: true, completion: {
+                        self.selectedVideo = tempPath
+                        self.selectedImages = []
+                        self.presentVideo(path: tempPath)
+                    })
                 }
             }
         }
     }
     
+    func presentVideo(path: URL) {
+        BMPlayerConf.enableBrightnessGestures = false
+        BMPlayerConf.enableVolumeGestures = false
+        BMPlayerConf.shouldAutoPlay = false
+        BMPlayerConf.topBarShowInCase = .none
+        self.view.addSubview(videoplayer)
+        videoplayer.gestureRecognizers?.removeAll()
+        videoplayer.frame = CGRect(x: selectedCollectionView.frame.minX, y: selectedCollectionView.frame.minY, width: self.view.frame.width - 2 * (selectedCollectionView.frame.minX), height: (self.view.frame.width - 2 * (selectedCollectionView.frame.minX)) / 16 * 9)
+        let asset = BMPlayerResource(url: path)
+        videoplayer.setVideo(resource: asset)
+    }
+    
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
         selectedImages = images
+        selectedVideo = nil
+        if self.view.subviews.contains(videoplayer) {
+            videoplayer.removeFromSuperview()
+        }
         selectedCollectionView.reloadData()
         controller.dismiss(animated: true, completion: nil)
         gallery = nil
