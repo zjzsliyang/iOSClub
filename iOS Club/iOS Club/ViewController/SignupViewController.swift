@@ -135,7 +135,7 @@ class SignupViewController: UIViewController {
             if let data = response.result.value {
                 let json = JSON(data)
                 for item in json.arrayValue {
-                    self.universityDict[item["code"].int!] = item["name"].stringValue
+                    self.universityDict[item["rank"].int!] = item["name"].stringValue
                 }
             }
         }

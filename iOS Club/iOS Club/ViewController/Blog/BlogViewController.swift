@@ -8,16 +8,24 @@
 
 import UIKit
 import SkeletonView
+import PullToRefresh
 import SafariServices
 import URLEmbeddedView
 
 class BlogViewController: UIViewController {
     var blogs = [Blog]()
+    let refresher = PullToRefresh()
     @IBOutlet weak var blogTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        blogTableView.addPullToRefresh(refresher) {
+            self.fetchBlogs()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         fetchBlogs()
     }
     
@@ -66,7 +74,6 @@ extension BlogViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
                 self?.present(SFSafariViewController(url: URL), animated: true, completion: nil)
             }
         }
-        
         return cell
     }
 }
