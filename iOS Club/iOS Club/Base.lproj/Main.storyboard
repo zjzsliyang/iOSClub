@@ -1355,7 +1355,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="titleString" value="SIgnup"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="titleString" value="Signup"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="leftIconFontSize">
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>

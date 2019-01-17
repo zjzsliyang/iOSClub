@@ -122,7 +122,7 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
-        Gallery.Config.VideoEditor.savesEditedVideoToLibrary = true
+        Gallery.Config.VideoEditor.savesEditedVideoToLibrary = false
         Gallery.Config.VideoEditor.maximumDuration = 30
         Gallery.Config.Camera.imageLimit = 6
         
