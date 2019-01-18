@@ -15,9 +15,11 @@ import NotificationBannerSwift
 
 class ActivityViewController: UIViewController {
     
-    var events = [EKEvent]()
+    var nowevents = [EKEvent]()
+    var allevents = [EKEvent]()
+    let eventStore = EKEventStore()
+    var iOSCalendar: EKCalendar?
     var nowids = [Int]()
-    var activitiesEvents = [String: String]()
     @IBOutlet weak var activityTableView: UITableView!
     
     @IBOutlet weak var monthHeaderView: VAMonthHeaderView! {
@@ -46,7 +48,7 @@ class ActivityViewController: UIViewController {
     let defaultCalendar: Calendar = {
         var calendar = Calendar.current
         calendar.firstWeekday = 1
-        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        calendar.timeZone = TimeZone.current
         return calendar
     }()
     
@@ -60,12 +62,6 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        let map = suiteDefault?.object(forKey: "activities")
-        if map != nil {
-            activitiesEvents = map as! [String : String]
-        }
         
         let calendar = VACalendar(calendar: defaultCalendar)
         calendarView = VACalendarView(frame: .zero, calendar: calendar)
@@ -81,6 +77,11 @@ class ActivityViewController: UIViewController {
         self.activityTableView.backgroundColor = .black
         self.activityTableView.separatorColor = .darkGray
         
+        iOSCalendar = getCalendar(eventStore: eventStore)
+        var activityCalendar = NSCalendar.current
+        activityCalendar.timeZone = TimeZone.current
+        let startToday = activityCalendar.startOfDay(for: NSDate() as Date)
+        updateTodayActivity(startDay: startToday as Date)
         updateActivity()
         view.addSubview(calendarView)
     }
@@ -118,22 +119,36 @@ class ActivityViewController: UIViewController {
         return iOSCalendar
     }
     
-    func updateActivity() {
-        let eventStore = EKEventStore()
+    func updateTodayActivity(startDay: Date) {
         eventStore.requestAccess(to: .event) { (granted, error) in
             if granted && (error == nil) {
-                let iOSCalendar = self.getCalendar(eventStore: eventStore)
+                var calendar = NSCalendar.current
+                calendar.timeZone = TimeZone.current
+                let components = NSDateComponents()
+                components.day = 1
+                components.second = -1
+                let endToday = calendar.date(byAdding: components as DateComponents, to: startDay)!
+                let nowpredicate = self.eventStore.predicateForEvents(withStart: startDay, end: endToday, calendars: [self.iOSCalendar!])
+                self.nowevents = self.eventStore.events(matching: nowpredicate)
+                DispatchQueue.main.async {
+                    self.updateActivity()
+                    self.activityTableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func updateActivity() {
+        eventStore.requestAccess(to: .event) { (granted, error) in
+            if granted && (error == nil) {
+                let startDate = NSDate(timeIntervalSinceNow: -6*31*24*3600)
+                let endDate = NSDate(timeIntervalSinceNow: +6*31*24*3600)
                 
-                let oneMonthAgo = NSDate(timeIntervalSinceNow: -31*24*3600)
-                let oneMonthAfter = NSDate(timeIntervalSinceNow: +31*24*3600)
-                
-                let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
-                
-                self.events = eventStore.events(matching: predicate)
-                log.debug(self.events)
+                let predicate = self.eventStore.predicateForEvents(withStart: startDate as Date, end: endDate as Date, calendars: [self.iOSCalendar!])
+                self.allevents = self.eventStore.events(matching: predicate)
                 
                 DispatchQueue.main.async {
-                    for event in self.events {
+                    for event in self.allevents {
                         self.calendarView.setSupplementaries([
                             (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
                             ])
@@ -149,18 +164,16 @@ class ActivityViewController: UIViewController {
         let code = suiteDefault!.integer(forKey: "code")
         let userPrivilege = suiteDefault!.integer(forKey: "user_privilege")
         
-        let eventStore = EKEventStore()
         eventStore.requestAccess(to: .event) { (granted, error) in
             if granted && (error == nil) {
-                let iOSCalendar = self.getCalendar(eventStore: eventStore)
-                
                 let oneMonthAgo = NSDate(timeIntervalSinceNow: -31*24*3600)
                 let oneMonthAfter = NSDate(timeIntervalSinceNow: +31*24*3600)
-                let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [iOSCalendar!])
-                self.events = eventStore.events(matching: predicate)
+                let predicate = self.eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [self.iOSCalendar!])
+                self.allevents = self.eventStore.events(matching: predicate)
                 
-                let event = self.events[indexPath.item]
-                let ids = ((self.activitiesEvents as NSDictionary).allKeys(for: event.eventIdentifier) as! [String])
+                let event = self.allevents[indexPath.item]
+//                let ids = ((self.activitiesEvents as NSDictionary).allKeys(for: event.eventIdentifier) as! [String])
+                let ids = [0: ""]
                 if ids.count > 0 {
                     let eventParameters: Parameters = ["id": ids[0],
                                                        "code": code,
@@ -180,7 +193,7 @@ class ActivityViewController: UIViewController {
                         do {
                             let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
                             if responseJson["code"] == 0 {
-                                self.events.remove(at: indexPath.item)
+                                self.allevents.remove(at: indexPath.item)
                                 self.getEvents()
                                 self.activityTableView.reloadData()
                                 let banner = NotificationBanner(title: "Delete Success", subtitle: "delete event titled " + event.title, style: .success)
@@ -196,14 +209,55 @@ class ActivityViewController: UIViewController {
         }
     }
     
+    func postEventSaved(email: String, u_hash: String, id: Int) {
+        let parameters: Parameters = [
+            "e_id": id,
+            "u_mail": email,
+            "u_hash": u_hash
+        ]
+        
+        Alamofire.request(backendUrl + "/events/setHash", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { (response) in
+            guard (response.result.value != nil) else {
+                log.error(response)
+//                DispatchQueue.main.async {
+//                    let banner = NotificationBanner(title: "Save Fail", subtitle: "Fatal Server Error", style: .danger)
+//                    banner.show()
+//                }
+                return
+            }
+            let responseData = response.result.value!
+            do {
+                let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
+                if responseJson["code"] == 0 {
+//                    DispatchQueue.main.async {
+//                        let banner = NotificationBanner(title: "Save Success", subtitle: "Save to iCloud Calendar", style: .success)
+//                        banner.show()
+//                    }
+                }
+            } catch let error as NSError {
+                log.error(error)
+            }
+        }
+    }
+    
+    func eventAlreadyExist(u_hash: String) -> Bool {
+        for item in self.allevents {
+            if item.eventIdentifier == u_hash {
+                return true
+            }
+        }
+        return false
+    }
+    
     func getEvents() {
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
         let code = suiteDefault!.integer(forKey: "code")
+        let email = suiteDefault?.value(forKey: "email") as! String?
         Alamofire.request(backendUrl + "/events/getEvents?code=" + String(describing: code)).responseString { (response) in
             guard (response.result.value != nil) else {
                 log.error(response)
                 DispatchQueue.main.async {
-                    let banner = NotificationBanner(title: "Get Events Fail", subtitle: "Fatal Server Error", style: .danger)
+                    let banner = NotificationBanner(title: "Get Remote Events Fail", subtitle: "Fatal Server Error", style: .danger)
                     banner.show()
                 }
                 return
@@ -213,51 +267,51 @@ class ActivityViewController: UIViewController {
                 let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
                 if responseJson["code"] == 0 {
                     for eventInfo in responseJson["data"].arrayValue {
-                        let eventStore = EKEventStore()
-                        eventStore.requestAccess(to: .event, completion: { (granted, error) in
+                        self.eventStore.requestAccess(to: .event, completion: { (granted, error) in
                             if granted && (error == nil) {
-                                let event = EKEvent(eventStore: eventStore)
-                                event.title = eventInfo["title"].string
-                                event.location = eventInfo["location"].string
-                                
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "yyyy-MM-d HH:mm"
-                                event.isAllDay = eventInfo["allDay"] == 1
-                                event.startDate = dateFormatter.date(from: eventInfo["startTime"].stringValue)
-                                event.endDate = dateFormatter.date(from: eventInfo["endTime"].stringValue)
-                                
-                                event.timeZone = TimeZone(identifier: TimeZone.knownTimeZoneIdentifiers.filter { $0.contains(eventInfo["timeZone"].stringValue) }.first ?? "")
-                                
-                                event.url = URL(string: eventInfo["url"].stringValue)
-                                event.notes = eventInfo["notes"].stringValue
-
-                                event.calendar = self.getCalendar(eventStore: eventStore)
-                                
-                                do {
-                                    if !self.activitiesEvents.keys.contains(String(describing: eventInfo["id"])) {
-                                        try eventStore.save(event, span: .thisEvent, commit: true)
-                                        self.activitiesEvents[String(describing: eventInfo["id"])] = event.eventIdentifier
-                                        self.updateActivity()
-                                        suiteDefault?.set(self.activitiesEvents, forKey: "activities")
-                                        suiteDefault?.synchronize()
-                                        DispatchQueue.main.async {
-                                            for event in self.events {
-                                                self.calendarView.setSupplementaries([
-                                                    (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
-                                                    ])
-                                                log.debug(event)
-                                            }
-                                            self.activityTableView.reloadData()
-                                        }
+                                var exist = false
+                                for (_, hashMap):(String, JSON) in eventInfo["hashMapList"] {
+                                    let u_hash = hashMap["u_hash"].stringValue
+                                    if hashMap["u_mail"].stringValue == email && self.eventAlreadyExist(u_hash: u_hash) {
+                                        exist = true
                                     }
-                                } catch let error as NSError {
-                                    log.error(error)
+                                }
+                                if exist == false {
+                                    let event = EKEvent(eventStore: self.eventStore)
+                                    event.title = eventInfo["title"].string
+//                                    event.location = eventInfo["location"].string
+                                    
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "yyyy-MM-d HH:mm"
+                                    event.isAllDay = eventInfo["allDay"] == 1
+                                    event.startDate = dateFormatter.date(from: eventInfo["startTime"].stringValue)
+                                    event.endDate = dateFormatter.date(from: eventInfo["endTime"].stringValue)
+                                    
+                                    event.timeZone = TimeZone(identifier: TimeZone.knownTimeZoneIdentifiers.filter { $0.contains(eventInfo["timeZone"].stringValue) }.first ?? "")
+//                                    print(TimeZone.knownTimeZoneIdentifiers.filter { $0.contains(eventInfo["timeZone"].stringValue) }.first!)
+                                    print(event.timeZone)
+                                    
+                                    event.url = URL(string: eventInfo["url"].stringValue)
+                                    event.notes = eventInfo["notes"].stringValue
+                                    
+                                    event.calendar = self.iOSCalendar
+                                    do {
+                                        try self.eventStore.save(event, span: .thisEvent, commit: true)
+                                        self.postEventSaved(email: email!, u_hash: event.eventIdentifier, id: eventInfo["id"].intValue)
+                                        self.updateActivity()
+                                        var activityCalendar = NSCalendar.current
+                                        activityCalendar.timeZone = TimeZone.current
+                                        let startToday = activityCalendar.startOfDay(for: NSDate() as Date)
+                                        self.updateTodayActivity(startDay: startToday as Date)
+                                    } catch let error {
+                                        log.error(error)
+                                    }
                                 }
                             }
                         })
                     }
                 }
-            } catch let error as NSError {
+            } catch let error {
                 log.error(error)
             }
         }
@@ -280,7 +334,7 @@ class ActivityViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showevent") {
             let viewcontroller = segue.destination as! EventDetailViewController
-            viewcontroller.event = events[(sender as! IndexPath).item]
+            viewcontroller.event = allevents[(sender as! IndexPath).item]
         }
     }
 }
@@ -367,19 +421,21 @@ extension ActivityViewController: VACalendarViewDelegate {
     
     func selectedDates(_ dates: [Date]) {
         calendarView.startDate = dates.last ?? Date()
-        log.debug(dates)
+        if dates.count > 0 {
+            updateTodayActivity(startDay: dates[0])
+        }
     }
     
 }
 
 extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        return nowevents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activity") as! ActivityCell
-        let event = events[indexPath.row]
+        let event = nowevents[indexPath.row]
         cell.setActivity(title: event.title, location: event.location, time: event.startDate)
         return cell
     }
