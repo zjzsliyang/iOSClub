@@ -42,11 +42,9 @@ class EmbedPostInfoTableViewController: UITableViewController {
         super.viewDidLoad()
         postInfoTableView.allowsSelection = false
         tagsField.font = UIFont(name: "Avenir Next", size: 17)
-        tagsField.borderWidth = 0
         tagsField.placeholder = "tags"
-        tagsField.cornerRadius = 10
+        tagsField.acceptTagOption = .space
         tagsField.layoutMargins = UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6)
-        
         tagsField.onDidChangeText = { (_, _) in
             self.delegate!.postTags(tags: self.tagsField.tags.map({ return $0.text }))
         }

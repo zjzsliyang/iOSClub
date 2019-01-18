@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import NotificationBannerSwift
 
 class MeViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
@@ -57,6 +58,48 @@ UINavigationControllerDelegate {
         } else {
             presentGuestView()
             logoutButton.title = "Login"
+        }
+    }
+    
+    func changePassword(email: String, newPassword: String, oldPassword: String) {
+        let parameters = [
+            "email": email,
+            "newPassword": newPassword,
+            "oldPassword": oldPassword
+        ]
+        
+        Alamofire.request(backendUrl + "/user/changePassword", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { (response) in
+            guard (response.result.value != nil) else {
+                log.error(response)
+                DispatchQueue.main.async {
+                    let banner = NotificationBanner(title: "Change Password Fail", subtitle: "Fatal Server Error", style: .danger)
+                    banner.show()
+                }
+                return
+            }
+            let responseData = response.result.value!
+            do {
+                let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
+                
+                if responseJson["code"] == 0 {
+                    DispatchQueue.main.async {
+                        let banner = NotificationBanner(title: "Change Password Success", subtitle: nil, style: .danger)
+                        banner.show()
+                    }
+                } else if responseJson["code"] == 2 {
+                    DispatchQueue.main.async {
+                        let banner = NotificationBanner(title: "Change Password Fail", subtitle: "Old Password Incorrect", style: .danger)
+                        banner.show()
+                    }
+                } else if responseJson["code"] == 1 {
+                    DispatchQueue.main.async {
+                        let banner = NotificationBanner(title: "Change Password Fail", subtitle: "Unknown Error", style: .danger)
+                        banner.show()
+                    }
+                }
+            } catch let error as NSError {
+                log.error(error)
+            }
         }
     }
     
