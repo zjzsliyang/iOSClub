@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
             }
         }
         
-        if !(SPPermission.isAllow(.camera) && SPPermission.isAllow(.photoLibrary) && SPPermission.isAllow(.calendar) && SPPermission.isAllow(.notification) && SPPermission.isAllow(.locationWhenInUse)) {
+        if !(SPPermission.isAllow(.camera) || SPPermission.isAllow(.photoLibrary) || SPPermission.isAllow(.calendar) || SPPermission.isAllow(.notification) || SPPermission.isAllow(.locationWhenInUse)) {
             SPPermission.Dialog.request(with: [.camera, .photoLibrary, .calendar, .notification, .locationWhenInUse], on: self)
         }
     }
