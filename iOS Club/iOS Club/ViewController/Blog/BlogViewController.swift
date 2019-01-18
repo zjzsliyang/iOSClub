@@ -30,9 +30,7 @@ class BlogViewController: UIViewController {
     }
     
     func fetchBlogs() {
-        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        let code = suiteDefault!.integer(forKey: "code")
-        if let url = URL(string: backendUrl + "/blog/getByCode?code=" + String(describing: code)) {
+        if let url = URL(string: backendUrl + "/blog/getAll") {
             let session = URLSession(configuration: .default)
             session.dataTask(with: url) { (data, _, err) in
                 guard err == nil else { return }
@@ -41,6 +39,7 @@ class BlogViewController: UIViewController {
                     self.blogs.append(contentsOf: blogsdata)
                     DispatchQueue.main.async {
                         self.blogTableView.reloadData()
+                        self.blogTableView.endAllRefreshing()
                     }
                 } else {
                     log.error("JSON parse failed")

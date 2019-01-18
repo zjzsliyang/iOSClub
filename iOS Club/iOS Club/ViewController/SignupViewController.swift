@@ -22,6 +22,7 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var university: HoshiTextField!
     
     var universityDict = [Int: String]()
+    var universityRank = [Int: Int]()
     var code: Int?
 
     override func viewDidLoad() {
@@ -48,7 +49,7 @@ class SignupViewController: UIViewController {
         }
         
         let userParameters: Parameters = [
-            "u_code": code!,
+            "u_code": universityRank[code!]!,
             "email": email.text!,
             "password": newPassword.text!,
             "username": name.text!,
@@ -65,7 +66,6 @@ class SignupViewController: UIViewController {
                 }
                 return
             }
-            
             let responseData = response.result.value!
             do {
                 let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
@@ -136,6 +136,7 @@ class SignupViewController: UIViewController {
                 let json = JSON(data)
                 for item in json.arrayValue {
                     self.universityDict[item["rank"].int!] = item["name"].stringValue
+                    self.universityRank[item["rank"].int!] = item["code"].int!
                 }
             }
         }
