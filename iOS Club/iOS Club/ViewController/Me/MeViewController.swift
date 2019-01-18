@@ -17,10 +17,10 @@ UINavigationControllerDelegate {
     @IBOutlet weak var avatarView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
-    @IBOutlet weak var personalDescription: UITextView!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
+    
     var oldpwd: String?
     var newpwd: String?
     
@@ -60,6 +60,7 @@ UINavigationControllerDelegate {
         } else {
             presentGuestView()
             logoutButton.title = "Login"
+            self.navigationItem.leftBarButtonItem = nil
         }
     }
     
