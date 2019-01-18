@@ -281,9 +281,9 @@
 		2F6918D721D0C73A00D361C6 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				2F3B947B21ECDA580076C1D6 /* NewsViewController.swift */,
 				2F3B947D21ECDA580076C1D6 /* EmbedPostInfoTableViewController.swift */,
 				2F3B947C21ECDA580076C1D6 /* NewsDetailViewController.swift */,
-				2F3B947B21ECDA580076C1D6 /* NewsViewController.swift */,
 				2F3B947E21ECDA580076C1D6 /* PostViewController.swift */,
 			);
 			name = News;

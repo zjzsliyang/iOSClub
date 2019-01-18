@@ -12,4 +12,5 @@ struct Blog: Decodable {
     let user: User
     let url: String
     let time: String
+    let id: Int
 }

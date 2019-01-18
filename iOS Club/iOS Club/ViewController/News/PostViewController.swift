@@ -66,6 +66,10 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
             switch result {
             case .success(let upload, _, _):
                 upload.responseString(completionHandler: { (response) in
+                    if response.result.value == nil {
+                        let banner = NotificationBanner(title: "Post Fail", subtitle: "Time Out", style: .danger)
+                        banner.show()
+                    }
                     let responseData = response.result.value!
                     do {
                         let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)

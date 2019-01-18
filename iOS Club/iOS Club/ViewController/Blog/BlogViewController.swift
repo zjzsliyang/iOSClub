@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 import SkeletonView
 import PullToRefresh
 import SafariServices
 import URLEmbeddedView
+import NotificationBannerSwift
 
 class BlogViewController: UIViewController {
     var blogs = [Blog]()
@@ -27,6 +30,37 @@ class BlogViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchBlogs()
+    }
+    
+    func deleteBlog(indexPath: IndexPath) {
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        let userPrivilege = suiteDefault!.integer(forKey: "user_privilege")
+        
+        
+        let blogParameters: Parameters = ["user_privilege": userPrivilege,
+                                          "id": blogs[indexPath.item].id]
+        Alamofire.request(backendUrl + "/blog/delete", method: .post, parameters: blogParameters, encoding: JSONEncoding.default).responseString { (response) in
+            guard (response.result.value != nil) else {
+                log.error(response)
+                DispatchQueue.main.async {
+                    let banner = NotificationBanner(title: "Delete Fail", subtitle: "Fatal Server Error", style: .danger)
+                    banner.show()
+                }
+                return
+            }
+            let responseData = response.result.value!
+            do {
+                let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
+                if responseJson["code"] == 0 {
+                    self.blogs.remove(at: indexPath.item)
+                    self.blogTableView.reloadData()
+                    let banner = NotificationBanner(title: "Delete Success", subtitle: nil, style: .success)
+                    banner.show()
+                }
+            } catch let error as NSError {
+                log.error(error)
+            }
+        }
     }
     
     func fetchBlogs() {
@@ -75,5 +109,15 @@ extension BlogViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
             }
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteBlog(indexPath: indexPath)
+        }
     }
 }

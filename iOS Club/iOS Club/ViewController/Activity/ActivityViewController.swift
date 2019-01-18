@@ -67,8 +67,6 @@ class ActivityViewController: UIViewController {
             activitiesEvents = map as! [String : String]
         }
         
-        getEvents()
-        
         let calendar = VACalendar(calendar: defaultCalendar)
         calendarView = VACalendarView(frame: .zero, calendar: calendar)
         calendarView.showDaysOut = true
