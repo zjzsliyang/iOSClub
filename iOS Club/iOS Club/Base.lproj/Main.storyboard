@@ -1199,10 +1199,10 @@
             </objects>
             <point key="canvasLocation" x="-202" y="371"/>
         </scene>
-        <!--Tab Bar View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="shJ-nF-ULk">
             <objects>
-                <tabBarController id="bMo-NY-kuX" customClass="TabBarViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="bMo-NY-kuX" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XSX-lB-HK6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1667,19 +1667,19 @@
         </scene>
     </scenes>
     <resources>
-        <image name="activity" width="32" height="32"/>
+        <image name="activity" width="64" height="64"/>
         <image name="avatar" width="420" height="420"/>
         <image name="bg" width="1920" height="1080"/>
-        <image name="blog" width="32" height="32"/>
+        <image name="blog" width="64" height="64"/>
         <image name="edit" width="129" height="129"/>
         <image name="iosclub" width="512" height="512"/>
         <image name="location" width="64" height="64"/>
-        <image name="me" width="32" height="32"/>
+        <image name="me" width="64" height="64"/>
         <image name="more" width="128" height="128"/>
-        <image name="news" width="32" height="32"/>
+        <image name="news" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cx3-ij-V6U"/>
+        <segue reference="l02-rQ-XU4"/>
         <segue reference="TmN-Hu-UTc"/>
     </inferredMetricsTieBreakers>
 </document>

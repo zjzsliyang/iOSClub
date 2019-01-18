@@ -88,7 +88,6 @@
 		2FC6552F21E8F6BD003F3E43 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC6552E21E8F6BD003F3E43 /* EventDetailViewController.swift */; };
 		2FCA35F72155402100816691 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F22155402100816691 /* ActivityViewController.swift */; };
 		2FCA35F82155402100816691 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F32155402100816691 /* BlogViewController.swift */; };
-		2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F52155402100816691 /* TabBarViewController.swift */; };
 		2FCA35FB2155402100816691 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F62155402100816691 /* MeViewController.swift */; };
 		2FCA36102155633900816691 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA360F2155633900816691 /* NewsCell.swift */; };
 		2FCA3614215572E300816691 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3613215572E300816691 /* News.swift */; };
@@ -207,7 +206,6 @@
 		2FC6552E21E8F6BD003F3E43 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		2FCA35F22155402100816691 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		2FCA35F32155402100816691 /* BlogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
-		2FCA35F52155402100816691 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2FCA35F62155402100816691 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		2FCA360F2155633900816691 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		2FCA3613215572E300816691 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -616,7 +614,6 @@
 		2FCA35F121553FB700816691 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2FCA35F52155402100816691 /* TabBarViewController.swift */,
 				2F3B947921ECD9D50076C1D6 /* SignupViewController.swift */,
 				2F67E33F2157326A0076B1DA /* LoginViewController.swift */,
 				2F6918D621D0C71A00D361C6 /* Me */,
@@ -944,7 +941,6 @@
 				2F8A4ECC21F1CC4C00DF3FBE /* ColorPickerViewController.swift in Sources */,
 				2FCA35F82155402100816691 /* BlogViewController.swift in Sources */,
 				2F8A4EB921F1CC4C00DF3FBE /* LocaleInfo.swift in Sources */,
-				2FCA35FA2155402100816691 /* TabBarViewController.swift in Sources */,
 				2F8A4EC021F1CC4C00DF3FBE /* Assets.swift in Sources */,
 				2F8A4ED821F1CC4C00DF3FBE /* Button.swift in Sources */,
 				2F45EB2D21583E6F00C5B9D3 /* BlogCell.swift in Sources */,
