@@ -30,6 +30,7 @@ class BlogViewController: UIViewController {
     }
     
     func fetchBlogs() {
+        blogs = []
         if let url = URL(string: backendUrl + "/blog/getAll") {
             let session = URLSession(configuration: .default)
             session.dataTask(with: url) { (data, _, err) in
