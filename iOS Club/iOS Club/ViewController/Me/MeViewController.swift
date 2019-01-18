@@ -21,6 +21,8 @@ UINavigationControllerDelegate {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
+    var oldpwd: String?
+    var newpwd: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +63,7 @@ UINavigationControllerDelegate {
         }
     }
     
-    func changePassword(email: String, newPassword: String, oldPassword: String) {
+    func postNewPassword(email: String, newPassword: String, oldPassword: String) {
         let parameters = [
             "email": email,
             "newPassword": newPassword,
@@ -83,8 +85,11 @@ UINavigationControllerDelegate {
                 
                 if responseJson["code"] == 0 {
                     DispatchQueue.main.async {
-                        let banner = NotificationBanner(title: "Change Password Success", subtitle: nil, style: .danger)
+                        let banner = NotificationBanner(title: "Change Password Success", subtitle: nil, style: .success)
                         banner.show()
+                        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+                        suiteDefault?.removeObject(forKey: "password")
+                        self.tabBarController?.dismiss(animated: true, completion: nil)
                     }
                 } else if responseJson["code"] == 2 {
                     DispatchQueue.main.async {
@@ -117,6 +122,63 @@ UINavigationControllerDelegate {
             picker.sourceType = .photoLibrary
             self.present(picker, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func changePassword(_ sender: UIBarButtonItem) {
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        let email = suiteDefault!.value(forKey: "email") as! String
+        
+        let alert = UIAlertController(style: .actionSheet)
+        
+        let textFieldOne: TextField.Config = { textField in
+            textField.left(image: UIImage(named: "clip"), color: UIColor(hex: 0x007AFF))
+            textField.leftViewPadding = 16
+            textField.leftTextPadding = 12
+            textField.becomeFirstResponder()
+            textField.backgroundColor = nil
+            textField.textColor = .black
+            textField.placeholder = "old password"
+            textField.clearButtonMode = .whileEditing
+            textField.autocapitalizationType = .none
+            textField.keyboardAppearance = .default
+            textField.keyboardType = .default
+            textField.returnKeyType = .continue
+            textField.action { textField in
+                self.oldpwd = textField.text
+            }
+        }
+        
+        let textFieldTwo: TextField.Config = { textField in
+            textField.left(image: UIImage(named: "padlock"), color: UIColor(hex: 0x007AFF))
+            textField.leftViewPadding = 16
+            textField.leftTextPadding = 12
+            textField.borderWidth = 1
+            textField.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
+            textField.backgroundColor = nil
+            textField.textColor = .black
+            textField.placeholder = "new password"
+            textField.clearsOnBeginEditing = true
+            textField.autocapitalizationType = .none
+            textField.keyboardAppearance = .default
+            textField.keyboardType = .default
+            textField.isSecureTextEntry = true
+            textField.returnKeyType = .done
+            textField.action { textField in
+                self.newpwd = textField.text
+            }
+        }
+        
+        alert.addTwoTextFields(
+            height: 58,
+            hInset: 0,
+            vInset: 0,
+            textFieldOne: textFieldOne,
+            textFieldTwo: textFieldTwo
+        )
+        alert.addAction(title: "Update Password", style: .cancel) { (_) in
+            self.postNewPassword(email: email, newPassword: self.newpwd ?? "", oldPassword: self.oldpwd ?? "")
+        }
+        self.present(alert, animated: true, completion: nil)
     }
 
     @IBAction func logout(_ sender: UIBarButtonItem) {

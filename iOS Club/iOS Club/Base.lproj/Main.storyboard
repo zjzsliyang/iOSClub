@@ -945,6 +945,11 @@
                         <viewLayoutGuide key="safeArea" id="L2z-Fi-oJ6"/>
                     </view>
                     <navigationItem key="navigationItem" id="GtQ-A3-mjc">
+                        <barButtonItem key="leftBarButtonItem" title="Change Password" id="CLc-2m-mUp">
+                            <connections>
+                                <action selector="changePassword:" destination="WsA-N9-ZJ2" id="LaR-Qz-Ujm"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="8cp-JC-hdk">
                             <connections>
                                 <action selector="logout:" destination="WsA-N9-ZJ2" id="8tJ-bi-Rsd"/>
