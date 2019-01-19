@@ -159,20 +159,25 @@ class ActivityViewController: UIViewController {
         }
     }
     
-    
+    func deleteUpdate(index: Int, local: Bool) {
+        do {
+            if !local {
+                try self.eventStore.remove(self.nowevents[index], span: .thisEvent)
+            }
+            self.allevents.remove(self.nowevents[index])
+            self.nowevents.remove(at: index)
+            DispatchQueue.main.async {
+                self.activityTableView.reloadData()
+                self.calendarView.reloadInputViews()
+            }
+        } catch let error {
+            log.error(error)
+        }
+    }
     
     func deleteEvent(indexPath: IndexPath) {
         if nowevents[indexPath.row].eventIdentifier == nil {
-            self.allevents.remove(self.nowevents[indexPath.row])
-            self.nowevents.remove(at: indexPath.row)
-            self.activityTableView.reloadData()
-            DispatchQueue.main.async {
-                for event in self.allevents {
-                    self.calendarView.setSupplementaries([
-                        (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
-                        ])
-                }
-            }
+            deleteUpdate(index: indexPath.row, local: true)
             return
         }
         
@@ -190,53 +195,14 @@ class ActivityViewController: UIViewController {
             do {
                 let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
                 if responseJson["code"] == 0 {
-                    do {
-                        try self.eventStore.remove(self.nowevents[indexPath.row], span: .thisEvent)
-                        print(self.allevents.contains(self.nowevents[indexPath.row]))
-                        self.allevents.remove(at: self.allevents.indexes(of: self.nowevents[indexPath.row]).last!)
-                        print(self.allevents.count)
-                        self.nowevents.remove(at: indexPath.row)
-                        self.activityTableView.reloadData()
-                        print(self.allevents.count)
-                        for event in self.allevents {
-                            self.calendarView.setSupplementaries([
-                                (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
-                                ])
-                        }
-                        print(self.allevents.count)
-                        DispatchQueue.main.async {
-                            print("async " + String(self.allevents.count))
-                            for event in self.allevents {
-                                print(event)
-                                self.calendarView.setSupplementaries([
-                                    (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
-                                    ])
-                            }
-                        }
-                    } catch let error {
-                        log.error(error)
-                    }
+                    self.deleteUpdate(index: indexPath.row, local: false)
                 } else if responseJson["code"] == 1 {
                     DispatchQueue.main.async {
                         let banner = NotificationBanner(title: "Delete Fail", subtitle: "Unknown Error", style: .danger)
                         banner.show()
                     }
                 } else if responseJson["code"] == 2 {
-                    do {
-                        self.allevents.remove(self.nowevents[indexPath.row])
-                        try self.eventStore.remove(self.nowevents[indexPath.row], span: .thisEvent)
-                        DispatchQueue.main.async {
-                            self.nowevents.remove(at: indexPath.row)
-                            self.activityTableView.reloadData()
-                            for event in self.allevents {
-                                self.calendarView.setSupplementaries([
-                                    (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
-                                    ])
-                            }
-                        }
-                    } catch let error {
-                        log.error(error)
-                    }
+                    self.deleteUpdate(index: indexPath.row, local: false)
                 }
             } catch let error as NSError {
                 log.error(error)
