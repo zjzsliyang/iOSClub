@@ -989,11 +989,11 @@
                 <viewController id="Bgd-MU-cYl" customClass="UniversityListViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p6P-31-ZaU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fHX-vm-JsH">
                                 <rect key="frame" x="0.0" y="88" width="375" height="641"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="htz-Ky-sbU">
                                     <size key="itemSize" width="100" height="100"/>
@@ -1041,7 +1041,7 @@
                 <viewController id="Jwf-DE-7u2" customClass="UniversityDetailViewController" customModule="Student_Club" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bv3-KJ-vtE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3RI-uc-dAE">
                                 <rect key="frame" x="127" y="123" width="120" height="120"/>
@@ -1620,7 +1620,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KtB-M6-CdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-758" y="-378"/>
+            <point key="canvasLocation" x="-754" y="-747"/>
         </scene>
         <!--Me-->
         <scene sceneID="q0B-Rk-IS7">
@@ -1693,7 +1693,7 @@
         <image name="news" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cx3-ij-V6U"/>
+        <segue reference="l02-rQ-XU4"/>
         <segue reference="TmN-Hu-UTc"/>
     </inferredMetricsTieBreakers>
 </document>
