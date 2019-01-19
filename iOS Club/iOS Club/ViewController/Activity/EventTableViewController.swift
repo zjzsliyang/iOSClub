@@ -84,6 +84,25 @@ class EventTableViewController: UITableViewController, CLLocationManagerDelegate
         tableView.cellForRow(at: indexPath)?.isSelected = false
     }
     
+    @IBAction func switchAllDay(_ sender: UISwitch) {
+        let startCell = tableView(self.tableView, cellForRowAt: IndexPath(row: 1, section: 1))
+        let endCell = tableView(self.tableView, cellForRowAt: IndexPath(row: 2, section: 1))
+        if sender.isOn == true {
+            startTimeLabel.textColor = UIColor.lightGray
+            endTimeLabel.textColor = UIColor.lightGray
+            
+            startCell.isUserInteractionEnabled = false
+            endCell.isUserInteractionEnabled = false
+        } else {
+            startTimeLabel.textColor = UIColor.darkGray
+            endTimeLabel.textColor = UIColor.darkGray
+            
+            startCell.isUserInteractionEnabled = true
+            endCell.isUserInteractionEnabled = true
+        }
+    }
+    
+    
     func openTimePicker()  {
         timePicker.datePickerMode = .dateAndTime
         timePicker.frame = CGRect(x: 0.0, y: (self.view.frame.height - 150), width: self.view.frame.width, height: 150.0)

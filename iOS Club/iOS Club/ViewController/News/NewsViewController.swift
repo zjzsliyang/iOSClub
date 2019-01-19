@@ -82,6 +82,9 @@ class NewsViewController: UIViewController {
                         self.newsTableView.reloadData()
                         let banner = NotificationBanner(title: "Delete Success", subtitle: "delete post titled " + news.title, style: .success)
                         banner.show()
+                    } else {
+                        let banner = NotificationBanner(title: "Delete Fail", subtitle: responseJson["msg"].rawString(), style: .danger)
+                        banner.show()
                     }
                 } catch let error as NSError {
                     log.error(error)
