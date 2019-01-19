@@ -72,10 +72,9 @@ class ActivityViewController: UIViewController {
         calendarView.monthViewAppearanceDelegate = self
         calendarView.calendarDelegate = self
         calendarView.scrollDirection = .horizontal
+        calendarView.backgroundColor = UIColor(hex: "#F9F9F9")
         
-        self.activityTableView.tableFooterView?.backgroundColor = .black
-        self.activityTableView.backgroundColor = .black
-        self.activityTableView.separatorColor = .darkGray
+        self.activityTableView.separatorColor = UIColor(hex: "#EFEEF0")
         
         iOSCalendar = getCalendar(eventStore: eventStore)
         var activityCalendar = NSCalendar.current
@@ -438,7 +437,7 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activity") as! ActivityCell
         let event = nowevents[indexPath.row]
-        cell.setActivity(title: event.title, location: event.location, time: event.startDate)
+        cell.setActivity(title: event.title, location: event.location, startTime: event.startDate, endTime: event.endDate)
         return cell
     }
     

@@ -11,16 +11,20 @@ import UIKit
 class ActivityCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var startLabel: UILabel!
+    @IBOutlet weak var endLabel: UILabel!
     
-    func setActivity(title: String?, location: String?, time: Date?) {
+    func setActivity(title: String?, location: String?, startTime: Date?, endTime: Date?) {
         titleLabel.text = title
         locationLabel.text = location
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Calendar.current.locale
         dateFormatter.dateFormat = "HH:mm"
-        if time != nil {
-            timeLabel.text = dateFormatter.string(from: time!)
+        if startTime != nil {
+            startLabel.text = dateFormatter.string(from: startTime!)
+        }
+        if endTime != nil {
+            endLabel.text = dateFormatter.string(from: endTime!)
         }
     }
     
