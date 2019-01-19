@@ -159,53 +159,89 @@ class ActivityViewController: UIViewController {
         }
     }
     
+    
+    
     func deleteEvent(indexPath: IndexPath) {
-        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        let code = suiteDefault!.integer(forKey: "code")
-        let userPrivilege = suiteDefault!.integer(forKey: "user_privilege")
+        if nowevents[indexPath.row].eventIdentifier == nil {
+            self.allevents.remove(self.nowevents[indexPath.row])
+            self.nowevents.remove(at: indexPath.row)
+            self.activityTableView.reloadData()
+            DispatchQueue.main.async {
+                for event in self.allevents {
+                    self.calendarView.setSupplementaries([
+                        (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
+                        ])
+                }
+            }
+            return
+        }
         
-        eventStore.requestAccess(to: .event) { (granted, error) in
-            if granted && (error == nil) {
-                let oneMonthAgo = NSDate(timeIntervalSinceNow: -31*24*3600)
-                let oneMonthAfter = NSDate(timeIntervalSinceNow: +31*24*3600)
-                let predicate = self.eventStore.predicateForEvents(withStart: oneMonthAgo as Date, end: oneMonthAfter as Date, calendars: [self.iOSCalendar!])
-                self.allevents = self.eventStore.events(matching: predicate)
-                
-                let event = self.allevents[indexPath.item]
-//                let ids = ((self.activitiesEvents as NSDictionary).allKeys(for: event.eventIdentifier) as! [String])
-                let ids = [0: ""]
-                if ids.count > 0 {
-                    let eventParameters: Parameters = ["id": ids[0],
-                                                       "code": code,
-                                                       "event_privilege": 1,
-                                                       "user_privilege": userPrivilege]
-                    Alamofire.request(backendUrl + "/events/delete", method: .post, parameters: eventParameters, encoding: JSONEncoding.default).responseString { (response) in
-                        
-                        guard (response.result.value != nil) else {
-                            log.error(response)
-                            DispatchQueue.main.async {
-                                let banner = NotificationBanner(title: "Delete Fail", subtitle: "Fatal Server Error", style: .danger)
-                                banner.show()
-                            }
-                            return
+        let eventParameters: Parameters = ["u_hash": nowevents[indexPath.row].eventIdentifier!]
+        Alamofire.request(backendUrl + "/events/deleteByHash", method: .post, parameters: eventParameters, encoding: JSONEncoding.default).responseString { (response) in
+            guard (response.result.value != nil) else {
+                log.error(response)
+                DispatchQueue.main.async {
+                    let banner = NotificationBanner(title: "Delete Fail", subtitle: "Fatal Server Error", style: .danger)
+                    banner.show()
+                }
+                return
+            }
+            let responseData = response.result.value!
+            do {
+                let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
+                if responseJson["code"] == 0 {
+                    do {
+                        try self.eventStore.remove(self.nowevents[indexPath.row], span: .thisEvent)
+                        print(self.allevents.contains(self.nowevents[indexPath.row]))
+                        self.allevents.remove(at: self.allevents.indexes(of: self.nowevents[indexPath.row]).last!)
+                        print(self.allevents.count)
+                        self.nowevents.remove(at: indexPath.row)
+                        self.activityTableView.reloadData()
+                        print(self.allevents.count)
+                        for event in self.allevents {
+                            self.calendarView.setSupplementaries([
+                                (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
+                                ])
                         }
-                        let responseData = response.result.value!
-                        do {
-                            let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
-                            if responseJson["code"] == 0 {
-                                self.allevents.remove(at: indexPath.item)
-                                self.getEvents()
-                                self.activityTableView.reloadData()
-                                let banner = NotificationBanner(title: "Delete Success", subtitle: "delete event titled " + event.title, style: .success)
-                                banner.show()
+                        print(self.allevents.count)
+                        DispatchQueue.main.async {
+                            print("async " + String(self.allevents.count))
+                            for event in self.allevents {
+                                print(event)
+                                self.calendarView.setSupplementaries([
+                                    (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
+                                    ])
                             }
-                        } catch let error as NSError {
-                            log.error(error)
                         }
+                    } catch let error {
+                        log.error(error)
+                    }
+                } else if responseJson["code"] == 1 {
+                    DispatchQueue.main.async {
+                        let banner = NotificationBanner(title: "Delete Fail", subtitle: "Unknown Error", style: .danger)
+                        banner.show()
+                    }
+                } else if responseJson["code"] == 2 {
+                    do {
+                        self.allevents.remove(self.nowevents[indexPath.row])
+                        try self.eventStore.remove(self.nowevents[indexPath.row], span: .thisEvent)
+                        DispatchQueue.main.async {
+                            self.nowevents.remove(at: indexPath.row)
+                            self.activityTableView.reloadData()
+                            for event in self.allevents {
+                                self.calendarView.setSupplementaries([
+                                    (event.startDate!, [VADaySupplementary.bottomDots([.red])]),
+                                    ])
+                            }
+                        }
+                    } catch let error {
+                        log.error(error)
                     }
                 }
-                
+            } catch let error as NSError {
+                log.error(error)
             }
+            
         }
     }
     
@@ -289,7 +325,7 @@ class ActivityViewController: UIViewController {
                                     
                                     event.timeZone = TimeZone(identifier: TimeZone.knownTimeZoneIdentifiers.filter { $0.contains(eventInfo["timeZone"].stringValue) }.first ?? "")
 //                                    print(TimeZone.knownTimeZoneIdentifiers.filter { $0.contains(eventInfo["timeZone"].stringValue) }.first!)
-                                    print(event.timeZone)
+//                                    print(event.timeZone)
                                     
                                     event.url = URL(string: eventInfo["url"].stringValue)
                                     event.notes = eventInfo["notes"].stringValue
