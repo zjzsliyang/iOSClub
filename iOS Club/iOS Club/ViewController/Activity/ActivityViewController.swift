@@ -76,6 +76,8 @@ class ActivityViewController: UIViewController {
         
         self.activityTableView.separatorColor = UIColor(hex: "#EFEEF0")
         
+        self.activityTableView.frame = CGRect(x: 0, y: (weekDaysView.frame.maxY + view.frame.height * 0.4), width: self.view.frame.width, height: self.view.frame.height - (weekDaysView.frame.maxY + view.frame.height * 0.4))
+        
         iOSCalendar = getCalendar(eventStore: eventStore)
         var activityCalendar = NSCalendar.current
         activityCalendar.timeZone = TimeZone.current
@@ -167,7 +169,6 @@ class ActivityViewController: UIViewController {
             self.nowevents.remove(at: index)
             DispatchQueue.main.async {
                 self.activityTableView.reloadData()
-                self.calendarView.reloadInputViews()
             }
         } catch let error {
             log.error(error)
@@ -297,7 +298,9 @@ class ActivityViewController: UIViewController {
                                     event.calendar = self.iOSCalendar
                                     do {
                                         try self.eventStore.save(event, span: .thisEvent, commit: true)
-                                        self.postEventSaved(email: email!, u_hash: event.eventIdentifier, id: eventInfo["id"].intValue)
+                                        if event.eventIdentifier != nil {
+                                            self.postEventSaved(email: email!, u_hash: event.eventIdentifier, id: eventInfo["id"].intValue)
+                                        }
                                         self.updateActivity()
                                         var activityCalendar = NSCalendar.current
                                         activityCalendar.timeZone = TimeZone.current
