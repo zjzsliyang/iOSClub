@@ -28,8 +28,8 @@ UINavigationControllerDelegate {
         super.viewDidLoad()
 
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        
-        if let email = suiteDefault!.value(forKey: "email") {
+        let email = suiteDefault!.value(forKey: "email") as! String
+        if email != "" {
             avatarView.layer.masksToBounds = true
             avatarView.layer.cornerRadius = avatarView.frame.width / 2
             avatarView.isUserInteractionEnabled = true

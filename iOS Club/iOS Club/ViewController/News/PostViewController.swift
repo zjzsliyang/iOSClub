@@ -33,18 +33,17 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
         }
     }
     
-    func uploadPost(postImages: [UIImage], postVideo: URL?, postmail: String, title: String, content: String, news_privilege: Int, user_privilege: Int, tags: [String]) {
+    func uploadPost(postImages: [UIImage], postVideo: URL?, email: String, title: String, content: String, news_privilege: Int, tags: [String]) {
         
         let parameters = [
-            "postmail": postmail,
+            "user_email": email,
             "title": title,
             "content": content,
             "news_privilege": String(describing: news_privilege),
-            "user_privilege": String(describing: user_privilege),
             "tags": tags.description,
             "iov": postVideo == nil ? "0": "1"
         ]
-        
+
         Alamofire.upload(multipartFormData: { multipartFormData in
             if postVideo != nil {
                 do {
@@ -93,19 +92,18 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
     @IBAction func done(_ sender: UIBarButtonItem) {
         if postTextView.textColor != UIColor.lightGray {
             let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-            let postmail = suiteDefault!.value(forKey: "email") as! String
-            let userPrivilege = suiteDefault!.integer(forKey: "user_privilege")
+            let email = suiteDefault!.value(forKey: "email") as! String
             var postImages = [UIImage]()
             for selectedImage in selectedImages {
                 selectedImage.resolve { (image) in
                     postImages.append(image!)
                     if postImages.count == self.selectedImages.count {
-                        self.uploadPost(postImages: postImages, postVideo: self.selectedVideo, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: self.postPrivilege, user_privilege: userPrivilege, tags: self.postTags)
+                        self.uploadPost(postImages: postImages, postVideo: self.selectedVideo, email: email, title: self.postTitle, content: self.postTextView.text!, news_privilege: self.postPrivilege, tags: self.postTags)
                     }
                 }
             }
             if selectedImages.count == 0 {
-                self.uploadPost(postImages: postImages, postVideo: selectedVideo, postmail: postmail, title: self.postTitle, content: self.postTextView.text!, news_privilege: self.postPrivilege, user_privilege: 3, tags: self.postTags)
+                self.uploadPost(postImages: postImages, postVideo: selectedVideo, email: email, title: self.postTitle, content: self.postTextView.text!, news_privilege: self.postPrivilege, tags: self.postTags)
             }
         }
 
@@ -117,7 +115,7 @@ class PostViewController: UIViewController, GalleryControllerDelegate, LightboxC
     let editor: VideoEditing = VideoEditor()
     var postTitle = ""
     var postTags = [String]()
-    var postPrivilege = 3
+    var postPrivilege = 0
     var selectedImages = [Image]()
     let videoplayer = BMPlayer()
     var selectedVideo: URL?
@@ -273,14 +271,14 @@ extension PostViewController: PostInfoProtocol {
     
     func postPrivilege(description: String) {
         switch description {
-        case "Only my university members":
+        case "Only my club admin":
             self.postPrivilege = 2
-        case "All university club members":
+        case "My university members":
             self.postPrivilege = 1
         case "All(including guest)":
             self.postPrivilege = 0
         default:
-            self.postPrivilege = 3
+            self.postPrivilege = 0
         }
     }
 }

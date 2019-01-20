@@ -26,8 +26,8 @@ class EmbedPostInfoTableViewController: UITableViewController {
     @IBAction func selectPrivilegeTextField(_ sender: UITextField) {
         let privilegeAlertView = UIAlertController(title: "Post Privilege", message: "choose who can see this post", preferredStyle: .alert)
         
-        privilegeAlertView.addAction(UIAlertAction(title: "Only my university members", style: .default, handler: displayPrivilege))
-        privilegeAlertView.addAction(UIAlertAction(title: "All university club members", style: .default, handler: displayPrivilege))
+        privilegeAlertView.addAction(UIAlertAction(title: "Only my club admin", style: .default, handler: displayPrivilege))
+        privilegeAlertView.addAction(UIAlertAction(title: "My university members", style: .default, handler: displayPrivilege))
         privilegeAlertView.addAction(UIAlertAction(title: "All(including guest)", style: .default, handler: displayPrivilege))
         
         self.present(privilegeAlertView, animated: true, completion: nil)

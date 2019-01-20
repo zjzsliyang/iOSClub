@@ -14,8 +14,7 @@ import PullToRefresh
 import NotificationBannerSwift
 
 class NewsViewController: UIViewController {
-    var privilege: Int?
-    var code: Int?
+    var email: String?
     
     var newses = [News]()
     let refresher = PullToRefresh()
@@ -38,22 +37,33 @@ class NewsViewController: UIViewController {
     }
     
     func fetchNews() {
-        if let url = URL(string: backendUrl + "/news/getNews?u_privilege=" + String(describing: privilege!) + "&code=" + String(describing: code!)) {
-            let session = URLSession(configuration: .default)
-            session.dataTask(with: url) { (data, _, err) in
-                guard err == nil else { return }
-                guard let data = data else { return }
-                self.newses = []
-                if let newsdata = try? JSONDecoder().decode([News].self, from: data) {
-                    self.newses.append(contentsOf: newsdata)
-                    DispatchQueue.main.async {
-                        self.newsTableView.reloadData()
-                        self.newsTableView.endAllRefreshing()
-                    }
-                } else {
-                    log.error("fetched JSON parse failed")
+        Alamofire.request(backendUrl + "/news/getNews?user_email=" + email!).responseString { (response) in
+            guard (response.result.value != nil) else {
+                log.error(response)
+                DispatchQueue.main.async {
+                    let banner = NotificationBanner(title: "Get News Fail", subtitle: "Fatal Server Error", style: .danger)
+                    banner.show()
                 }
-            }.resume()
+                return
+            }
+            let responseData = response.result.value!
+            do {
+                let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
+                if responseJson["code"] == 0 {
+                    self.newses = []
+                    if let newsdata = try? JSONDecoder().decode([News].self, from: responseJson["news"].rawData()) {
+                        self.newses.append(contentsOf: newsdata)
+                        DispatchQueue.main.async {
+                            self.newsTableView.reloadData()
+                            self.newsTableView.endAllRefreshing()
+                        }
+                    } else {
+                        log.error("fetched JSON parse failed")
+                    }
+                }
+            } catch let error as NSError {
+                log.error(error)
+            }
         }
     }
     
@@ -61,10 +71,8 @@ class NewsViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
             let news = self.newses[(self.newsTableView.indexPath(for: sender)?.row)!]
-            let newsParameters: Parameters = ["id": news.id,
-                                              "code": self.code ?? -1,
-                                              "news_privilege": news.news_privilege,
-                                              "user_privilege": self.privilege!]
+            let newsParameters: Parameters = ["news_id": news.id,
+                                              "user_email": self.email!]
             Alamofire.request(backendUrl + "/news/delete", method: .post, parameters: newsParameters, encoding: JSONEncoding.default).responseString(completionHandler: { (response) in
                 guard (response.result.value != nil) else {
                     log.error(response)
@@ -154,7 +162,7 @@ extension NewsViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text!.count > 0 {
-            Alamofire.request((backendUrl + "/news/search?text=" + searchBar.text! + "&u_privilege=" + String(describing: privilege!) + "&code=" + String(describing: code!)).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!).responseString { (response) in
+            Alamofire.request((backendUrl + "/news/search?text=" + searchBar.text! + "&user_email=" + String(describing: email!)).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!).responseString { (response) in
                 guard (response.result.value != nil) else {
                     log.error(response)
                     DispatchQueue.main.async {

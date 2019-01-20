@@ -27,8 +27,7 @@ class NewEventViewController: UIViewController {
     
     @IBAction func add(_ sender: UIBarButtonItem) {
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        let userPrivilege = suiteDefault!.integer(forKey: "user_privilege")
-        let code = suiteDefault!.integer(forKey: "code")
+        let email = suiteDefault!.value(forKey: "email") as! String
         let eventPrivilege = 1
         
         let title = newEventTableViewController?.titleTextField.text
@@ -67,9 +66,8 @@ class NewEventViewController: UIViewController {
             "url": url ?? "",
             "notes": notes ?? "",
             
-            "u_code": code,
-            "user_privilege": userPrivilege,
-            "event_privilege": eventPrivilege
+            "event_privilege": eventPrivilege,
+            "user_email": email
         ]
         Alamofire.request(backendUrl + "/events/create", method: .post, parameters: eventParameters, encoding: JSONEncoding.default).responseString { (response) in
             guard (response.result.value != nil) else {

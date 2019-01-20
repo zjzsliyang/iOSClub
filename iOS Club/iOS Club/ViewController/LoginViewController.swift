@@ -25,18 +25,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func guest(_ sender: UIButton) {
-        var userInfo = [String: Int?]()
-        userInfo["user_privilege"] = 0
-        userInfo["code"] = -1
-        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        suiteDefault?.set(userInfo["user_privilege"]!, forKey: "user_privilege")
-        suiteDefault?.set(userInfo["code"]!, forKey: "code")
-        suiteDefault?.synchronize()
-        self.performSegue(withIdentifier: "login", sender: userInfo)
+        self.performSegue(withIdentifier: "login", sender: "")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.autocorrectionType = .no
         setupHideKeyboardOnTap()
     }
     
@@ -88,15 +82,12 @@ class LoginViewController: UIViewController {
                 if responseJson["code"] == 0 {
                     DispatchQueue.main.async {
                         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-                        suiteDefault?.set(responseJson["user"]["email"].rawString()!, forKey: "email")
+                        let email = responseJson["user"]["email"].rawString()!
                         if self.passwordTextField.text! != "" {
                             suiteDefault?.set(self.passwordTextField.text!, forKey: "password")
                         }
                         suiteDefault?.synchronize()
-                        var userInfo = [String: Int?]()
-                        userInfo["user_privilege"] = responseJson["user"]["user_privilege"].int!
-                        userInfo["code"] = responseJson["user"]["university"]["code"].int
-                        self.performSegue(withIdentifier: "login", sender: userInfo)
+                        self.performSegue(withIdentifier: "login", sender: email)
                     }
                 } else if responseJson["code"] == -1 {
                     DispatchQueue.main.async {
@@ -123,12 +114,12 @@ class LoginViewController: UIViewController {
         if segue.identifier == "login" {
             let newsViewController = (segue.destination.children[0] as! UINavigationController).children[0] as! NewsViewController
             
-            let userInfo = sender as! [String: Int?]
-            newsViewController.code = userInfo["code"]!
-            newsViewController.privilege = userInfo["user_privilege"]!
+            let email = sender as! String
+            newsViewController.email = email
+            
             let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-            suiteDefault?.set(userInfo["user_privilege"]!, forKey: "user_privilege")
-            suiteDefault?.set(userInfo["code"]!, forKey: "code")
+            suiteDefault?.set(email, forKey: "email")
+            suiteDefault?.synchronize()
         }
     }
 }

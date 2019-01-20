@@ -271,8 +271,8 @@
 		2F6918D621D0C71A00D361C6 /* Me */ = {
 			isa = PBXGroup;
 			children = (
-				1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */,
 				2FCA35F62155402100816691 /* MeViewController.swift */,
+				1E62BC9D2156841F00263B8D /* UniversityListViewController.swift */,
 				1E62BC9F2156938500263B8D /* UniversityDetailViewController.swift */,
 			);
 			path = Me;

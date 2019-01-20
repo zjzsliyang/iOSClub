@@ -28,6 +28,7 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUniversityInfo()
+        email.autocorrectionType = .no
         university.inputView = UIView(frame: CGRect.zero)
         university.inputAccessoryView = UIView.init()
     }
@@ -82,15 +83,13 @@ class SignupViewController: UIViewController {
                 if responseJson["code"] == 0 {
                     DispatchQueue.main.async {
                         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-                        suiteDefault?.set(responseJson["user"]["email"].rawString()!, forKey: "email")
+                        let email = responseJson["user"]["email"].rawString()!
+                        suiteDefault?.set(email, forKey: "email")
                         if self.newPassword.text! != "" {
                             suiteDefault?.set(self.newPassword.text!, forKey: "password")
                         }
                         suiteDefault?.synchronize()
-                        var userInfo = [String: Int?]()
-                        userInfo["user_privilege"] = responseJson["user"]["user_privilege"].int!
-                        userInfo["code"] = responseJson["user"]["university"]["code"].int
-                        self.performSegue(withIdentifier: "signup", sender: userInfo)
+                        self.performSegue(withIdentifier: "signup", sender: email)
                     }
                 } else if responseJson["code"] == -1 {
                     DispatchQueue.main.async {
@@ -107,6 +106,10 @@ class SignupViewController: UIViewController {
     }
     
     func signupInfoCheck() -> Bool {
+        if (email.text?.contains(" "))! {
+            email.shake()
+            return false
+        }
         if email.text == "" {
             email.shake()
             return false
@@ -145,14 +148,8 @@ class SignupViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "signup" {            
             let newsViewController = (segue.destination.children[0] as! UINavigationController).children[0] as! NewsViewController
-
-            let userInfo = sender as! [String: Int?]
-            newsViewController.code = userInfo["code"]!
-            newsViewController.privilege = userInfo["user_privilege"]!
-            let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-            suiteDefault?.set(userInfo["user_privilege"]!, forKey: "user_privilege")
-            suiteDefault?.set(userInfo["code"]!, forKey: "code")
-            suiteDefault?.synchronize()
+            let email = sender as! String
+            newsViewController.email = email
         }
     }
     

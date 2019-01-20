@@ -252,9 +252,8 @@ class ActivityViewController: UIViewController {
     
     func getEvents() {
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        let code = suiteDefault!.integer(forKey: "code")
         let email = suiteDefault?.value(forKey: "email") as! String?
-        Alamofire.request(backendUrl + "/events/getEvents?code=" + String(describing: code)).responseString { (response) in
+        Alamofire.request(backendUrl + "/events/getEvents?user_email=" + email!).responseString { (response) in
             guard (response.result.value != nil) else {
                 log.error(response)
                 DispatchQueue.main.async {

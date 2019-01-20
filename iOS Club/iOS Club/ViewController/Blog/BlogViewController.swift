@@ -34,10 +34,9 @@ class BlogViewController: UIViewController {
     
     func deleteBlog(indexPath: IndexPath) {
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
-        let userPrivilege = suiteDefault!.integer(forKey: "user_privilege")
+        let email = suiteDefault!.value(forKey: "email") as! String
         
-        
-        let blogParameters: Parameters = ["user_privilege": userPrivilege,
+        let blogParameters: Parameters = ["user_email": email,
                                           "id": blogs[indexPath.item].id]
         Alamofire.request(backendUrl + "/blog/delete", method: .post, parameters: blogParameters, encoding: JSONEncoding.default).responseString { (response) in
             guard (response.result.value != nil) else {
@@ -56,6 +55,9 @@ class BlogViewController: UIViewController {
                     self.blogTableView.reloadData()
                     let banner = NotificationBanner(title: "Delete Success", subtitle: nil, style: .success)
                     banner.show()
+                } else {
+                    let banner = NotificationBanner(title: "Delete Fail", subtitle: responseJson["msg"].rawString(), style: .danger)
+                    banner.show()
                 }
             } catch let error as NSError {
                 log.error(error)
@@ -64,8 +66,10 @@ class BlogViewController: UIViewController {
     }
     
     func fetchBlogs() {
+        let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
+        let email = suiteDefault!.value(forKey: "email") as! String
         blogs = []
-        if let url = URL(string: backendUrl + "/blog/getAll") {
+        if let url = URL(string: backendUrl + "/blog/getBlogs?user_email=" + email) {
             let session = URLSession(configuration: .default)
             session.dataTask(with: url) { (data, _, err) in
                 guard err == nil else { return }
