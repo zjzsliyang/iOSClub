@@ -13,12 +13,10 @@ An iOS app for iOS Club members communication in Greater China.
 - [Zhongjin Luo](https://github.com/tjluozhongjin)
 - [Yu Qian](https://github.com/DancingLinks)
 
-## Manual
+## Screenshot
 
-| Screenshot                 | Introduction |
-| -------------------------- | ------------ |
-| ![](res/screenshots/1.png) | 新闻通知     |
-| ![](res/screenshots/2.png) | 博客分享     |
-| ![](res/screenshots/3.png) | 俱乐部日历   |
-| ![](res/screenshots/4.png) | 全国高校     |
+| ![](res/screenshots/1.png) | ![](res/screenshots/2.png) |
+| -------------------------- | -------------------------- |
+| ![](res/screenshots/3.png) | ![](res/screenshots/4.png) |
+| ![](res/screenshots/5.png) | ![](res/screenshots/6.png) |
 
