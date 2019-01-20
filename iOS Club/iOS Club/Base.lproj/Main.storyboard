@@ -912,14 +912,6 @@
                                 <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phC-IR-gpe">
-                                <rect key="frame" x="205" y="164" width="42" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="edit"/>
-                                <connections>
-                                    <action selector="choose:" destination="WsA-N9-ZJ2" eventType="touchUpInside" id="D6q-Dy-t3g"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uW3-Ol-hBY">
                                 <rect key="frame" x="0.0" y="416" width="375" height="313"/>
                                 <subviews>
@@ -964,6 +956,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phC-IR-gpe">
+                                <rect key="frame" x="217" y="182" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="aMc-Us-SJn"/>
+                                    <constraint firstAttribute="height" constant="42" id="iEJ-Fi-8fR"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="edit"/>
+                                <connections>
+                                    <action selector="choose:" destination="WsA-N9-ZJ2" eventType="touchUpInside" id="D6q-Dy-t3g"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -979,7 +982,9 @@
                             <constraint firstItem="sMo-uP-C9u" firstAttribute="centerX" secondItem="SNe-ka-sff" secondAttribute="centerX" id="bNB-9H-clZ"/>
                             <constraint firstItem="SNe-ka-sff" firstAttribute="top" secondItem="L2z-Fi-oJ6" secondAttribute="top" id="eox-5a-4BK"/>
                             <constraint firstItem="uW3-Ol-hBY" firstAttribute="top" secondItem="oPG-sc-len" secondAttribute="bottom" constant="24" id="f8B-1S-5C1"/>
+                            <constraint firstItem="I8h-wF-k3A" firstAttribute="top" secondItem="phC-IR-gpe" secondAttribute="bottom" constant="-24" id="gKL-Ko-D2r"/>
                             <constraint firstItem="oPG-sc-len" firstAttribute="top" secondItem="sMo-uP-C9u" secondAttribute="bottom" constant="28" id="qKq-fJ-uky"/>
+                            <constraint firstItem="phC-IR-gpe" firstAttribute="leading" secondItem="I8h-wF-k3A" secondAttribute="trailing" constant="-20.666666666666657" id="uok-xr-HQz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="L2z-Fi-oJ6"/>
                     </view>
