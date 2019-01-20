@@ -4,22 +4,21 @@ An iOS app for iOS Club members communication in Greater China.
 
 ## Contributer
 
+#### iOS:
+
 - [Yang Li](https://github.com/zjzsliyang)
+
+#### Backend:
+
 - [Zhongjin Luo](https://github.com/tjluozhongjin)
 - [Yu Qian](https://github.com/DancingLinks)
 
-## Todo Tasks
+## Manual
 
-- [x] add privilege management
-- [x] delete news
-- [x] search news with content or tag
-- [x] support multiple phone sizes
-- [ ] refactor me tab
-- [ ] optimize ui
-
-## Screenshots
-
-| ![](res/screenshots/1.png) | ![](res/screenshots/2.png) |
-| -------------------------- | -------------------------- |
-| ![](res/screenshots/3.png) | ![](res/screenshots/4.png) |
+| Screenshot                 | Introduction |
+| -------------------------- | ------------ |
+| ![](res/screenshots/1.png) | 新闻通知     |
+| ![](res/screenshots/2.png) | 博客分享     |
+| ![](res/screenshots/3.png) | 俱乐部日历   |
+| ![](res/screenshots/4.png) | 全国高校     |
 
