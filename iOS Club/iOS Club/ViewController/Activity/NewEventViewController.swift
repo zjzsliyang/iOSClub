@@ -80,7 +80,6 @@ class NewEventViewController: UIViewController {
             }
             
             let responseData = response.result.value!
-            print(responseData)
             do {
                 let responseJson = try JSON(data: responseData.data(using: String.Encoding.utf8)!)
                 if responseJson["code"] == 0 {
