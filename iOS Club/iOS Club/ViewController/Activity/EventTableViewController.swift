@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import MapKit
 import EventKit
 import CoreLocation
 
-class EventTableViewController: UITableViewController, LocationViewControllerDelegate {
+class EventTableViewController: UITableViewController, LocationViewControllerDelegate, MKMapViewDelegate {
     
     let timePicker = UIDatePicker()
     let formatter = DateFormatter()
@@ -47,6 +48,26 @@ class EventTableViewController: UITableViewController, LocationViewControllerDel
         view.addGestureRecognizer(gestureRecognizer)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !isNew {
+            if currentEvent?.location != "" {
+                let mapView = MKMapView(frame: CGRect(x: 0, y: 44, width: self.view.width, height: self.view.width / 25 * 18))
+                mapView.delegate = self
+                let center = currentEvent?.structuredLocation?.geoLocation?.coordinate
+                let region = MKCoordinateRegion(center: center!, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                mapView.setRegion(region, animated: true)
+                let pin = MKPointAnnotation()
+                pin.coordinate = center!
+                mapView.addAnnotation(pin)
+                
+                let cell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))
+                cell!.addSubview(mapView)
+            }
+        }
+    }
+    
     @objc func backgroundTap(gesture: UITapGestureRecognizer) {
         timePicker.removeFromSuperview()
     }
@@ -58,6 +79,8 @@ class EventTableViewController: UITableViewController, LocationViewControllerDel
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 3 && indexPath.row == 1 {
             return 88
+        } else if indexPath.section == 0 && indexPath.row == 1 && currentEvent?.location != "" {
+            return 44 + self.view.width / 25 * 18
         } else {
             return 44
         }
