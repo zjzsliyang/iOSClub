@@ -25,6 +25,7 @@
 		2F45EB2B2158373C00C5B9D3 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F45EB29215835DC00C5B9D3 /* config.swift */; };
 		2F45EB2D21583E6F00C5B9D3 /* BlogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F45EB2C21583E6F00C5B9D3 /* BlogCell.swift */; };
 		2F45EB2F215840AD00C5B9D3 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F45EB2E215840AD00C5B9D3 /* University.swift */; };
+		2F64AEC521F58E5500762F84 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F64AEC421F58E5500762F84 /* LocationViewController.swift */; };
 		2F67E3402157326A0076B1DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F67E33F2157326A0076B1DA /* LoginViewController.swift */; };
 		2F6918D321CFDC6D00D361C6 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6918D221CFDC6D00D361C6 /* EventTableViewController.swift */; };
 		2F74A520215538EC00341862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74A51F215538EC00341862 /* AppDelegate.swift */; };
@@ -141,6 +142,7 @@
 		2F45EB29215835DC00C5B9D3 /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		2F45EB2C21583E6F00C5B9D3 /* BlogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogCell.swift; sourceTree = "<group>"; };
 		2F45EB2E215840AD00C5B9D3 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
+		2F64AEC421F58E5500762F84 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		2F67E33F2157326A0076B1DA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2F6918D221CFDC6D00D361C6 /* EventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		2F74A51C215538EC00341862 /* Student Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Student Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,6 +258,7 @@
 				2F124CC021CAE61B00314461 /* NewEventViewController.swift */,
 				2FC6552E21E8F6BD003F3E43 /* EventDetailViewController.swift */,
 				2F6918D221CFDC6D00D361C6 /* EventTableViewController.swift */,
+				2F64AEC421F58E5500762F84 /* LocationViewController.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -939,6 +942,7 @@
 				2F8A4EB421F1CC4C00DF3FBE /* UITextField+Extensions.swift in Sources */,
 				2F8A4EAC21F1CC4C00DF3FBE /* UIColor+Extensions.swift in Sources */,
 				2F8A4ECC21F1CC4C00DF3FBE /* ColorPickerViewController.swift in Sources */,
+				2F64AEC521F58E5500762F84 /* LocationViewController.swift in Sources */,
 				2FCA35F82155402100816691 /* BlogViewController.swift in Sources */,
 				2F8A4EB921F1CC4C00DF3FBE /* LocaleInfo.swift in Sources */,
 				2F8A4EC021F1CC4C00DF3FBE /* Assets.swift in Sources */,

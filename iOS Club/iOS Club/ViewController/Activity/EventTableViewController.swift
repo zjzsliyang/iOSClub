@@ -8,7 +8,6 @@
 
 import UIKit
 import EventKit
-import CoreLocation
 
 class EventTableViewController: UITableViewController, CLLocationManagerDelegate {
     let timePicker = UIDatePicker()
@@ -47,24 +46,11 @@ class EventTableViewController: UITableViewController, CLLocationManagerDelegate
         let gestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(backgroundTap(gesture:)))
         gestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(gestureRecognizer)
-        
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
-//        self.locationManager.startUpdatingLocation()
     }
     
     @objc func backgroundTap(gesture: UITapGestureRecognizer) {
         timePicker.removeFromSuperview()
     }
-    
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
-//        guard let location = manager.location else{
-//            return
-//        }
-//        let currentLocationCoordinate = location.coordinate
-//        print(currentLocationCoordinate)
-//    }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
