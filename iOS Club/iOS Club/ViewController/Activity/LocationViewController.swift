@@ -49,7 +49,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         let coordinate = mapView.convert(gesture.location(in: mapView), toCoordinateFrom: mapView)
         self.pin.coordinate = coordinate
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        lookUpCurrentLocation(location: location) { (place) in
+        location.currentLocation { (place) in
             if place != nil {
                 self.candidatePlaces = []
                 self.candidatePlaces.append(place!)
@@ -66,7 +66,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
             self.pin.coordinate = center
             mapView.addAnnotation(pin)
             if let lastLocation = self.locationManager.location {
-                lookUpCurrentLocation(location: lastLocation) { (place) in
+                lastLocation.currentLocation { (place) in
                     if place != nil {
                         self.candidatePlaces = []
                         self.candidatePlaces.append(place!)
@@ -78,16 +78,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
                 log.error("get location error")
             }
         }
-    }
-    
-    func lookUpCurrentLocation(location: CLLocation, completionHandler: @escaping (CLPlacemark?) -> Void) {
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
-            if error == nil {
-                let firstLocation = placemarks?[0]
-                completionHandler(firstLocation)
-            } else { completionHandler(nil) }
-        })
     }
     
     func lookUpNearbyLocation(placeName: String, delta: CLLocationDegrees) {
@@ -151,6 +141,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
             searchController.isActive = false
         }
         searchController.searchBar.text = place.name
+        if place.location?.coordinate != nil {
+            self.pin.coordinate = (place.location?.coordinate)!
+            self.mapView.setCenter(self.pin.coordinate, animated: true)
+        }
     }
 
     
@@ -167,4 +161,16 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
 
 protocol LocationViewControllerDelegate {
     func setEventLocation(place: CLPlacemark)
+}
+
+extension CLLocation {
+    func currentLocation(completionHandler: @escaping (CLPlacemark?) -> Void) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(self, completionHandler: { (placemarks, error) in
+            if error == nil {
+                let firstLocation = placemarks?[0]
+                completionHandler(firstLocation)
+            } else { completionHandler(nil) }
+        })
+    }
 }

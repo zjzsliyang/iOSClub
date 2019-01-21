@@ -9,10 +9,12 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import CoreLocation
 import NotificationBannerSwift
 
-class NewEventViewController: UIViewController {
+class NewEventViewController: UIViewController, EventTableViewControllerDelegate {
     var newEventTableViewController: EventTableViewController?
+    var placeCoordinate: CLLocationCoordinate2D?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +24,19 @@ class NewEventViewController: UIViewController {
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
-        print(getFormattedDate(date: (newEventTableViewController?.startTimeLabel.text)!))
     }
     
     @IBAction func add(_ sender: UIBarButtonItem) {
+        var location = ""
+        if placeCoordinate != nil {
+            location = placeCoordinate!.toString()
+        }
+        
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
         let email = suiteDefault!.value(forKey: "email") as! String
         let eventPrivilege = 1
         
         let title = newEventTableViewController?.titleTextField.text
-        let location = newEventTableViewController?.locationTextField.text
         
         let allDay = (newEventTableViewController?.allDaySwitch.isOn)! ? 1 : 0
         let startTime = newEventTableViewController?.startTimeLabel.text
@@ -99,9 +104,14 @@ class NewEventViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newevent" {
             if let destinationViewController = segue.destination as? EventTableViewController {
+                destinationViewController.delegate = self
                 newEventTableViewController = destinationViewController
             }
         }
+    }
+    
+    func setLocationCoordinate(coordinate: CLLocationCoordinate2D) {
+        self.placeCoordinate = coordinate
     }
     
     func getFormattedDate(date: String) -> String {

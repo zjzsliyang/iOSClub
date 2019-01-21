@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 import EventKit
 import Alamofire
 import VACalendar
@@ -280,7 +281,6 @@ class ActivityViewController: UIViewController {
                                 if exist == false {
                                     let event = EKEvent(eventStore: self.eventStore)
                                     event.title = eventInfo["title"].string
-//                                    event.location = eventInfo["location"].string
                                     
                                     let dateFormatter = DateFormatter()
                                     dateFormatter.dateFormat = "yyyy-MM-d HH:mm"
@@ -296,19 +296,31 @@ class ActivityViewController: UIViewController {
                                     event.notes = eventInfo["notes"].stringValue
                                     
                                     event.calendar = self.iOSCalendar
-                                    do {
-                                        try self.eventStore.save(event, span: .thisEvent, commit: true)
-                                        if event.eventIdentifier != nil {
-                                            self.postEventSaved(email: email!, u_hash: event.eventIdentifier, id: eventInfo["id"].intValue)
-                                        }
-                                        self.updateActivity()
-                                        var activityCalendar = NSCalendar.current
-                                        activityCalendar.timeZone = TimeZone.current
-                                        let startToday = activityCalendar.startOfDay(for: NSDate() as Date)
-                                        self.updateTodayActivity(startDay: startToday as Date)
-                                    } catch let error {
-                                        log.error(error)
+                                    
+                                    if eventInfo["location"].stringValue != "" {
+                                        let coordinate = eventInfo["location"].stringValue.toCoordinate()
+                                        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                                        location.currentLocation(completionHandler: { (place) in
+                                            let item = MKMapItem(placemark: MKPlacemark(placemark: place!))
+                                            event.structuredLocation = EKStructuredLocation(mapItem: item)
+                                            
+                                            do {
+                                                try self.eventStore.save(event, span: .thisEvent, commit: true)
+                                                if event.eventIdentifier != nil {
+                                                    self.postEventSaved(email: email!, u_hash: event.eventIdentifier, id: eventInfo["id"].intValue)
+                                                }
+                                                self.updateActivity()
+                                                var activityCalendar = NSCalendar.current
+                                                activityCalendar.timeZone = TimeZone.current
+                                                let startToday = activityCalendar.startOfDay(for: NSDate() as Date)
+                                                self.updateTodayActivity(startDay: startToday as Date)
+                                            } catch let error {
+                                                log.error(error)
+                                            }
+                                            
+                                        })
                                     }
+
                                 }
                             }
                         })
@@ -460,5 +472,17 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             deleteEvent(indexPath: indexPath)
         }
+    }
+}
+
+extension CLLocationCoordinate2D {
+    func toString() -> String {
+        return String(self.latitude) + String(" ") + String(self.longitude)
+    }
+}
+
+extension String {
+    func toCoordinate() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: Double(String(self.split(separator: " ").first!))!, longitude: Double(String(self.split(separator: " ").last!))!)
     }
 }

@@ -18,6 +18,7 @@ class EventTableViewController: UITableViewController, LocationViewControllerDel
     var isStartTime = true
     var isNew = true
     var currentEvent: EKEvent?
+    var delegate: EventTableViewControllerDelegate?
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
@@ -100,6 +101,7 @@ class EventTableViewController: UITableViewController, LocationViewControllerDel
     
     func setEventLocation(place: CLPlacemark) {
         locationTextField.text = place.name
+        delegate?.setLocationCoordinate(coordinate: (place.location?.coordinate)!)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -147,4 +149,8 @@ class EventTableViewController: UITableViewController, LocationViewControllerDel
         urlTextField.text = String(describing: currentEvent?.url)
         notesTextField.text = currentEvent?.notes
     }
+}
+
+protocol EventTableViewControllerDelegate {
+    func setLocationCoordinate(coordinate: CLLocationCoordinate2D)
 }
