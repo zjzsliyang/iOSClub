@@ -303,22 +303,10 @@ class ActivityViewController: UIViewController {
                                         location.currentLocation(completionHandler: { (place) in
                                             let item = MKMapItem(placemark: MKPlacemark(placemark: place!))
                                             event.structuredLocation = EKStructuredLocation(mapItem: item)
-                                            
-                                            do {
-                                                try self.eventStore.save(event, span: .thisEvent, commit: true)
-                                                if event.eventIdentifier != nil {
-                                                    self.postEventSaved(email: email!, u_hash: event.eventIdentifier, id: eventInfo["id"].intValue)
-                                                }
-                                                self.updateActivity()
-                                                var activityCalendar = NSCalendar.current
-                                                activityCalendar.timeZone = TimeZone.current
-                                                let startToday = activityCalendar.startOfDay(for: NSDate() as Date)
-                                                self.updateTodayActivity(startDay: startToday as Date)
-                                            } catch let error {
-                                                log.error(error)
-                                            }
-                                            
+                                            self.saveEvent(event: event, email: email, eventInfo: eventInfo)
                                         })
+                                    } else {
+                                        self.saveEvent(event: event, email: email, eventInfo: eventInfo)
                                     }
 
                                 }
@@ -329,6 +317,22 @@ class ActivityViewController: UIViewController {
             } catch let error {
                 log.error(error)
             }
+        }
+    }
+    
+    func saveEvent(event: EKEvent, email: String?, eventInfo: JSON) {
+        do {
+            try self.eventStore.save(event, span: .thisEvent, commit: true)
+            if event.eventIdentifier != nil {
+                self.postEventSaved(email: email!, u_hash: event.eventIdentifier, id: eventInfo["id"].intValue)
+            }
+            self.updateActivity()
+            var activityCalendar = NSCalendar.current
+            activityCalendar.timeZone = TimeZone.current
+            let startToday = activityCalendar.startOfDay(for: NSDate() as Date)
+            self.updateTodayActivity(startDay: startToday as Date)
+        } catch let error {
+            log.error(error)
         }
     }
     
@@ -349,7 +353,7 @@ class ActivityViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showevent") {
             let viewcontroller = segue.destination as! EventDetailViewController
-            viewcontroller.event = allevents[(sender as! IndexPath).item]
+            viewcontroller.event = nowevents[(sender as! IndexPath).item]
         }
     }
 }
