@@ -56,7 +56,7 @@ class EventTableViewController: UITableViewController, LocationViewControllerDel
                 let mapView = MKMapView(frame: CGRect(x: 0, y: 44, width: self.view.width, height: self.view.width / 25 * 18))
                 mapView.delegate = self
                 let center = currentEvent?.structuredLocation?.geoLocation?.coordinate
-                let region = MKCoordinateRegion(center: center!, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                let region = MKCoordinateRegion(center: center!, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
                 mapView.setRegion(region, animated: true)
                 let pin = MKPointAnnotation()
                 pin.coordinate = center!
