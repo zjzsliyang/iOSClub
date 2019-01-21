@@ -44,10 +44,18 @@ class EventTableViewController: UITableViewController, CLLocationManagerDelegate
         startTimeLabel.text = formatter.string(from: currentTime)
         endTimeLabel.text = formatter.string(from: currentTime.addingTimeInterval(60.0 * 60.0))
         
+        let gestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(backgroundTap(gesture:)))
+        gestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(gestureRecognizer)
+        
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
 //        self.locationManager.startUpdatingLocation()
+    }
+    
+    @objc func backgroundTap(gesture: UITapGestureRecognizer) {
+        timePicker.removeFromSuperview()
     }
     
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
@@ -120,7 +128,6 @@ class EventTableViewController: UITableViewController, CLLocationManagerDelegate
         } else {
             endTimeLabel.text = formatter.string(from: sender.date)
         }
-        timePicker.removeFromSuperview()
     }
     
     func loadCurrentEvent(isNew: Bool, currentEvent: EKEvent?) {
