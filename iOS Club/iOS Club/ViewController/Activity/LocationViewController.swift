@@ -19,6 +19,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
     let pin = MKPointAnnotation()
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
+    var delegate: LocationViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,8 +90,23 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         })
     }
     
-    func lookUpNearbyLocation(location: CLLocation) {
-
+    func lookUpNearbyLocation(placeName: String, delta: CLLocationDegrees) {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = placeName
+        request.region = MKCoordinateRegion(center: mapView.centerCoordinate, span: MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta))
+        MKLocalSearch(request: request).start { (response, error) in
+            if error != nil {
+                log.error(error!)
+            } else if response!.mapItems.count > 0 {
+                self.candidatePlaces = []
+                for item in response!.mapItems {
+                    self.candidatePlaces.append(item.placemark)
+                    self.tableView.reloadData()
+                }
+            } else if delta == 0.1 {
+                self.lookUpNearbyLocation(placeName: placeName, delta: 1)
+            }
+        }
     }
     
     func getCoordinate(addressString: String, completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void) {
@@ -108,7 +124,13 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        
+        if !searchBarIsEmpty() {
+            lookUpNearbyLocation(placeName: searchController.searchBar.text!, delta: 0.1)
+        }
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -122,6 +144,14 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         cell.detailTextLabel!.text = place.thoroughfare
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let place = candidatePlaces[indexPath.row]
+        if searchController.isActive {
+            searchController.isActive = false
+        }
+        searchController.searchBar.text = place.name
+    }
 
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -129,7 +159,12 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
     }
     
     @IBAction func done(_ sender: UIBarButtonItem) {
+        delegate?.setEventLocation(place: self.candidatePlaces[0])
         self.dismiss(animated: true, completion: nil)
     }
     
+}
+
+protocol LocationViewControllerDelegate {
+    func setEventLocation(place: CLPlacemark)
 }

@@ -8,8 +8,10 @@
 
 import UIKit
 import EventKit
+import CoreLocation
 
-class EventTableViewController: UITableViewController, CLLocationManagerDelegate {
+class EventTableViewController: UITableViewController, LocationViewControllerDelegate {
+    
     let timePicker = UIDatePicker()
     let formatter = DateFormatter()
     let locationManager = CLLocationManager()
@@ -96,6 +98,16 @@ class EventTableViewController: UITableViewController, CLLocationManagerDelegate
         }
     }
     
+    func setEventLocation(place: CLPlacemark) {
+        locationTextField.text = place.name
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "location" {
+            let locationViewController = segue.destination.children[0] as! LocationViewController
+            locationViewController.delegate = self
+        }
+    }
     
     func openTimePicker()  {
         timePicker.datePickerMode = .dateAndTime

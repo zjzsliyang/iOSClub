@@ -587,7 +587,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="location"/>
                                                     <connections>
-                                                        <segue destination="lbY-It-lNX" kind="show" id="rdB-ez-Le6"/>
+                                                        <segue destination="lbY-It-lNX" kind="show" identifier="location" id="rdB-ez-Le6"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
