@@ -40,11 +40,7 @@ class EventTableViewController: UITableViewController, LocationViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCurrentEvent(isNew: isNew, currentEvent: currentEvent)
-        
-        let currentTime = Date()
-        formatter.dateFormat = "EEE, MMM d, YYYY, HH:mm"
-        startTimeLabel.text = formatter.string(from: currentTime)
-        endTimeLabel.text = formatter.string(from: currentTime.addingTimeInterval(60.0 * 60.0))
+        createNewEvent(isNew: isNew)
         
         let gestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(backgroundTap(gesture:)))
         gestureRecognizer.cancelsTouchesInView = false
@@ -149,6 +145,17 @@ class EventTableViewController: UITableViewController, LocationViewControllerDel
         urlTextField.text = String(describing: currentEvent?.url)
         notesTextField.text = currentEvent?.notes
     }
+    
+    func createNewEvent(isNew: Bool) {
+        guard isNew else {
+            return
+        }
+        let currentTime = Date()
+        formatter.dateFormat = "EEE, MMM d, YYYY, HH:mm"
+        startTimeLabel.text = formatter.string(from: currentTime)
+        endTimeLabel.text = formatter.string(from: currentTime.addingTimeInterval(60.0 * 60.0))
+    }
+    
 }
 
 protocol EventTableViewControllerDelegate {
