@@ -68,13 +68,13 @@ class BlogViewController: UIViewController {
     func fetchBlogs() {
         let suiteDefault = UserDefaults.init(suiteName: groupIdentifier)
         let email = suiteDefault!.value(forKey: "email") as! String
-        blogs = []
         if let url = URL(string: backendUrl + "/blog/getBlogs?user_email=" + email) {
             let session = URLSession(configuration: .default)
             session.dataTask(with: url) { (data, _, err) in
                 guard err == nil else { return }
                 guard let data = data else { return }
                 if let blogsdata = try? JSONDecoder().decode([Blog].self, from: data) {
+                    self.blogs = []
                     self.blogs.append(contentsOf: blogsdata)
                     DispatchQueue.main.async {
                         self.blogTableView.reloadData()
