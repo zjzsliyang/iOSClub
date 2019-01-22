@@ -86,6 +86,7 @@
 		2F8A4ED721F1CC4C00DF3FBE /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8A4EA221F1CC4C00DF3FBE /* TextField.swift */; };
 		2F8A4ED821F1CC4C00DF3FBE /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8A4EA321F1CC4C00DF3FBE /* Button.swift */; };
 		2FB21B4A215790C700D2814F /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB21B49215790C700D2814F /* ActivityCell.swift */; };
+		2FB7F44521F71AE5000AF25A /* VKCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7F44421F71AE5000AF25A /* VKCheckbox.swift */; };
 		2FC6552F21E8F6BD003F3E43 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC6552E21E8F6BD003F3E43 /* EventDetailViewController.swift */; };
 		2FCA35F72155402100816691 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F22155402100816691 /* ActivityViewController.swift */; };
 		2FCA35F82155402100816691 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA35F32155402100816691 /* BlogViewController.swift */; };
@@ -205,6 +206,7 @@
 		2F8A4EA221F1CC4C00DF3FBE /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		2F8A4EA321F1CC4C00DF3FBE /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		2FB21B49215790C700D2814F /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		2FB7F44421F71AE5000AF25A /* VKCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKCheckbox.swift; sourceTree = "<group>"; };
 		2FC6552E21E8F6BD003F3E43 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		2FCA35F22155402100816691 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		2FCA35F32155402100816691 /* BlogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 		2F8A4E5221F1CC4C00DF3FBE /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				2FB7F44321F71AE5000AF25A /* VKCheckbox */,
 				2F8A4E5321F1CC4C00DF3FBE /* alerts-and-pickers */,
 			);
 			path = ThirdParty;
@@ -612,6 +615,14 @@
 				2F8A4EA321F1CC4C00DF3FBE /* Button.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2FB7F44321F71AE5000AF25A /* VKCheckbox */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7F44421F71AE5000AF25A /* VKCheckbox.swift */,
+			);
+			path = VKCheckbox;
 			sourceTree = "<group>";
 		};
 		2FCA35F121553FB700816691 /* ViewController */ = {
@@ -913,6 +924,7 @@
 				2F8A4EAA21F1CC4C00DF3FBE /* String+Extensions.swift in Sources */,
 				2F8A4EAF21F1CC4C00DF3FBE /* UIApplication+Extensions.swift in Sources */,
 				2F8A4ED221F1CC4C00DF3FBE /* ItemWithPhoto.swift in Sources */,
+				2FB7F44521F71AE5000AF25A /* VKCheckbox.swift in Sources */,
 				2F3B948021ECDA580076C1D6 /* NewsDetailViewController.swift in Sources */,
 				2F8A4EC221F1CC4C00DF3FBE /* LocationSearchResultsViewController.swift in Sources */,
 				2F8A4EB221F1CC4C00DF3FBE /* Common+Extensions.swift in Sources */,

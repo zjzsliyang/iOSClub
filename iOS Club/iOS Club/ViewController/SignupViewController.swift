@@ -10,6 +10,7 @@ import UIKit
 import LGButton
 import Alamofire
 import SwiftyJSON
+import SafariServices
 import TextFieldEffects
 import NotificationBannerSwift
 
@@ -20,6 +21,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var newPassword: HoshiTextField!
     @IBOutlet weak var repeatPassword: HoshiTextField!
     @IBOutlet weak var university: HoshiTextField!
+    @IBOutlet weak var license: UITextView!
+    @IBOutlet weak var checkBox: VKCheckbox!
     
     var universityDict = [Int: String]()
     var universityRank = [Int: Int]()
@@ -31,6 +34,13 @@ class SignupViewController: UIViewController {
         email.autocorrectionType = .no
         university.inputView = UIView(frame: CGRect.zero)
         university.inputAccessoryView = UIView.init()
+        
+        let eula = NSMutableAttributedString(string: "EULA")
+        let pp = NSMutableAttributedString(string: "Privacy Policy")
+        eula.addAttribute(.link, value: URL(string: staticUrl + "/license/eula.html")!, range: NSRange(location: 0, length: "EULA".count))
+        pp.addAttribute(.link, value: URL(string: staticUrl + "/license/privacy_policy.html")!, range: NSRange(location: 0, length: "Privacy Policy".count))
+        license.attributedText = NSMutableAttributedString(string: "I agree to the ").appendRecursively(eula).appendRecursively(NSMutableAttributedString(string: " and ")).appendRecursively(pp)
+        license.delegate = self
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -130,6 +140,9 @@ class SignupViewController: UIViewController {
             university.shake()
             return false
         }
+        if !checkBox.isOn() {
+            return false
+        }
         return true
     }
     
@@ -155,7 +168,7 @@ class SignupViewController: UIViewController {
     
 }
 
-extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -175,7 +188,26 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource, UI
         pickerView.removeFromSuperview()
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return textField != university
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        let safariViewController = SFSafariViewController(url: URL)
+        present(safariViewController, animated: true, completion: nil)
+        return false
+    }
+}
+
+extension NSMutableAttributedString {
+    func appendRecursively(_ element: NSMutableAttributedString) -> NSMutableAttributedString {
+        self.append(element)
+        return self
+    }
+}
+
+class VerticallyCenteredTextView: UITextView {
+    override var contentSize: CGSize {
+        didSet {
+            var topCorrection = (bounds.size.height - contentSize.height * zoomScale) / 2.0
+            topCorrection = max(0, topCorrection)
+            contentInset = UIEdgeInsets(top: topCorrection, left: 0, bottom: 0, right: 0)
+        }
     }
 }

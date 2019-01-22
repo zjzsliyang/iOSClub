@@ -1188,7 +1188,7 @@
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="16" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="16" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -1395,13 +1395,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9hS-Cb-JVA">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fPn-Ka-iRm" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="87" y="405" width="201" height="50"/>
+                                <rect key="frame" x="87" y="397" width="201" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Btc-zh-Ytu"/>
                                     <constraint firstAttribute="width" secondItem="fPn-Ka-iRm" secondAttribute="height" multiplier="201:50" id="PZJ-pR-dVP"/>
@@ -1422,7 +1417,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3UG-3l-ywc" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="87" y="340" width="201" height="50"/>
+                                <rect key="frame" x="87" y="337" width="201" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3UG-3l-ywc" secondAttribute="height" multiplier="201:50" id="Ycp-Pk-rT4"/>
                                     <constraint firstAttribute="height" constant="50" id="Yla-zf-VF4"/>
@@ -1443,7 +1438,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9Z-OZ-8Cj" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="87" y="535" width="201" height="50"/>
+                                <rect key="frame" x="87" y="517" width="201" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="o9Z-OZ-8Cj" secondAttribute="height" multiplier="201:50" id="5O4-Gs-dXA"/>
                                     <constraint firstAttribute="height" constant="50" id="G3I-hL-fXT"/>
@@ -1464,7 +1459,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="university" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L8T-i1-hAr" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="87" y="600" width="201" height="50"/>
+                                <rect key="frame" x="87" y="577" width="201" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9cB-78-KXV"/>
                                     <constraint firstAttribute="width" secondItem="L8T-i1-hAr" secondAttribute="height" multiplier="201:50" id="GJu-tk-tcO"/>
@@ -1488,7 +1483,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="new password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qYv-KW-2Ft" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="87" y="470" width="201" height="50"/>
+                                <rect key="frame" x="87" y="457" width="201" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="2hA-hx-K5t"/>
                                     <constraint firstAttribute="width" secondItem="qYv-KW-2Ft" secondAttribute="height" multiplier="201:50" id="pkB-8S-ie2"/>
@@ -1509,7 +1504,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K37-Og-PZ2" customClass="LGButton" customModule="LGButton">
-                                <rect key="frame" x="85.666666666666686" y="700" width="204" height="46"/>
+                                <rect key="frame" x="85.666666666666686" y="702" width="204" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="K37-Og-PZ2" secondAttribute="height" multiplier="102:23" id="MbR-QO-WnN"/>
@@ -1567,13 +1562,17 @@
                                     <action selector="signup:" destination="H3U-0I-qAr" eventType="touchUpInside" id="GaS-bE-ixS"/>
                                 </connections>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Jy2-yT-WNx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Jy2-yT-WNx">
                                 <rect key="frame" x="0.0" y="88" width="375" height="211"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Jy2-yT-WNx" secondAttribute="height" multiplier="375:211" id="pzs-e7-iEk"/>
+                                </constraints>
                             </imageView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aOo-6k-W0w">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOo-6k-W0w">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="UO6-NO-izP"/>
+                                </constraints>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="Signup" id="IlV-lU-vV2">
@@ -1585,26 +1584,73 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hWd-a7-mlI" customClass="VerticallyCenteredTextView" customModule="Student_Club" customModuleProvider="target">
+                                <rect key="frame" x="85.666666666666686" y="645" width="276" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="5R7-RN-9d5"/>
+                                    <constraint firstAttribute="width" constant="276" id="GSh-Fg-3sX"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="I agree to the EULA and Privacy Policy">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="10" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2HN-IU-D6H" customClass="VKCheckbox" customModule="Student_Club" customModuleProvider="target">
+                                <rect key="frame" x="64.333333333333329" y="657" width="16" height="16"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="TmN-6s-Ide"/>
+                                    <constraint firstAttribute="height" constant="16" id="uGx-ss-rmR"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="aOo-6k-W0w" firstAttribute="leading" secondItem="ULf-nZ-aaU" secondAttribute="leading" id="1DE-KH-fCy"/>
+                            <constraint firstItem="Jy2-yT-WNx" firstAttribute="top" secondItem="aOo-6k-W0w" secondAttribute="bottom" id="2wI-dD-M7i"/>
                             <constraint firstItem="o9Z-OZ-8Cj" firstAttribute="centerX" secondItem="ULf-nZ-aaU" secondAttribute="centerX" id="3nD-Ta-NfP"/>
+                            <constraint firstItem="K37-Og-PZ2" firstAttribute="top" secondItem="hWd-a7-mlI" secondAttribute="bottom" constant="17" id="7IP-nC-V7u"/>
                             <constraint firstItem="fPn-Ka-iRm" firstAttribute="centerX" secondItem="ULf-nZ-aaU" secondAttribute="centerX" id="8Vi-vY-eit"/>
+                            <constraint firstItem="hWd-a7-mlI" firstAttribute="leading" secondItem="2HN-IU-D6H" secondAttribute="trailing" constant="5.3300000000000001" id="9nD-8c-vg2"/>
                             <constraint firstItem="L8T-i1-hAr" firstAttribute="centerX" secondItem="ULf-nZ-aaU" secondAttribute="centerX" id="AY5-oI-4YA"/>
-                            <constraint firstItem="qYv-KW-2Ft" firstAttribute="top" secondItem="fPn-Ka-iRm" secondAttribute="bottom" constant="15" id="GPg-2x-Ppg"/>
-                            <constraint firstItem="ULf-nZ-aaU" firstAttribute="bottom" secondItem="K37-Og-PZ2" secondAttribute="bottom" constant="32" id="JI2-ey-Gh5"/>
+                            <constraint firstItem="qYv-KW-2Ft" firstAttribute="top" secondItem="fPn-Ka-iRm" secondAttribute="bottom" constant="10" id="GPg-2x-Ppg"/>
+                            <constraint firstItem="ULf-nZ-aaU" firstAttribute="bottom" secondItem="K37-Og-PZ2" secondAttribute="bottom" constant="30" id="JI2-ey-Gh5"/>
                             <constraint firstItem="qYv-KW-2Ft" firstAttribute="centerX" secondItem="ULf-nZ-aaU" secondAttribute="centerX" id="OQA-99-OUz"/>
                             <constraint firstItem="K37-Og-PZ2" firstAttribute="centerX" secondItem="KQ1-kG-gRl" secondAttribute="centerX" id="TvJ-uZ-73T"/>
-                            <constraint firstItem="K37-Og-PZ2" firstAttribute="top" secondItem="L8T-i1-hAr" secondAttribute="bottom" constant="50" id="d5i-ex-SjT"/>
+                            <constraint firstItem="aOo-6k-W0w" firstAttribute="trailing" secondItem="ULf-nZ-aaU" secondAttribute="trailing" id="aNK-g7-ffp"/>
+                            <constraint firstItem="K37-Og-PZ2" firstAttribute="top" secondItem="L8T-i1-hAr" secondAttribute="bottom" constant="75" id="d5i-ex-SjT"/>
                             <constraint firstItem="3UG-3l-ywc" firstAttribute="centerX" secondItem="ULf-nZ-aaU" secondAttribute="centerX" id="dCY-ry-MFK"/>
-                            <constraint firstItem="fPn-Ka-iRm" firstAttribute="top" secondItem="3UG-3l-ywc" secondAttribute="bottom" constant="15" id="ju0-FP-MRT"/>
-                            <constraint firstItem="o9Z-OZ-8Cj" firstAttribute="top" secondItem="qYv-KW-2Ft" secondAttribute="bottom" constant="15" id="msp-Vu-RgH"/>
-                            <constraint firstItem="L8T-i1-hAr" firstAttribute="top" secondItem="o9Z-OZ-8Cj" secondAttribute="bottom" constant="15" id="rVg-rL-81Q"/>
+                            <constraint firstItem="Jy2-yT-WNx" firstAttribute="top" secondItem="aOo-6k-W0w" secondAttribute="bottom" id="h33-60-gLV"/>
+                            <constraint firstItem="aOo-6k-W0w" firstAttribute="top" secondItem="ULf-nZ-aaU" secondAttribute="top" id="hcD-wl-4Mt"/>
+                            <constraint firstItem="hWd-a7-mlI" firstAttribute="leading" secondItem="K37-Og-PZ2" secondAttribute="leading" id="hge-9s-oye"/>
+                            <constraint firstItem="fPn-Ka-iRm" firstAttribute="top" secondItem="3UG-3l-ywc" secondAttribute="bottom" constant="10" id="ju0-FP-MRT"/>
+                            <constraint firstItem="Jy2-yT-WNx" firstAttribute="leading" secondItem="ULf-nZ-aaU" secondAttribute="leading" id="l01-GW-X1u"/>
+                            <constraint firstItem="K37-Og-PZ2" firstAttribute="top" secondItem="2HN-IU-D6H" secondAttribute="bottom" constant="29" id="l40-Ml-eXk"/>
+                            <constraint firstItem="o9Z-OZ-8Cj" firstAttribute="top" secondItem="qYv-KW-2Ft" secondAttribute="bottom" constant="10" id="msp-Vu-RgH"/>
+                            <constraint firstItem="L8T-i1-hAr" firstAttribute="top" secondItem="o9Z-OZ-8Cj" secondAttribute="bottom" constant="10" id="rVg-rL-81Q"/>
+                            <constraint firstItem="Jy2-yT-WNx" firstAttribute="trailing" secondItem="ULf-nZ-aaU" secondAttribute="trailing" id="vFV-cF-xjU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ULf-nZ-aaU"/>
                     </view>
                     <connections>
+                        <outlet property="checkBox" destination="2HN-IU-D6H" id="21E-wX-CI5"/>
                         <outlet property="email" destination="3UG-3l-ywc" id="4tf-Ih-XXS"/>
+                        <outlet property="license" destination="hWd-a7-mlI" id="kdI-FA-kTl"/>
                         <outlet property="name" destination="fPn-Ka-iRm" id="nvN-hO-X9t"/>
                         <outlet property="newPassword" destination="qYv-KW-2Ft" id="8fm-EA-qGa"/>
                         <outlet property="repeatPassword" destination="o9Z-OZ-8Cj" id="QZq-HD-r4O"/>
