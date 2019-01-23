@@ -69,7 +69,10 @@ class NewsViewController: UIViewController {
     
     @IBAction func more(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (action) in
+            print(action)
+        }))
+        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (action) in
             let news = self.newses[(self.newsTableView.indexPath(for: sender)?.row)!]
             let newsParameters: Parameters = ["news_id": news.id,
                                               "user_email": self.email!]
