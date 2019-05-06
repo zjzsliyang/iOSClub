@@ -25,7 +25,11 @@ public class SPPermissionDialogController: UIViewController {
     
     weak var delegate: SPPermissionDialogDelegate?
     weak var dataSource: SPPermissionDialogDataSource?
+    weak var colorSource: SPPermissionDialogColorSource?
+    
     var permissions: [SPPermissionType]
+    var colorScheme: ColorScheme!
+    
     var closeButton = SPPermissionCloseButton()
     var areaView = SPPermissionDialogView()
     var bottomLabel = UILabel()
@@ -59,19 +63,30 @@ public class SPPermissionDialogController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        
+        let closeIconBackgroundColor = (self.colorSource?.closeIconBackgroundColor ?? SPPermissionStyle.DefaultColors.white) ?? SPPermissionStyle.DefaultColors.white
+        let closeIconColor = (self.colorSource?.closeIconColor ?? SPPermissionStyle.DefaultColors.blue) ?? SPPermissionStyle.DefaultColors.blue
+        
+        self.colorScheme = ColorScheme(
+            white: self.colorSource?.whiteColor ?? SPPermissionStyle.DefaultColors.white,
+            black: self.colorSource?.blackColor ?? SPPermissionStyle.DefaultColors.black,
+            base: self.colorSource?.baseColor ?? SPPermissionStyle.DefaultColors.blue,
+            gray: self.colorSource?.grayColor ?? SPPermissionStyle.DefaultColors.gray,
+            lightGray: self.colorSource?.lightGrayColor ?? SPPermissionStyle.DefaultColors.lightGray,
+            iconWhite: self.colorSource?.iconWhiteColor ?? SPPermissionStyle.DefaultColors.white,
+            iconLight: self.colorSource?.iconLightColor ?? SPPermissionStyle.DefaultColors.lightIcon,
+            iconMedium: self.colorSource?.iconMediumColor ?? SPPermissionStyle.DefaultColors.mediumIcon,
+            iconDark: self.colorSource?.iconDarkColor ?? SPPermissionStyle.DefaultColors.darkIcon,
+            closeIconBackgroundColor: closeIconBackgroundColor,
+            closeIconColor: closeIconColor
+        )
+        
         self.backgroundView.setGradeAlpha(0, blurRaius: 0)
         self.view.addSubview(self.backgroundView)
         
-        self.closeButton.backgroundColor = SPPermissionStyle.Colors.white
-        self.closeButton.widthIconFactor = 0.36
-        self.closeButton.heightIconFactor = 0.36
-        self.closeButton.alpha = 0
-        self.closeButton.addTarget(self, action: #selector(self.tapClose), for: .touchUpInside)
-        self.view.addSubview(self.closeButton)
-        
         self.bottomLabel.text = (self.dataSource?.bottomComment ?? "")
         self.bottomLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
-        self.bottomLabel.textColor = SPPermissionStyle.Colors.white
+        self.bottomLabel.textColor = self.colorScheme.white
         self.bottomLabel.numberOfLines = 0
         self.bottomLabel.textAlignment = .center
         self.bottomLabel.alpha = 0
@@ -79,6 +94,10 @@ public class SPPermissionDialogController: UIViewController {
         
         self.areaView.subtitleLabel.text = (self.dataSource?.dialogSubtitle ?? "Permissions Request").uppercased()
         self.areaView.titleLabel.text = (self.dataSource?.dialogTitle ?? "Need Permissions")
+        self.areaView.backgroundColor = self.colorScheme.white
+        self.areaView.subtitleLabel.textColor = self.colorScheme.gray
+        self.areaView.titleLabel.textColor = self.colorScheme.black
+        self.areaView.descriptionLabel.textColor = self.colorScheme.gray
         for permission in self.permissions {
             let view = SPPermissionDialogLineView.init(
                 permission: permission,
@@ -88,6 +107,16 @@ public class SPPermissionDialogController: UIViewController {
                 allowedTitle: self.dataSource?.allowedTitle ?? "Allowed",
                 image: self.dataSource?.image?(for: permission)
             )
+            view.backgroundColor = self.colorScheme.white
+            view.titleLabel.textColor = self.colorScheme.black
+            view.subtitleLabel.textColor = self.colorScheme.gray
+            view.separatorView.backgroundColor = self.colorScheme.gray.withAlphaComponent(0.3)
+            view.iconView.whiteColor = self.colorScheme.iconWhite
+            view.iconView.lightColor = self.colorScheme.iconLight
+            view.iconView.mediumColor = self.colorScheme.iconMedium
+            view.iconView.darkColor = self.colorScheme.iconDark
+            view.button.baseColor = self.colorScheme.base
+            view.button.secondColor = self.colorScheme.lightGray
             view.button.addTarget(self, action: #selector(self.request(with:)), for: .touchUpInside)
             self.areaView.add(view: view)
         }
@@ -95,9 +124,15 @@ public class SPPermissionDialogController: UIViewController {
         self.view.addSubview(self.areaView)
         self.areaView.layer.anchorPoint = CGPoint.init(x: 0.5, y: 0.5)
         
-        let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.handleGesture(sender:)))
-        panGesture.maximumNumberOfTouches = 1
-        self.areaView.addGestureRecognizer(panGesture)
+        self.closeButton.backgroundColor = self.colorScheme.closeIconBackgroundColor
+        self.closeButton.color = self.colorScheme.closeIconColor
+        self.closeButton.widthIconFactor = 0.36
+        self.closeButton.heightIconFactor = 0.36
+        self.closeButton.alpha = 0
+        self.closeButton.addTarget(self, action: #selector(self.tapClose), for: .touchUpInside)
+        self.view.insertSubview(self.closeButton, aboveSubview: self.areaView)
+        
+        self.setupPanGesture()
         self.animator = UIDynamicAnimator(referenceView: self.view)
         
         self.updateLayout(with: self.view.frame.size)
@@ -117,11 +152,11 @@ public class SPPermissionDialogController: UIViewController {
         
         if let permission = permission {
             SPPermission.request(permission, with: {
-                if SPPermission.isAllow(permission) {
+                if SPPermission.isAllowed(permission) {
                     self.delegate?.didAllow?(permission: permission)
                     permissionView?.updateStyle()
                     for permission in self.permissions {
-                        if SPPermission.isAllow(permission) {
+                        if SPPermission.isAllowed(permission) {
                             if self.permissions.last == permission {
                                 SPPermissionStyle.Delay.wait(0.2, closure: {
                                     self.hide(withDialog: true)
@@ -131,6 +166,25 @@ public class SPPermissionDialogController: UIViewController {
                             return
                         }
                     }
+                } else {
+                    self.delegate?.didDenied?(permission: permission)
+                    let alertController = UIAlertController.init(
+                        title:  self.dataSource?.deniedTitle?(for: permission) ?? "Permission denied",
+                        message: self.dataSource?.deniedSubtitle?(for: permission) ?? "Please, go to Settings and allow permissions",
+                        preferredStyle: .alert
+                    )
+                    alertController.addAction(UIAlertAction.init(title: self.dataSource?.cancelTitle ?? "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+                    alertController.addAction(UIAlertAction.init(title: self.dataSource?.settingsTitle ?? "Settings", style: UIAlertAction.Style.default, handler: { (action) in
+                        
+                        UIApplication.shared.open(
+                            URL.init(string: UIApplication.openSettingsURLString)!,
+                            options: [:],
+                            completionHandler: nil
+                        )
+                        
+                    }))
+                    
+                    self.present(alertController, animated: true, completion: nil)
                 }
             })
         }
@@ -163,8 +217,14 @@ public class SPPermissionDialogController: UIViewController {
                 SPPermissionStyle.Delay.wait(0.2, closure: {
                     SPPermissionStyle.Animation.base(0.3, animations: {
                         self.bottomLabel.alpha = 1
-                        if self.dataSource?.showCloseButton ?? false {
-                            self.closeButton.alpha = 1
+                        if let showCloseButton = self.dataSource?.showCloseButton {
+                            if showCloseButton {
+                                self.closeButton.alpha = 1
+                            }
+                        } else {
+                            if !(self.dataSource?.dragEnabled ?? true) {
+                                self.closeButton.alpha = 1
+                            }
                         }
                     })
                 })
@@ -211,8 +271,20 @@ public class SPPermissionDialogController: UIViewController {
         }, completion: nil)
     }
     
+    private func setupPanGesture() {
+        if (self.dataSource?.dragEnabled ?? true) {
+            let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.handleGesture(sender:)))
+            panGesture.maximumNumberOfTouches = 1
+            self.areaView.addGestureRecognizer(panGesture)
+        } else {
+            let tapGester = UITapGestureRecognizer.init(target: self, action: #selector(self.handleTap))
+            tapGester.cancelsTouchesInView = false
+            self.backgroundView.addGestureRecognizer(tapGester)
+        }
+    }
+    
     private func updateLayout(with size: CGSize) {
-        animator.removeAllBehaviors()
+        self.animator.removeAllBehaviors()
         
         self.closeButton.frame = CGRect.init(x: 0, y: 0, width: 35, height: 35)
         self.closeButton.frame.origin.x = size.width - 27 - self.closeButton.frame.width
@@ -238,18 +310,15 @@ public class SPPermissionDialogController: UIViewController {
         self.areaView.frame = CGRect.init(origin: self.areaView.frame.origin, size: CGSize.init(width: self.areaView.frame.width, height: self.areaView.layoutHeight))
         self.areaView.center = self.areaCenter
         
-        var bottomLabelWidth: CGFloat = size.width * 0.4
+        var bottomLabelWidth: CGFloat = size.width * 0.6
         if bottomLabelWidth > 230 {
             bottomLabelWidth = 230
         }
+        
+        self.bottomLabel.frame = CGRect.init(origin: self.bottomLabel.frame.origin, size: CGSize.init(width: bottomLabelWidth, height: 10))
         self.bottomLabel.sizeToFit()
-        self.bottomLabel.frame = CGRect.init(origin: self.bottomLabel.frame.origin, size: CGSize.init(width: bottomLabelWidth, height: self.bottomLabel.frame.height))
         self.bottomLabel.center.x = size.width / 2
-        if #available(iOS 11.0, *) {
-            self.bottomLabel.frame.origin.y = size.height - self.view.safeAreaInsets.bottom - 30 - self.bottomLabel.frame.height
-        } else {
-             self.bottomLabel.frame.origin.y = size.height - 30 - self.bottomLabel.frame.height
-        }
+        self.bottomLabel.frame.origin.y = size.height - 40 - self.bottomLabel.frame.height
         SPPermissionStyle.Shadow.setShadowOffsetForLabel(self.bottomLabel, blurRadius: 3, widthOffset: 0, heightOffset: 0, opacity: 0.18)
         
         let bottomLabelAlpha: CGFloat = SPPermissionStyle.Orientation.isPortrait ? 1 : 0
@@ -301,6 +370,10 @@ public class SPPermissionDialogController: UIViewController {
         }
     }
     
+    @objc func handleTap() {
+        self.hide(withDialog: true)
+    }
+    
     //MARK: - other
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -327,14 +400,32 @@ extension SPPermissionDialogController {
             return "Application can create new task"
         case .speech:
             return "Allow check you voice"
-        case .locationAlways:
+        case .locationWhenInUse, .locationAlwaysAndWhenInUse:
             return "App will can check your location"
-        case .locationWhenInUse:
-            return "App will can check your location"
-        case .locationWithBackground:
-            return "App will can check your location"
+        case .motion:
+            return "Allow reports motion and environment-related data"
         case .mediaLibrary:
             return "Allow check your media"
         }
+    }
+}
+
+extension SPPermissionDialogController {
+    
+    public struct ColorScheme {
+        
+        var white: UIColor
+        var black: UIColor
+        var base: UIColor
+        var gray: UIColor
+        var lightGray: UIColor
+        
+        var iconWhite: UIColor
+        var iconLight: UIColor
+        var iconMedium: UIColor
+        var iconDark: UIColor
+        
+        var closeIconBackgroundColor: UIColor
+        var closeIconColor: UIColor
     }
 }

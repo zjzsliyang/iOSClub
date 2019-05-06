@@ -30,7 +30,13 @@ extension SPPermission {
             let controller = SPPermissionDialogController(permissions: permissions)
             controller.delegate = delegate
             controller.dataSource = dataSource
-            controller.present(on: viewController)
+            controller.colorSource = dataSource as? SPPermissionDialogColorSource
+            
+            if let tabBarController = viewController.tabBarController {
+                controller.present(on: tabBarController)
+            } else {
+                controller.present(on: viewController)
+            }
         }
         
         private init() {}
@@ -38,11 +44,14 @@ extension SPPermission {
 }
 
 @objc public protocol SPPermissionDialogDelegate: class {
+    
     @objc optional func didHide()
     @objc optional func didAllow(permission: SPPermissionType)
+    @objc optional func didDenied(permission: SPPermissionType)
 }
 
 @objc public protocol SPPermissionDialogDataSource: class {
+    
     @objc optional var dialogTitle: String { get }
     @objc optional var dialogSubtitle: String { get }
     @objc optional var dialogComment: String { get }
@@ -50,7 +59,29 @@ extension SPPermission {
     @objc optional var allowedTitle: String { get }
     @objc optional var bottomComment: String { get }
     @objc optional var showCloseButton: Bool { get }
+    @objc optional var dragEnabled: Bool { get }
     @objc optional func name(for permission: SPPermissionType) -> String?
     @objc optional func description(for permission: SPPermissionType) -> String?
     @objc optional func image(for permission: SPPermissionType) -> UIImage?
+    @objc optional func deniedTitle(for permission: SPPermissionType) -> String?
+    @objc optional func deniedSubtitle(for permission: SPPermissionType) -> String?
+    @objc optional var cancelTitle: String { get }
+    @objc optional var settingsTitle: String { get }
+}
+
+@objc public protocol SPPermissionDialogColorSource: class {
+    
+    @objc optional var whiteColor: UIColor { get }
+    @objc optional var blackColor: UIColor { get }
+    @objc optional var baseColor: UIColor { get }
+    @objc optional var grayColor: UIColor { get }
+    @objc optional var lightGrayColor: UIColor { get }
+    
+    @objc optional var iconWhiteColor: UIColor { get }
+    @objc optional var iconLightColor: UIColor { get }
+    @objc optional var iconMediumColor: UIColor { get }
+    @objc optional var iconDarkColor: UIColor { get }
+    
+    @objc optional var closeIconBackgroundColor: UIColor? { get }
+    @objc optional var closeIconColor: UIColor? { get }
 }

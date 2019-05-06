@@ -22,6 +22,7 @@
 import UIKit
 
 @objc public enum SPPermissionType: Int {
+    
     case camera = 0
     case photoLibrary = 1
     case notification = 2
@@ -30,10 +31,10 @@ import UIKit
     case contacts = 5
     case reminders = 6
     case speech = 7
-    case locationAlways = 8
     case locationWhenInUse = 9
-    case locationWithBackground = 10
-    case mediaLibrary = 11
+    case locationAlwaysAndWhenInUse = 10
+    case motion = 11
+    case mediaLibrary = 12
     
     var name: String {
         switch self {
@@ -53,14 +54,41 @@ import UIKit
             return "Reminders"
         case .speech:
             return "Speech"
-        case .locationAlways:
+        case .locationWhenInUse, .locationAlwaysAndWhenInUse:
             return "Location"
-        case .locationWhenInUse:
-            return "Location"
-        case .locationWithBackground:
-            return "Location"
+        case .motion:
+            return "Motion"
         case .mediaLibrary:
             return "Media Library"
+        }
+    }
+    
+    var usageDescriptionKey: String? {
+        switch self {
+        case .camera:
+            return "NSCameraUsageDescription"
+        case .photoLibrary:
+            return "NSPhotoLibraryUsageDescription"
+        case .notification:
+            return nil
+        case .microphone:
+            return "NSMicrophoneUsageDescription"
+        case .calendar:
+            return "NSCalendarsUsageDescription"
+        case .contacts:
+            return "NSContactsUsageDescription"
+        case .reminders:
+            return "NSRemindersUsageDescription"
+        case .speech:
+            return "NSSpeechRecognitionUsageDescription"
+        case .locationWhenInUse:
+            return "NSLocationWhenInUseUsageDescription"
+        case .locationAlwaysAndWhenInUse:
+            return "NSLocationAlwaysAndWhenInUseUsageDescription"
+        case .motion:
+            return "NSMotionUsageDescription"
+        case .mediaLibrary:
+            return "NSAppleMusicUsageDescription"
         }
     }
 }

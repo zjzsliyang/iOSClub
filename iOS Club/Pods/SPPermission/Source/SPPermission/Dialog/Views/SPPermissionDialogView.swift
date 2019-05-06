@@ -52,24 +52,24 @@ class SPPermissionDialogView: UIView {
     }
     
     private func commonInit() {
-        self.backgroundColor = SPPermissionStyle.Colors.white
+        self.backgroundColor = SPPermissionStyle.DefaultColors.white
         self.layer.cornerRadius = 17
         
         self.subtitleLabel.text = "".uppercased()
         self.subtitleLabel.numberOfLines = 0
-        self.subtitleLabel.textColor = SPPermissionStyle.Colors.gray
+        self.subtitleLabel.textColor = SPPermissionStyle.DefaultColors.gray
         self.subtitleLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         self.addSubview(self.subtitleLabel)
         
         self.titleLabel.text = ""
         self.titleLabel.numberOfLines = 0
-        self.titleLabel.textColor = SPPermissionStyle.Colors.black
+        self.titleLabel.textColor = SPPermissionStyle.DefaultColors.black
         self.titleLabel.font = UIFont.systemFont(ofSize: 27, weight: .bold)
         self.addSubview(self.titleLabel)
         
         self.descriptionLabel.text = ""
         self.descriptionLabel.numberOfLines = 0
-        self.descriptionLabel.textColor = SPPermissionStyle.Colors.gray
+        self.descriptionLabel.textColor = SPPermissionStyle.DefaultColors.gray
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 11, weight: .regular)
         self.addSubview(self.descriptionLabel)
     }
@@ -182,15 +182,13 @@ class SPPermissionDialogLineView: UIView {
             case .photoLibrary:
                 self.iconView.type = .photoLibrary
             case .reminders:
-                self.iconView.type = .calendar
+                self.iconView.type = .documents
             case .speech:
                 self.iconView.type = .micro
-            case .locationWhenInUse:
+            case .locationWhenInUse, .locationAlwaysAndWhenInUse:
                 self.iconView.type = .compass
-            case .locationAlways:
-                self.iconView.type = .compass
-            case .locationWithBackground:
-                self.iconView.type = .compass
+            case .motion:
+                self.iconView.type = .windmill
             case .mediaLibrary:
                 self.iconView.type = .headphones
             }
@@ -208,18 +206,18 @@ class SPPermissionDialogLineView: UIView {
     }
     
     private func commonInit() {
-        self.backgroundColor = SPPermissionStyle.Colors.white
+        self.backgroundColor = SPPermissionStyle.DefaultColors.white
         
         self.addSubview(self.imageView)
         self.addSubview(self.iconView)
         
         self.titleLabel.numberOfLines = 1
-        self.titleLabel.textColor = SPPermissionStyle.Colors.black
+        self.titleLabel.textColor = SPPermissionStyle.DefaultColors.black
         self.titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         self.addSubview(self.titleLabel)
         
         self.subtitleLabel.numberOfLines = 2
-        self.subtitleLabel.textColor = SPPermissionStyle.Colors.gray
+        self.subtitleLabel.textColor = SPPermissionStyle.DefaultColors.gray
         self.subtitleLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         self.addSubview(self.subtitleLabel)
         
@@ -227,12 +225,12 @@ class SPPermissionDialogLineView: UIView {
         self.button.style = .base
         self.addSubview(self.button)
         
-        self.separatorView.backgroundColor = SPPermissionStyle.Colors.gray.withAlphaComponent(0.3)
+        self.separatorView.backgroundColor = SPPermissionStyle.DefaultColors.gray.withAlphaComponent(0.3)
         self.addSubview(self.separatorView)
     }
     
     func updateStyle() {
-        if SPPermission.isAllow(self.permission) {
+        if SPPermission.isAllowed(self.permission) {
             SPPermissionStyle.Animation.base(0.2, animations: {
                 self.button.setTitle(self.allowedTitle, for: .normal)
                 self.button.style = .select

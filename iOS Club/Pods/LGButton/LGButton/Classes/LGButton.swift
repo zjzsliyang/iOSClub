@@ -10,19 +10,24 @@ import QuartzCore
 
 
 @IBDesignable
-public class LGButton: UIControl {
+open class LGButton: UIControl {
     
     enum TouchAlphaValues : CGFloat {
         case touched = 0.7
         case untouched = 1.0
     }
-
+    
     let touchDisableRadius : CGFloat = 100.0
-
-    let availableFontIcons = ["fa", "io", "oc", "ic", "ma", "ti", "mi"]
     
-    var gradient : CAGradientLayer?
+    private var availableFontIcons: [String: IconFont] = ["fa": Fonts.awesome,
+                                                          "io": Fonts.ion,
+                                                          "oc": Fonts.oct,
+                                                          "ic": Fonts.ic,
+                                                          "ma": Fonts.material,
+                                                          "ti": Fonts.themify,
+                                                          "mi": Fonts.map]
     
+    fileprivate var gradient : CAGradientLayer?
     
     fileprivate var rootView : UIView!
     @IBOutlet fileprivate weak var titleLbl: UILabel!
@@ -50,10 +55,12 @@ public class LGButton: UIControl {
     @IBOutlet fileprivate var trailingLoadingConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate var leadingLoadingConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var bgContentWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bgContentHeightConstraint: NSLayoutConstraint!
     
     public var isLoading = false {
         didSet {
-           showLoadingView()
+            showLoadingView()
         }
     }
     
@@ -143,6 +150,12 @@ public class LGButton: UIControl {
     }
     
     @IBInspectable public var titleFontSize: CGFloat = 14.0 {
+        didSet{
+            setupView()
+        }
+    }
+    
+    @IBInspectable public var titleNumOfLines: Int = 1 {
         didSet{
             setupView()
         }
@@ -334,21 +347,43 @@ public class LGButton: UIControl {
         }
     }
     
+    @IBInspectable public var leftAligned: Bool = false {
+        didSet{
+            setupView()
+        }
+    }
+    
+    @IBInspectable public var rightAligned: Bool = false {
+        didSet{
+            setupView()
+        }
+    }
+    
+    // MARK: - Standard Properties
+    // MARK:
+    public var attributedString: NSAttributedString? {
+        didSet {
+            titleLbl.attributedText = attributedString
+        }
+    }
+    
     // MARK: - Overrides
     // MARK:
     override init(frame: CGRect) {
         super.init(frame: frame)
+        registIconFont()
         xibSetup()
         setupView()
     }
     
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
+        registIconFont()
         xibSetup()
         setupView()
     }
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         if gradient != nil {
             gradient?.removeFromSuperlayer()
             gradient = nil
@@ -357,7 +392,19 @@ public class LGButton: UIControl {
         setupBorderAndCorners()
     }
     
-    override public var intrinsicContentSize: CGSize {
+    override open func awakeFromNib() {
+        super.awakeFromNib()
+        xibSetup()
+        setupView()
+    }
+    
+    override open func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        xibSetup()
+        setupView()
+    }
+    
+    override open var intrinsicContentSize: CGSize {
         return CGSize(width: 10, height: 10)
     }
     
@@ -369,10 +416,10 @@ public class LGButton: UIControl {
         bgContentView.clipsToBounds = true
         layer.masksToBounds = false
         setIconOrientation()
+        setupTitle()
         setupBackgroundColor()
         setupGradientBackground()
         setupBorderAndCorners()
-        setupTitle()
         setupLeftIcon()
         setupRightIcon()
         setupLeftImage()
@@ -380,6 +427,13 @@ public class LGButton: UIControl {
         setupSpacings()
         setupShadow()
         setupLoadingView()
+        setupAlignment()
+    }
+    
+    fileprivate func registIconFont() {
+        for (key, value) in self.availableFontIcons {
+            SwiftIconFont.registFont(from: value, name: key)
+        }
     }
     
     fileprivate func setIconOrientation() {
@@ -391,6 +445,8 @@ public class LGButton: UIControl {
     }
     
     fileprivate func setupBackgroundColor() {
+        bgContentWidthConstraint.constant = min(0, -borderWidth)
+        bgContentHeightConstraint.constant = min(0, -borderWidth)
         bgContentView.backgroundColor = bgColor
     }
     
@@ -416,7 +472,7 @@ public class LGButton: UIControl {
             let d = pow(sinf((2*Float(Double.pi)*((xAngle+0.5)/2))),2)
             gradient!.startPoint = CGPoint(x: CGFloat(a), y: CGFloat(b))
             gradient!.endPoint = CGPoint(x: CGFloat(c), y: CGFloat(d))
-        
+            
             bgContentView.layer.addSublayer(gradient!)
         }
     }
@@ -429,12 +485,13 @@ public class LGButton: UIControl {
             bgContentView.layer.cornerRadius = cornerRadius
             layer.cornerRadius = cornerRadius
         }
-        bgContentView.layer.borderColor = borderColor.cgColor
-        bgContentView.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.borderWidth = borderWidth
     }
     
     fileprivate func setupTitle() {
         titleLbl.isHidden = titleString.isEmpty
+        titleLbl.numberOfLines = titleNumOfLines
         titleLbl.text = titleString
         titleLbl.textColor = titleColor
         if titleFontName != nil {
@@ -468,7 +525,7 @@ public class LGButton: UIControl {
                    heightConstraint: leftImageHeightConstraint,
                    widthValue: leftImageWidth,
                    heightValue: leftImageHeight)
-        leftIcon.isHidden =  (leftImageSrc != nil || !availableFontIcons.contains(leftIconFontName))
+        leftIcon.isHidden =  (leftImageSrc != nil || !(SwiftIconFont.fonts[leftIconFontName] != nil))
     }
     
     fileprivate func setupRightImage(){
@@ -480,7 +537,7 @@ public class LGButton: UIControl {
                    heightConstraint: rightImageHeightConstraint,
                    widthValue: rightImageWidth,
                    heightValue: rightImageHeight)
-        rightIcon.isHidden =  (rightImageSrc != nil || !availableFontIcons.contains(rightIconFontName))
+        rightIcon.isHidden =  (rightImageSrc != nil || !(SwiftIconFont.fonts[rightIconFontName] != nil))
     }
     
     fileprivate func setupSpacings(){
@@ -493,10 +550,12 @@ public class LGButton: UIControl {
     }
     
     fileprivate func setupShadow(){
-        layer.shadowOffset = shadowOffset
-        layer.shadowRadius = shadowRadius
-        layer.shadowOpacity = Float(shadowOpacity)
-        layer.shadowColor = shadowColor.cgColor
+        if shadowRadius > 0 {
+            layer.shadowOffset = shadowOffset
+            layer.shadowRadius = shadowRadius
+            layer.shadowOpacity = Float(shadowOpacity)
+            layer.shadowColor = shadowColor.cgColor
+        }
     }
     
     fileprivate func setupLoadingView(){
@@ -512,44 +571,42 @@ public class LGButton: UIControl {
         setupBorderAndCorners()
     }
     
-    fileprivate func setupIcon(icon:UILabel, fontName:String, iconName:String, fontSize:CGFloat, color:UIColor){
-        icon.isHidden = !availableFontIcons.contains(fontName)
-        if  !icon.isHidden {
-            icon.textColor = color
-            switch fontName {
-            case "fa":
-                icon.font = UIFont.icon(from: .FontAwesome, ofSize: fontSize)
-                icon.text = String.fontAwesomeIcon(iconName)
-                break;
-            case "io":
-                icon.font = UIFont.icon(from: .Ionicon, ofSize: fontSize)
-                icon.text = String.fontIonIcon(iconName)
-                break;
-            case "oc":
-                icon.font = UIFont.icon(from: .Octicon, ofSize: fontSize)
-                icon.text = String.fontOcticon(iconName)
-                break;
-            case "ic":
-                icon.font = UIFont.icon(from: .Iconic, ofSize: fontSize)
-                icon.text = String.fontIconicIcon(iconName)
-                break;
-            case "ma":
-                icon.font = UIFont.icon(from: .MaterialIcon, ofSize: fontSize)
-                icon.text = String.fontMaterialIcon(iconName.replacingOccurrences(of: "-", with: "."))
-                break;
-            case "ti":
-                icon.font = UIFont.icon(from: .Themify, ofSize: fontSize)
-                icon.text = String.fontThemifyIcon(iconName.replacingOccurrences(of: "-", with: "."))
-                break;
-            case "mi":
-                icon.font = UIFont.icon(from: .MapIcon, ofSize: fontSize)
-                icon.text = String.fontMapIcon(iconName.replacingOccurrences(of: "-", with: "."))
-                break;
-            default:
-                break;
-            }
+    fileprivate func setupAlignment() {
+        if leftAligned {
+            titleLbl.textAlignment = .left
+        } else if rightAligned {
+            titleLbl.textAlignment = .right
+        } else {
+            titleLbl.textAlignment = .center
         }
-        setupBorderAndCorners()
+    }
+    
+    fileprivate func setupIcon(icon:UILabel, fontName:String, iconName:String, fontSize:CGFloat, color:UIColor){
+        defer {
+            setupBorderAndCorners()
+        }
+        if let iconFont = SwiftIconFont.fonts[fontName] {
+            icon.isHidden = false
+            icon.textColor = color
+            icon.font = UIFont.icon(from: iconFont, ofSize: fontSize)
+            if let iconStr = String.getIcon(from: iconFont, code: iconName) {
+                icon.text = iconStr
+            }else{
+                let joind = ["-", ".", "_"]
+                for left in joind {
+                    for right in joind {
+                        if left == right { continue }
+                        let code = iconName.replacingOccurrences(of: left, with: right)
+                        if let iconStr = String.getIcon(from: iconFont, code: code) {
+                            icon.text = iconStr
+                            return
+                        }
+                    }
+                }
+            }
+        }else{
+            icon.isHidden = true
+        }
     }
     
     fileprivate func setupImage(imageView:UIImageView, image:UIImage?, color:UIColor?, widthConstraint:NSLayoutConstraint, heightConstraint:NSLayoutConstraint, widthValue:CGFloat, heightValue:CGFloat){
@@ -579,9 +636,10 @@ public class LGButton: UIControl {
     // MARK: - Xib file
     // MARK:
     fileprivate func xibSetup() {
+        guard rootView == nil else { return }
         rootView = loadViewFromNib()
         rootView.frame = bounds
-        rootView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        rootView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(rootView)
         leadingLoadingConstraint.isActive = false
         trailingLoadingConstraint.isActive = false
@@ -609,24 +667,22 @@ public class LGButton: UIControl {
             if !showTouchFeedback {
                 return
             }
-            
             touchAlpha = (pressed) ? .touched : .untouched
         }
     }
-
-    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         pressed = true
     }
     
-    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?){
-        let shouldSendActions = pressed
-        pressed = false
-        if shouldSendActions{
+    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?){
+        if pressed {
             sendActions(for: .touchUpInside)
         }
+        pressed = false
     }
     
-    override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?){
+    override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?){
         if let touchLoc = touches.first?.location(in: self){
             if (touchLoc.x < -touchDisableRadius ||
                 touchLoc.y < -touchDisableRadius ||
@@ -640,7 +696,7 @@ public class LGButton: UIControl {
         }
     }
     
-    override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         pressed = false
     }
     
@@ -648,6 +704,16 @@ public class LGButton: UIControl {
         if self.alpha != self.touchAlpha.rawValue {
             UIView.animate(withDuration: 0.3) {
                 self.alpha = self.touchAlpha.rawValue
+            }
+        }
+    }
+    
+    @IBAction func tapAction(_ sender: Any) {
+        sendActions(for: .touchUpInside)
+        if !isLoading {
+            pressed = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.pressed = false
             }
         }
     }
