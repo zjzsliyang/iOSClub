@@ -35,12 +35,18 @@ class NewsCell: UITableViewCell {
         titleLabel.text = news.title
         contentTextView.text = news.content
         contentTextView.textContainer.maximumNumberOfLines = 3
-        do {
-            let avatarData = try Data(contentsOf: URL(string: news.user.avatar)!)
-            avatarView.image = UIImage(data: avatarData)
-        }
-        catch {
-            avatarView.image = UIImage(named: "avatar")
+        DispatchQueue.global().async {
+            do {
+                let avatarData = try Data(contentsOf: URL(string: news.user.avatar)!)
+                DispatchQueue.main.async {
+                    self.avatarView.image = UIImage(data: avatarData)
+                }
+            }
+            catch {
+                DispatchQueue.main.async {
+                    self.avatarView.image = UIImage(named: "avatar")
+                }
+            }
         }
         if news.video != "" {
             setupVideo(video: news.video!)
