@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import SkeletonView
 import PullToRefresh
+import SKPhotoBrowser
 import NotificationBannerSwift
 
 class NewsViewController: UIViewController {
@@ -32,8 +33,27 @@ class NewsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        NotificationCenter.default.addObserver(self, selector: #selector(tableViewCellContentSelected(notification:)), name: NSNotification.Name(rawValue: "tableviewcellselected"), object: nil)
         fetchNews()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    func detailImages(images: [String], index: Int) {
+        var photos = [SKPhoto]()
+        for image in images {
+            photos.append(SKPhoto.photoWithImageURL(image))
+        }
+        let browser = SKPhotoBrowser(photos: photos)
+        browser.initializePageIndex(index)
+        self.present(browser, animated: true, completion: nil)
+    }
+    
+    @objc func tableViewCellContentSelected(notification: Notification) {
+        if let images = notification.userInfo?["images"] as? [String] {
+            if let index = notification.userInfo?["index"] as? NSInteger {
+                detailImages(images: images, index: index)
+            }
+        }
     }
     
     func fetchNews() {

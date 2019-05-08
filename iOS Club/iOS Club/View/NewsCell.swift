@@ -70,7 +70,9 @@ class NewsCell: UITableViewCell {
     }
     
     func setupImages(images: [String]) {
-        let imagesplayer = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect(x: 0, y: 150, width: self.frame.width, height: self.frame.width / 16 * 9))
+        let imagesplayer = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect(x: 0, y: 150, width: self.frame.width, height: self.frame.width / 16 * 9)) { (index) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tableviewcellselected"), object: nil, userInfo: ["images": images, "index": index])
+        }
         imagesplayer.autoScroll = true
         imagesplayer.infiniteLoop = true
         imagesplayer.imageViewContentMode = .scaleAspectFit

@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>0.9</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -35,10 +35,14 @@
 	<string>This app need to access your camera to post.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>This app may need to access your contacts.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app need to access your location to create event.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app need to access your location to create event.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app may need to access your microphone.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This app may need to access your motion usage.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app need to access your photo library to post.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
