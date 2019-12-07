@@ -37,8 +37,8 @@ class SignupViewController: UIViewController {
         
         let eula = NSMutableAttributedString(string: "EULA")
         let pp = NSMutableAttributedString(string: "Privacy Policy")
-        eula.addAttribute(.link, value: URL(string: staticUrl + "/license/eula.html")!, range: NSRange(location: 0, length: "EULA".count))
-        pp.addAttribute(.link, value: URL(string: staticUrl + "/license/privacy_policy.html")!, range: NSRange(location: 0, length: "Privacy Policy".count))
+        eula.addAttribute(.link, value: URL(string: backendUrl + "/files/license/eula.html")!, range: NSRange(location: 0, length: "EULA".count))
+        pp.addAttribute(.link, value: URL(string: backendUrl + "/files/license/privacy_policy.html")!, range: NSRange(location: 0, length: "Privacy Policy".count))
         license.attributedText = NSMutableAttributedString(string: "I agree to the ").appendRecursively(eula).appendRecursively(NSMutableAttributedString(string: " and ")).appendRecursively(pp)
         license.delegate = self
     }
