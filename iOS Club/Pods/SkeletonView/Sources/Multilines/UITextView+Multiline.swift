@@ -3,7 +3,6 @@
 import UIKit
 
 public extension UITextView {
-
     @IBInspectable
     var lastLineFillPercent: Int {
         get { return lastLineFillingPercent }
@@ -14,6 +13,18 @@ public extension UITextView {
     var linesCornerRadius: Int {
         get { return multilineCornerRadius }
         set { multilineCornerRadius = min(newValue, 10) }
+    }
+
+    @IBInspectable
+    var skeletonLineSpacing: CGFloat {
+        get { return multilineSpacing }
+        set { multilineSpacing = min(newValue, 10) }
+    }
+
+    @IBInspectable
+    var skeletonPaddingInsets: UIEdgeInsets {
+        get { return paddingInsets }
+        set { paddingInsets = newValue }
     }
 }
 
@@ -32,5 +43,15 @@ extension UITextView: ContainsMultilineText {
             return ao_get(pkey: &MultilineAssociatedKeys.multilineCornerRadius) as? Int ?? defaultValue
         }
         set { ao_set(newValue, pkey: &MultilineAssociatedKeys.multilineCornerRadius) }
+    }
+
+    var multilineSpacing: CGFloat {
+        get { return ao_get(pkey: &MultilineAssociatedKeys.multilineSpacing) as? CGFloat ?? SkeletonAppearance.default.multilineSpacing }
+        set { ao_set(newValue, pkey: &MultilineAssociatedKeys.multilineSpacing) }
+    }
+
+    var paddingInsets: UIEdgeInsets {
+        get { return ao_get(pkey: &MultilineAssociatedKeys.paddingInsets) as? UIEdgeInsets ?? .zero }
+        set { ao_set(newValue, pkey: &MultilineAssociatedKeys.paddingInsets) }
     }
 }

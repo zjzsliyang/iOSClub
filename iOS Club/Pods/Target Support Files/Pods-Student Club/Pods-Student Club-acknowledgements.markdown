@@ -205,7 +205,7 @@ Licensed under the **MIT** license
 
 The MIT License (MIT)
 
-Copyright (c) 2018 Wei Wang
+Copyright (c) 2019 Wei Wang
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -418,11 +418,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## SPPermission
+## SPPermissions
 
 MIT License
 
-Copyright (c) 2017 Ivan Vorobei
+Copyright (c) 2019 Ivan Vorobei
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -10,12 +10,11 @@ import UIKit
 import LGButton
 import Alamofire
 import SwiftyJSON
-import SPPermission
+import SPPermissions
 import TextFieldEffects
 import NotificationBannerSwift
 
-class LoginViewController: UIViewController {
-    
+class LoginViewController: UIViewController, SPPermissionsDataSource, SPPermissionsDelegate {
     @IBOutlet weak var emailTextField: HoshiTextField!
     @IBOutlet weak var passwordTextField: HoshiTextField!
     @IBOutlet weak var loginButton: LGButton!
@@ -44,9 +43,13 @@ class LoginViewController: UIViewController {
             }
         }
         
-        if !(SPPermission.isAllowed(.camera) || SPPermission.isAllowed(.photoLibrary) || SPPermission.isAllowed(.calendar) || SPPermission.isAllowed(.notification) || SPPermission.isAllowed(.locationWhenInUse)) {
-            SPPermission.Dialog.request(with: [.camera, .photoLibrary, .calendar, .notification, .locationWhenInUse], on: self)
-        }
+        let permissionsController = SPPermissions.list([.calendar, .camera, .photoLibrary, .notification, .locationWhenInUse])
+        
+        permissionsController.titleText = "Allow Student Club"
+        
+        permissionsController.dataSource = self
+        permissionsController.delegate = self
+        permissionsController.present(on: self)
     }
     
     func postLogin(email: String, password: String, sender: LGButton) {
@@ -121,6 +124,10 @@ class LoginViewController: UIViewController {
             suiteDefault?.set(email, forKey: "email")
             suiteDefault?.synchronize()
         }
+    }
+    
+    func configure(_ cell: SPPermissionTableViewCell, for permission: SPPermission) -> SPPermissionTableViewCell {
+        return cell
     }
 }
 

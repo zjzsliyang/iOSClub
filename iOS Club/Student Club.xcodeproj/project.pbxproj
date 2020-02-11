@@ -96,6 +96,10 @@
 		2FCA3617215572EC00816691 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3615215572EB00816691 /* Blog.swift */; };
 		2FCA3618215572EC00816691 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCA3616215572EB00816691 /* User.swift */; };
 		32E69BC4764C75F88EFEC33D /* Pods_Club_Share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8461758B497893D9D9DE37 /* Pods_Club_Share.framework */; };
+		3E0C7D9D23F2F5E80088AAD8 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 3E0C7D9B23F2F5E80088AAD8 /* Podfile.lock */; };
+		3E0C7D9E23F2F5E80088AAD8 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 3E0C7D9B23F2F5E80088AAD8 /* Podfile.lock */; };
+		3E0C7D9F23F2F5E80088AAD8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3E0C7D9C23F2F5E80088AAD8 /* Podfile */; };
+		3E0C7DA023F2F5E80088AAD8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3E0C7D9C23F2F5E80088AAD8 /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +219,8 @@
 		2FCA3613215572E300816691 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		2FCA3615215572EB00816691 /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		2FCA3616215572EB00816691 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3E0C7D9B23F2F5E80088AAD8 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		3E0C7D9C23F2F5E80088AAD8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		5EAD9DB662EC826B9606B184 /* Pods-Club Share.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Club Share.release.xcconfig"; path = "Pods/Target Support Files/Pods-Club Share/Pods-Club Share.release.xcconfig"; sourceTree = "<group>"; };
 		8B2E2264885BB2A89426E18C /* Pods-Club Share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Club Share.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Club Share/Pods-Club Share.debug.xcconfig"; sourceTree = "<group>"; };
 		D1D32E9CF6C188D69087BD75 /* Pods-Student Club.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Student Club.release.xcconfig"; path = "Pods/Target Support Files/Pods-Student Club/Pods-Student Club.release.xcconfig"; sourceTree = "<group>"; };
@@ -297,6 +303,8 @@
 		2F74A513215538EC00341862 = {
 			isa = PBXGroup;
 			children = (
+				3E0C7D9C23F2F5E80088AAD8 /* Podfile */,
+				3E0C7D9B23F2F5E80088AAD8 /* Podfile.lock */,
 				2F45EB29215835DC00C5B9D3 /* config.swift */,
 				2F74A51E215538EC00341862 /* iOS Club */,
 				1EA4B762215828B800DD5941 /* Club Share */,
@@ -782,6 +790,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E0C7DA023F2F5E80088AAD8 /* Podfile in Resources */,
+				3E0C7D9E23F2F5E80088AAD8 /* Podfile.lock in Resources */,
 				1EA4B767215828B800DD5941 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -790,8 +800,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E0C7D9F23F2F5E80088AAD8 /* Podfile in Resources */,
 				2F8A4EB721F1CC4C00DF3FBE /* Countries.bundle in Resources */,
 				2F74A52A215538EE00341862 /* LaunchScreen.storyboard in Resources */,
+				3E0C7D9D23F2F5E80088AAD8 /* Podfile.lock in Resources */,
 				2F74A527215538EE00341862 /* Assets.xcassets in Resources */,
 				2F74A525215538EC00341862 /* Main.storyboard in Resources */,
 			);

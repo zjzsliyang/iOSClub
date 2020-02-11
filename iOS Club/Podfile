@@ -22,7 +22,6 @@ target 'Student Club' do
   pod 'SwiftyJSON'
   pod 'VACalendar'
   pod 'WSTagsField'
-  pod 'SPPermission'
   pod 'SwiftyBeaver'
   pod 'SkeletonView'
   pod 'SVProgressHUD'
@@ -35,5 +34,10 @@ target 'Student Club' do
   pod 'IQKeyboardManagerSwift'
   pod 'NotificationBannerSwift'
   pod 'SwiftLocation', '~> 4.0'
+  pod 'SPPermissions/Camera'
+  pod 'SPPermissions/Calendar'
+  pod 'SPPermissions/Location'
+  pod 'SPPermissions/PhotoLibrary'
+  pod 'SPPermissions/Notification'
 
 end

@@ -1,8 +1,8 @@
 <p align="left" >
-<img src="./swiftlocation_logo.png" width=300px alt="SwiftDate" title="SwiftDate">
+<img src="./swiftlocation_logo.png" width=300px alt="SwiftLocation" title="SwiftLocation">
 </p>
 
-### Efficient and easy to use location tracking framework for iOS
+### Efficient and easy to use location tracking, geocoding, autocomplete & beacon framework for iOS
 
 |  	| Main Features 	|
 |----	|----------------------------------------------------------------------------	|
@@ -13,6 +13,8 @@
 | 🌏 	| Support for Geocoding/Reverse Geocoding (Apple, Google, OpenStreet) 	|
 | 🔍 	| Support for Autocomplete/Place Details (Apple, Google) 	|
 | 🖥 	| Support IP based location with multiple pluggable services 	|
+| 📍 	| Support iBeacon tracking	|
+| ⏱ 	| Support continous location monitoring with fixed minumum time interval / min distance	|
 
 
 SwiftLocation is **created and maintaned with ❥** by Daniele Margutti - [www.danielemargutti.com](http://www.danielemargutti.com).
@@ -67,11 +69,13 @@ Using this lightweight library you will not need to struggle with CoreLocation's
 	- [Explicitly ask for Authorization](#explicitly_ask_authorization)
 	- [Observe Authorization State Changes](#observe_auth_changes)
 - [Get Current Location via GPS](#user_location_gps)
+- [Get Current Location via GPS with fixed min interval/distance](#minintervaldistance)
 - [Get Current Location via IP](#user_location_ip)
 - [Background Monitoring (Significant)](#background_monitoring)
 - [Heading Updates](#heading_updates)
 - [Geocoding/Reverse Geocoding](#geocoding)
 - [Autocomplete](#autocomplete)
+- [iBeacon Tracking](#ibeacon)
 
 <a name="main_concepts"/>
 
@@ -130,7 +134,7 @@ You can also observe for changes in authorization status by subscribing auth cha
 
 ```swift
 let observerID = LocationManager.shared.onAuthorizationChange.add { newState in
-  print("Authorization status changed to \(newStatus)")
+  print("Authorization status changed to \(newState)")
 }
 ```
 
@@ -198,6 +202,27 @@ let req = LocationManager.shared.locateFromGPS(.continous, accuracy: .city) { re
 req.stop() // remove from queue
 req.pause() // pause events dispatching, request still in queue
 ```
+<a name="minintervaldistance"/>
+
+### Get Current Location via GPS with fixed min interval/distance
+
+You can also subscribe to continuos location updates by filtering data using constraints on minimum passed time interval (since the last accepted location) and/or minimum distance (since the last accepted location).
+Keep in mind: location manager still works even if data is not passed to the the request callback so you should pick the right `accuracy` parameter to balance the energy consuption and quality of the data.
+
+This is an example of the code:
+
+```swift
+let request = LocationManager.shared.locateFromGPS(.continous, accuracy: .city) { data in
+  switch data {
+    case .failure(let error):
+      print("Location error: \(error)")
+    case .success(let location):
+      print("New Location: \(location)")
+  }
+}
+request.dataFrequency = .fixed(minInterval: 40, minDistance: 100) // minimum 40 seconds & 100 meters since the last update. 
+```
+
 <a name="user_location_ip"/>
 
 ### Get Current Location via IP
@@ -419,6 +444,63 @@ LocationManager.shared.autocomplete(partialMatch: .partialSearch("Piazza della R
     }
 }
 ```
+
+<a name="ibeacon"/>
+
+## iBeacon Tracking
+
+Since 4.2.0 SwiftLocation also support iBeacon's beacons tracking.  
+
+An iBeacon is a device that emits a Bluetooth signal that can be detected by your devices. Companies can deploy iBeacon devices in environments where proximity detection is a benefit to users, and apps can use the proximity of beacons to determine an appropriate course of action. You decide what actions to take based on the proximity of nearby beacons. For example, a department store might deploy beacons identifying each section of the store, and the corresponding app might point out sale items when the user is near each section.
+
+When deploying your iBeacon hardware, you must program each iBeacon with an appropriate proximity UUID, major value, and minor value. These values identify each of your beacons uniquely and make it possible for your app to differentiate between those beacons later.
+
+- The uuid (universally unique identifier) is a 128-bit value that uniquely identifies your app’s beacons.
+- The major value is a 16-bit unsigned integer that you use to differentiate groups of beacons with the same UUID.
+- The minor value is a 16-bit unsigned integer that you use to differentiate groups of beacons with the same UUID and major value.
+
+Only the UUID is required, but it is recommended that you program all three values into your iBeacon hardware. In your app, you can look for related groups of beacons by specifying only a subset of values.
+
+Tracking a beacon with SwiftLocation is very simple.
+
+```swift
+// The UUID is a 128-bit value that uniquely identifies your app’s beacons.
+let proximityUUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
+LocationManager.shared.locateFromBeacons(.continous, proximityUUID: proximityUUID, result:  { result in
+  switch result {
+    case .failure(let error): 
+        // something went wrong
+    case .success(let beaconsFound):
+        // beacons found     
+        doSomethingWithBeacons(beaconsFound)                      
+  }
+})
+
+func doSomethingWithBeacons(_ beacons: [CLBeacon]) {
+  guard beacons.isEmpty == false else {
+    return
+  }
+ 
+   let nearestBeacon = beacons.first!
+   let major = CLBeaconMajorValue(nearestBeacon.major)
+   let minor = CLBeaconMinorValue(nearestBeacon.minor)
+        
+   switch nearestBeacon.proximity {
+        case .near, .immediate:
+            // Display information about the relevant exhibit.
+            break
+                
+        default:
+           // Dismiss exhibit information, if it is displayed.
+           break
+        }
+    }
+}
+```
+
+### Tip
+
+When deploying beacons, consider giving each one a unique combination of UUID, major, and minor values so that you can distinguish among them. If multiple beacons use the same UUID, major, and minor values, the array of beacons delivered to the request reponse method might be differentiated only by their proximity and accuracy values.
 
 ## Copyright
 
