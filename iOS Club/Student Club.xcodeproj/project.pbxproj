@@ -1007,7 +1007,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Club Share/Club Share.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2XYAGB2947;
 				INFOPLIST_FILE = "Club Share/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1016,7 +1016,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.10;
+				MARKETING_VERSION = 0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tac.iosclub.Club-Share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1031,7 +1031,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Club Share/Club Share.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2XYAGB2947;
 				INFOPLIST_FILE = "Club Share/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1040,7 +1040,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.10;
+				MARKETING_VERSION = 0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tac.iosclub.Club-Share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1174,7 +1174,7 @@
 				CODE_SIGN_ENTITLEMENTS = "iOS Club/iOS Club.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2XYAGB2947;
 				INFOPLIST_FILE = "iOS Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11;
@@ -1182,7 +1182,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.10;
+				MARKETING_VERSION = 0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tac.iosclub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1200,7 +1200,7 @@
 				CODE_SIGN_ENTITLEMENTS = "iOS Club/iOS Club.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2XYAGB2947;
 				INFOPLIST_FILE = "iOS Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11;
@@ -1208,7 +1208,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.10;
+				MARKETING_VERSION = 0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tac.iosclub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

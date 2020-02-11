@@ -114,6 +114,7 @@ extension BlogViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
         }
         if #available(iOS 13.0, *) {
             cell.previewView.textProvider[.title].fontColor = UIColor.label
+            cell.previewView.textProvider[.description].fontColor = UIColor.secondaryLabel
         } else {
             // Fallback on earlier versions
         }
