@@ -303,14 +303,14 @@
 		2F74A513215538EC00341862 = {
 			isa = PBXGroup;
 			children = (
-				3E0C7D9C23F2F5E80088AAD8 /* Podfile */,
-				3E0C7D9B23F2F5E80088AAD8 /* Podfile.lock */,
 				2F45EB29215835DC00C5B9D3 /* config.swift */,
 				2F74A51E215538EC00341862 /* iOS Club */,
 				1EA4B762215828B800DD5941 /* Club Share */,
 				2F74A51D215538EC00341862 /* Products */,
 				4BB8EDD238E97EEE57FE3E6F /* Pods */,
 				A0F3387D68D1292BD5BABDCB /* Frameworks */,
+				3E0C7D9C23F2F5E80088AAD8 /* Podfile */,
+				3E0C7D9B23F2F5E80088AAD8 /* Podfile.lock */,
 			);
 			sourceTree = "<group>";
 		};

@@ -30,6 +30,11 @@ class UniversityDetailViewController: UIViewController {
         
         self.setImage(imageView: uiniversityIcon,urlString: university["icon"].rawString()!)
         universityDesc.text = university["description"].rawString()
+        if #available(iOS 13.0, *) {
+            universityDesc.textColor = UIColor.label
+        } else {
+            // Fallback on earlier versions
+        }
         
         let teacherUrl = backendUrl + "/club/teacher/getByCode?code=" + university["code"].rawString()!
         let studentUrl = backendUrl + "/club/sm/getByCode?code=" + university["code"].rawString()!

@@ -112,6 +112,11 @@ extension BlogViewController: SkeletonTableViewDataSource, SkeletonTableViewDele
                 self?.present(SFSafariViewController(url: URL), animated: true, completion: nil)
             }
         }
+        if #available(iOS 13.0, *) {
+            cell.previewView.textProvider[.title].fontColor = UIColor.label
+        } else {
+            // Fallback on earlier versions
+        }
         return cell
     }
     
