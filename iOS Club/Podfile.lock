@@ -65,7 +65,7 @@ DEPENDENCIES:
   - WSTagsField
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - BMPlayer
     - Cache
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   SkeletonView: 6cbb80f82f8bdee3f9093e2fa03b84819b4bd826
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SPPermission: 7403d2e53b002bfea6e93e63cd33ac840e5cc98d
+  SPPermission: a2759056ed4a4daf428759a3b25dba48869ca292
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLocation: f6e3abae66b071c4b84a5f323dda7687d4f0b333
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
@@ -125,4 +125,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7168587d0fdd30e596fa3eedb53a27d66bae329e
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.4
